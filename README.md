@@ -32,7 +32,7 @@
 <p>Os três comandos acima, respectivamente, roda as migrations (criação das tabelas do banco de dados), planta os seeders (faz o INSERT nas tabelas da aplicação) e logo depois roda o servidor. Você pode ter que mudar a configuração no arquivo .env se o seu MySQL não estiver na porta padrão ou tiver coloca uma senha no usuário root. Colocarei um arquivo dump também com alguns registros.</p>
 <h3>Front end (ReactJS)</h3>
 <p>Depois que clonar o projeto dê um NPM INSTALL para instalar as dependencias. Últimamente algumas pessoas tem tido um problema scss-node. Se ocorrer esse erro basta instalar essa dependencia, em seguida, digitar:
-<p><i>npm start/i></p>
+<p><i>npm start</i></p>
 <p>e o projeto deve rodar sem problemas.</p>
 <h2>Considerações Finais</h2>
 <p>Qualquer dúvida ou dificuldade estou disponível para contato ou mesmo bater um bate-papo sobre a implematação do código de um forma geral.</p>
