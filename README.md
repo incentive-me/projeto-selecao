@@ -13,7 +13,7 @@
 <p>No momento é possível adicionar categorias, lojas, pratos e usuários. Todos esses itens podem ser adicionados (por enquanto) simplemente fazendo requisições do tipo POST. As requisições podem ser encontradas no caminho <b>start/route.js</b>. Após a criação do user ele ganhará um token e pode usar aplicação para adicionar produtos ao carrinho. Adicionando produtos no carrinho ele pode optar por fazer o pedido, e com isso, o produto vai para sua lista de pedidos.</p>
 <p>No back temos o o famoso MRC (Model Router Controller). O back funciona como uma API (fornecendo dados para qualquer tipo de aplicação, retornando um JSON) e no front temos o ReactJS cuidando das views e toda a interação cliente.</p>
 <h2>O que ainda será implementado?</h2>
-<p>Muito ainda tem que ser feito no projeto.<p>
+<p>Muito ainda tem que ser feito no projeto. Segue alguns pontos no qual julgo bem importantes:<p>
   <ul>
     <li>Adicionar login/painel para cada loja criada e alí poder criar/atualizar/deletar produtos</li>
     <li>Sistema de promoção para as lojas</li>
