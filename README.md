@@ -22,6 +22,7 @@
     <li>Melhorar fluxo de compra.</li>
     <li>Melhorar design frontend</li>
     <li>Melhorar segurança da aplicação</li>
+    <li>Documentação de como usar a API</li>
   </ul>
 <h2>Requisitos para rodar o projeto</h2>
 <h3>Back end (AdonisJS)</h3>
