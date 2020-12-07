@@ -3,7 +3,7 @@
   <p>O projeto consiste em reproduzir as caracteristicas mais básicas do ifood.</p>
 <h2>Tecnologias</h2>
   <p>O projeto é feito em ReactJS e NodeJS (AdonisJS).</p>
-<h2>Porque exolheu essas tecnologias</h2>
+<h2>Porque escolheu essas tecnologias?</h2>
   <p>O ReactJS é um dos frameworks mais famosos no mercado. Criado pela equipe do Facebook, a sua fama se fez porque o reactJS anda de mãos dadas com react native, framework no    qual podemos fazer aplicativo nativo para android e ios de forma muito similar (quase identica) que fazemos projetos web com reactJS.</p>
   <p>Portanto, no front, a escolhe se dá pelo amadurecimento do framework e também pela facilidade de criar um aplicativo android/ios com o react native</p>
   <p>Ahhh... o adonis... Apesar de ser relativamente desconhecido no mercado ele se inspirou (se inspirou MUITO) no framework super conhecido LARAVEL. Num temos o artisan amado pelos programadores PHP, que por linhas de comandos controlam banco de dados (migration, seeds etc) criam models, controllers e diversos arquivos. No AdonisJS temos o mesmo raciocinio. <i>adonis make:model --migration</i> criamos um model já com o seu migration. Que Desenvolvedor não vai adorar isso?</p>
