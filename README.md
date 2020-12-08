@@ -6,8 +6,8 @@
 <h2>Porque escolheu essas tecnologias?</h2>
   <p>O ReactJS é um dos frameworks mais famosos no mercado. Criado pela equipe do Facebook, a sua fama se fez porque o reactJS anda de mãos dadas com react native, framework no    qual podemos fazer aplicativo nativo para android e ios de forma muito similar (quase identica) que fazemos projetos web com reactJS.</p>
   <p>Portanto, no front, a escolhe se dá pelo amadurecimento do framework e também pela facilidade de criar um aplicativo android/ios com o react native</p>
-  <p>Ahhh... o adonis... Apesar de ser relativamente desconhecido no mercado ele se inspirou (se inspirou MUITO) no framework super conhecido LARAVEL. Num temos o artisan amado pelos programadores PHP, que por linhas de comandos controlam banco de dados (migration, seeds etc) criam models, controllers e diversos arquivos. No AdonisJS temos o mesmo raciocinio. <i>adonis make:model --migration</i> criamos um model já com o seu migration. Que Desenvolvedor não vai adorar isso?</p>
-<p>O Adonis (como o laravel) já vem com várias configurações prontas para criar aplicações robustas. Seu criptografia conta com o Bcript por padrão!(cripitografia mais segura no mercado) contando com várias configurações onde fácilmente o desenvolvedor se defende dos ataques mais comum na web (SQL injection, XSS, false request etc)</p>
+  <p>Ahhh... o adonis... Apesar de ser relativamente desconhecido no mercado ele se inspirou (se inspirou MUITO) no framework super conhecido LARAVEL. Num temos o artisan amado pelos programadores PHP, que por linhas de comandos controlam banco de dados (migration, seeds etc) criam models, controllers e diversos arquivos. No AdonisJS temos o mesmo raciocinio. <i>adonis make:model <Model> --migration</i> criamos um model já com o seu migration. Que Desenvolvedor não vai adorar isso?</p>
+<p>O Adonis (como o laravel) já vem com várias configurações prontas para criar aplicações robustas. Seu criptografia conta com o Bcript por padrão (uma das cripitografias mais segura no mercado) contando com várias configurações onde fácilmente o desenvolvedor se defende dos ataques mais comum da web (SQL injection, XSS, false request etc)</p>
 <p>Enfim, AdonisJS é uma ótima ferramenta para fazer aplicações robustas, segura e com certa facilidade.</p>
 <h2>O que foi implementado?</h2>
 <p>No momento é possível adicionar categorias, lojas, pratos e usuários. Todos esses itens podem ser adicionados (por enquanto) simplemente fazendo requisições do tipo POST. As requisições podem ser encontradas no caminho <b>start/route.js</b>. Após a criação do user ele ganhará um token e pode usar aplicação para adicionar produtos ao carrinho. Adicionando produtos no carrinho ele pode optar por fazer o pedido, e com isso, o produto vai para sua lista de pedidos.</p>
@@ -26,7 +26,7 @@
   </ul>
 <h2>Requisitos para rodar o projeto</h2>
 <h3>Back end (AdonisJS)</h3>
-<p>O DB usado foi MySQL. Para testar o projeto deve-se fazer o download o MySQL (pode-se baixar o XAMP e ativa-lo pela ferramenta XAMP Controll). Podemos criar um DB com o nome ilanche e depois executar, no terminal com raiz a pasta do projeto adonis, os seguintes comandos:</p>
+<p>O DB usado foi MySQL. Para testar o projeto deve-se fazer o download o MySQL (pode-se baixar o XAMP e ativa-lo pela ferramenta XAMP Controll). Podemos criar um DB com o nome ilanche e depois executar, no terminal, com raiz na pasta do projeto adonis, os seguintes comandos:</p>
 <p><i>adonis migration:run</i></p>
 <p><i>adonis seed</i></p>
 <p><i>adonis serve --dev</i></p>
