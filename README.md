@@ -18,7 +18,7 @@
     <li>Adicionar login/painel para cada loja criada e alí poder criar/atualizar/deletar produtos</li>
     <li>Sistema de promoção para as lojas</li>
     <li>Sistema de cupom para clientes</li>
-    <li>Adicionar teste automatizados.</li>
+    <li>Adicionar testes automatizados.</li>
     <li>Melhorar fluxo de compra.</li>
     <li>Melhorar design frontend</li>
     <li>Melhorar segurança da aplicação</li>
