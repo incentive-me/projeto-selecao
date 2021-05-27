@@ -49,5 +49,29 @@ app.get('/github/callback', (req, res) => {
 })
 
 app.get('/success', async function(req, res) {
-  res.render('success.html');
+  async function getRepositories() {
+    const response = await axios.get(`https://api.github.com/user/starred`, {
+      headers: {
+        Authorization: 'token ' + access_token,
+        accept: 'application/vnd.github.v3+json'
+      }
+    })
+    const data = response.data.map(repository => (
+        {
+          id: repository.id, 
+          name: repository.name, 
+          description: repository.description, 
+          url: repository.owner.html_url
+        }
+    ))
+    return data
+  }
+ 
+  const response = await getRepositories()
+  console.log(response)
+
+  // Usando a API do GitHub, obtenha repositórios com estrela. As informações que devem ser recuperadas 
+  //são: id do repositório, nome do repositório, descrição e url HTTP.
+  
+  res.render('success.html',{ userData: response });
 });
