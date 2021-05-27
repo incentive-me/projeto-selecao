@@ -1,14 +1,33 @@
 <!doctype html>
 <html>
   <head>
-    <title>Github Oauth</title>
+    <title>Estrelinhas</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> <!-- load bulma css -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- load fontawesome -->
-      <style>
-          body        { padding-top:70px; }
-      </style>
+    {% block css %}
+      <link rel="stylesheet" type="text/css" href="styles/sucess.css" />
+    {% endblock %}
   </head>
   <body>
-    <h1>logado com sucesso</h1>
+    <div class="header">
+      <h1 class="title">Estrelinhas ⭐</h1>
+      <h3>Encontre todos os seus repositorios do github com estrelas</h3>
+    </div>
+    <div>
+      <ul data-testid="repository-list">
+        {% for repository in repositories %}
+        <a href="{{repository.url}}" class="container">
+              <img src="{{repository.avatar_url}}" alt="{{repository.name}}" />
+              <div class="info">
+                <strong>{{repository.name}}</strong>
+                <p>{{repository.description}}</p>
+              </div>
+              <button onClick={}>
+                Adicionar tag
+              </button>
+        </a>
+        {% endfor %}
+      </ul>
+    </div>
   </body>
 </html>

@@ -61,7 +61,8 @@ app.get('/success', async function(req, res) {
           id: repository.id, 
           name: repository.name, 
           description: repository.description, 
-          url: repository.owner.html_url
+          url: repository.owner.html_url,
+          avatar_url: repository.owner.avatar_url
         }
     ))
     return data
@@ -73,5 +74,6 @@ app.get('/success', async function(req, res) {
   // Usando a API do GitHub, obtenha repositórios com estrela. As informações que devem ser recuperadas 
   //são: id do repositório, nome do repositório, descrição e url HTTP.
   
-  res.render('success.html',{ userData: response });
+
+  res.render('success.html',{ repositories: response });
 });
