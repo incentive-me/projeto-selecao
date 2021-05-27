@@ -1,0 +1,24 @@
+{
+  "name": "projeto-selecao",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "vercel dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NathanFirmo/projeto-selecao.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NathanFirmo/projeto-selecao/issues"
+  },
+  "homepage": "https://github.com/NathanFirmo/projeto-selecao#readme",
+  "dependencies": {
+    "nodemailer": "^6.6.1",
+    "vercel": "^23.0.0"
+  }
+}
