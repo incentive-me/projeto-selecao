@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,24 +11,77 @@
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <title>EasyForms</title>
 </head>
-<body>
-    <main>
-        <header>
-            <p>header</p>
-        </header>
 
-<p>main</p>
-    </main>
+<body>
+    <header>
+        <p>EasyForms</p>
+    </header>
+
     <aside>
-        <header>
-<p>aside header</p>
-        </header>
         <nav>
-        <p>nav</p>
+            <button onclick="quemSomos()">Quem somos</button>
+            <button onclick="importarHTML()">Importar HTML</button>
+            <button onclick="importarCSS()">Importar CSS</button>
+            <button onclick="sobreANossaAPI()">Sobre nossa API</button>
         </nav>
     </aside>
+
+    <main>
+        <section id="index">
+            <div>
+                <h1>Quem Somos?</h1>
+                <p>
+                    EasyForms é uma solução simples para pessoas que precisam integrar formulários em suas páginas HTML.
+                    Você só precisa copiar e colar, o nosso sistema faz o restante.
+                </p>
+                <h1>Como utilizar?</h1>
+                <p>Para utilizar nossa aplicação basta clicar aqui ao lado para <strong>importar o código HTML</strong>
+                    direto em sua página. Além disso você personalizar as cores do seu formulário clicando em
+                    <strong>importar CSS</strong>!</p>
+            </div>
+            <img src="images/Sending emails_Flatline.png" alt="Desenho de pessoa enviando email png">
+        </section>
+        <section id="copyCode">
+            <div>
+                <h1>Incorporar HTML</h1>
+                <p>Cole o código abaixo na sua página e comece a usar o serviço!</p>
+            </div>
+            <div>
+                <pre>
+                    <code>
+                        &lt;form action=&quot;/api/send&quot; method=&quot;POST&quot;&gt;
+                        &lt;fieldset&gt;
+                            &lt;legend&gt;Contato&lt;/legend&gt;
+                            &lt;label for=&quot;name&quot;&gt;Nome&lt;/label&gt;
+                            &lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;name&quot; required&gt;
+                            &lt;label for=&quot;email&quot;&gt;E-mail&lt;/label&gt;
+                            &lt;input type=&quot;email&quot; name=&quot;email&quot; id=&quot;email&quot; required&gt;
+                            &lt;label for=&quot;message&quot;&gt;Mensagem&lt;/label&gt;
+                            &lt;textarea name=&quot;message&quot; id=&quot;message&quot; cols=&quot;30&quot; rows=&quot;10&quot; required&gt;&lt;/textarea&gt;
+                            &lt;button type=&quot;submit&quot; id=&quot;button-send&quot;&gt;enviar&lt;/button&gt;
+                        &lt;/fieldset&gt;
+                    &lt;/form&gt;                        
+                    </code>
+                </pre>
+                <button onclick="copyHTML()">copiar</button>
+            </div>
+        </section>
+
+        <section id="copyCss">
+            <div>
+                <h1>Incorporar CSS</h1>
+                <p>Escolha uma cor para estilizar seus formulários!</p>
+            </div>
+        </section>
+        <section id="howItWorks">
+            <h1>Como nosso serviço funciona?</h1>
+            <p>Nossa aplicação chama uma <strong>serverless function</strong>, usando <strong>Node.js</strong> e a dependência <strong>nodemailer</strong> para fazer o envio.</p>
+        </section>
+    </main>
+
     <footer>
-<p>footer</p>
+        <p>Feito por Nathan Firmo &copy;</p>
     </footer>
 </body>
+
 </html>
