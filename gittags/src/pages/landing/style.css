@@ -1,0 +1,21 @@
+.show {
+  display: block;
+}
+.hidden {
+  display: none;
+}
+
+.repositorios {
+  padding: 1rem;
+  border: 1px solid;
+  border-radius: 1rem;
+  width: 50rem;
+  height: 15rem;
+  margin: 1rem;
+  
+}
+.conteudo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
