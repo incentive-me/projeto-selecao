@@ -8,8 +8,30 @@ export function Landing() {
   const [data, setData] = useState(dataUserContext);
   const [show, setShow] = useState(false);
   const [tags, setTags] = useState("");
+  const [idEscolhido, setIdEscolhido] = useState();
 
-  function handleClick() {}
+  function handleClick(item) {
+    setShow(true);
+    setIdEscolhido(item);
+  }
+  function handleClickAddTags() {
+    let escolhido = {};
+    let index;
+    setShow(false);
+    for (let i = 0; i < data.length; i++) {
+      const element = data[i];
+      if (element.id === idEscolhido) {
+        escolhido = {
+          ...element,
+          tags: [tags],
+        };
+      }
+    }
+  }
+  function handleChange(e) {
+    const value = e.target.value;
+    setTags(value);
+  }
   return (
     <div>
       <div className="conteudo">
@@ -21,12 +43,13 @@ export function Landing() {
               <p>{item.html_url}</p>
               <p>{item.tags[index]}</p>
             </div>
-            <button onClick={handleClick}>Add Tag</button>
+            <button onClick={() => handleClick(item.id)}>Add Tag</button>
           </div>
         ))}
       </div>
       <div className={show === true ? "show" : "hidden"}>
-        <Input />
+        <input onChange={handleChange} />
+        <button onClick={handleClickAddTags}>ADD TAGS</button>
       </div>
     </div>
   );
