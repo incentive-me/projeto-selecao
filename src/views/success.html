@@ -13,21 +13,38 @@
       <h1 class="title">Estrelinhas ⭐</h1>
       <h3>Encontre todos os seus repositorios do github com estrelas</h3>
     </div>
-    <div>
-      <ul data-testid="repository-list">
-        {% for repository in repositories %}
-        <a href="{{repository.url}}" class="container">
-              <img src="{{repository.avatar_url}}" alt="{{repository.name}}" />
-              <div class="info">
-                <strong>{{repository.name}}</strong>
-                <p>{{repository.description}}</p>
-              </div>
-              <button onClick={}>
-                Adicionar tag
-              </button>
-        </a>
-        {% endfor %}
-      </ul>
+    <div class="wrapper">
+      <div class="search-input">
+        <a href="" target="_blank" hidden></a>
+        <input type="text" placeholder="Type to search..">
+        <div class="autocom-box">
+          <!-- here list are inserted from javascript -->
+        </div>
+        <div class="icon"><i class="fa fa-search"></i></div>
+      </div>
     </div>
+    <div class="repository-list">
+        {% for repository in repositories %}
+        <li class="container" >
+          <a href="{{repository.url}}" class="content">
+                <img src="{{repository.avatar_url}}" alt="{{repository.name}}" />
+                <div class="info">
+                  <strong>{{repository.name}}</strong>
+                  <p>{{repository.description}}</p>
+                </div>
+                <div class="add-item">
+                </div>
+          </a>
+          <div class="inputDiv">
+            <input type="text" class="input" placeholder="Adicione uma tag...">
+            <button class="add">
+              Adicionar tag
+            </button>
+          </div>
+        </li>
+        {% endfor %}
+    </div>
+    <script src="js/suggestions.js"></script> 
+
   </body>
 </html>
