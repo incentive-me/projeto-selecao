@@ -30,7 +30,9 @@ export function Login() {
     setName(value);
   }
   function handleClick() {
-    history.push("/landing");
+    if (name) {
+      history.push("/landing");
+    }
   }
 
   return (
