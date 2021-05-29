@@ -8,8 +8,9 @@ generator client {
 }
 
 model Project {
-  id Int
-  userId    Int @map(name: "user_id")
+  id     Int
+  userId Int      @map(name: "user_id")
+  labels String[]
 
   @@id(fields: [id, userId])
   @@map(name: "projects")
