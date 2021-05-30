@@ -18,9 +18,11 @@ export function StarredRepos({ repos }: StarredReposProps): JSX.Element {
 
       <Search />
 
-      {repos.map(repo => (
-        <Repo key={repo.id} repo={repo} />
-      ))}
+      <div className="repos-container">
+        {repos.map(repo => (
+          <Repo key={repo.id} repo={repo} />
+        ))}
+      </div>
     </Container>
   );
 }

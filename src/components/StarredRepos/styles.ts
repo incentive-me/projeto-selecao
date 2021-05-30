@@ -5,4 +5,9 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
   }
+
+  .repos-container {
+    overflow: auto;
+    max-height: calc(100vh - 200px);
+  }
 `;
