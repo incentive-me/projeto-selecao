@@ -6,6 +6,7 @@ import {
   useState,
 } from 'react';
 import { api } from '../services/api';
+import { db } from '../services/firebase';
 import { IRepo } from '../types';
 import { useUser } from './useUser';
 
@@ -60,6 +61,12 @@ export function RepositoriesProvider({
       }
       return repo;
     });
+    console.log(db.app);
+    db.collection('users')
+      .doc(login)
+      .set({
+        tags: ['aa', 'c'],
+      });
 
     setRepos(newRepos);
   }
