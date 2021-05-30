@@ -7,5 +7,6 @@ export const theme: DefaultTheme = {
     textSecondary: '#888888',
     primary: '#6B59DA',
     green: '#3FBEA0',
+    cardBackground: '#F6F6F6',
   },
 };
