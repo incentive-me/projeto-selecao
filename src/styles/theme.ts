@@ -9,4 +9,8 @@ export const theme: DefaultTheme = {
     green: '#3FBEA0',
     cardBackground: '#F6F6F6',
   },
+  fonts: {
+    primary: 'Metrophobic',
+    secondary: 'Rambla',
+  },
 };

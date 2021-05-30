@@ -10,5 +10,9 @@ declare module 'styled-components' {
       green: string;
       cardBackground: string;
     };
+    fonts: {
+      primary: string;
+      secondary: string;
+    };
   }
 }

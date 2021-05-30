@@ -15,13 +15,13 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'Rambla', sans-serif;
+    font-family: ${props => props.theme.fonts.secondary}, sans-serif;
     font-weight: 400;
     color: ${props => props.theme.palette.textColor}
   }
 
   h1, h2, h3, h4, h5, h6, input, textarea, button {
-    font-family: 'Metrophobic', sans-serif;
+    font-family: ${props => props.theme.fonts.primary}, sans-serif;
     font-weight: 400;
   }
 
