@@ -1,14 +1,19 @@
+import { useRepositories } from '../../hooks/useRepositories';
 import { Container } from './styles';
 
 export function Tags(): JSX.Element {
+  const { tags } = useRepositories();
+
+  console.log(tags);
+
   return (
     <Container>
       <h2>Tags</h2>
+
       <ul>
-        <li>Tag1</li>
-        <li className="active">Tag2</li>
-        <li>Tag3</li>
-        <li>Tag4</li>
+        {tags.map(tag => (
+          <li key={tag}>{tag}</li>
+        ))}
       </ul>
     </Container>
   );

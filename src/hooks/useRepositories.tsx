@@ -102,6 +102,14 @@ export function RepositoriesProvider({
 
     const repoTags = await loadTags();
 
+    let newTags = Object.keys(repoTags)
+      .map((key: string) => repoTags[Number(key)].tags)
+      .flat();
+
+    newTags = newTags.filter((tag, index) => newTags.indexOf(tag) === index);
+
+    setTags(newTags);
+
     const rRepos = response.data.map(repo => ({
       ...repo,
       tags: repoTags[repo.id] ? repoTags[repo.id].tags : [],
@@ -109,6 +117,16 @@ export function RepositoriesProvider({
 
     setRepos(rRepos);
   }
+
+  useEffect(() => {
+    const reposState = [...repos];
+    const newRepoTags = reposState.map(repo => repo.tags);
+    let newTags = newRepoTags.flat();
+
+    newTags = newTags.filter((tag, index) => newTags.indexOf(tag) === index);
+
+    setTags(newTags);
+  }, [repos]);
 
   useEffect(() => {
     loadReposData();
