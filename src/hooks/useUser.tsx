@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useEffect, useState } from 'react';
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 interface UserProviderProps {
   children: ReactNode;
@@ -25,4 +31,10 @@ export function UserProvider({ children }: UserProviderProps): JSX.Element {
       {children}
     </UserContext.Provider>
   );
+}
+
+export function useUser(): UserContextData {
+  const context = useContext(UserContext);
+
+  return context;
 }
