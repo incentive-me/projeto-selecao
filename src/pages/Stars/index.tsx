@@ -1,4 +1,5 @@
 import { StarredRepos } from '../../components/StarredRepos';
+import { Tags } from '../../components/Tags';
 import { UserProfile } from '../../components/UserProfile';
 import { Container } from './styles';
 
@@ -7,13 +8,7 @@ export function Stars(): JSX.Element {
     <Container>
       <UserProfile />
       <StarredRepos />
-
-      <div>
-        <h2>Tags</h2>
-        <ul>
-          <li>Tag1</li>
-        </ul>
-      </div>
+      <Tags />
     </Container>
   );
 }
