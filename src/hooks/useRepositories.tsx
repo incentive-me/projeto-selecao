@@ -108,20 +108,28 @@ export function RepositoriesProvider({
 
     const repoTags = await loadTags();
 
-    let newTags = Object.keys(repoTags)
-      .map((key: string) => repoTags[Number(key)].tags)
-      .flat();
+    if (repoTags) {
+      let newTags = Object.keys(repoTags)
+        .map((key: string) => repoTags[Number(key)].tags)
+        .flat();
 
-    newTags = newTags.filter((tag, index) => newTags.indexOf(tag) === index);
+      newTags = newTags.filter((tag, index) => newTags.indexOf(tag) === index);
 
-    setTags(newTags);
+      setTags(newTags);
 
-    const rRepos = response.data.map(repo => ({
-      ...repo,
-      tags: repoTags[repo.id] ? repoTags[repo.id].tags : [],
-    }));
+      const rRepos = response.data.map(repo => ({
+        ...repo,
+        tags: repoTags[repo.id] ? repoTags[repo.id].tags : [],
+      }));
 
-    setRepos(rRepos);
+      setRepos(rRepos);
+    } else {
+      const rRepos = response.data.map(repo => ({
+        ...repo,
+        tags: [],
+      }));
+      setRepos(rRepos);
+    }
   }
 
   useEffect(() => {
