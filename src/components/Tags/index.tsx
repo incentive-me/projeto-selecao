@@ -25,6 +25,7 @@ export function Tags(): JSX.Element {
             </button>
           </li>
         ))}
+        {!tags.length && <p>Você ainda não criou nenhuma tag :)</p>}
       </ul>
     </Container>
   );
