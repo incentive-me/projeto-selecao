@@ -6,8 +6,8 @@
     "npm": "6.x"
   },
   "scripts": {
+    "postinstall": "npx prisma generate --schema src/prisma/schema.prisma",
     "dev": "next dev",
-    "prebuild": "npx prisma generate --schema src/prisma/schema.prisma",
     "build": "next build",
     "start": "next start -p $PORT"
   },
