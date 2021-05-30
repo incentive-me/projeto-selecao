@@ -1,5 +1,5 @@
 import axios from "axios"
-import { KeyboardEvent, useContext, useRef, useState } from "react"
+import { KeyboardEvent, MouseEvent, useContext, useRef, useState } from "react"
 import { Project, ProjectsContext } from "../../contexts/projectsContext"
 import { ProjectCardContainer } from "./styles"
 
@@ -14,8 +14,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
     const [uploadingLabel, setUploadingLabel] = useState(false)
     const [deletingLabel, setDeletingLabel] = useState(false)
+    const [deletingLabelIndex, setDeletingLabelIndex] = useState(0)
 
     async function handleLabelInput(event: KeyboardEvent<HTMLInputElement>) {
+        setUploadingLabel(true)
         if (event.key === 'Enter') {
             const newLabel = inputLabelRef.current.value;
             const labels = [...project.labels]
@@ -25,9 +27,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 setTimeout(() => {
                     inputLabelErrorRef.current.textContent = ''
                 }, 3000);
+                setUploadingLabel(false)
                 return;
             }
-            labels.push(inputLabelRef.current.value)
+            labels.push(newLabel)
             const apiupdatecll = await axios.patch('/api/projects/update', {
                 projectId: project.id,
                 labels
@@ -37,6 +40,27 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 setProject(project.id, apiupdatecll.data.labels)
             }
         }
+        setUploadingLabel(false)
+    }
+
+    async function handleLabelDelete(event: MouseEvent<HTMLButtonElement>, label: string, index: number) {
+        setDeletingLabel(true)
+        setDeletingLabelIndex(index)
+
+        const labels = [...project.labels]
+        const labelIndex = labels.indexOf(label)
+        if (labelIndex === -1) {
+            return;
+        }
+        labels.splice(labelIndex, 1)
+        const apiupdatecll = await axios.patch('/api/projects/update', {
+            projectId: project.id,
+            labels
+        })
+        if (apiupdatecll.data) {
+            setProject(project.id, apiupdatecll.data.labels)
+        }
+        setDeletingLabel(false)
     }
 
     return (
@@ -48,10 +72,21 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             <p>{project.description}</p>
             <div>
                 {project.labels.map((label, index) => (
-                    <span key={index}>{label}</span>
+                    <div key={index}>
+                        <span>{label}</span>
+                        <button
+                            onClick={(event) => handleLabelDelete(event, label, index)}
+                            disabled={deletingLabel && (deletingLabelIndex === index)}
+                        >x</button>
+                    </div>
                 ))}
                 <label htmlFor="label">Novo Label</label>
-                <input name="label" type="text" ref={inputLabelRef} onKeyDown={handleLabelInput} />
+                <input
+                    name="label"
+                    type="text"
+                    ref={inputLabelRef}
+                    onKeyDown={handleLabelInput}
+                    disabled={uploadingLabel} />
                 <span ref={inputLabelErrorRef}></span>
             </div>
         </ProjectCardContainer>
