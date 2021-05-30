@@ -18,4 +18,22 @@ export const Container = styled.div`
     color: ${props => props.theme.palette.textSecondary};
     margin-top: 0;
   }
+
+  .profile-social {
+    display: flex;
+    align-items: stretch;
+
+    span {
+      margin: 0 5px;
+    }
+
+    div {
+      display: flex;
+      align-items: stretch;
+
+      strong {
+        margin-left: 5px;
+      }
+    }
+  }
 `;
