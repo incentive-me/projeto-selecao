@@ -7,11 +7,26 @@ export const Container = styled.div`
   background-color: ${props => props.theme.palette.cardBackground};
 
   span {
+    font-size: 0.8rem;
     font-family: ${props => props.theme.fonts.primary};
+
+    a {
+      text-decoration: none;
+      color: ${props => props.theme.palette.primary};
+    }
   }
 
   & + & {
     margin-top: 10px;
+  }
+
+  h2 {
+    margin: 0;
+  }
+
+  p {
+    font-size: 0.8rem;
+    color: ${props => props.theme.palette.textSecondary};
   }
 
   ul {

@@ -19,8 +19,14 @@ export function Repo({ repo }: RepoProps): JSX.Element {
 
   return (
     <Container>
-      <span>{repo.full_name}</span>
+      <span>
+        <a href={repo.html_url} target="_blank" rel="noreferrer">
+          {repo.full_name}
+        </a>
+      </span>
       <h2>{repo.name}</h2>
+
+      <p>{repo.description}</p>
 
       <ul>
         {repo.tags.map(tag => (
