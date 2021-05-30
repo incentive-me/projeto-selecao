@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  max-width: 400px;
-
   img {
     border-radius: 50%;
     width: 200px;
