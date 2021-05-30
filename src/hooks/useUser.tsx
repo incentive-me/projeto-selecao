@@ -20,11 +20,7 @@ export const UserContext = createContext<UserContextData>(
 );
 
 export function UserProvider({ children }: UserProviderProps): JSX.Element {
-  const [login, setLogin] = useState('');
-
-  useEffect(() => {
-    setLogin('gustavocrvls'); // REFATORAR AO CRIAR TELA DE LOGIN
-  }, []);
+  const [login, setLogin] = useState('gustavocrvls'); // REFATORAR AO CRIAR TELA DE LOGIN
 
   return (
     <UserContext.Provider value={{ login, setLogin }}>

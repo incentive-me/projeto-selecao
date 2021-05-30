@@ -7,6 +7,7 @@ import {
 } from 'react';
 import { api } from '../services/api';
 import { IRepo } from '../types';
+import { useUser } from './useUser';
 
 interface RepositoriesProviderProps {
   children: ReactNode;
@@ -26,8 +27,10 @@ export function RepositoriesProvider({
 }: RepositoriesProviderProps): JSX.Element {
   const [repos, setRepos] = useState<IRepo[]>([]);
 
+  const { login } = useUser();
+
   async function loadReposData(): Promise<void> {
-    const response = await api.get<IRepo[]>('users/gustavocrvls/starred');
+    const response = await api.get<IRepo[]>(`users/${login}/starred`);
 
     setRepos(response.data);
   }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FiStar, FiUsers } from 'react-icons/fi';
 import { useRepositories } from '../../hooks/useRepositories';
+import { useUser } from '../../hooks/useUser';
 import { api } from '../../services/api';
 import { Container } from './styles';
 
@@ -17,10 +18,11 @@ interface IUser {
 export function UserProfile(): JSX.Element {
   const [user, setUser] = useState<IUser>({} as IUser);
   const { starreds } = useRepositories();
+  const { login } = useUser();
 
   useEffect(() => {
     async function loadUserData(): Promise<void> {
-      const response = await api.get<IUser>('/users/gustavocrvls');
+      const response = await api.get<IUser>(`/users/${login}`);
 
       setUser(response.data);
     }
