@@ -13,8 +13,8 @@ body{
 }
 
 .app{
-  display:grid;
-  min-height: 100vw;
+  display:grid;  
+  min-height:100vh;
   grid-template-rows: 70px 1fr;
 }
 
@@ -32,4 +32,8 @@ body{
 
 .text-color-primary{
   color:var(--color-primary);
+}
+
+.text-color-secundary{
+  color:var(--color-secundary);
 }
