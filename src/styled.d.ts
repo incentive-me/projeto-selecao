@@ -7,6 +7,7 @@ declare module 'styled-components' {
       textColor: string;
       textSecondary: string;
       primary: string;
+      danger: string;
       green: string;
       cardBackground: string;
     };
