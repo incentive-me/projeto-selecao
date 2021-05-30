@@ -1,7 +1,7 @@
 import axios from "axios"
 import { KeyboardEvent, MouseEvent, useContext, useRef, useState } from "react"
 import { Project, ProjectsContext } from "../../contexts/projectsContext"
-import { ProjectCardContainer } from "./styles"
+import { ProjectCardContainer, ProjectCardWrapper } from "./styles"
 
 type ProjectCardProps = {
     project: Project
@@ -64,31 +64,32 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     }
 
     return (
-        <ProjectCardContainer>
-            <h3>{project.id}</h3>
-            <a href={project.html_url}>
-                <span>{project.full_name}</span>
-            </a>
-            <p>{project.description}</p>
-            <div>
-                {project.labels.map((label, index) => (
-                    <div key={index}>
-                        <span>{label}</span>
-                        <button
-                            onClick={(event) => handleLabelDelete(event, label, index)}
-                            disabled={deletingLabel && (deletingLabelIndex === index)}
-                        >x</button>
-                    </div>
-                ))}
-                <label htmlFor="label">Novo Label</label>
-                <input
-                    name="label"
-                    type="text"
-                    ref={inputLabelRef}
-                    onKeyDown={handleLabelInput}
-                    disabled={uploadingLabel} />
-                <span ref={inputLabelErrorRef}></span>
-            </div>
-        </ProjectCardContainer>
+        <ProjectCardWrapper>
+            <ProjectCardContainer>
+                <a href={project.html_url}>
+                    <h3>{project.full_name}</h3>
+                </a>
+                <p>{project.description}</p>
+                <div>
+                    {project.labels.map((label, index) => (
+                        <div key={index}>
+                            <span>{label}</span>
+                            <button
+                                onClick={(event) => handleLabelDelete(event, label, index)}
+                                disabled={deletingLabel && (deletingLabelIndex === index)}
+                            >x</button>
+                        </div>
+                    ))}
+                    <label htmlFor="label">Novo Label</label>
+                    <input
+                        name="label"
+                        type="text"
+                        ref={inputLabelRef}
+                        onKeyDown={handleLabelInput}
+                        disabled={uploadingLabel} />
+                    <span ref={inputLabelErrorRef}></span>
+                </div>
+            </ProjectCardContainer>
+        </ProjectCardWrapper>
     )
 }

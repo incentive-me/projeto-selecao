@@ -7,18 +7,26 @@ import prisma from '../lib/prisma';
 import { Project, ProjectsProvider } from '../contexts/projectsContext'
 import Projects from '../components/projectsList';
 
+import { HomePageContainer } from '../styles/pages/index'
+import Navbar from '../components/Navbar';
+
 interface HomeProps {
-    initialProjects: Project[]
+    projects: Project[]
 }
 
-export default function Home({ initialProjects }: HomeProps) {
+export default function Home({ projects }: HomeProps) {
     return (
         <>
             <Head>
                 <title>Labeled Github Stars</title>
             </Head>
             <ProjectsProvider>
-                <Projects initialProjects={initialProjects} />
+                <HomePageContainer>
+                    <Navbar />
+                    {projects.length > 0 && (
+                        <Projects initialProjects={projects} />
+                    )}
+                </HomePageContainer>
             </ProjectsProvider>
         </>
     )
@@ -26,19 +34,19 @@ export default function Home({ initialProjects }: HomeProps) {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const session = await getSession({ ctx })
-    const user = await prisma.user.findFirst({
+
+    if (!session)
+        return {
+            props: {
+                projects: []
+            }
+        }
+
+        const user = await prisma.user.findFirst({
         where: {
             email: session.user.email,
         },
     })
-    if (!session || !user) {
-        return {
-            redirect: {
-                destination: '/login',
-                permanent: false,
-            },
-        }
-    }
 
     const projectHelper = new ProjectHelper();
     const starredProjects = await projectHelper.fetchStarredProjects(String(session.accessToken));
@@ -53,7 +61,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     })
     const projects: Project[] = starredProjects.map(starredProject => {
         const savedProject = savedLabeledProjects.find(savedLabeledProject => savedLabeledProject.id === starredProject.id)
-        return({
+        return ({
             id: starredProject.id,
             full_name: starredProject.full_name,
             html_url: starredProject.html_url,
@@ -64,7 +72,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
     return {
         props: {
-            initialProjects: projects
+            projects
         }
     }
 }
