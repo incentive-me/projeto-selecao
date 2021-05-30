@@ -1,7 +1,7 @@
 import axios from "axios"
 import { KeyboardEvent, MouseEvent, useContext, useRef, useState } from "react"
 import { Project, ProjectsContext } from "../../contexts/projectsContext"
-import { ProjectCardContainer, ProjectCardWrapper } from "./styles"
+import { ProjectCardContainer, ProjectCardWrapper, LabelContainer, LabelInputContainer } from "./styles"
 
 type ProjectCardProps = {
     project: Project
@@ -23,7 +23,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             const labels = [...project.labels]
 
             if (labels.indexOf(newLabel) !== -1) {
-                inputLabelErrorRef.current.textContent = 'This label alread exists'
+                inputLabelErrorRef.current.textContent = 'Using!'
                 setTimeout(() => {
                     inputLabelErrorRef.current.textContent = ''
                 }, 3000);
@@ -70,25 +70,30 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                     <h3>{project.full_name}</h3>
                 </a>
                 <p>{project.description}</p>
-                <div>
-                    {project.labels.map((label, index) => (
-                        <div key={index}>
-                            <span>{label}</span>
-                            <button
-                                onClick={(event) => handleLabelDelete(event, label, index)}
-                                disabled={deletingLabel && (deletingLabelIndex === index)}
-                            >x</button>
-                        </div>
-                    ))}
-                    <label htmlFor="label">Novo Label</label>
-                    <input
-                        name="label"
-                        type="text"
-                        ref={inputLabelRef}
-                        onKeyDown={handleLabelInput}
-                        disabled={uploadingLabel} />
-                    <span ref={inputLabelErrorRef}></span>
-                </div>
+                <LabelContainer>
+                    <ul>
+                        {project.labels.map((label, index) => (
+                            <li key={index}>
+                                <span>{label}</span>
+                                <button
+                                    onClick={(event) => handleLabelDelete(event, label, index)}
+                                    disabled={deletingLabel && (deletingLabelIndex === index)}
+                                >x</button>
+                            </li>
+                        ))}
+                    </ul>
+                    <LabelInputContainer>
+                        <input
+                            name="label"
+                            placeholder="+ Add label"
+                            type="text"
+                            ref={inputLabelRef}
+                            onKeyDown={handleLabelInput}
+                            disabled={uploadingLabel}
+                        />
+                        <span ref={inputLabelErrorRef}></span>
+                    </LabelInputContainer>
+                </LabelContainer>
             </ProjectCardContainer>
         </ProjectCardWrapper>
     )

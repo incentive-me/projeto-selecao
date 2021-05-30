@@ -4,29 +4,25 @@ import { ProjectListContainer } from "./styles"
 
 import ProjectCard from '../ProjectCard'
 
-type ProjectsListProps={
+type ProjectsListProps = {
     initialProjects: Project[]
 }
 
-export default function Projects({initialProjects}: ProjectsListProps) {
+export default function Projects({ initialProjects }: ProjectsListProps) {
     const { setProjects, projects } = useContext(ProjectsContext);
 
-    useEffect(() =>{
+    useEffect(() => {
         setProjects(initialProjects)
-    },[])
+    }, [])
 
     return (
-        <>
-        <h2>Starred Projects</h2>
-        <ProjectListContainer>
-            {projects?.map(project => (
-                <ProjectCard project={project} key={project.id} />
-            ))}
-            {/*<pre>
-                {JSON.stringify(projects, null, 2)}
-            </pre> */}
-
-        </ProjectListContainer>
-        </>
+        <div>
+            <h2>Starred Projects</h2>
+            <ProjectListContainer>
+                {projects?.map(project => (
+                    <ProjectCard project={project} key={project.id} />
+                ))}
+            </ProjectListContainer>
+        </div>
     )
 }
