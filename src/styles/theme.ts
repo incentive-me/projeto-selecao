@@ -5,7 +5,7 @@ export const theme: DefaultTheme = {
   palette: {
     textColor: '#444444',
     textSecondary: '#888888',
-    purple: '#6B59DA',
+    primary: '#6B59DA',
     green: '#3FBEA0',
   },
 };

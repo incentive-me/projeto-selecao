@@ -6,7 +6,7 @@ declare module 'styled-components' {
     palette: {
       textColor: string;
       textSecondary: string;
-      purple: string;
+      primary: string;
       green: string;
     };
   }
