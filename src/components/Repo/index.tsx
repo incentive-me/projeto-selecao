@@ -13,12 +13,14 @@ export function Repo({ repo }: RepoProps): JSX.Element {
       <h2>{repo.name}</h2>
 
       <ul>
-        <li className="tag">
-          <span>tag1</span>
-          <button type="button">
-            <FiX size="18" />
-          </button>
-        </li>
+        {repo.tags.map(tag => (
+          <li className="tag" key={tag}>
+            <span>{tag}</span>
+            <button type="button">
+              <FiX size="18" />
+            </button>
+          </li>
+        ))}
         <li className="new-tag">
           <button type="button">
             <FiPlus size="18" />

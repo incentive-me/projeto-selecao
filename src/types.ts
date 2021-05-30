@@ -6,4 +6,5 @@ export interface IRepo {
   description: string;
   full_name: string;
   url: string;
+  tags: string[];
 }

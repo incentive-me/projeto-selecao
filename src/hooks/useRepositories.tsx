@@ -32,7 +32,12 @@ export function RepositoriesProvider({
   async function loadReposData(): Promise<void> {
     const response = await api.get<IRepo[]>(`users/${login}/starred`);
 
-    setRepos(response.data);
+    const rRepos = response.data.map(repo => ({
+      ...repo,
+      tags: ['tag1', 'aaa', 'react'],
+    }));
+
+    setRepos(rRepos);
   }
 
   useEffect(() => {
