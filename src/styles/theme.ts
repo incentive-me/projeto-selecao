@@ -1,13 +1,11 @@
-export interface ITheme {
-  textColor: string;
-  textSecondary: string;
-  purple: string;
-  green: string;
-}
+import { DefaultTheme } from 'styled-components';
 
-export const theme = {
-  textColor: '#444444',
-  textSecondary: '#888888',
-  purple: '#6B59DA',
-  green: '#3FBEA0',
+export const theme: DefaultTheme = {
+  borderRadius: '5px',
+  palette: {
+    textColor: '#444444',
+    textSecondary: '#888888',
+    purple: '#6B59DA',
+    green: '#3FBEA0',
+  },
 };
