@@ -1,14 +1,21 @@
+import { useState } from 'react';
 import { FiPlus, FiX } from 'react-icons/fi';
 import { useRepositories } from '../../hooks/useRepositories';
 import { IRepo } from '../../types';
-import { Container } from './styles';
+import { Container, NewTag } from './styles';
 
 interface RepoProps {
   repo: IRepo;
 }
 
 export function Repo({ repo }: RepoProps): JSX.Element {
-  const { removeTag } = useRepositories();
+  const [newTag, setNewTag] = useState('');
+  const { removeTag, createTag } = useRepositories();
+
+  function handleNewTag() {
+    if (newTag.length) createTag(repo.id, newTag);
+    setNewTag('');
+  }
 
   return (
     <Container>
@@ -24,11 +31,16 @@ export function Repo({ repo }: RepoProps): JSX.Element {
             </button>
           </li>
         ))}
-        <li className="new-tag">
-          <button type="button">
+        <NewTag>
+          <input
+            placeholder="new tag"
+            value={newTag}
+            onChange={e => setNewTag(e.target.value)}
+          />
+          <button type="button" onClick={() => handleNewTag()}>
             <FiPlus size="18" />
           </button>
-        </li>
+        </NewTag>
       </ul>
     </Container>
   );

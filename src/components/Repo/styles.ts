@@ -65,29 +65,42 @@ export const Container = styled.div`
         }
       }
     }
+  }
+`;
 
-    .new-tag {
-      button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+export const NewTag = styled.li`
+  display: flex;
+  align-items: center;
 
-        height: 30px;
-        width: 30px;
-        padding: 5px 5px;
-        border: 0;
-        border-radius: ${props => props.theme.borderRadius};
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        background: ${props => props.theme.palette.green};
-        color: #fff;
+    height: 30px;
+    width: 30px;
+    padding: 5px 5px;
+    border: 0;
+    border-radius: 0 ${props => props.theme.borderRadius}
+      ${props => props.theme.borderRadius} 0;
 
-        transition: filter 0.2s;
+    background: ${props => props.theme.palette.green};
+    color: #fff;
 
-        &:hover {
-          filter: brightness(0.9);
-          cursor: pointer;
-        }
-      }
+    transition: filter 0.2s;
+
+    &:hover {
+      filter: brightness(0.9);
+      cursor: pointer;
     }
+  }
+
+  input {
+    height: 30px;
+    width: 70px;
+    padding: 5px 5px;
+    border: 1px solid ${props => props.theme.palette.textSecondary};
+    border-radius: ${props => props.theme.borderRadius} 0 0
+      ${props => props.theme.borderRadius};
   }
 `;

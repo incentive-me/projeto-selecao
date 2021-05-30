@@ -18,6 +18,7 @@ interface RepositoriesContextData {
   starreds: number;
 
   removeTag: (repoId: number, tag: string) => void;
+  createTag: (repoId: number, tag: string) => void;
 }
 
 export const RepositoriesContext = createContext<RepositoriesContextData>(
@@ -47,6 +48,22 @@ export function RepositoriesProvider({
     setRepos(newRepos);
   }
 
+  function createTag(repoId: number, tag: string): void {
+    let newRepos = [...repos];
+
+    newRepos = newRepos.map(repo => {
+      if (repo.id === repoId) {
+        return {
+          ...repo,
+          tags: [...repo.tags, tag],
+        };
+      }
+      return repo;
+    });
+
+    setRepos(newRepos);
+  }
+
   async function loadReposData(): Promise<void> {
     const response = await api.get<IRepo[]>(`users/${login}/starred`);
 
@@ -64,7 +81,7 @@ export function RepositoriesProvider({
 
   return (
     <RepositoriesContext.Provider
-      value={{ repos, starreds: repos.length, removeTag }}
+      value={{ repos, starreds: repos.length, removeTag, createTag }}
     >
       {children}
     </RepositoriesContext.Provider>

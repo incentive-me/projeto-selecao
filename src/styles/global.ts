@@ -25,6 +25,10 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: 400;
   }
 
+  input::placeholder {
+    color: #ccc;
+  }
+
   *::-webkit-scrollbar-track {
     border-radius: 10px;
     background-color: #F5F5F5;
