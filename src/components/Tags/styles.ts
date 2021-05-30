@@ -5,9 +5,14 @@ export const Container = styled.div`
     list-style: none;
     padding: 0;
 
-    li {
+    button {
       padding: 10px;
+      border: 0;
+      width: 100%;
       border-radius: ${props => props.theme.borderRadius};
+      background: transparent;
+      text-align: left;
+      font-size: 1rem;
 
       cursor: pointer;
 
@@ -22,7 +27,6 @@ export const Container = styled.div`
 
       &:hover {
         background: ${props => props.theme.palette.primary};
-        cursor: default;
       }
     }
   }

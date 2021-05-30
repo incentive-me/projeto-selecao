@@ -22,9 +22,11 @@ interface RepositoriesContextData {
   repos: IRepo[];
   starreds: number;
   tags: string[];
+  selectedTag: string;
 
   removeTag: (repoId: number, tag: string) => void;
   createTag: (repoId: number, tag: string) => void;
+  setSelectedTag: (tag: string) => void;
 }
 
 export const RepositoriesContext = createContext<RepositoriesContextData>(
@@ -36,6 +38,7 @@ export function RepositoriesProvider({
 }: RepositoriesProviderProps): JSX.Element {
   const [repos, setRepos] = useState<IRepo[]>([]);
   const [tags, setTags] = useState<string[]>([]);
+  const [selectedTag, setSelectedTag] = useState('');
 
   const { login } = useUser();
 
@@ -134,7 +137,15 @@ export function RepositoriesProvider({
 
   return (
     <RepositoriesContext.Provider
-      value={{ repos, starreds: repos.length, tags, removeTag, createTag }}
+      value={{
+        repos,
+        starreds: repos.length,
+        tags,
+        selectedTag,
+        setSelectedTag,
+        removeTag,
+        createTag,
+      }}
     >
       {children}
     </RepositoriesContext.Provider>

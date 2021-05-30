@@ -2,9 +2,12 @@ import { useRepositories } from '../../hooks/useRepositories';
 import { Container } from './styles';
 
 export function Tags(): JSX.Element {
-  const { tags } = useRepositories();
+  const { tags, selectedTag, setSelectedTag } = useRepositories();
 
-  console.log(tags);
+  function handleSelectTag(tag: string) {
+    if (selectedTag === tag) setSelectedTag('');
+    else setSelectedTag(tag);
+  }
 
   return (
     <Container>
@@ -12,7 +15,15 @@ export function Tags(): JSX.Element {
 
       <ul>
         {tags.map(tag => (
-          <li key={tag}>{tag}</li>
+          <li key={tag}>
+            <button
+              className={selectedTag === tag ? 'active' : ''}
+              type="button"
+              onClick={() => handleSelectTag(tag)}
+            >
+              {tag}
+            </button>
+          </li>
         ))}
       </ul>
     </Container>
