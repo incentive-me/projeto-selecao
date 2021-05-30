@@ -10,6 +10,10 @@ export const Container = styled.div`
     font-family: ${props => props.theme.fonts.primary};
   }
 
+  & + & {
+    margin-top: 10px;
+  }
+
   ul {
     list-style: none;
     padding: 0;

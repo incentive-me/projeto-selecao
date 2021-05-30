@@ -1,9 +1,14 @@
 import { FiStar } from 'react-icons/fi';
+import { IRepo } from '../../types';
 import { Repo } from '../Repo';
 import { Search } from '../Search';
 import { Container } from './styles';
 
-export function StarredRepos(): JSX.Element {
+interface StarredReposProps {
+  repos: IRepo[];
+}
+
+export function StarredRepos({ repos }: StarredReposProps): JSX.Element {
   return (
     <Container>
       <h1>
@@ -13,7 +18,9 @@ export function StarredRepos(): JSX.Element {
 
       <Search />
 
-      <Repo />
+      {repos.map(repo => (
+        <Repo key={repo.id} repo={repo} />
+      ))}
     </Container>
   );
 }

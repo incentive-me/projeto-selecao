@@ -1,11 +1,16 @@
 import { FiPlus, FiX } from 'react-icons/fi';
+import { IRepo } from '../../types';
 import { Container } from './styles';
 
-export function Repo(): JSX.Element {
+interface RepoProps {
+  repo: IRepo;
+}
+
+export function Repo({ repo }: RepoProps): JSX.Element {
   return (
     <Container>
-      <span>gustavocrvls / moveit</span>
-      <h2>Move.it</h2>
+      <span>{repo.full_name}</span>
+      <h2>{repo.name}</h2>
 
       <ul>
         <li className="tag">

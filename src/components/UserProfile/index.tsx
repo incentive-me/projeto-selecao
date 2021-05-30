@@ -13,11 +13,15 @@ interface IUser {
   login: string;
 }
 
-export function UserProfile(): JSX.Element {
+interface UserProfileProps {
+  starredRepos: number;
+}
+
+export function UserProfile({ starredRepos }: UserProfileProps): JSX.Element {
   const [user, setUser] = useState<IUser>({} as IUser);
 
   useEffect(() => {
-    async function loadUserData() {
+    async function loadUserData(): Promise<void> {
       const response = await api.get<IUser>('/users/gustavocrvls');
 
       setUser(response.data);
@@ -50,7 +54,7 @@ export function UserProfile(): JSX.Element {
 
         <div>
           <FiStar size="16" />
-          <strong>0</strong>
+          <strong>{starredRepos}</strong>
         </div>
       </div>
     </Container>
