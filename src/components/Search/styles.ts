@@ -29,5 +29,11 @@ export const Container = styled.div`
     margin: 5px 0 0 5px;
     background-color: ${props => props.theme.palette.primary};
     color: #fff;
+
+    cursor: pointer;
+
+    &:hover {
+      filter: brightness(0.9);
+    }
   }
 `;
