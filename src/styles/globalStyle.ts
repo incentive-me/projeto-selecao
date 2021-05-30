@@ -11,9 +11,14 @@ html,
     color: #444444;
 }
 
+body {
+    overflow-y: scroll;
+}
+
 * {
     box-sizing: border-box;
 }
+
 p {
     font-size: 16px;
 }
