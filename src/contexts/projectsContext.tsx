@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { createContext, Dispatch, ReactNode, SetStateAction, useState } from 'react';
 
 export type Project = {
@@ -11,7 +12,8 @@ export type Project = {
 interface ProjectsContextData {
     projects: Project[],
     setProjects: Dispatch<SetStateAction<Project[]>>,
-    setProject: (projectId: number, labels: string[]) => void,
+    addLabel: (projectId: number, labels: string[]) => Promise<boolean>
+    deleteLabel: (projectId: number, labels: string[], labelIndex: number) => Promise<boolean>
 }
 
 interface ProjectsProviderProps {
@@ -25,7 +27,6 @@ export function ProjectsProvider({ children }: ProjectsProviderProps) {
     const [projects, setProjects] = useState<Project[]>([]);
 
     function setProject(projectId: number, labels: string[]) {
-        
         setProjects(prevState => {
             const newProjects = [...prevState]
             const newProjectIndex = newProjects.findIndex(project => project.id === projectId)
@@ -34,12 +35,38 @@ export function ProjectsProvider({ children }: ProjectsProviderProps) {
         })
     }
 
+    async function addLabel(projectId: number, labels: string[]): Promise<boolean> {
+        const newProjectLabels = await axios.patch('/api/projects/update', {
+            projectId,
+            labels
+        })
+        const updated = newProjectLabels.data
+        if (updated) {
+            setProject(projectId, updated.labels)
+        }
+        return updated
+    }
+
+    async function deleteLabel(projectId: number, labels: string[], labelIndex: number): Promise<boolean> {
+        labels.splice(labelIndex, 1)
+        const newProjectLabels = await axios.patch('/api/projects/update', {
+            projectId,
+            labels
+        })
+        const updated = newProjectLabels.data
+        if (updated) {
+            setProject(projectId, updated.labels)
+        }
+        return updated
+    }
+
     return (
         <ProjectsContext.Provider
             value={{
                 projects,
                 setProjects,
-                setProject
+                addLabel,
+                deleteLabel
             }}
         >
             {children}

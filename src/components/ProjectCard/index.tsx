@@ -1,4 +1,3 @@
-import axios from "axios"
 import { KeyboardEvent, MouseEvent, useContext, useRef, useState } from "react"
 import { Project, ProjectsContext } from "../../contexts/projectsContext"
 import { ProjectCardContainer, ProjectCardWrapper, LabelContainer, LabelInputContainer } from "./styles"
@@ -10,7 +9,7 @@ type ProjectCardProps = {
 export default function ProjectCard({ project }: ProjectCardProps) {
     const inputLabelRef = useRef<HTMLInputElement>()
     const inputLabelErrorRef = useRef<HTMLSpanElement>()
-    const { setProject } = useContext(ProjectsContext);
+    const { addLabel, deleteLabel } = useContext(ProjectsContext);
 
     const [uploadingLabel, setUploadingLabel] = useState(false)
     const [deletingLabel, setDeletingLabel] = useState(false)
@@ -30,36 +29,24 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 setUploadingLabel(false)
                 return;
             }
-            labels.push(newLabel)
-            const apiupdatecll = await axios.patch('/api/projects/update', {
-                projectId: project.id,
-                labels
-            })
-            if (apiupdatecll.data) {
+
+            labels.push(newLabel);
+            const addedLabel = await addLabel(project.id, labels);
+            if (addedLabel) {
                 inputLabelRef.current.value = ''
-                setProject(project.id, apiupdatecll.data.labels)
             }
         }
         setUploadingLabel(false)
     }
 
-    async function handleLabelDelete(event: MouseEvent<HTMLButtonElement>, label: string, index: number) {
+    async function handleLabelDelete(event: MouseEvent<HTMLButtonElement>, selectedLabel: string, index: number) {
         setDeletingLabel(true)
         setDeletingLabelIndex(index)
 
         const labels = [...project.labels]
-        const labelIndex = labels.indexOf(label)
-        if (labelIndex === -1) {
-            return;
-        }
-        labels.splice(labelIndex, 1)
-        const apiupdatecll = await axios.patch('/api/projects/update', {
-            projectId: project.id,
-            labels
-        })
-        if (apiupdatecll.data) {
-            setProject(project.id, apiupdatecll.data.labels)
-        }
+        const labelIndex = labels.indexOf(selectedLabel)
+        await deleteLabel(project.id, labels, labelIndex)
+
         setDeletingLabel(false)
     }
 
