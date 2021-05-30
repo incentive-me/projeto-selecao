@@ -1,44 +1,54 @@
-# PROJETO DE SELEÇÃO
+<h2>Apresentação do Projeto</h2>
 
-Ao conhecer uma pessoa que está aplicando para a Incentive.me gostamos de ter uma conversa sobre código. Afinal, escrever, ler e discutir sobre código faz parte da nossa rotina diária de trabalho.
+<img src="https://raw.githubusercontent.com/guisantanaa/github-exploration/main/src/assets/Gitlogo.png" alt="imagem do proejeto"/>
 
-Você pode implementar o projeto usando qualquer linguagem de sua preferência. Lembre-se: use a linguagem com a qual você tem mais familiaridade.
+<h2>Descrição</h2>
 
-## O QUE VAMOS AVALIAR
+<p>Esse projeto tem como objetivo buscar por repsitórios na api do github na área de busca, basta simplemente digitar  o nome do criador, por uma barra '/' e o repósitorio 
+ex: facebook/react</p>
 
-Queremos avaliar sua capacidade de fornecer um produto simples com documentação suficiente para outros desenvolvedores contribuírem ativamente para o projeto posteriormente. Na entrevista vamos prestar atenção nos seguintes itens:
+## :rocket: Tecnologias
 
-* Comunicação na revisão do código presencial;
-* Argumentos sobre desafios enfrentados e escolhas realizadas na implementação;
+- [React](https://pt-br.reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [HTML5](https://developer.mozilla.org/pt-BR/docs/Web/HTML/HTML5)
+- [Styled-Components](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
 
-Ao revisar seu código vamos prestar atenção nos seguintes itens:
+<div id="requisitos">
 
-* Organização do código;
-* Código bem escrito, limpo e coeso;
-* Arquitetura e princípios de desenvolvimento;
-* Documentação (README.md) com instruções claras para reproduzir o projeto;
-* Uso adequado de versionamento do código em git;
-* Uso de testes automatizados;
-* Deploy da aplicação: recomendamos Heroku por ter plano free;
-* O design da API RESTful é implementado, usando corretamente os verbos HTTP e o código de status apropriado;
-* Uso adequado de HTML5, CSS3 e JavaScript em um front-end minimamente estruturado.
+## :white_check_mark: Requisitos
 
-Caso você não se sinta confortável com algum desses itens, tudo bem, apenas nos fale sobre isso, ok? O objetivo aqui não é te fazer perder tempo com algo irrelevante. Nosso objetivo aqui é ter um código sobre o qual podemos conversar. Como você deve ter notado, a gente preza muito por colaboração, trabalho em time e comunicação. O objetivo aqui é ter, minimamente, essa experiência com você.
+<p>Antes de executar :checkered_flag:, você precisar ter o [Git](https://git-scm.com) e o [Node](https://nodejs.org/pt-br/) instalados.</p>
 
-Respeite o seu nível de conhecimento e experiência, o importante é você saber dizer o motivo das suas escolhas. Se você tiver qualquer dúvida, por favor, entre em contato com a gente. Estamos disponíveis para te ajudar a finalizar esse processo.
+</div>
 
-## IDEIAS DE PROJETOS
+## :checkered_flag: Executando
 
-A seguir seguem algumas ideias de projetos que você pode implementar:
+```bash
 
-* [Cliente para o GitHub](https://github.com/incentive-me/projeto-selecao/blob/master/projects/GITHUB.md);
-* [Cliente para o Twitter](https://github.com/incentive-me/projeto-selecao/blob/master/projects/TWITTER.md);
-* [Cliente para o Meetup](https://github.com/incentive-me/projeto-selecao/blob/master/projects/MEETUP.md).
+# Clone este projeto
+$ git clone https://github.com/guisantanaa/github-exploration
 
-Tem alguma outra ideia? Tem algum projeto que já está pronto e gostaria de apresentar? Fale com a gente :)
+# Entre na pasta github-exploration
+$ cd github-exploration
+$ Execute o comando 'code .' e o projeto sera aberto no Visual Studio Code
 
-## COMO COMPARTILHAR O PROJETO CONOSCO
+# Instale as dependências
+$ yarn
 
-1. Apague este README.md e adicione informações que achar relevante como configurar o projeto, contendo os comandos que devem ser executados para executar ele e os testes;
-2. Abra um PR apontando para a branch master deste repositório;
-3. Escreva qualquer consideração na descrição do PR e faça qualquer comentário que achar pertinente no código.
+# Inicialize
+$ yarn start
+
+# O servidor irá iniciar em http://localhost:3000
+
+```
+
+## Link da aplicação em Video
+
+<p>Gravei um video explicando toda a aplicação para ver basta clicar nesse link</p>
+
+<a href="https://youtu.be/TCb-H4CYzAs" target="_blank">Link do video</a>
+
+## Link de deploy da aplicação
+
+<a href="https://github-exploration.vercel.app/" target="_blank">Link de deploy</a>
