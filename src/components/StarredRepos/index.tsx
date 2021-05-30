@@ -1,14 +1,12 @@
 import { FiStar } from 'react-icons/fi';
-import { IRepo } from '../../types';
+import { useRepositories } from '../../hooks/useRepositories';
 import { Repo } from '../Repo';
 import { Search } from '../Search';
 import { Container } from './styles';
 
-interface StarredReposProps {
-  repos: IRepo[];
-}
+export function StarredRepos(): JSX.Element {
+  const { repos } = useRepositories();
 
-export function StarredRepos({ repos }: StarredReposProps): JSX.Element {
   return (
     <Container>
       <h1>

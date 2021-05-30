@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { FiStar, FiUsers } from 'react-icons/fi';
+import { useRepositories } from '../../hooks/useRepositories';
 import { api } from '../../services/api';
 import { Container } from './styles';
 
@@ -13,12 +14,9 @@ interface IUser {
   login: string;
 }
 
-interface UserProfileProps {
-  starredRepos: number;
-}
-
-export function UserProfile({ starredRepos }: UserProfileProps): JSX.Element {
+export function UserProfile(): JSX.Element {
   const [user, setUser] = useState<IUser>({} as IUser);
+  const { starreds } = useRepositories();
 
   useEffect(() => {
     async function loadUserData(): Promise<void> {
@@ -54,7 +52,7 @@ export function UserProfile({ starredRepos }: UserProfileProps): JSX.Element {
 
         <div>
           <FiStar size="16" />
-          <strong>{starredRepos}</strong>
+          <strong>{starreds}</strong>
         </div>
       </div>
     </Container>
