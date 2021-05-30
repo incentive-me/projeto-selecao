@@ -12,7 +12,7 @@ export const Container = styled.div`
     padding: 5px;
     border: 1px solid ${props => props.theme.palette.textSecondary};
     border-radius: ${props => props.theme.borderRadius};
-    margin: 5px;
+    margin: 5px 0;
   }
 
   button {
@@ -26,7 +26,7 @@ export const Container = styled.div`
     padding: 5px;
     border: 0;
     border-radius: ${props => props.theme.borderRadius};
-    margin: 5px;
+    margin: 5px 0 0 5px;
     background-color: ${props => props.theme.palette.primary};
     color: #fff;
   }
