@@ -54,19 +54,21 @@ export function RepositoriesProvider({
 
     newRepos = newRepos.map(repo => {
       if (repo.id === repoId) {
+        const newTags = [...repo.tags, tag];
+
+        db.collection('users')
+          .doc(login)
+          .collection(`${repo.id}`)
+          .doc('repo_data')
+          .set({ tags: newTags });
+
         return {
           ...repo,
-          tags: [...repo.tags, tag],
+          tags: newTags,
         };
       }
       return repo;
     });
-    console.log(db.app);
-    db.collection('users')
-      .doc(login)
-      .set({
-        tags: ['aa', 'c'],
-      });
 
     setRepos(newRepos);
   }

@@ -10,6 +10,4 @@ const firebaseConfig = {
 if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
 else firebase.app();
 
-console.log(firebase);
-
 export const db = firebase.firestore();
