@@ -11,7 +11,7 @@ export type Project = {
 interface ProjectsContextData {
     projects: Project[],
     setProjects: Dispatch<SetStateAction<Project[]>>,
-    setProject: (projectId: number, newProject: Project) => void,
+    setProject: (projectId: number, labels: string[]) => void,
 }
 
 interface ProjectsProviderProps {
@@ -24,12 +24,12 @@ export function ProjectsProvider({ children }: ProjectsProviderProps) {
 
     const [projects, setProjects] = useState<Project[]>([]);
 
-    function setProject(projectId: number, newProject: Project) {
+    function setProject(projectId: number, labels: string[]) {
         
         setProjects(prevState => {
             const newProjects = [...prevState]
             const newProjectIndex = newProjects.findIndex(project => project.id === projectId)
-            newProjects[newProjectIndex] = newProject
+            newProjects[newProjectIndex].labels = labels
             return newProjects
         })
     }
