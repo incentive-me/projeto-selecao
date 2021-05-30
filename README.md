@@ -4,11 +4,8 @@
 
 You can visit and enjoy it: https://labeled-github-stars.herokuapp.com/
 
-</br>
-
 _____
 
-</br>
 
 ## Contributing
 
@@ -31,16 +28,21 @@ git clone https://github.com/carvalho-rafael/projeto-selecao.git
 yarn install
 ```
 
+### Copy ENV_VARS
+
+```bash
+cp .env.example .env
+```
+
+
 ### Run
 
 ```bash
 yarn dev
 ```
-</br>
 
 _____
 
-</br>
 
 ### Author
 
