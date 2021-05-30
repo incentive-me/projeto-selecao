@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  h2 {
+    display: flex;
+    align-items: center;
+  }
+
   ul {
     list-style: none;
     padding: 0;

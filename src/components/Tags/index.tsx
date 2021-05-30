@@ -1,3 +1,4 @@
+import { FiTag } from 'react-icons/fi';
 import { useRepositories } from '../../hooks/useRepositories';
 import { Container } from './styles';
 
@@ -11,7 +12,10 @@ export function Tags(): JSX.Element {
 
   return (
     <Container>
-      <h2>Tags</h2>
+      <h2>
+        <FiTag size="20" />
+        Tags
+      </h2>
 
       <ul>
         {tags.map(tag => (
