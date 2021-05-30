@@ -10,6 +10,10 @@ import { db } from '../services/firebase';
 import { IRepo } from '../types';
 import { useUser } from './useUser';
 
+interface IRepoTags {
+  tags: string[];
+}
+
 interface RepositoriesProviderProps {
   children: ReactNode;
 }
@@ -38,9 +42,19 @@ export function RepositoriesProvider({
 
     newRepos = newRepos.map(repo => {
       if (repo.id === repoId) {
+        const newTags = repo.tags.filter(t => t !== tag);
+
+        db.collection('users')
+          .doc(login)
+          .set({
+            [repo.id]: {
+              tags: newTags,
+            },
+          });
+
         return {
           ...repo,
-          tags: repo.tags.filter(t => t !== tag),
+          tags: newTags,
         };
       }
       return repo;
@@ -58,9 +72,11 @@ export function RepositoriesProvider({
 
         db.collection('users')
           .doc(login)
-          .collection(`${repo.id}`)
-          .doc('repo_data')
-          .set({ tags: newTags });
+          .set({
+            [repo.id]: {
+              tags: newTags,
+            },
+          });
 
         return {
           ...repo,
@@ -73,12 +89,20 @@ export function RepositoriesProvider({
     setRepos(newRepos);
   }
 
+  async function loadTags(): Promise<IRepoTags[]> {
+    const response = await db.collection('users').doc(login).get();
+
+    return response.data() as IRepoTags[];
+  }
+
   async function loadReposData(): Promise<void> {
     const response = await api.get<IRepo[]>(`users/${login}/starred`);
 
+    const repoTags = await loadTags();
+
     const rRepos = response.data.map(repo => ({
       ...repo,
-      tags: ['tag1', 'aaa', 'react'],
+      tags: repoTags[repo.id] ? repoTags[repo.id].tags : [],
     }));
 
     setRepos(rRepos);
