@@ -8,7 +8,8 @@ import { Container } from './styles';
 
 export function StarredRepos(): JSX.Element {
   const [starredRepos, setStarredRepos] = useState<IRepo[]>([]);
-  const { repos, selectedTag } = useRepositories();
+  const { repos, selectedTag, setSelectedTag, searchTag, setSearchTag } =
+    useRepositories();
 
   useEffect(() => {
     if (selectedTag.length) {
@@ -17,7 +18,7 @@ export function StarredRepos(): JSX.Element {
         repo.tags.includes(selectedTag),
       );
       setStarredRepos(newRepos);
-    } else {
+    } else if (!searchTag.length) {
       setStarredRepos(repos);
     }
   }, [selectedTag]);
@@ -26,6 +27,20 @@ export function StarredRepos(): JSX.Element {
     setStarredRepos(repos);
   }, [repos]);
 
+  function handleSearch() {
+    setSelectedTag('');
+
+    if (searchTag.length) {
+      const stateRepos = [...repos];
+      const newRepos = stateRepos.filter(repo =>
+        repo.tags.some(tag => tag.includes(searchTag)),
+      );
+      setStarredRepos(newRepos);
+    } else {
+      setStarredRepos(repos);
+    }
+  }
+
   return (
     <Container>
       <h1>
@@ -33,7 +48,11 @@ export function StarredRepos(): JSX.Element {
         Repositórios Salvos
       </h1>
 
-      <Search />
+      <Search
+        field={searchTag}
+        handleField={(search: string) => setSearchTag(search)}
+        handleSearch={handleSearch}
+      />
 
       <div className="repos-container">
         {starredRepos.map(repo => (

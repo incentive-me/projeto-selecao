@@ -23,10 +23,12 @@ interface RepositoriesContextData {
   starreds: number;
   tags: string[];
   selectedTag: string;
+  searchTag: string;
 
   removeTag: (repoId: number, tag: string) => void;
   createTag: (repoId: number, tag: string) => void;
   setSelectedTag: (tag: string) => void;
+  setSearchTag: (tag: string) => void;
 }
 
 export const RepositoriesContext = createContext<RepositoriesContextData>(
@@ -39,6 +41,7 @@ export function RepositoriesProvider({
   const [repos, setRepos] = useState<IRepo[]>([]);
   const [tags, setTags] = useState<string[]>([]);
   const [selectedTag, setSelectedTag] = useState('');
+  const [searchTag, setSearchTag] = useState('');
 
   const { login } = useUser();
 
@@ -142,7 +145,9 @@ export function RepositoriesProvider({
         starreds: repos.length,
         tags,
         selectedTag,
+        searchTag,
         setSelectedTag,
+        setSearchTag,
         removeTag,
         createTag,
       }}
