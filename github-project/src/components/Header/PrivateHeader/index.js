@@ -13,7 +13,7 @@ const PrivateHeader = props =>
             <h3>GitHub Stars</h3>
             <Dropdown>
                 <Dropdown.Toggle variant="light" id="dropdown-basic">
-                    {props.user}
+                    {props.user?props.user:props.login}
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>

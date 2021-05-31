@@ -13,8 +13,8 @@ const Home = () => {
 
     return (
         <div className="app bg-color-gray">
-            <PrivateHeader user={user.name} email={user.email}/>
-            <PrivateMain user={user}/>
+            {user?<PrivateHeader user={user.name} login={user.login} email={user.email}/>:''}
+            {user?<PrivateMain user={user}/>:''}
         </div>
     )
 }
