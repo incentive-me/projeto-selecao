@@ -28,12 +28,14 @@ git clone https://github.com/carvalho-rafael/projeto-selecao.git
 yarn install
 ```
 
-### Copy ENV_VARS
+### Set Enviroment Vars
+First, copy the example file
 
 ```bash
 cp .env.example .env
 ```
 
+In .env file you'll need to set github credencials. Follow [this link](https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app) to see how you can get it!
 
 ### Run
 
