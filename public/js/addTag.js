@@ -2,7 +2,7 @@ const container = document.querySelector('.add-item');
 var inputValue = document.querySelector('.input');
 const add = document.querySelector('.add');
 
-let suggestions = [];
+let addTag = [];
 
 class item{
 	constructor(name){
@@ -39,8 +39,8 @@ function check(){
 }
 
 
-for (var v = 0 ; v < suggestions.length ; v++){
-    new item(suggestions[v]);
+for (var v = 0 ; v < addTag.length ; v++){
+    new item(addTag[v]);
 }
 
 

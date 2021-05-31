@@ -9,15 +9,8 @@
     "start": "nodemon --watch src src/index.js",
     "test": "jest --coverage"
   },
-  "jest": {
-    "verbose": true,
-    "setupFilesAfterEnv": [
-      "<rootDir>/testSetup.js"
-    ]
-  },
   "dependencies": {
     "axios": "^0.21.1",
-    "ejs": "^3.1.6",
     "express": "^4.17.1",
     "jquery": "^3.6.0",
     "jsdom": "^16.6.0",
