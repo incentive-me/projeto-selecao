@@ -1,44 +1,78 @@
-# PROJETO DE SELEÇÃO
+# labeled-github-stars
 
-Ao conhecer uma pessoa que está aplicando para a Incentive.me gostamos de ter uma conversa sobre código. Afinal, escrever, ler e discutir sobre código faz parte da nossa rotina diária de trabalho.
+<b>labeled-github-stars</b> allows you to label starred projects from your github profile.
 
-Você pode implementar o projeto usando qualquer linguagem de sua preferência. Lembre-se: use a linguagem com a qual você tem mais familiaridade.
+You can visit and enjoy it: https://labeled-github-stars.herokuapp.com/
 
-## O QUE VAMOS AVALIAR
+_____
 
-Queremos avaliar sua capacidade de fornecer um produto simples com documentação suficiente para outros desenvolvedores contribuírem ativamente para o projeto posteriormente. Na entrevista vamos prestar atenção nos seguintes itens:
 
-* Comunicação na revisão do código presencial;
-* Argumentos sobre desafios enfrentados e escolhas realizadas na implementação;
+## Contributing
 
-Ao revisar seu código vamos prestar atenção nos seguintes itens:
+### Tecnologies used
 
-* Organização do código;
-* Código bem escrito, limpo e coeso;
-* Arquitetura e princípios de desenvolvimento;
-* Documentação (README.md) com instruções claras para reproduzir o projeto;
-* Uso adequado de versionamento do código em git;
-* Uso de testes automatizados;
-* Deploy da aplicação: recomendamos Heroku por ter plano free;
-* O design da API RESTful é implementado, usando corretamente os verbos HTTP e o código de status apropriado;
-* Uso adequado de HTML5, CSS3 e JavaScript em um front-end minimamente estruturado.
+- [Nextjs/React](https://nextjs.org/)
+- [Prisma](https://www.prisma.io/)
+- [Typescript](https://www.typescriptlang.org/)
+- [Styled Components](https://styled-components.com/)
 
-Caso você não se sinta confortável com algum desses itens, tudo bem, apenas nos fale sobre isso, ok? O objetivo aqui não é te fazer perder tempo com algo irrelevante. Nosso objetivo aqui é ter um código sobre o qual podemos conversar. Como você deve ter notado, a gente preza muito por colaboração, trabalho em time e comunicação. O objetivo aqui é ter, minimamente, essa experiência com você.
+### Clone repo
 
-Respeite o seu nível de conhecimento e experiência, o importante é você saber dizer o motivo das suas escolhas. Se você tiver qualquer dúvida, por favor, entre em contato com a gente. Estamos disponíveis para te ajudar a finalizar esse processo.
+```bash
+git clone https://github.com/carvalho-rafael/projeto-selecao.git
+```
 
-## IDEIAS DE PROJETOS
+### Get Packages
 
-A seguir seguem algumas ideias de projetos que você pode implementar:
+```bash
+yarn install
+```
 
-* [Cliente para o GitHub](https://github.com/incentive-me/projeto-selecao/blob/master/projects/GITHUB.md);
-* [Cliente para o Twitter](https://github.com/incentive-me/projeto-selecao/blob/master/projects/TWITTER.md);
-* [Cliente para o Meetup](https://github.com/incentive-me/projeto-selecao/blob/master/projects/MEETUP.md).
+### Set Enviroment Vars
+First, copy the example file
 
-Tem alguma outra ideia? Tem algum projeto que já está pronto e gostaria de apresentar? Fale com a gente :)
+```bash
+cp .env.example .env
+```
 
-## COMO COMPARTILHAR O PROJETO CONOSCO
+In .env file you'll need to set github credencials. Follow [this link](https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app) to see how you can get it!
 
-1. Apague este README.md e adicione informações que achar relevante como configurar o projeto, contendo os comandos que devem ser executados para executar ele e os testes;
-2. Abra um PR apontando para a branch master deste repositório;
-3. Escreva qualquer consideração na descrição do PR e faça qualquer comentário que achar pertinente no código.
+### Generate tables
+After set DATABASE_URL in .env file generate the tabels with Prisma.
+
+```bash
+cd src
+
+npx prisma generate
+#OR If your database is hosted on Heroku, You'll need to run this, instead:
+npx prisma db push
+```
+
+### Run
+
+```bash
+yarn dev
+```
+
+_____
+
+
+### Author
+
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/carvalho-rafael">
+          <img width="90" height="90" src="https://avatars.githubusercontent.com/carvalho-rafael">
+          <p>Rafael Carvalho</p>
+          <p>Github</p>
+        </a>
+        <a href="https://www.instagram.com/desenvolvedor.jr/">
+        <p>Instagram</p>
+        </a>
+      </td>
+    </tr>
+  <tbody>
+</table>
+
