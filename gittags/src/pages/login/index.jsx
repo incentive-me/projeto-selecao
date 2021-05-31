@@ -5,6 +5,7 @@ import { useDataContext } from "../../context/dataContext";
 import { Input } from "../../components/input";
 
 import { app } from "../../utils/axios";
+import "./styles.css"
 
 export function Login() {
   const history = useHistory();
@@ -36,7 +37,7 @@ export function Login() {
   }
 
   return (
-    <div>
+    <div className="conteudoLogin">
       <Input
         name="name"
         id="name"

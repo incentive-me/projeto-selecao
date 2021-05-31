@@ -60,15 +60,20 @@ export function Landing() {
                   <p>{item.html_url}</p>
                   <p>
                     {item.tags.map((item, index) => (
-                      <div key={item}>
+                      <div key={item} className="tags">
                         <span>
-                          <button> {item}</button>
+                          <button className="removebtn"> {item}</button>
                         </span>
                       </div>
                     ))}
                   </p>
                 </div>
-                <button className="addTags" onClick={() => handleClick(item.id)}>Add Tag</button>
+                <button
+                  className="addTags"
+                  onClick={() => handleClick(item.id)}
+                >
+                  Add Tag
+                </button>
               </div>
             ))
           : null}

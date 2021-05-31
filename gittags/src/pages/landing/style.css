@@ -22,3 +22,16 @@
 .addTags{
   left: 0;
 }
+.tags{
+  display: flex;
+  margin: 0.5rem;
+  font-size: 0.5rem;
+  
+}
+.removebtn{
+  border: 0;
+  background-color: rgba(rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), 0.2) ;
+  width: 3rem;
+  border-radius: 1rem;
+  text-align: start;
+}
