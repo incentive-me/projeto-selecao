@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const axios = require('axios')
+const port = 3001
 app.use(cors())
 
 
@@ -26,7 +27,4 @@ app.get('/api', async (req,res)=>{
     .catch(err=>(res.send(err)))
 }) 
 
-
-app.listen(3001, () => {
-    console.log('Aplicação backend servindo a parta 3001')
-})  
+app.listen(port, () => console.log(`Aplicação backend servindo a parta ${port}`))  
