@@ -11,7 +11,7 @@ O projeto permite:
 - Gerenciar tags de repositórios listados (adicionar e excluir);
 - Filtrar repositórios por tags.
 
-### Repositório pessoal
+### Repositório
 
 https://github.com/AngeloVSO/githubtags
 
