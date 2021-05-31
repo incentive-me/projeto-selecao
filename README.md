@@ -74,7 +74,7 @@ O projeto está hospedado no Vercel, no seguinte endereço: <a href="https://pro
 
 </details>
 
-##🕹 Funcionalidades
+## 🕹 Funcionalidades
 - [x] Login
 - [x] Tags
   - [x] Criar
