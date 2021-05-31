@@ -21,12 +21,11 @@ app.get("/", (req, res) => {
 })
 
 const port = process.env.PORT || 3000;
-app.listen(port , () => console.log('App listening on port ' + port));
+app.listen(port , () => console.log('Aplicativo rodando na porta ' + port));
 
-// Import the axios library, to make HTTP requests
+
 const axios = require('axios')
-// This is the client ID and client secret that you obtained
-// while registering on github app
+
 const clientID = process.env.CLIENT_ID
 const clientSecret = process.env.CLIENT_SECRET
 
@@ -67,9 +66,6 @@ app.get('/success', async function(req, res) {
   }
  
   const response = await getRepositories()
-
-  // Usando a API do GitHub, obtenha repositórios com estrela. As informações que devem ser recuperadas 
-  //são: id do repositório, nome do repositório, descrição e url HTTP.
   
   res.render('success.html',{ repositories: response });
 });
