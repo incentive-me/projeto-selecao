@@ -115,14 +115,14 @@ footer p {
     font-size: 1.6rem;
 }
 
-section#index {
-    display: none;
+section#showIndexPage {
+    display: flex;
     justify-content: center;
     align-content: center;
     align-items: center;
 }
 
-section#index img {
+section#showIndexPage img {
     width: 400px;
 }
 
@@ -139,18 +139,26 @@ code {
     font-size: 1.2rem;
 }
 
-section#copyCss {
+section#showCopyCssPage {
     display: none;
 }
-section#howItWorks {
-    display: none;
-}
-
-section#test {
+section#showHowItWorksPage {
     display: none;
 }
 
-section#test div {
+section#showTestPage {
+    display: none;
+}
+
+section#showOurPolicyPage {
+    display: none;
+}
+
+section#showCopyCodePage {
+    display: none;
+}
+
+section#showTestPage div {
     display: flex;
     justify-content: center;
 }
@@ -203,8 +211,10 @@ form button {
     padding: 2px;
 }
 
-
-section#ourPolicy {
-    display: none;
+input#cssColor {
+    width: 30px;
+    padding: 2px;
+    border-radius: 3px;
 }
+
 

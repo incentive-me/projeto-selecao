@@ -1,57 +1,121 @@
-function index() {
-document.getElementById("index").style.display = "flex"
-document.getElementById("copyCode").style.display = "none"
-document.getElementById("copyCss").style.display = "none"
-document.getElementById("howItWorks").style.display = "none"
-document.getElementById("test").style.display = "none"
-document.getElementById("ourPolicy").style.display = "none"
+function showIndexPage() {
+    document.getElementById("showIndexPage").style.display = "flex"
+    document.getElementById("showCopyCodePage").style.display = "none"
+    document.getElementById("showCopyCssPage").style.display = "none"
+    document.getElementById("showHowItWorksPage").style.display = "none"
+    document.getElementById("showTestPage").style.display = "none"
+    document.getElementById("showOurPolicyPage").style.display = "none"
 }
 
-function copyCode(){
-    document.getElementById("index").style.display = "none"
-    document.getElementById("copyCode").style.display = "block"
-    document.getElementById("copyCss").style.display = "none"
-    document.getElementById("howItWorks").style.display = "none"
-    document.getElementById("test").style.display = "none"
-    document.getElementById("ourPolicy").style.display = "none"
+function showCopyCodePage() {
+    document.getElementById("showIndexPage").style.display = "none"
+    document.getElementById("showCopyCodePage").style.display = "block"
+    document.getElementById("showCopyCssPage").style.display = "none"
+    document.getElementById("showHowItWorksPage").style.display = "none"
+    document.getElementById("showTestPage").style.display = "none"
+    document.getElementById("showOurPolicyPage").style.display = "none"
 }
 
-function copyCss(){
-    document.getElementById("index").style.display = "none"
-    document.getElementById("copyCode").style.display = "none"
-    document.getElementById("copyCss").style.display = "block"
-    document.getElementById("howItWorks").style.display = "none"
-    document.getElementById("test").style.display = "none"
-    document.getElementById("ourPolicy").style.display = "none"
+function showCopyCssPage() {
+    document.getElementById("showIndexPage").style.display = "none"
+    document.getElementById("showCopyCodePage").style.display = "none"
+    document.getElementById("showCopyCssPage").style.display = "block"
+    document.getElementById("showHowItWorksPage").style.display = "none"
+    document.getElementById("showTestPage").style.display = "none"
+    document.getElementById("showOurPolicyPage").style.display = "none"
 }
 
-function howItWorks(){
-    document.getElementById("index").style.display = "none"
-    document.getElementById("copyCode").style.display = "none"
-    document.getElementById("copyCss").style.display = "none"
-    document.getElementById("howItWorks").style.display = "block"
-    document.getElementById("test").style.display = "none"
-    document.getElementById("ourPolicy").style.display = "none"
+function showHowItWorksPage() {
+    document.getElementById("showIndexPage").style.display = "none"
+    document.getElementById("showCopyCodePage").style.display = "none"
+    document.getElementById("showCopyCssPage").style.display = "none"
+    document.getElementById("showHowItWorksPage").style.display = "block"
+    document.getElementById("showTestPage").style.display = "none"
+    document.getElementById("showOurPolicyPage").style.display = "none"
 }
 
-function test(){
-    document.getElementById("index").style.display = "none"
-    document.getElementById("copyCode").style.display = "none"
-    document.getElementById("copyCss").style.display = "none"
-    document.getElementById("howItWorks").style.display = "none"
-    document.getElementById("test").style.display = "block"
-    document.getElementById("ourPolicy").style.display = "none"
+function showTestPage() {
+    document.getElementById("showIndexPage").style.display = "none"
+    document.getElementById("showCopyCodePage").style.display = "none"
+    document.getElementById("showCopyCssPage").style.display = "none"
+    document.getElementById("showHowItWorksPage").style.display = "none"
+    document.getElementById("showTestPage").style.display = "block"
+    document.getElementById("showOurPolicyPage").style.display = "none"
 }
 
-function ourPolicy(){
-    document.getElementById("index").style.display = "none"
-    document.getElementById("copyCode").style.display = "none"
-    document.getElementById("copyCss").style.display = "none"
-    document.getElementById("howItWorks").style.display = "none"
-    document.getElementById("test").style.display = "none"
-    document.getElementById("ourPolicy").style.display = "block"
+function showOurPolicyPage() {
+    document.getElementById("showIndexPage").style.display = "none"
+    document.getElementById("showCopyCodePage").style.display = "none"
+    document.getElementById("showCopyCssPage").style.display = "none"
+    document.getElementById("showHowItWorksPage").style.display = "none"
+    document.getElementById("showTestPage").style.display = "none"
+    document.getElementById("showOurPolicyPage").style.display = "block"
 }
 
 function copyHTML() {
+    htmlCode = document.getElementById("htmlCode").innerHTML
 
+    navigator.clipboard.writeText(htmlCode)
+}
+
+function showCopyCssPageCode(e) {
+    const color = document.getElementById('cssColor');
+
+    cssCode = `
+        form fieldset {
+            border-radius: 10px;
+            margin: 10px;
+            font-size: 2rem;
+            box-shadow: 5px 5px 5px #090c0838;
+            border: outset 2px;
+            width: 200px;
+            padding-bottom: 10px;
+        }
+        
+         form fieldset label {
+            display: block;
+            margin: 5px 20px;
+        }
+        
+         form fieldset legend {
+            margin: auto;
+            font-size: 1.8rem;
+        }
+        
+         form fieldset input {
+             width: auto;
+            border-radius: 10px;
+            margin: 5px 20px;
+            border: solid 1px;
+        }
+        
+         form fieldset textarea {
+            border-radius: 10px;
+            margin: 5px 20px;
+            border: solid 1px;
+        }
+        
+        form button {
+            font-size: 1.6rem;
+            text-decoration: none;
+            color: #231F20;
+            padding: 5px;
+            border: #231F20 1px solid;
+            display: block;
+            margin: 5px auto;
+            border-radius: 5px;
+            background-color: white;
+            width: 100px;
+            padding: 2px;
+        }
+
+        button:hover {
+            color: white;
+            background-color: ${color.value};
+            border-color: ${color.value};
+        }`
+
+    navigator.clipboard.writeText(cssCode)
+
+    e.preventDefault()
 }

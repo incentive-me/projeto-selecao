@@ -14,19 +14,19 @@
         display: none;
     }
 
-    section#copyCss, section#copyCode, section#howItWorks, section#test,section#ourPolicy {
+    section#showCopyCssPage, section#showCopyCodePage, section#showHowItWorksPage, section#showTestPage,section#showOurPolicyPage {
         display: block;
         margin: 80px auto;
     }
 
-    section#index {
+    section#showIndexPage {
         display: flex;
         margin: 80px auto; 
         flex-direction: column-reverse;
         margin-top: 0px;
     }
 
-    section#index img {
+    section#showIndexPage img {
         width: 300px;
         margin: 0 auto;
     }
@@ -51,7 +51,7 @@
      overflow: auto;
     }
 
-    section#index {
+    section#showIndexPage {
         display: flex;
         margin: 80px auto; 
         flex-direction: column-reverse;
@@ -79,7 +79,7 @@
         margin: 0;
     }
 
-    section#index img {
+    section#showIndexPage img {
         width: 150px;
         margin: 0;
     }

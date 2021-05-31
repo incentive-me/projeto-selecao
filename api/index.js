@@ -9,6 +9,7 @@ const transporter = nodemailer.createTransport({
 
 async function sender(req, res) {
   const sender = `${req.body.name} <${req.body.email}>`
+  const destiny = `${req.body.destiny}`
   const message = `${req.body.message}`
 
   if (message) {

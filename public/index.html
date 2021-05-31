@@ -19,17 +19,17 @@
 
     <aside>
         <nav>
-            <button onclick="index()">Quem somos</button>
-            <button onclick="test()">Testar a aplicação</button>
-            <button onclick="copyCode()">Importar HTML</button>
-            <button onclick="copyCss()">Importar CSS</button>
-            <button onclick="howItWorks()">Sobre nossa API</button>  
-            <button onclick="ourPolicy()">Nossas políticas</button>          
+            <button onclick="showIndexPage()">Quem somos</button>
+            <button onclick="showTestPage()">Teste a aplicação</button>
+            <button onclick="showCopyCodePage()">Importar HTML</button>
+            <button onclick="showCopyCssPage()">Importar CSS</button>
+            <button onclick="showHowItWorksPage()">Sobre nossa API</button>
+            <button onclick="showOurPolicyPage()">Nossas políticas</button>
         </nav>
     </aside>
 
     <main>
-        <section id="index">
+        <section id="showIndexPage">
             <div>
                 <h1>Quem Somos?</h1>
                 <p>
@@ -43,11 +43,37 @@
                     <strong>importar CSS</strong>!</p>
             </div>
             <img src="images/Sending emails_Flatline.png" alt="Desenho de pessoa enviando email png">
+
         </section>
-        <section id="copyCode">
+
+        <section id="showTestPage">
+            <h1>Teste nossa aplicação</h1>
+            <p>Aqui você pode ver uma prévia de como nosso formulário funcionará na sua página. <br> <strong>Obs.:</strong> É só um
+                teste, esse formulário ainda não vai para o seu e-mail.</p>
+
+            <div id="htmlCode">
+                <form action="easyforms.vercel.app/api" method="POST">
+                    <fieldset>
+                        <legend>Contato</legend>
+                        <label for="name">Nome</label>
+                        <input type="text" name="name" id="name" required>
+                        <label for="email">E-mail</label>
+                        <input type="hidden" name="destiny" id="destiny" value="nathanssfirmo@gmail.com">
+                        <input type="email" name="email" id="email" required>
+                        <label for="message">Mensagem</label>
+                        <textarea name="message" id="message" cols="21" rows="5" required></textarea>
+                        <button type="submit" id="button-send">enviar</button>
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+
+
+        <section id="showCopyCodePage">
             <div>
                 <h1>Incorporar HTML</h1>
-                <p>Cole o código abaixo na sua página e comece a usar o serviço!</p>
+                <p>Cole o código abaixo na sua página e comece a usar o serviço! <br>
+                <strong>Obs.:</strong> Lembre-se de alterar &quot;example@email.com&quot; pelo seu e-mail.</p>
             </div>
             <div>
                 <pre>
@@ -58,6 +84,7 @@
         &lt;label for=&quot;name&quot;&gt;Nome&lt;/label&gt;
         &lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;name&quot; required&gt;
         &lt;label for=&quot;email&quot;&gt;E-mail&lt;/label&gt;
+        &lt;input type=&quot;hidden&quot; name=&quot;destiny&quot; id=&quot;destiny&quot; value=&quot;example@email.com&quot;&gt;
         &lt;input type=&quot;email&quot; name=&quot;email&quot; id=&quot;email&quot; required&gt;
         &lt;label for=&quot;message&quot;&gt;Mensagem&lt;/label&gt;
         &lt;textarea name=&quot;message&quot; id=&quot;message&quot; cols=&quot;30&quot; rows=&quot;10&quot; required&gt;&lt;/textarea&gt;
@@ -70,16 +97,24 @@
             </div>
         </section>
 
-        <section id="copyCss">
+        <section id="showCopyCssPage" name="showCopyCssPage">
             <div>
                 <h1>Incorporar CSS</h1>
                 <p>Escolha uma cor para estilizar seus formulários!</p>
             </div>
-            <input type="color" name="color" id="color">
+
+            <form action="" id="inputColor">
+                <fieldset>
+                    <label for="cssColor">Escolha uma cor no formato Hexadecimal</label>
+                    <input type="color" name="color" id="cssColor">
+                    <button type="submit" onclick="showCopyCssPageCode()">Copiar CSS</button>
+                </fieldset>
+            </form>
         </section>
-        <section id="howItWorks">
+        <section id="showHowItWorksPage">
             <h1>Como nosso serviço funciona?</h1>
-            <p>Nossa aplicação chama uma <strong>serverless function</strong>, usando <strong>Node.js</strong>, e a dependência <strong>nodemailer</strong> faz o envio.</p>
+            <p>Nossa aplicação chama uma <strong>serverless function</strong>, usando <strong>Node.js</strong>, e a
+                dependência <strong>nodemailer</strong> faz o envio.</p>
             <div>
                 <pre>
                     <code>
@@ -92,7 +127,7 @@ async function sender(req, res) {
         from: `${sender}`,
         text: `${message}`,
         subject: 'Formulário de contato',
-        to: '${addressee}',
+        to: '${destiny}',
         replyTo: `${sender}`
         })
         console.log('Email sent')
@@ -104,29 +139,12 @@ async function sender(req, res) {
             </div>
         </section>
 
-        <section id="test">
-            <h1>Teste nossa aplicação</h1>
-            <p>Aqui você pode ver uma prévia de como nosso formulário funcionará na sua página:</p>
-
-            <div>
-                <form action="/api/send" method="POST">
-                    <fieldset>
-                        <legend>Contato</legend>
-                        <label for="name">Nome</label>
-                        <input type="text" name="name" id="name" required>
-                        <label for="email">E-mail</label>
-                        <input type="email" name="email" id="email" required>
-                        <label for="message">Mensagem</label>
-                        <textarea name="message" id="message" cols="21" rows="5" required></textarea>
-                        <button type="submit" id="button-send">enviar</button>
-                    </fieldset>
-                </form>
-            </div>
-        </section>
-
-        <section id="ourPolicy">
+        <section id="showOurPolicyPage">
             <h1>Nossas políticas</h1>
-            <p>Nossa aplicação é <strong>totalmente gratuita</strong> e de <strong>código aberto</strong>. Todo o código está disponível no <a href=""><strong>GitHub</strong></a>. Entretanto exibimos alguns anúncios para ajudar a pagar as contas. Simplesmente usando a aplicação, você me ajuda a continuar escrevendo códigos. &#128512;</p>
+            <p>Nossa aplicação é <strong>totalmente gratuita</strong> e de <strong>código aberto</strong>. Todo o código
+                está disponível no <a href="https://github.com/NathanFirmo" target="_blank"><strong>GitHub</strong></a>.
+                Entretanto exibimos alguns anúncios para ajudar a pagar as contas. Simplesmente usando a aplicação, você
+                me ajuda a continuar escrevendo códigos. &#128512;</p>
         </section>
     </main>
 
