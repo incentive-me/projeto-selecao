@@ -8,6 +8,8 @@ export function Landing() {
   const [show, setShow] = useState(false);
   const [tags, setTags] = useState("");
   const [idEscolhido, setIdEscolhido] = useState();
+  //const [search, setSearch] = useState("");
+
   useEffect(() => {
     setData(dataUserContext);
   }, [dataUserContext]);
@@ -47,9 +49,17 @@ export function Landing() {
     const value = e.target.value;
     setTags(value);
   }
+  
+  // function handleChangeSearch(e) {
+  //   const value = e.target.value;
+  //   setSearch(value);
+  // }
 
   return (
     <div>
+      <header>
+        {/* <input type="text" onChange={handleChangeSearch} /> */}
+      </header>
       <div className="conteudo">
         {data
           ? data.map((item) => (
