@@ -26,6 +26,6 @@ module.exports = async (req, res) => {
   }
     res.end(`    
     <script>
-    window.location.href = "http://localhost:3000/tanks.html"
+    window.location.href = "http://easyforms.vercel.app/tanks.html"
     </script>`)
 }
