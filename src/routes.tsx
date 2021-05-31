@@ -5,8 +5,8 @@ import { Stars } from './pages/Stars';
 export function Routes(): JSX.Element {
   return (
     <BrowserRouter>
-      <Route exact path="/" component={Stars} />
-      <Route exact path="/login" component={Login} />
+      <Route exact path="/" component={Login} />
+      <Route path="/stars" component={Stars} />
     </BrowserRouter>
   );
 }

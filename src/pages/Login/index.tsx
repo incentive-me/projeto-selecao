@@ -19,7 +19,7 @@ export function Login(): JSX.Element {
     try {
       await api.get(`users/${userLogin}`);
       setLogin(userLogin);
-      history.push('/');
+      history.push('/stars');
     } catch (err) {
       alert('O usuário não foi encontrado!');
     }
