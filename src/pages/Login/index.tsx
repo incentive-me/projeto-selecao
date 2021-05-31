@@ -1,49 +1,54 @@
-import axios from 'axios';
-import { useEffect } from 'react';
-import { FiGithub } from 'react-icons/fi';
+import { FormEvent, useState } from 'react';
+import { FiArrowRight, FiGithub } from 'react-icons/fi';
+import { useHistory } from 'react-router';
+import { Container } from './styles';
+import logoImg from '../../assets/images/logo.svg';
 import { useUser } from '../../hooks/useUser';
 import { api } from '../../services/api';
 
 export function Login(): JSX.Element {
-  const { setToken } = useUser();
+  const [userLogin, setUserLogin] = useState('');
 
-  async function getUserData(code: string) {
-    const data = new FormData();
-    data.append('client_id', process.env.REACT_APP_CLIENT_ID || '');
-    data.append('client_secret', process.env.REACT_APP_CLIENT_SECRET || '');
-    data.append('code', code);
-    data.append('redirect_uri', process.env.REACT_APP_REDIRECT_URI || '');
+  const { setLogin } = useUser();
 
-    axios.post(`https://github.com/login/oauth/access_token`, data, {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'text/plain',
-      },
-    });
+  const history = useHistory();
+
+  async function getUserData(e: FormEvent) {
+    e.preventDefault();
+
+    try {
+      await api.get(`users/${userLogin}`);
+      setLogin(userLogin);
+      history.push('/');
+    } catch (err) {
+      alert('O usuário não foi encontrado!');
+    }
   }
 
-  useEffect(() => {
-    const url = window.location.href;
-    const hasCode = url.includes('?code=');
-
-    if (hasCode) {
-      const newUrl = url.split('?code=');
-      getUserData(newUrl[1]);
-    }
-  }, []);
-
   return (
-    <div>
-      <a
-        className="login-link"
-        href="https://github.com/login/oauth/authorize?scope=read:user&client_id=75243641631ce00663ff&redirect_uri=http://localhost:3000/login"
-        onClick={() => {
-          // setData({ ...data, errorMessage: '' });
-        }}
-      >
+    <Container>
+      <img src={logoImg} alt="Github Stars" />
+      <h1>GitHub Stars</h1>
+
+      <p>
+        O jeito mais fácil de organizar seus repositórios salvos no GitHub :)
+      </p>
+
+      <p style={{ fontSize: '1rem' }}>
         <FiGithub />
-        <span>Login with GitHub</span>
-      </a>
-    </div>
+        Comece fazendo login no seu Github
+      </p>
+
+      <form className="login" onSubmit={getUserData}>
+        <input
+          placeholder="Digite seu username"
+          value={userLogin}
+          onChange={e => setUserLogin(e.target.value)}
+        />
+        <button type="submit">
+          <FiArrowRight />
+        </button>
+      </form>
+    </Container>
   );
 }
