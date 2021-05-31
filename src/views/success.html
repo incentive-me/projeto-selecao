@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> <!-- load bulma css -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- load fontawesome -->
     {% block css %}
-      <link rel="stylesheet" type="text/css" href="styles/sucess.css" />
+      <link rel="stylesheet" type="text/css" href="styles/success.css" />
     {% endblock %}
   </head>
   <body>
@@ -26,6 +26,7 @@
     <div class="repository-list">
         {% for repository in repositories %}
         <li class="container" >
+          <p class="para">teste</p>
           <a href="{{repository.url}}" class="content">
                 <img src="{{repository.avatar_url}}" alt="{{repository.name}}" />
                 <div class="info">
@@ -36,7 +37,7 @@
                 </div>
           </a>
           <div class="inputDiv">
-            <input type="text" class="input" placeholder="Adicione uma tag...">
+            <input type="text"  class="input" placeholder="Adicione uma tag...">
             <button class="add">
               Adicionar tag
             </button>
@@ -44,7 +45,7 @@
         </li>
         {% endfor %}
     </div>
-    <script src="js/suggestions.js"></script> 
+    <script src="js/addTag.js"></script> 
 
   </body>
 </html>

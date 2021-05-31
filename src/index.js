@@ -29,16 +29,13 @@ const axios = require('axios')
 const clientID = '373c622a3395445d77e9'
 const clientSecret = '597ae04f9326dc3baa5113af4e82387c78cecbe4'
 
-// Declare the callback route
 app.get('/github/callback', (req, res) => {
 
-  // The req.query object has the query params that were sent to this route.
   const requestToken = req.query.code
   
   axios({
     method: 'post',
     url: `https://github.com/login/oauth/access_token?client_id=${clientID}&client_secret=${clientSecret}&code=${requestToken}`,
-    // Set the content type header, so that we get the response in JSON
     headers: {
          accept: 'application/json'
     }
@@ -69,11 +66,10 @@ app.get('/success', async function(req, res) {
   }
  
   const response = await getRepositories()
-  console.log(response)
 
   // Usando a API do GitHub, obtenha repositórios com estrela. As informações que devem ser recuperadas 
   //são: id do repositório, nome do repositório, descrição e url HTTP.
   
-
   res.render('success.html',{ repositories: response });
 });
+
