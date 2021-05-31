@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+require('dotenv/config');
 
 app.use(express.static("public"))
 
@@ -26,8 +27,8 @@ app.listen(port , () => console.log('App listening on port ' + port));
 const axios = require('axios')
 // This is the client ID and client secret that you obtained
 // while registering on github app
-const clientID = '373c622a3395445d77e9'
-const clientSecret = '597ae04f9326dc3baa5113af4e82387c78cecbe4'
+const clientID = process.env.CLIENT_ID
+const clientSecret = process.env.CLIENT_SECRET
 
 app.get('/github/callback', (req, res) => {
 
