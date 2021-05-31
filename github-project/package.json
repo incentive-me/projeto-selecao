@@ -19,7 +19,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "server": "cd src & nodemon server",
+    "server": "cd src/components & nodemon server",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm start\""
   },
   "eslintConfig": {

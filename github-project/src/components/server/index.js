@@ -5,6 +5,8 @@ app.use(cors())
 
 
 
-app.listen(3000, () => {
-    console.log('Aplicação backend servindo a parta 3000')
+
+
+app.listen(3001, () => {
+    console.log('Aplicação backend servindo a parta 3001')
 })

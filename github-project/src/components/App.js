@@ -1,15 +1,8 @@
 import React from 'react'
-import Header from './Header'
-import Main from './Main'
+import Routes from './controllers/Routes'
 
 
-function App() {
-  return (
-    <div className="app bg-color-gray">
-      <Header />
-      <Main />
-    </div>
-  );
-}
-
+const App = () => 
+    <Routes/>
+  
 export default App;
