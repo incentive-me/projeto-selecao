@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Estrelinhas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> <!-- load bulma css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- load fontawesome -->
+    {% block css %}
+      <link rel="stylesheet" type="text/css" href="styles/success.css" />
+    {% endblock %}
+  </head>
+  <body>
+    <div class="header">
+      <h1 class="title">Estrelinhas ⭐</h1>
+      <h3>Encontre todos os seus repositorios do github com estrelas</h3>
+    </div>
+    <div class="wrapper">
+      <div class="search-input">
+        <a href="" target="_blank" hidden></a>
+        <input type="text" placeholder="Type to search..">
+        <div class="autocom-box">
+        </div>
+        <div class="icon"><i class="fa fa-search"></i></div>
+      </div>
+    </div>
+    <div class="repository-list">
+        {% for repository in repositories %}
+        <li class="container" >
+          <a href="{{repository.url}}" class="content">
+                <img src="{{repository.avatar_url}}" alt="{{repository.name}}" />
+                <div class="info">
+                  <strong>{{repository.name}}</strong>
+                  <p>{{repository.description}}</p>
+                </div>
+                <div class="add-item">
+                </div>
+          </a>
+          <div class="inputDiv">
+            <input type="text"  class="input" placeholder="Adicione uma tag...">
+            <button class="add">
+              Adicionar tag
+            </button>
+          </div>
+        </li>
+        {% endfor %}
+    </div>
+    <script src="js/addTag.js"></script> 
+
+  </body>
+</html>
