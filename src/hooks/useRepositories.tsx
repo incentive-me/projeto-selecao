@@ -42,6 +42,7 @@ export function RepositoriesProvider({
   const [tags, setTags] = useState<string[]>([]);
   const [selectedTag, setSelectedTag] = useState('');
   const [searchTag, setSearchTag] = useState('');
+  const [starreds, setStarreds] = useState(0);
 
   const { login } = useUser();
 
@@ -104,6 +105,31 @@ export function RepositoriesProvider({
   }
 
   async function loadReposData(): Promise<void> {
+    try {
+      const responseStarreds = await api.get<IRepo[]>(
+        `users/${login}/starred`,
+        {
+          params: {
+            per_page: 1,
+          },
+        },
+      );
+      const starredsQtd = new URLSearchParams(
+        responseStarreds.headers.link
+          .split(',')[1]
+          .split(';')[0]
+          .substring(
+            2,
+            responseStarreds.headers.link.split(',')[1].split(';')[0].length -
+              1,
+          ),
+      ).get('page');
+
+      setStarreds(Number(starredsQtd));
+    } catch (err) {
+      console.log('Não foi possível encontrar o número de repositórios salvos');
+    }
+
     const response = await api.get<IRepo[]>(`users/${login}/starred`);
 
     const repoTags = await loadTags();
@@ -150,7 +176,7 @@ export function RepositoriesProvider({
     <RepositoriesContext.Provider
       value={{
         repos,
-        starreds: repos.length,
+        starreds,
         tags,
         selectedTag,
         searchTag,
