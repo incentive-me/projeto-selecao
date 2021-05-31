@@ -1,0 +1,91 @@
+.repoContainer {
+    display: flex;
+}
+.repoSearch {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--primary-font);
+    color: var(--text);
+    background-color: var(--background-sidebar);
+    height: 100vh;
+    width: 30vw;
+    font-weight: bold;
+    padding: 1rem;
+    border-right: 1px solid var(--text);
+}
+
+.repoSearch input {
+    padding: .5rem;
+    background: none;
+    border: 1px solid var(--text);
+    color: var(--text);
+    margin-top: .4rem;
+    border-radius: .4rem;
+}
+
+.repoSearch button {
+    background: var(--button);
+    color: var(--text);
+    border: none;
+    padding: .5rem;
+    border-radius: .2rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: filter .3s;
+}
+
+.repoSearch button:hover {
+    filter: brightness(.85);
+}
+
+.repoData {
+    background: var(--background);
+    height: 100%;
+    color: var(--text);
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.repoDataEmpty {
+    height: 100vh;
+    width: 70vw;
+    background: var(--background);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.repoDataEmpty {
+    color: var(--text);
+    font-family: var(--primary-font);
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.repoData span {
+    color: red;
+}
+
+.repoCard {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--primary-font);
+    border: 1px solid var(--text);
+    padding: 1rem;
+    border-radius: .4rem;
+    width: 50vw;
+    gap: .5rem;
+    text-align: center;
+    background: var(--background-sidebar);
+}
+
+.repoCard div {
+    display: flex;
+    justify-content: space-around;
+}
+
