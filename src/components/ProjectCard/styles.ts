@@ -75,11 +75,19 @@ export const LabelContainer = styled.div`
                 height: 15px;
                 margin-left: .5rem;
 
-                line-height: 0;
                 border: none;
                 border-radius: 50%;
 
+                background: #d63232;
                 cursor: pointer;
+
+                transition: background-color .2s linear;
+                &:hover {
+                    background: #a30000;
+                }
+                &:disabled {
+                    background: #efb2b2;
+                }
             }
         }
     }

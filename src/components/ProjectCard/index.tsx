@@ -65,7 +65,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                                 <button
                                     onClick={(event) => handleLabelDelete(event, label, index)}
                                     disabled={deletingLabel && (deletingLabelIndex === index)}
-                                >x</button>
+                                ></button>
                             </li>
                         ))}
                     </ul>

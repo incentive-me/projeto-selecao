@@ -43,7 +43,12 @@ export const UserInformationContainer = styled.div`
     button {
         padding: .5rem;
 
+        background: #f1f1f1;
         border-radius: .5rem;
         cursor: pointer;
+        transition: background-color .2s linear;
+        &:hover {
+            background: #d1d1d1;
+        }
     }
 `
