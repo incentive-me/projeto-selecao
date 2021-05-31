@@ -1,11 +1,21 @@
-import React from 'react'
-
+import React,{useState, useEffect} from 'react'
+import { getUser } from '../controllers/Api'
+import PrivateHeader from '../Header/PrivateHeader'
+import PrivateMain from '../Main/PrivateMain'
 
 
 const Home = () => {
-  return (
-    <h1>Home</h1>
-  )
+    const [user,setUser] = useState('')
+    useEffect(()=> {
+        getUser(data => setUser(data))
+    },[])
+
+    return (
+        <div className="app bg-color-gray">
+            <PrivateHeader user={user.name} />
+            <PrivateMain />
+        </div>
+    )
 }
 
 export default Home

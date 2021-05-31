@@ -1,13 +1,13 @@
 import React from 'react'
-import Header from '../Header'
-import Main from '../Main'
+import PublicHeader from '../Header/PublicHeader'
+import PublicMain from '../Main/PublicMain'
 
 
 const Login = () => {
   return (
     <div className="app bg-color-gray">
-      <Header />
-      <Main />
+      <PublicHeader />
+      <PublicMain />
     </div>
   )
 }
