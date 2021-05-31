@@ -6,13 +6,13 @@ import { apiConfig, getUser } from '../../controllers/api'
 const ItemResp = props => {
     const repos = props.repos  
     return repos.filter(repos => repos.stargazers_count >= props.searchOption).map((repos, i) =>
-        <div key={i} className="p-4 bg-white mt-2">
+        <div key={i} className="p-4 bg-white my-2">
             <div className="row">
                 <div className="col-md-6">{repos.name}</div>
                 <div className="col-md-6">
-                    <span className="badge bg-color-secundary mx-2">Stars:{repos.stargazers_count}</span>
-                    <span className="badge bg-color-secundary mx-2">Language:{repos.language}</span>
-                    <span className="badge bg-color-secundary mx-2">Forks:{repos.forks}</span>
+                    <span className="badge bg-color-secundary mx-1">Stars:{repos.stargazers_count}</span>
+                    <span className="badge bg-color-secundary mx-1">Language:{repos.language}</span>
+                    <span className="badge bg-color-secundary mx-1">Forks:{repos.forks}</span>
                 </div>
             </div>
         </div>
@@ -34,10 +34,10 @@ const PrivateMain = props => {
 
     return (
         <main className="container">
-            <div className="container mt-4">
+            <div className="container mt-4 mb-4">
                 <div className="row">
-                    <div className="col-lg-3 bg-white">
-                        <div className="p-3">
+                    <div className="col-lg-3 ">
+                        <div className="p-4 p-lg-3 bg-white">
                             <img src={props.user.avatar_url} className="img-thumbnail  mx-auto d-block img-fluid rounded-circle" alt="..." />
                             <div className="mt-1 mb-3 text-center">
                                 <h4>{props.user.name ? props.user.name : props.user.login}</h4>
