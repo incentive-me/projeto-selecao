@@ -10,7 +10,7 @@
 <h3>Iniciando Aplicação:</h3>
 
 <ol>
-<li>Entrar na pasta do Projeto:
+<li>Entrar na pasta do projeto:
 <code>cd gitHub-project</code>
 </li>
 
@@ -20,7 +20,7 @@ Instalar dependencias:
 </li>
 
 <li>
-Iniciar Aplicação:
+Iniciar aplicação:
 <code>npm run dev</code>
 </li>
 </ol>
