@@ -60,7 +60,7 @@ const PrivateMain = props => {
                         <div className="p-4 bg-white">
                             <div className="row">
                                 <div className="col-10">
-                                    <input className="form-control mr-sm-3" type="search" placeholder="Search" onKeyUp={e => setSearch(e.target.value)} aria-label="Search" />
+                                    <input className="form-control mr-sm-3" type="search" placeholder="Pesquisar" onKeyUp={e => setSearch(e.target.value)} aria-label="Search" />
                                 </div>
                                 <div className="col-2">
                                     <select className="form-control h6" onChange={e => setSearchOption(e.currentTarget.value)}>
