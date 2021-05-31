@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import isAuthenticated from './isAuthenticated'
+import BounceLoader from 'react-spinners/BounceLoader'
 
 export const apiConfig = {
     clientId: "7936086d7194dec29682",
@@ -16,7 +17,7 @@ export const codeAuthApi = () => {
         const { getUrl, clientId } = apiConfig
         window.location.href = `${getUrl}?client_id=${clientId}`
     } else {
-        console.log(isAuthenticated())
+        window.location.href= "/"
     }
 }
 
@@ -82,12 +83,14 @@ export const getUser = (cb,url=apiConfig.userUrl) => {
 
 
 
-
 export const AuthPage = () => {
     const code = urlParam('code')
     if (code) tokenUser(code)
 
     return (
-        <h1>teste</h1>
+        <div className="d-flex align-items-center justify-content-center vh-100">
+            <BounceLoader  color={'var(--color-primary)'} size={100}/> 
+        </div>
+        
     )
 }
