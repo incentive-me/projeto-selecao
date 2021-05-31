@@ -1,0 +1,34 @@
+* {
+  box-sizing: border-box;
+}
+
+body,
+ul,
+li,
+h1,
+h2,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+:root {
+  --background-sidebar: #0D1117;
+  --background: #090C10;
+  --text: #C9D1D9;
+  --primary-font: 'Helvetica';
+  --button: #2EA043;
+}
+
+body {
+  background: var(--background-sidebar);
+}
