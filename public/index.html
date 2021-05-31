@@ -19,10 +19,12 @@
 
     <aside>
         <nav>
-            <button onclick="quemSomos()">Quem somos</button>
-            <button onclick="importarHTML()">Importar HTML</button>
-            <button onclick="importarCSS()">Importar CSS</button>
-            <button onclick="sobreANossaAPI()">Sobre nossa API</button>
+            <button onclick="index()">Quem somos</button>
+            <button onclick="test()">Testar a aplicação</button>
+            <button onclick="copyCode()">Importar HTML</button>
+            <button onclick="copyCss()">Importar CSS</button>
+            <button onclick="howItWorks()">Sobre nossa API</button>  
+            <button onclick="ourPolicy()">Nossas políticas</button>          
         </nav>
     </aside>
 
@@ -32,7 +34,8 @@
                 <h1>Quem Somos?</h1>
                 <p>
                     EasyForms é uma solução simples para pessoas que precisam integrar formulários em suas páginas HTML.
-                    Você só precisa copiar e colar, o nosso sistema faz o restante.
+                    Nada de se precupar com Backend.
+                    Você só precisa copiar e colar, <strong>o nosso sistema faz o restante</strong>.
                 </p>
                 <h1>Como utilizar?</h1>
                 <p>Para utilizar nossa aplicação basta clicar aqui ao lado para <strong>importar o código HTML</strong>
@@ -49,18 +52,18 @@
             <div>
                 <pre>
                     <code>
-                        &lt;form action=&quot;/api/send&quot; method=&quot;POST&quot;&gt;
-                        &lt;fieldset&gt;
-                            &lt;legend&gt;Contato&lt;/legend&gt;
-                            &lt;label for=&quot;name&quot;&gt;Nome&lt;/label&gt;
-                            &lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;name&quot; required&gt;
-                            &lt;label for=&quot;email&quot;&gt;E-mail&lt;/label&gt;
-                            &lt;input type=&quot;email&quot; name=&quot;email&quot; id=&quot;email&quot; required&gt;
-                            &lt;label for=&quot;message&quot;&gt;Mensagem&lt;/label&gt;
-                            &lt;textarea name=&quot;message&quot; id=&quot;message&quot; cols=&quot;30&quot; rows=&quot;10&quot; required&gt;&lt;/textarea&gt;
-                            &lt;button type=&quot;submit&quot; id=&quot;button-send&quot;&gt;enviar&lt;/button&gt;
-                        &lt;/fieldset&gt;
-                    &lt;/form&gt;                        
+    &lt;form action=&quot;/api/send&quot; method=&quot;POST&quot;&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;Contato&lt;/legend&gt;
+        &lt;label for=&quot;name&quot;&gt;Nome&lt;/label&gt;
+        &lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;name&quot; required&gt;
+        &lt;label for=&quot;email&quot;&gt;E-mail&lt;/label&gt;
+        &lt;input type=&quot;email&quot; name=&quot;email&quot; id=&quot;email&quot; required&gt;
+        &lt;label for=&quot;message&quot;&gt;Mensagem&lt;/label&gt;
+        &lt;textarea name=&quot;message&quot; id=&quot;message&quot; cols=&quot;30&quot; rows=&quot;10&quot; required&gt;&lt;/textarea&gt;
+        &lt;button type=&quot;submit&quot; id=&quot;button-send&quot;&gt;enviar&lt;/button&gt;
+    &lt;/fieldset&gt;
+&lt;/form&gt;                        
                     </code>
                 </pre>
                 <button onclick="copyHTML()">copiar</button>
@@ -72,10 +75,58 @@
                 <h1>Incorporar CSS</h1>
                 <p>Escolha uma cor para estilizar seus formulários!</p>
             </div>
+            <input type="color" name="color" id="color">
         </section>
         <section id="howItWorks">
             <h1>Como nosso serviço funciona?</h1>
-            <p>Nossa aplicação chama uma <strong>serverless function</strong>, usando <strong>Node.js</strong> e a dependência <strong>nodemailer</strong> para fazer o envio.</p>
+            <p>Nossa aplicação chama uma <strong>serverless function</strong>, usando <strong>Node.js</strong>, e a dependência <strong>nodemailer</strong> faz o envio.</p>
+            <div>
+                <pre>
+                    <code>
+async function sender(req, res) {
+    const sender = `${req.body.name} <${req.body.email}>`
+    const message = `${req.body.message}`
+    
+    if (message) {
+        await transporter.sendMail({
+        from: `${sender}`,
+        text: `${message}`,
+        subject: 'Formulário de contato',
+        to: '${addressee}',
+        replyTo: `${sender}`
+        })
+        console.log('Email sent')
+    }
+    res.redirect('https://projeto-selecao.vercel.app/tanks')
+}
+                    </code>
+                </pre>
+            </div>
+        </section>
+
+        <section id="test">
+            <h1>Teste nossa aplicação</h1>
+            <p>Aqui você pode ver uma prévia de como nosso formulário funcionará na sua página:</p>
+
+            <div>
+                <form action="/api/send" method="POST">
+                    <fieldset>
+                        <legend>Contato</legend>
+                        <label for="name">Nome</label>
+                        <input type="text" name="name" id="name" required>
+                        <label for="email">E-mail</label>
+                        <input type="email" name="email" id="email" required>
+                        <label for="message">Mensagem</label>
+                        <textarea name="message" id="message" cols="21" rows="5" required></textarea>
+                        <button type="submit" id="button-send">enviar</button>
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+
+        <section id="ourPolicy">
+            <h1>Nossas políticas</h1>
+            <p>Nossa aplicação é <strong>totalmente gratuita</strong> e de <strong>código aberto</strong>. Todo o código está disponível no <a href=""><strong>GitHub</strong></a>. Entretanto exibimos alguns anúncios para ajudar a pagar as contas. Simplesmente usando a aplicação, você me ajuda a continuar escrevendo códigos. &#128512;</p>
         </section>
     </main>
 

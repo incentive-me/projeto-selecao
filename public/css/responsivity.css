@@ -1,0 +1,86 @@
+@media (max-width: 850px ) {
+    body {
+        width: 100vw;
+        height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 9fr;
+        grid-template-rows: 1.5fr 17fr 1.5fr;
+        grid-template-areas: "header header"
+                             "main main"
+                             "footer footer";
+    }   
+
+    aside {
+        display: none;
+    }
+
+    section#copyCss, section#copyCode, section#howItWorks, section#test,section#ourPolicy {
+        display: block;
+        margin: 80px auto;
+    }
+
+    section#index {
+        display: flex;
+        margin: 80px auto; 
+        flex-direction: column-reverse;
+        margin-top: 0px;
+    }
+
+    section#index img {
+        width: 300px;
+        margin: 0 auto;
+    }
+    pre {
+        display: flex;
+        border-radius: 5px;
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.267);
+        border: 1px solid rgba(0, 0, 0, 0.267);
+        margin: 35px auto;
+        width: fit-content;
+        padding: 0 20px;
+    }
+    code {
+        font-size: 1.2rem;
+ }
+}
+
+@media (max-width: 600px) {
+
+    code {
+     max-width: 50vw; 
+     overflow: auto;
+    }
+
+    section#index {
+        display: flex;
+        margin: 80px auto; 
+        flex-direction: column-reverse;
+            width: 300px;
+            margin: 0px auto;        
+    }
+}
+
+@media (max-width: 400px) {
+
+    *{
+        font-size: 50%;
+    }
+    main {
+        padding: 0px;
+    }
+
+    div{
+        max-width: 300px;    
+    }
+
+    section {
+        max-width: 85vw;
+        padding: 0;
+        margin: 0;
+    }
+
+    section#index img {
+        width: 150px;
+        margin: 0;
+    }
+}

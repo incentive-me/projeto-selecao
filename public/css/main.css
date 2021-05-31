@@ -45,12 +45,12 @@ body > header {
 
 body > header > p{
     margin: auto;
-    font-size: 2rem;
+    font-size: 2.5rem;
 }
 
 main {  
     grid-area: main;
-    padding: 50px;
+    padding: 30px 60px;
 }
 
 main p {  
@@ -102,11 +102,6 @@ aside button {
     width: 150px;
 }
 
-nav {
-    
-    
-}
-
 footer {
     background-color: var(--black);
     grid-area: footer;
@@ -131,11 +126,6 @@ section#index img {
     width: 400px;
 }
 
-section#copyCode {
-
-
-}
-
 pre {
     display: block;
     border-radius: 5px;
@@ -143,7 +133,7 @@ pre {
     border: 1px solid rgba(0, 0, 0, 0.267);
     margin: 35px auto;
     width: fit-content;
-    padding-right: 50px;
+    padding: 0 20px;
 }
 code {
     font-size: 1.2rem;
@@ -156,4 +146,65 @@ section#howItWorks {
     display: none;
 }
 
+section#test {
+    display: none;
+}
+
+section#test div {
+    display: flex;
+    justify-content: center;
+}
+
+
+form fieldset {
+    border-radius: 10px;
+    margin: 10px;
+    font-size: 2rem;
+    box-shadow: 5px 5px 5px #090c0838;
+    border: outset 2px;
+    width: 200px;
+    padding-bottom: 10px;
+}
+
+ form fieldset label {
+    display: block;
+    margin: 5px 20px;
+}
+
+ form fieldset legend {
+    margin: auto;
+    font-size: 1.8rem;
+}
+
+ form fieldset input {
+     width: auto;
+    border-radius: 10px;
+    margin: 5px 20px;
+    border: solid 1px;
+}
+
+ form fieldset textarea {
+    border-radius: 10px;
+    margin: 5px 20px;
+    border: solid 1px;
+}
+
+form button {
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: var(--black);
+    padding: 5px;
+    border: var(--black) 1px solid;
+    display: block;
+    margin: 5px auto;
+    border-radius: 5px;
+    background-color: white;
+    width: 100px;
+    padding: 2px;
+}
+
+
+section#ourPolicy {
+    display: none;
+}
 
