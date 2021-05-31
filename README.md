@@ -37,6 +37,17 @@ cp .env.example .env
 
 In .env file you'll need to set github credencials. Follow [this link](https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app) to see how you can get it!
 
+### Generate tables
+After set DATABASE_URL in .env file generate the tabels with Prisma.
+
+```bash
+cd src
+
+npx prisma generate
+#OR If your database is hosted on Heroku, You'll need to run this, instead:
+npx prisma db push
+```
+
 ### Run
 
 ```bash
