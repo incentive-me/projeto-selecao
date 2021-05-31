@@ -24,6 +24,8 @@ module.exports = async (req, res) => {
     })
     console.log('Email sent')
   }
-
-  res.redirect('https://easyforms.vercel.app/tanks.html')
+    res.end(`    
+    <script>
+    window.location.href = "http://localhost:3000/tanks.html"
+    </script>`)
 }
