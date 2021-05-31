@@ -1,12 +1,12 @@
 ## Tabela de Conteúdos 
 * [Tecnologias](#tecnologias)
 * [Demo](#demo)
-* [Recursos](#Recursos)
-* [Como usar](#how-to-use)
+* [Recursos](#recursos)
+* [Como usar](#como-usar)
 
 
 
-## Tecnologies
+## Tecnologias
 
 * Javscript
 * NodeJS
@@ -15,9 +15,9 @@
 
 ## Demo
 
-Você pode acessar a Demo aqui: dry-chamber-78150.herokuapp.com/
+Você pode acessar a Demo aqui: [dry-chamber-78150.herokuapp.com/](dry-chamber-78150.herokuapp.com/)
 
-## Features
+## Recursos
 
 O que você pode fazer com a aplicação:
 
@@ -25,7 +25,7 @@ O que você pode fazer com a aplicação:
 * Ver seus projetos com estrelas
 * Adicionar Tags (Incompleto)
 
-## How To Use
+## Como usar
 
 Para clonar e rodar essa aplicação você vai precisar ter o Git e Node.js instalados no seu computador, criar e configurar um aplicativo OAuth do Github (para saber como, clique [aqui](https://docs.github.com/pt/developers/apps/building-oauth-apps/creating-an-oauth-app)). Na linha de comando:
 ```bash
