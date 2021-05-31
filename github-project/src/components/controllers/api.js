@@ -55,12 +55,12 @@ const tokenUser = userCode => {
 }
 
 
-export const getUser = cb => {
+export const getUser = (cb,url=apiConfig.userUrl) => {
     const token = localStorage.getItem('token')
     if (token) {
         const config = {
             method: 'get',
-            url: "https://api.github.com/user",
+            url: url,
             headers: {
                 'Authorization': `bearer ${token}`,                
             }

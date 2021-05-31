@@ -1,5 +1,5 @@
 import React from 'react'
-import { codeAuthApi } from '../../controllers/Api'
+import { codeAuthApi } from '../../controllers/api'
 import Icons from '../../Icons'
 
 const Main = () =>
