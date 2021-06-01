@@ -8,8 +8,7 @@ export const apiConfig = {
     clientSecret: "aab9e4763e54f602df6e365210b3907fe012b852",
     getUrl: "https://github.com/login/oauth/authorize",
     postUrl: "https://github.com/login/oauth/access_token",
-    userUrl: "https://api.github.com/user",
-    isAuth: false
+    userUrl: "https://api.github.com/user",    
 }
 
 export const codeAuthApi = () => {

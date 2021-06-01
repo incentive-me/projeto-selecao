@@ -37,3 +37,12 @@ body{
 .text-color-secundary{
   color:var(--color-secundary);
 }
+
+a{
+  text-decoration: none;
+  color:inherit;  
+}
+
+a:hover{
+  color:var(--color-primary);
+}

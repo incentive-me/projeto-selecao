@@ -2,26 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { apiConfig, getUser } from '../../controllers/api'
 
 
-
-const ItemResp = props => {
-    const repos = props.repos  
-    return repos.filter(repos => repos.stargazers_count >= props.searchOption).map((repos, i) =>
-        <div key={i} className="p-4 bg-white my-2">
-            <div className="row">
-                <div className="col-md-6">{repos.name}</div>
-                <div className="col-md-6">
-                    <span className="badge bg-color-secundary mx-1">Stars:{repos.stargazers_count}</span>
-                    <span className="badge bg-color-secundary mx-1">Language:{repos.language}</span>
-                    <span className="badge bg-color-secundary mx-1">Forks:{repos.forks}</span>
-                </div>
-            </div>
-        </div>
-    )
-}
-
-
-
-const PrivateMain = props => {
+const PrivateMain = props => {    
     const [search, setSearch] = useState('')
     const [repos, setRepos] = useState(null)
     const [searchOption, setSearchOption] = useState('0')
@@ -29,7 +10,7 @@ const PrivateMain = props => {
     useEffect(() => {
         const { clientId, clientSecret } = apiConfig
         const reposUrl = `https://api.github.com/search/repositories?q=user%3A${props.user.login}+${search}&${clientId}&${clientSecret}`        
-        getUser(repos => setRepos(repos.items), reposUrl)
+        getUser(repos => setRepos(repos.items), reposUrl)        
     }, [search])
 
     return (
@@ -55,7 +36,6 @@ const PrivateMain = props => {
                             </ul>
                         </div>
                     </div>
-
                     <div className="col-lg-9">
                         <div className="p-4 bg-white">
                             <div className="row">
@@ -77,5 +57,22 @@ const PrivateMain = props => {
         </main>
     )
 }
+
+const ItemResp = props => {
+    const repos = props.repos  
+    return repos.filter(repos => repos.stargazers_count >= props.searchOption).map((repos, i) =>
+        <div key={i} className="p-4 bg-white my-2">
+            <div className="row">
+                <div className="col-md-6"><a href={repos.html_url} target="_blank">{repos.name}</a></div>
+                <div className="col-md-6">
+                    <span className="badge bg-color-secundary mx-1">Stars:{repos.stargazers_count}</span>
+                    <span className="badge bg-color-secundary mx-1">Language:{repos.language}</span>
+                    <span className="badge bg-color-secundary mx-1">Forks:{repos.forks}</span>
+                </div>
+            </div>
+        </div>
+    )
+}
+
 
 export default PrivateMain
