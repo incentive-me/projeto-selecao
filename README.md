@@ -1,44 +1,70 @@
-# PROJETO DE SELEÇÃO
+# github project
 
-Ao conhecer uma pessoa que está aplicando para a Incentive.me gostamos de ter uma conversa sobre código. Afinal, escrever, ler e discutir sobre código faz parte da nossa rotina diária de trabalho.
+## Sobre
 
-Você pode implementar o projeto usando qualquer linguagem de sua preferência. Lembre-se: use a linguagem com a qual você tem mais familiaridade.
+Aplicação onde o usuario logado pode pesquisar por repositorios de um determinado usuário e adicionar tag de identificação de sua preferência.
 
-## O QUE VAMOS AVALIAR
+## Instalação
 
-Queremos avaliar sua capacidade de fornecer um produto simples com documentação suficiente para outros desenvolvedores contribuírem ativamente para o projeto posteriormente. Na entrevista vamos prestar atenção nos seguintes itens:
+#### Pré-requisitos
 
-* Comunicação na revisão do código presencial;
-* Argumentos sobre desafios enfrentados e escolhas realizadas na implementação;
+Certifique-se de ter instalado em sua maquina estas ferramentas: Git, Node.js, e um editor de textos como o VSCode.
 
-Ao revisar seu código vamos prestar atenção nos seguintes itens:
+#### Rodando a aplicação localmente
 
-* Organização do código;
-* Código bem escrito, limpo e coeso;
-* Arquitetura e princípios de desenvolvimento;
-* Documentação (README.md) com instruções claras para reproduzir o projeto;
-* Uso adequado de versionamento do código em git;
-* Uso de testes automatizados;
-* Deploy da aplicação: recomendamos Heroku por ter plano free;
-* O design da API RESTful é implementado, usando corretamente os verbos HTTP e o código de status apropriado;
-* Uso adequado de HTML5, CSS3 e JavaScript em um front-end minimamente estruturado.
+1. Clone o repositório
 
-Caso você não se sinta confortável com algum desses itens, tudo bem, apenas nos fale sobre isso, ok? O objetivo aqui não é te fazer perder tempo com algo irrelevante. Nosso objetivo aqui é ter um código sobre o qual podemos conversar. Como você deve ter notado, a gente preza muito por colaboração, trabalho em time e comunicação. O objetivo aqui é ter, minimamente, essa experiência com você.
+- `https://github.com/LeonardoCavachini/gitHub_front-end.git`
 
-Respeite o seu nível de conhecimento e experiência, o importante é você saber dizer o motivo das suas escolhas. Se você tiver qualquer dúvida, por favor, entre em contato com a gente. Estamos disponíveis para te ajudar a finalizar esse processo.
+2. Entre na pasta do repositório que você acabou de clonar:
 
-## IDEIAS DE PROJETOS
+- `cd gitHub_front-end`
 
-A seguir seguem algumas ideias de projetos que você pode implementar:
+3. Instale as dependências:
 
-* [Cliente para o GitHub](https://github.com/incentive-me/projeto-selecao/blob/master/projects/GITHUB.md);
-* [Cliente para o Twitter](https://github.com/incentive-me/projeto-selecao/blob/master/projects/TWITTER.md);
-* [Cliente para o Meetup](https://github.com/incentive-me/projeto-selecao/blob/master/projects/MEETUP.md).
+- `npm install`
 
-Tem alguma outra ideia? Tem algum projeto que já está pronto e gostaria de apresentar? Fale com a gente :)
+- Inicie o projeto com `npm start`  
+  Por padrão o React procura rodar as aplicações na porta 3000.
+  Uma página no browser será aberta com a aplicação.  
+  Divirta-se!!
 
-## COMO COMPARTILHAR O PROJETO CONOSCO
+4. Inicie o projeto no backend:
 
-1. Apague este README.md e adicione informações que achar relevante como configurar o projeto, contendo os comandos que devem ser executados para executar ele e os testes;
-2. Abra um PR apontando para a branch master deste repositório;
-3. Escreva qualquer consideração na descrição do PR e faça qualquer comentário que achar pertinente no código.
+para iniciar o porjeto no backend voĉe precisará fazer o clone do projeto no repositorio do backend.
+
+- `git clone https://github.com/LeonardoCavachini/github_back-end.git`
+
+- `cd github_back-end`
+
+- adicione um arquivo `.env` na raiz do projeto com as sehuintes vaiaveis de ambiente.
+
+MYSQL_USER=`exemplo: root`
+
+MYSQL_PASSWORD=`exemplo: 123`
+
+HOSTNAME=`exemplo: localhost`
+
+PORT_NUMBER=`exemplo: 3306`
+
+DB_NAME=`exemplo: meu-db`
+
+- Inicie o projeto com `npm start`
+
+  O projeto irá iniciar o backend na porta 3001.
+
+## Como Usar
+
+Ao iniciar o usuario deverá se logar, mas caso ele não esteja cadastrado no sistema, ele será direcionado para uma pagina de registro, após o registro irá se direcionar para o login, logado no sistema, na primeira caixa de texto, deverá ser digitado um login do github, feito isso, será exibido todos os repositorios do usuario do github, quando digitado o nome do reposito na segunda caixa de texto, será exibido o repositorio digitado, na caixa de ` Tag Repositorio` pode-se digitar a tag que o usuario deseja adicionar no repositorio, por fim, quando o uruario digita o nome da tag do repositorio no campo de busca tag, o repositorio com a tag mecionada é exibido.
+
+## Tecnologias
+
+Tecnologias utilizadas para construção da aplicação:
+
+- Node
+- React
+- mysql
+
+Ferramentas para controle e organização de código:
+
+- Git
