@@ -36,7 +36,7 @@ export function ProjectsProvider({ children }: ProjectsProviderProps) {
     }
 
     async function addLabel(projectId: number, labels: string[]): Promise<boolean> {
-        const newProjectLabels = await axios.patch('/api/projects/update', {
+        const newProjectLabels = await axios.patch(`/api/projects/${projectId}`, {
             projectId,
             labels
         })
@@ -49,7 +49,7 @@ export function ProjectsProvider({ children }: ProjectsProviderProps) {
 
     async function deleteLabel(projectId: number, labels: string[], labelIndex: number): Promise<boolean> {
         labels.splice(labelIndex, 1)
-        const newProjectLabels = await axios.patch('/api/projects/update', {
+        const newProjectLabels = await axios.patch(`/api/projects/${projectId}`, {
             projectId,
             labels
         })
