@@ -53,7 +53,19 @@ function showOurPolicyPage() {
 }
 
 function copyHTML() {
-    htmlCode = document.getElementById("htmlCode").innerHTML
+    htmlCode = `<form action="https://easyforms.vercel.app/api" method="POST">
+    <fieldset>
+        <legend>Contato</legend>
+        <label for="name">Nome</label>
+        <input type="text" name="name" id="name" required>
+        <label for="email">E-mail</label>
+        <input type="hidden" name="destiny" id="destiny" value="example@email.com">
+        <input type="email" name="email" id="email" required>
+        <label for="message">Mensagem</label>
+        <textarea name="message" id="message" cols="30" rows="10" required></textarea>
+        <button type="submit" id="button-send">enviar</button>
+    </fieldset>
+</form>`
 
     navigator.clipboard.writeText(htmlCode)
 }
