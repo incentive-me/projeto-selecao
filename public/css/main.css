@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,800;1,400;1,500&display=swap');
+
+* {
+    --black: #231F20;
+    --blue: #68E1FD;
+    --red: #E85F5C;
+
+    padding: 0px;
+    margin: 0px;
+
+    font-size: 62.5%;
+
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 9fr;
+    grid-template-rows: 1.5fr 17fr 1.5fr;
+    grid-template-areas: "header header"
+                         "aside main"
+                         "footer footer";
+}
+
+h1 {
+    font-size: 2rem;
+    margin: 10px 0px;
+}
+
+strong {
+    font-size: 1.6rem;
+    color: var(--blue);
+    
+}
+
+body > header {
+    background-color: var(--black);
+    color: white;
+    grid-area: header;
+    display: flex;
+    justify-content: center;
+}
+
+body > header > p{
+    margin: auto;
+    font-size: 2.5rem;
+}
+
+main {  
+    grid-area: main;
+    padding: 30px 60px;
+}
+
+main p {  
+    font-size: 1.6rem;
+}
+
+aside {
+    grid-area: aside;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
+
+aside nav {
+    margin: auto 0;
+}
+
+button {
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: var(--black);
+    padding: 5px;
+    border: var(--black) 1px solid;
+    display: block;
+    margin: 5px auto;
+    border-radius: 5px;
+    background-color: white;
+    width: 150px;
+}
+
+
+button:hover {
+    color: white;
+    background-color: var(--blue);
+    border-color: var(--blue);
+}
+
+aside button {
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: var(--black);
+    padding: 5px;
+    border: var(--black) 1px solid;
+    display: block;
+    margin: 5px 0px;
+    border-radius: 0px 5px 5px 0px;
+    background-color: white;
+    width: 150px;
+}
+
+footer {
+    background-color: var(--black);
+    grid-area: footer;
+    display: flex;
+    color: white;
+    justify-content: center;
+}
+
+footer p {
+    margin: auto;
+    font-size: 1.6rem;
+}
+
+section#showIndexPage {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+section#showIndexPage img {
+    width: 400px;
+}
+
+pre {
+    display: block;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.267);
+    border: 1px solid rgba(0, 0, 0, 0.267);
+    margin: 35px auto;
+    width: fit-content;
+    padding: 0 20px;
+}
+code {
+    font-size: 1.2rem;
+}
+
+section#showCopyCssPage {
+    display: none;
+}
+section#showHowItWorksPage {
+    display: none;
+}
+
+section#showTestPage {
+    display: none;
+}
+
+section#showOurPolicyPage {
+    display: none;
+}
+
+section#showCopyCodePage {
+    display: none;
+}
+
+section#showTestPage div {
+    display: flex;
+    justify-content: center;
+}
+
+
+form fieldset {
+    border-radius: 10px;
+    margin: 10px;
+    font-size: 2rem;
+    box-shadow: 5px 5px 5px #090c0838;
+    border: outset 2px;
+    width: 200px;
+    padding-bottom: 10px;
+}
+
+ form fieldset label {
+    display: block;
+    margin: 5px 20px;
+}
+
+ form fieldset legend {
+    margin: auto;
+    font-size: 1.8rem;
+}
+
+ form fieldset input {
+     width: auto;
+    border-radius: 10px;
+    margin: 5px 20px;
+    border: solid 1px;
+}
+
+ form fieldset textarea {
+    border-radius: 10px;
+    margin: 5px 20px;
+    border: solid 1px;
+}
+
+form button {
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: var(--black);
+    padding: 5px;
+    border: var(--black) 1px solid;
+    display: block;
+    margin: 5px auto;
+    border-radius: 5px;
+    background-color: white;
+    width: 100px;
+    padding: 2px;
+}
+
+input#cssColor {
+    width: 30px;
+    padding: 2px;
+    border-radius: 3px;
+}
+
+
