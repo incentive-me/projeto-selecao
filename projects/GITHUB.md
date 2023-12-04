@@ -1,12 +1,12 @@
-# CLIENTE GITHUB
+# Cliente github
 
 O [GitHub](https://www.github.com) é uma rede social de programadores que possui uma funcionalidade interessante que permite "colocar estrelas" em repositórios dos seus usuários.
 
-## CASO DE USO
+## Caso de uso
 
 Você é um usuário ativo do GitHub, que está sempre procurando novos projetos e curtindo aqueles que são interessantes. Você gostaria de poder adicionar uma tag a um repositório para que ele possa ser encontrado facilmente. Por exemplo: você encontrou um repositório chamado react e gostaria de adicionar tags javascript e frontend. Como o GitHub não possui essa funcionalidade, você deseja criar um sistema simples que possa ajudar nessa tarefa.
 
-## REQUISITOS
+## Requisitos
 
 Deve-se criar uma aplicação web onde podemos:
 
@@ -17,7 +17,7 @@ Deve-se criar uma aplicação web onde podemos:
 
 Extra: Sugerir tags para os repositórios.
 
-## HISTÓRIAS DE USUÁRIO
+## Histórias de usuário
 
 1. Autenticação de usuário
 
