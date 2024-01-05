@@ -1,6 +1,7 @@
 import { User, UserInterface } from "../domain/user.entity";
 import { v4 as uuidv4 } from "uuid";
 import bcrypt  from 'bcryptjs'
+import jwt from 'jsonwebtoken'
 import UserRepository from "../infra/repository/user.repository";
 
 export class UserUseCase implements UserInterface {
@@ -21,9 +22,26 @@ export class UserUseCase implements UserInterface {
      }
 
     const repo = await this.userRepository.CreateUserRepo(user)
-    console.log("repo", repo)
+    console.log("repo response", repo)
 
+    const token = jwt.sign({ id: user.id, email: user.email}, "secret", {expiresIn: "2h"})
+  
     return user
+  }
+
+  async GetUser(email: string, password: string): Promise<any | Error> {
+    const repo = await this.userRepository.LoginUserRepo(email, password)
+    console.log("reeeee", repo)
+
+    if(repo) {
+      const verify = await bcrypt.compare(password, repo[0].password)
+
+      if (!verify) {
+        throw Error("Email or Password invalid")
+      }
+    }
+    const token = jwt.sign({ id: repo[0].id, email: repo[0].email}, "secret", {expiresIn: "2h"})
+    return token
   }
 
   UpdateUser(user: User): User | Error {
@@ -34,13 +52,6 @@ export class UserUseCase implements UserInterface {
     throw Error("User is not valid");
   }
 
-  GetUser(user: User): User | Error {
-    const validUser = UserUseCase.validateUser(user);
-    if (validUser) {
-      return validUser;
-    }
-    throw Error("User is not valid");
-  }
 
   static validateUser(user: User): User | Error {
     if (!user.id) {
