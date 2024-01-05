@@ -1,21 +1,29 @@
 import { User, UserInterface } from "../domain/user.entity";
 import { v4 as uuidv4 } from "uuid";
 import bcrypt  from 'bcryptjs'
+import UserRepository from "../infra/repository/user.repository";
 
 export class UserUseCase implements UserInterface {
+  constructor(private userRepository: UserRepository){
+    this.userRepository = userRepository
+  }
 
   async CreateUser(user: User): Promise<User | Error> {
     const id = uuidv4();
-    user.id = id;
+    user.id = id
 
     const encryptePassword = await bcrypt.hash(user.password, 10)
     user.password = encryptePassword
 
     const userValid = UserUseCase.validateUser(user);
-    if (userValid) {
-      return userValid;
-    }
-    throw Error("User is not valid");
+    if (!userValid) {
+       throw Error("User is not valid");
+     }
+
+    const repo = await this.userRepository.CreateUserRepo(user)
+    console.log("repo", repo)
+
+    return user
   }
 
   UpdateUser(user: User): User | Error {
