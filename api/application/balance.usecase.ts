@@ -8,6 +8,11 @@ export class BalanceUseCase implements BalanceInterface {
     CreateBalance(userInfo: UserInfo, balanceName: string, amount: number): Promise<Balance | Error> {
         const newId = uuid()
 
+        const verifyParams = BalanceUseCase.ValidateBalance(userInfo, balanceName, amount)
+        if (!verifyParams) {
+            throw Error("")
+        }
+        
         const newBalance: Balance = {
             id: newId,
             userId: userInfo.id,
@@ -30,5 +35,20 @@ export class BalanceUseCase implements BalanceInterface {
     UpdateBalanceName(balance: Balance): Promise<Balance | Error> {
         throw Error("test")
     }
+
+    static ValidateBalance(userInfo: UserInfo, balanceName: string, amount: number): boolean | Error {
+        if (!userInfo.id){
+            throw Error("Id not found")
+        }
+
+        if (!balanceName){
+            throw Error("Balance Name is required")
+        }
+
+        if (!amount){
+            throw Error("Balance Name is required")
+        }
+
+    } 
 
 }
