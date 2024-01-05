@@ -1,52 +1,54 @@
 import { User, UserInterface } from "../domain/user.entity";
 import { v4 as uuidv4 } from "uuid";
+import bcrypt  from 'bcryptjs'
 
 export class UserUseCase implements UserInterface {
-  CreateUser(user: User): User | Error {
+
+  async CreateUser(user: User): Promise<User | Error> {
     const id = uuidv4();
     user.id = id;
+
+    const encryptePassword = await bcrypt.hash(user.password, 10)
+    user.password = encryptePassword
+
     const userValid = UserUseCase.validateUser(user);
     if (userValid) {
-      return user;
+      return userValid;
     }
-    return new Error("User is not valid");
+    throw Error("User is not valid");
   }
 
   UpdateUser(user: User): User | Error {
-    if (!user.id) {
-      return new Error("Id is required");
-    }
-
-    const userValid = UserUseCase.validateUser(user);
+     const userValid = UserUseCase.validateUser(user);
     if (userValid) {
       return user;
     }
-    return new Error("User is not valid");
+    throw Error("User is not valid");
   }
 
   GetUser(user: User): User | Error {
-    if (!user.id) {
-      return new Error("Id is required");
-    }
-
     const validUser = UserUseCase.validateUser(user);
     if (validUser) {
       return validUser;
     }
-    return new Error("User is not valid");
+    throw Error("User is not valid");
   }
 
   static validateUser(user: User): User | Error {
+    if (!user.id) {
+      throw Error("Id is required");
+    }
+
     if (!user.name) {
-      return new Error("Name is required");
+      throw Error("Name is required");
     }
 
     if (!user.email) {
-      return new Error("Email is required");
+      throw Error("Email is required");
     }
 
     if (!user.password) {
-      return new Error("Password is required");
+      throw Error("Password is required");
     }
 
     return user;
