@@ -1,5 +1,5 @@
 
-type Balance = {
+export type Balance = {
     id: string,
     userId: string,
     balanceName: string,
