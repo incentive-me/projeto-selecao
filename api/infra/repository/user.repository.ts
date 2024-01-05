@@ -2,18 +2,17 @@ import { UserUseCase } from "../../application/user.usecase";
 import { User } from "../../domain/user.entity";
 
 interface UserInterfaceRepo {
-  CreateUserRepo(user: User): User | Error;
+  CreateUserRepo(user: User): Promise<User | Error>;
 }
 
-export class UserRepository implements UserInterfaceRepo {
-  userService: UserUseCase;
-
-  constructor(userService: UserUseCase) {
-    this.userService = userService;
+export default class UserRepository implements UserInterfaceRepo { 
+  constructor(private userUsecase: UserUseCase) {
+    this.userUsecase = userUsecase
   }
 
-  CreateUserRepo(user: User): User | Error {
-    const verifyUser = this.userService.CreateUser(user);
-    return verifyUser;
+  async CreateUserRepo(user: User): Promise<User | Error> {
+    const verify = await this.userUsecase.CreateUser(user)
+    return verify
   }
+
 }
