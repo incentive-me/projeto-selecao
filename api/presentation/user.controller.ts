@@ -15,7 +15,7 @@ export class UserController implements UserControllerInterface {
     
     async CreateUser(req: Request, res: Response) {
         const user: User = req.body;
-
+      
         try {
           const newUser = await this.userUseCase.CreateUser(user)
           res.status(200).send(newUser)
