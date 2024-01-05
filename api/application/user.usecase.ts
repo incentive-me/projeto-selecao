@@ -29,7 +29,7 @@ export class UserUseCase implements UserInterface {
     return user
   }
 
-  async GetUser(email: string, password: string): Promise<any | Error> {
+  async GetUser(email: string, password: string): Promise<string | Error> {
     const repo = await this.userRepository.LoginUserRepo(email, password)
     console.log("reeeee", repo)
 
