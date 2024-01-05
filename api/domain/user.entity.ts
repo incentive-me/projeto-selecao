@@ -6,7 +6,7 @@ export type User = {
   };
   
   export interface UserInterface {
-    CreateUser(user: User): User | Error;
+    CreateUser(user: User): Promise<User | Error>;
     UpdateUser(user: User): User | Error;
     GetUser(user: User): User | Error;
   }
