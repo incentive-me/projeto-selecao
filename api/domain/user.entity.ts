@@ -4,6 +4,13 @@ export type User = {
     email: string,
     password: string,
   };
+
+export type UserInfo = {
+    id: string,
+    email: string,
+    iat: number,
+    exp: number
+}
   
   export interface UserInterface {
     CreateUser(user: User): Promise<User | Error>;
