@@ -29,8 +29,8 @@ export class UserController implements UserControllerInterface {
         const { email, password } = req.body
   
         try {
-          // const login = await this.userUseCase.LoginUserRepo(email, password)
-          // res.status(200).send(login)
+           const login = await this.userUseCase.GetUser(email, password)
+           res.status(200).send(login)
 
         } catch(err) {
           res.status(400).json({error: err.message})

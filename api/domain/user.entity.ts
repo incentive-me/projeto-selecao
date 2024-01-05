@@ -8,6 +8,6 @@ export type User = {
   export interface UserInterface {
     CreateUser(user: User): Promise<User | Error>;
     UpdateUser(user: User): User | Error;
-    GetUser(email: string, password: string): Promise<any | Error>;
+    GetUser(email: string, password: string): Promise<string | Error>;
   }
   

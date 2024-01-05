@@ -1,4 +1,3 @@
-import { UserUseCase } from "../../application/user.usecase";
 import { User } from "../../domain/user.entity";
 import { connection } from "../db/mysql";
 
@@ -20,7 +19,7 @@ export default class UserRepository implements UserInterfaceRepo {
   }
 
   async LoginUserRepo(email: string, password: string): Promise<any> {
-      
+    
     const [rows] = await connection.promise().query(
       `SELECT * FROM user WHERE email = ?`, [email]
     )
