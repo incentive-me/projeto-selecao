@@ -6,6 +6,7 @@
     "build": "sucrase ./ -d ./dist --transforms typescript,imports"
   },
   "devDependencies": {
+    "@types/express": "^4.17.21",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "@typescript-eslint/parser": "^6.17.0",
     "eslint": "^8.0.1",
