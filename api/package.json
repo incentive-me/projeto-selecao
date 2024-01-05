@@ -21,6 +21,7 @@
     "typescript": "*"
   },
   "dependencies": {
+    "express": "^4.18.2",
     "uuid": "^9.0.1"
   }
 }
