@@ -9,8 +9,8 @@ export type Balance = {
 }
 
 export interface BalanceInterface {
-    CreateBalance(): Balance | Error
-    GetAllBalnces(): Balance | Error
-    DeleteBalance(id: string): boolean | Error
-    UpdateBalanceName(balance: Balance): Balance | Error
+    CreateBalance(): Promise<Balance | Error>
+    GetAllBalnces(): Promise<Balance | Error>
+    DeleteBalance(id: string): Promise<boolean | Error>
+    UpdateBalanceName(balance: Balance): Promise<Balance | Error>
 }
