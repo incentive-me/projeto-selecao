@@ -4,6 +4,8 @@ import { BalanceUseCase } from "../application/balance.usecase";
 interface BalanceControllerInterface {
     CreateBalanceController(req: Request, res: Response): Promise<void>
     GetAllBalancesController(req: Request, res: Response): Promise<void>
+    DeleteBalanceController(req: Request, res: Response): Promise<void>
+    UpdateBalanceNameController(req: Request, res: Response): Promise<void>
 }
 
 export class BalanceController implements BalanceControllerInterface {
@@ -27,6 +29,28 @@ export class BalanceController implements BalanceControllerInterface {
         try {
             const getAll = await this.balanceUseCase.GetAllBalances(userInfo)
             res.status(200).send(getAll)
+        } catch(err) {
+            res.status(400).json({error: err.message})
+        }
+    }
+
+    async DeleteBalanceController(req: Request, res: Response): Promise<void> {
+        const id = req.params.id
+
+        try {
+            const deleteBalance = await this.balanceUseCase.DeleteBalance(id)
+            res.status(200).send({delete: true})
+        } catch(err) {
+            res.status(400).json({error: err.message})
+        }
+    }
+
+    async UpdateBalanceNameController(req: Request, res: Response): Promise<void> {
+        const { balance, newName } = req.body
+
+        try {
+            const updateBalance = await this.balanceUseCase.UpdateBalanceName(balance, newName)
+            res.status(200).send(updateBalance)
         } catch(err) {
             res.status(400).json({error: err.message})
         }
