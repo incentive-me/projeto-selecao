@@ -7,7 +7,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#202024'
+        background: '#202024',
+        backgroundTop: '#121214'
+      },
+      fontFamily: {
+        roboto: ['Roboto', 'sans-serif']
       }
     },
   },
