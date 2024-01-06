@@ -10,6 +10,8 @@ import UserRepository from './infra/repository/user.repository'
 import { UserController } from './presentation/user.controller'
 import { middlewareJWT } from './presentation/middleware'
 import { BalanceController } from './presentation/balance.controller'
+import { BalanceUseCase } from './application/balance.usecase'
+import BalanceRepository from './infra/repository/balance.repository'
 
 const app = express()
 app.use(express.json())
@@ -19,8 +21,11 @@ const userRepo = new UserRepository()
 const userUseCase = new UserUseCase(userRepo)
 const userController = new UserController(userUseCase)
 
-const balanceController = new BalanceController()
+const balanceRepo = new BalanceRepository()
+const balanceUseCase = new BalanceUseCase(balanceRepo)
+const balanceController = new BalanceController(balanceUseCase)
 
+app.get("/balance", middlewareJWT, (req, res) => balanceController.GetAllBalancesController(req, res))
 app.post("/balance", middlewareJWT, (req, res) => balanceController.CreateBalanceController(req, res))
 app.post("/user", middlewareJWT, (req, res) => userController.CreateUser(req, res))
 app.post("/login", (req, res) => userController.LoginUser(req, res))
