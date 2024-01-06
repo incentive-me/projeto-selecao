@@ -3,8 +3,6 @@ import dotenv from 'dotenv'
 dotenv.config()
 import cors from 'cors'
 
-console.log(dotenv.config())
-
 import { UserUseCase } from './application/user.usecase'
 import UserRepository from './infra/repository/user.repository'
 import { UserController } from './presentation/user.controller'
@@ -25,6 +23,8 @@ const balanceRepo = new BalanceRepository()
 const balanceUseCase = new BalanceUseCase(balanceRepo)
 const balanceController = new BalanceController(balanceUseCase)
 
+app.delete("/balance/:id", middlewareJWT, (req, res) => balanceController.DeleteBalanceController(req, res))
+app.patch("/balance", middlewareJWT, (req, res) => balanceController.UpdateBalanceNameController(req, res))
 app.get("/balance", middlewareJWT, (req, res) => balanceController.GetAllBalancesController(req, res))
 app.post("/balance", middlewareJWT, (req, res) => balanceController.CreateBalanceController(req, res))
 app.post("/user", middlewareJWT, (req, res) => userController.CreateUser(req, res))
