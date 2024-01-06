@@ -5,6 +5,8 @@ import { connection } from "../db/mysql";
 interface BalanceInterface {
     CreateBalanceRepo(balance: Balance): Promise<any>
     GetAllBalances(userInfo: UserInfo): Promise<Balance[]>
+    DeleteBalances(id: string): Promise<any>
+    UpdateNameBalance(balance: Balance, newName: string): Promise<any>
 }
 
 export default class BalanceRepository implements BalanceInterface{
@@ -27,4 +29,17 @@ export default class BalanceRepository implements BalanceInterface{
         return rows
     }
 
+    async DeleteBalances(id: string): Promise<any>{
+        const [rows] = await connection.promise().query(
+            `DELETE FROM balance WHERE id = ?`, [id])
+        
+        return rows
+    }
+
+    async UpdateNameBalance(balance: Balance, newName: string): Promise<any> {
+        const [results] = await connection.promise().query(
+            `UPDATE balance SET balanceName = ? WHERE id = ?`, [newName, balance.id])
+        
+        return results
+    }
 }
