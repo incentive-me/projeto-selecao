@@ -1,6 +1,8 @@
+import { UserInfo } from "./user.entity";
 
 export type Payment = {
     id: string;
+    userId: string;
     name: string,
     description: string,
     amount: number,
@@ -8,5 +10,5 @@ export type Payment = {
 } 
 
 export interface PaymentInterface {
-    CreatePayment(payment: Payment): Promise<any>
+    CreatePayment(userInfo: UserInfo, payment: Payment): Promise<any>
 }
