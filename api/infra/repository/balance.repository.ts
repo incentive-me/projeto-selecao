@@ -39,7 +39,7 @@ export default class BalanceRepository implements BalanceInterface{
     async UpdateNameBalance(balance: Balance, newName: string): Promise<any> {
         const [results] = await connection.promise().query(
             `UPDATE balance SET balanceName = ? WHERE id = ?`, [newName, balance.id])
-        
+
         return results
     }
 }
