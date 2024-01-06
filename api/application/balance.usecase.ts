@@ -35,12 +35,35 @@ export class BalanceUseCase implements BalanceInterface {
         return getBalances
     }
 
-    DeleteBalance(id: string): Promise<boolean | Error> {
-        throw Error("test")
+    async DeleteBalance(id: string): Promise<boolean | Error> {
+        if (!id){
+            throw Error("Id not found")
+        }
+
+        const deleteRepo = await this.balanceRepo.DeleteBalances(id)
+        if (deleteRepo) {
+            return true
+        }
+
+        return false
     }
 
-    UpdateBalanceName(userInfo: UserInfo, balance: Balance, newName: string): Promise<Balance | Error> {
-        throw Error("test")
+
+    async UpdateBalanceName(balance: Balance, newName: string): Promise<Balance | Error> {
+        if (newName.length < 3){
+            throw Error("The balance name is not valid")
+        }
+
+        if (!balance.id){
+            throw Error("Balance Id not found")
+        }
+
+        const updateName = await this.balanceRepo.UpdateNameBalance(balance, newName)
+        if (updateName.affectedRows === 1) {
+            return { ...balance, balanceName: newName}
+        }
+        
+        throw Error("Balance name not update")
     }
 
     static validateBalance(userInfo: UserInfo, balanceName: string, amount: number): boolean | Error {
