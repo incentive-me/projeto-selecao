@@ -21,6 +21,7 @@
       "@types/react-dom": "latest",
       "@vitejs/plugin-react": "latest",
       "typescript": "latest",
-      "vite": "latest"
+      "vite": "latest",
+      "react-router-dom": "^6.14.2"
     }
   }
