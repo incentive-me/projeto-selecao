@@ -11,6 +11,7 @@ export const connection = mysql.createPool({
     idleTimeout: 60000,
     queueLimit: 0,
     enableKeepAlive: true,
-    keepAliveInitialDelay: 0
+    keepAliveInitialDelay: 0,
+    multipleStatements: true
 })
 
