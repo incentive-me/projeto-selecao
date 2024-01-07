@@ -24,11 +24,39 @@ export class PaymentUseCase implements PaymentInterface {
         return payment
     }
 
+    async GetAllPayments(userInfo: UserInfo): Promise<any> {
+        const payments = await this.paymentRepository.GetallPayments(userInfo)
+        return payments
+    }
+
+    async DeletePayment(id: string): Promise<any> {
+        const deletePayment = await this.paymentRepository.DeletePayment(id)
+        console.log(deletePayment)
+
+        return true
+    }
+
+    async UpdatePaymentName(payment: Payment, newName: string): Promise<any> {
+        if(newName.length < 3){
+            throw Error("Name must have at least 3 characters")
+        }
+
+        if(newName === payment.name){
+            throw Error("Name cannot be the same as the current one")
+        }
+
+        const updateName = await this.paymentRepository.UpdatePaymentName(payment, newName)
+        if (updateName) {
+            return { ...payment, name: newName}
+        }
+        
+        throw Error("Payment name not update")
+    }
+
     static validadePayment(payment: Payment): boolean | Error  {
-        const verifyParams = [payment.id, payment.userId, payment.name, payment.description, payment.amount, payment.balanceAccount]
 
         if(payment.name.length < 3) {
-            throw Error("name is invalid")
+            throw Error("Name must have at least 3 characters")
         } 
 
         if(!payment.name) {
