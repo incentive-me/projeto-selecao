@@ -17,9 +17,13 @@ export class PaymentUseCase implements PaymentInterface {
         if(!verifyParams) {
             throw Error("Payment is invalid")
         }
+
+        const balance = await this.paymentRepository.VerifyBalanceAmount(payment)
+        if (balance.totalValue < payment.amount) {
+            throw Error("Insufficient funds")
+        }
         
-        const savePaymentOnDb = await this.paymentRepository.CreatePayment(payment)
-        console.log("result - savePaymentOnDb", savePaymentOnDb)
+        const savePaymentOnDb = await this.paymentRepository.CreatePayment(payment, balance)
 
         return payment
     }
