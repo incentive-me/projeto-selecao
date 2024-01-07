@@ -38,7 +38,10 @@ app.patch("/balance", middlewareJWT, (req, res) => balanceController.UpdateBalan
 app.get("/balance", middlewareJWT, (req, res) => balanceController.GetAllBalancesController(req, res))
 app.post("/balance", middlewareJWT, (req, res) => balanceController.CreateBalanceController(req, res))
 
+app.get("/payment", middlewareJWT, (req, res) => paymentController.GetAllPayments(req, res))
 app.post("/payment", middlewareJWT, (req, res) => paymentController.CreatePayment(req, res))
+app.delete("/payment/:id", middlewareJWT, (req, res) => paymentController.DeletePayment(req, res))
+app.patch("/payment", middlewareJWT, (req, res) => paymentController.UpdatePaymentName(req, res))
 
 app.get("/user", (req: Request, res: Response) => {
     return res.status(200).send("Hello Wordo")
