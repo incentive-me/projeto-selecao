@@ -14,9 +14,9 @@ export class BalanceController implements BalanceControllerInterface {
     }
 
     async CreateBalanceController(req: Request, res: Response): Promise<void>{
-        const { balanceName, amount, userInfo } = req.body
+        const { balanceName, amount, description, userInfo } = req.body
         try {
-            const newBalance = await this.balanceUseCase.CreateBalance(userInfo, balanceName, amount)
+            const newBalance = await this.balanceUseCase.CreateBalance(userInfo, balanceName, amount, description)
             res.status(200).send(newBalance)
         } catch(err) {
             res.status(400).json({error: err.message})

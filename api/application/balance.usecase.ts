@@ -8,7 +8,7 @@ export class BalanceUseCase implements BalanceInterface {
         this.balanceRepo = balanceRepo
     }
 
-    async CreateBalance(userInfo: UserInfo, balanceName: string, amount: number): Promise<Balance | Error> {
+    async CreateBalance(userInfo: UserInfo, balanceName: string, amount: number, description: string): Promise<Balance | Error> {
         const newId = uuid();
 
         const verifyParams = BalanceUseCase.validateBalance(userInfo, balanceName, amount)
@@ -20,6 +20,7 @@ export class BalanceUseCase implements BalanceInterface {
             id: newId,
             userId: userInfo.id,
             balanceName: balanceName,
+            description: description,
             initialValue: amount,
             totalValue: amount,
             valueUsed: 0

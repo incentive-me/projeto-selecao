@@ -11,11 +11,12 @@ interface BalanceInterface {
 
 export default class BalanceRepository implements BalanceInterface{
     async CreateBalanceRepo(balance: Balance): Promise<any> {
-        const { id, userId, balanceName, initialValue, valueUsed, totalValue } = balance
+        const { id, userId, balanceName, initialValue, valueUsed, totalValue, description } = balance
 
         const [rows] = await connection.promise().query(
-            `INSERT INTO balance (id, userId, balanceName, initialValue, valueUsed, totalValue) 
-             VALUES (?, ?, ?, ?, ?, ?)`, [id, userId, balanceName, initialValue, valueUsed, totalValue]
+            `INSERT INTO balance (id, userId, balanceName, initialValue, valueUsed, totalValue, description) 
+             VALUES (?, ?, ?, ?, ?, ?, ?)`, 
+             [id, userId, balanceName, initialValue, valueUsed, totalValue, description]
         )
         return rows
     }
