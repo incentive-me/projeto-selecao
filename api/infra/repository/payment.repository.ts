@@ -53,4 +53,11 @@ export class PaymentRepository implements PaymentRepositoryInterface {
 
         return false
     }
+
+    async VerifyBalanceAmount(payment: Payment): Promise<any>{
+        const [rows] = await connection.promise().query(
+            `SELETE * FROM balance WHERE id = ?`, [payment.balanceAccount]
+        )
+        return rows
+    }
 }
