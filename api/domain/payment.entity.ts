@@ -11,4 +11,7 @@ export type Payment = {
 
 export interface PaymentInterface {
     CreatePayment(userInfo: UserInfo, payment: Payment): Promise<any>
+    GetAllPayments(userInfo: UserInfo): Promise<any>
+    DeletePayment(id: string): Promise<any>
+    UpdatePaymentName(payment: Payment, newName: string): Promise<any>
 }
