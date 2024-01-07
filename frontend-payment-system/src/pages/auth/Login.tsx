@@ -1,8 +1,17 @@
-import { Box, Button, InputAdornment, TextField, Typography } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Box, Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField, Typography } from "@mui/material";
+import React from "react";
 
 export default function Login(){
-    return(
+    const [showPassword, setShowPassword] = React.useState(false);
 
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+    };
+
+    return(
         <Box 
             component="section" 
             display='flex'
@@ -11,27 +20,39 @@ export default function Login(){
             paddingTop="100px"
         >
         <Typography paddingBottom="20px" variant="h4" component="h2">Payment System</Typography>
-        <Typography paddingBottom="20px" variant="h2" component="h4">Login</Typography>
+        <Typography paddingBottom="20px" color="#556cd6" variant="h4" component="h4">Entrar</Typography>
         <TextField
             label="Email"
             id="outlined-start-adornment"
+            margin="normal" 
             sx={{ m: 1, width: '35ch' }}
-            InputProps={{
-                startAdornment: <InputAdornment position="start"></InputAdornment>,
-            }}
         />
         <TextField
-            label="Senha"
-            id="outlined-start-adornment"
-            sx={{ m: 1, width: '35ch' }}
-            InputProps={{
-                startAdornment: <InputAdornment position="start"></InputAdornment>,
+                label="Senha"
+                sx={{ m: 1, width: '35ch' }}
+                id="outlined-start-password"
+                type={showPassword ? 'text' : 'password'}
+                InputProps={{
+                    endAdornment: 
+                    <InputAdornment position="end">
+                        <IconButton
+                            // aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            // edge="end"
+                        >
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+              </InputAdornment>,
             }}
         />
         <Button 
-        sx={{ m: 1, width: '40ch' }}
-        variant="contained" 
-        disabled={false}>Login</Button>
+            sx={{ m: 1, width: '40ch' }}
+            variant="contained" 
+            disabled={true}
+        >Entrar</Button>
+        <Typography paddingTop="30px" variant="body1" component="h5">Não tem uma conta?</Typography>
+        <Button sx={{ m: 1, width: '40ch' }} variant="outlined">Registrar</Button>
     </Box>
     )
 }
