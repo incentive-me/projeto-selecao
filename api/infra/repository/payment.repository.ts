@@ -1,10 +1,10 @@
 import { Payment } from "../../domain/payment.entity";
+import { Balance } from "../../domain/balance.entity";
 import { UserInfo } from "../../domain/user.entity";
 import { connection } from "../db/mysql";
 
-
 interface PaymentRepositoryInterface {
-    CreatePayment(payment: Payment): Promise<any>
+    CreatePayment(payment: Payment, balance: Balance): Promise<any>
     GetallPayments(userInfo: UserInfo): Promise<any>
     DeletePayment(id: string): Promise<any>
     UpdatePaymentName(payment: Payment, newName: string): Promise<any>
@@ -12,19 +12,30 @@ interface PaymentRepositoryInterface {
 }
 
 export class PaymentRepository implements PaymentRepositoryInterface {
-    async CreatePayment(payment: Payment): Promise<any> {
+
+    async CreatePayment(payment: Payment, balance: Balance): Promise<any> {
+
+        const newBalanceAmount = balance.totalValue - payment.amount
+        const newBalanceUsed = balance.valueUsed + payment.amount
+
         const [rows] = await connection.promise().query(
             `INSERT INTO payment (id, userId, name, description, amount, balanceAccount)
-            VALUES (?, ?, ?, ?, ?, ?)`, 
+             VALUES (?, ?, ?, ?, ?, ?);
+
+             UPDATE balance SET totalValue = ?, valueUsed = ? WHERE id = ?;`, 
             [
                 payment.id, 
                 payment.userId, 
                 payment.name, 
                 payment.description, 
                 payment.amount,
+                payment.balanceAccount,
+                newBalanceAmount,
+                newBalanceUsed,
                 payment.balanceAccount
             ]
         )
+
         return rows
     }
 
@@ -56,8 +67,8 @@ export class PaymentRepository implements PaymentRepositoryInterface {
 
     async VerifyBalanceAmount(payment: Payment): Promise<any>{
         const [rows] = await connection.promise().query(
-            `SELETE * FROM balance WHERE id = ?`, [payment.balanceAccount]
+            `SELECT * FROM balance WHERE id = ?`, [payment.balanceAccount]
         )
-        return rows
+        return rows[0]
     }
 }
