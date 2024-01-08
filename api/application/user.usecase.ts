@@ -14,10 +14,7 @@ export class UserUseCase implements UserInterface {
     user.id = id
     
     const userValid = UserUseCase.validateUser(user);
-    if (!userValid) {
-      throw Error("User is not valid");
-    }
-
+    
     const encryptePassword = await bcrypt.hash(user.password, 10)
     user.password = encryptePassword
 
