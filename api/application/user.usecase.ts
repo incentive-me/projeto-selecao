@@ -1,4 +1,4 @@
-import { User, UserInterface } from "../domain/user.entity";
+import { User, UserAndToken, UserInterface } from "../domain/user.entity";
 import { v4 as uuidv4 } from "uuid";
 import bcrypt  from 'bcryptjs'
 import jwt from 'jsonwebtoken'
@@ -9,29 +9,34 @@ export class UserUseCase implements UserInterface {
     this.userRepository = userRepository
   }
 
-  async CreateUser(user: User): Promise<User | Error> {
+  async CreateUser(user: User): Promise<UserAndToken | Error> {
     const id = uuidv4();
     user.id = id
+    
+    const userValid = UserUseCase.validateUser(user);
+    if (!userValid) {
+      throw Error("User is not valid");
+    }
 
     const encryptePassword = await bcrypt.hash(user.password, 10)
     user.password = encryptePassword
 
-    const userValid = UserUseCase.validateUser(user);
-    if (!userValid) {
-       throw Error("User is not valid");
-     }
-
     const repo = await this.userRepository.CreateUserRepo(user)
-    console.log("repo response", repo)
 
     const token = jwt.sign({ id: user.id, email: user.email}, "secret", {expiresIn: "2h"})
   
-    return user
+    return {
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email
+      },
+      token: token
+    }
   }
 
-  async GetUser(email: string, password: string): Promise<string | Error> {
+  async GetUser(email: string, password: string): Promise<UserAndToken | Error> {
     const repo = await this.userRepository.LoginUserRepo(email, password)
-    console.log("reeeee", repo)
 
     if(repo) {
       const verify = await bcrypt.compare(password, repo[0].password)
@@ -41,7 +46,14 @@ export class UserUseCase implements UserInterface {
       }
     }
     const token = jwt.sign({ id: repo[0].id, email: repo[0].email}, "secret", {expiresIn: "2h"})
-    return token
+    return {
+      user: {
+        id: repo.id,
+        name: repo.name,
+        email: repo.email
+      }, 
+      token: token
+    }
   }
 
   UpdateUser(user: User): User | Error {
