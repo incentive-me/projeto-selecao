@@ -38,6 +38,7 @@ export class UserUseCase implements UserInterface {
   async GetUser(email: string, password: string): Promise<UserAndToken | Error> {
     const repo = await this.userRepository.LoginUserRepo(email, password)
 
+    console.log(repo)
     if(repo) {
       const verify = await bcrypt.compare(password, repo[0].password)
 
@@ -46,11 +47,12 @@ export class UserUseCase implements UserInterface {
       }
     }
     const token = jwt.sign({ id: repo[0].id, email: repo[0].email}, "secret", {expiresIn: "2h"})
+    
     return {
       user: {
-        id: repo.id,
-        name: repo.name,
-        email: repo.email
+        id: repo[0].id,
+        name: repo[0].name,
+        email: repo[0].email
       }, 
       token: token
     }
