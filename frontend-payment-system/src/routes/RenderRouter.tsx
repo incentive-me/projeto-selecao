@@ -24,6 +24,7 @@ import NewBalance from "../pages/balance/NewBalance";
             <Route path={"/pagamentos/editar"} element={<UpdatePayment />} />
             <Route path={"/saldos"} element={<Balance />} />
             <Route path={"/saldos/criar"} element={<NewBalance />} />
+            <Route path={"/saldos/editar"} element={<UpdatePayment />} />
           </Route>
         </Route>
         <Route path={"/entrar"} element={<Login />} />
