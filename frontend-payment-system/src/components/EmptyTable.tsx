@@ -27,7 +27,7 @@ const style = {
         display:"flex",
         alignItems:"center",
         justifyContent:"center",
-        width:"calc(100vw - 320px)", 
+        width:"calc(100vw - 368px)", 
         height:"calc(100vh - 133px)"
     },
     body: {
