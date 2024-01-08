@@ -15,24 +15,24 @@ export default function Layout() {
                     </IconButton>
                 </Box>
             </Box>
-            <Box sx={S.body}>
-                <Box sx={S.menu.container}>
-                    <Box>
-                        <Button sx={S.menu.buttonBox}>
+            <Box sx={S.body} component="div">
+                <Box sx={S.menu.container} component="nav">
+                        <Button sx={[S.menu.buttonBox, {marginTop: "8px"}]} component="li">
                             <MonetizationOnSharp style={S.menu.icon} />
                             <Typography style={{textTransform: "capitalize", color: "#fff"}}>Pagamentos</Typography>
                         </Button>
-                        <Button sx={[S.menu.buttonBox, {borderBottom: "1px solid #0000001f"}]}>
+                        <Button sx={[S.menu.buttonBox, {borderBottom: "1px solid #0000001f"}]} component="li">
                             <AccountBalanceWalletSharp style={S.menu.icon} />
                             <Typography style={{textTransform: "capitalize", color: "#fff"}}>Saldos</Typography>
                         </Button>
-                        <Button sx={[S.menu.buttonBox, {marginTop: "8px"}]}>
+                        <Button sx={[S.menu.buttonBox, {marginTop: "8px"}]} component="li">
                             <LogoutSharp style={S.menu.icon} />
                             <Typography style={{textTransform: "capitalize", color: "#fff"}}>Sair da conta</Typography>
                         </Button>
-                    </Box>
                 </Box>
-                <Outlet />
+                <Box component="div" sx={S.pageContent}>
+                    <Outlet />
+                </Box>
             </Box>
         </Box>
     )
