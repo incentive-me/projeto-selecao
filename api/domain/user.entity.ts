@@ -13,8 +13,12 @@ export type UserInfo = {
 }
   
   export interface UserInterface {
-    CreateUser(user: User): Promise<User | Error>;
+    CreateUser(user: User): Promise<UserAndToken | Error>;
     UpdateUser(user: User): User | Error;
     GetUser(email: string, password: string): Promise<string | Error>;
   }
-  
+
+export type UserAndToken = {
+  user: Omit<User, "password">;
+  token: string
+}
