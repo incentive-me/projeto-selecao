@@ -9,6 +9,7 @@ import Register from "../pages/auth/Register";
 import Layout from "../pages/layout/Layout";
 import Payment from "../pages/payment/Payment";
 import NewPayment from "../pages/payment/NewPayment";
+import UpdatePayment from "../pages/payment/UpdatePayment";
 
   
   export const router = createBrowserRouter(
@@ -18,6 +19,7 @@ import NewPayment from "../pages/payment/NewPayment";
           <Route path={"/"} element={<Layout />}>
             <Route path={"/pagamentos"} element={<Payment />} />
             <Route path={"/pagamentos/criar"} element={<NewPayment />} />
+            <Route path={"/pagamentos/editar"} element={<UpdatePayment />} />
             {/* <Route path={"/saldos"} element={<Balance />} /> */}
           </Route>
         </Route>
