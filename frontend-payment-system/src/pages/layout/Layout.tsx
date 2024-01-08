@@ -3,10 +3,19 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import PersonIcon from '@mui/icons-material/Person';
 import { layoutStyle as S } from "../../styles/layout.style";
 import { AccountBalanceWalletSharp, LogoutSharp, MonetizationOnSharp } from "@mui/icons-material";
+import { useDispatch } from "react-redux";
+import { fecthUser, initialUserState } from "../../redux/user.slice";
 
 export default function Layout() {
+    const dispatch = useDispatch();
     const location = useLocation()
     const path = location.pathname.split("/")[1]
+
+    const handleLogout = () => {
+        localStorage.removeItem("apopyToken");
+        dispatch(fecthUser(initialUserState.user));
+    }
+
     return(
         <Box component="section">
             <Box sx={S.header.container}>
@@ -45,7 +54,7 @@ export default function Layout() {
                             <Typography style={{textTransform: "capitalize", color: "#fff"}}>Saldos</Typography>
                         </Button>
                     </Link>
-                        <Button sx={[S.menu.buttonBox, {marginTop: "8px"}]} component="li">
+                        <Button sx={[S.menu.buttonBox, {marginTop: "8px"}]} component="li" onClick={handleLogout}>
                             <LogoutSharp style={S.menu.icon} />
                             <Typography style={{textTransform: "capitalize", color: "#fff"}}>Sair da conta</Typography>
                         </Button>
