@@ -52,7 +52,7 @@ export const layoutStyle = {
             height: "48px",
             width: "320px",
             ":hover": {
-                backgroundColor: "#90caf929"
+                backgroundColor: "#90caf915"
             }
         },
         icon: {
