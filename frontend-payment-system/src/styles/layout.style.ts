@@ -59,5 +59,12 @@ export const layoutStyle = {
             color: "#ffffff8f",
             marginRight: "32px"
         }
+    },
+    pageContent: {
+        width: "100%",
+        paddingTop: "24px",
+        paddingLeft: "24px",
+        paddingRight: "24px",
+        paddingBottom: "24px"
     }
 }
