@@ -12,6 +12,7 @@ import NewPayment from "../pages/payment/NewPayment";
 import UpdatePayment from "../pages/payment/UpdatePayment";
 import Balance from "../pages/balance/Balance";
 import NewBalance from "../pages/balance/NewBalance";
+import UpdateBalance from "../pages/balance/UpdateBalance";
 
   
   export const router = createBrowserRouter(
@@ -24,7 +25,7 @@ import NewBalance from "../pages/balance/NewBalance";
             <Route path={"/pagamentos/editar"} element={<UpdatePayment />} />
             <Route path={"/saldos"} element={<Balance />} />
             <Route path={"/saldos/criar"} element={<NewBalance />} />
-            <Route path={"/saldos/editar"} element={<UpdatePayment />} />
+            <Route path={"/saldos/editar"} element={<UpdateBalance />} />
           </Route>
         </Route>
         <Route path={"/entrar"} element={<Login />} />

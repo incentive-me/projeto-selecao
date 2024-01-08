@@ -4,7 +4,7 @@ import FormContainer from "../../components/FormContainer";
 import SelectBalance from "../../components/SelectBalance";
 import FormButtons from "../../components/FormButtons";
 
-export default function UpdatePayment(){
+export default function UpdateBalance(){
     return(
         <Box component="section">
             <Title title="Editar saldo" />
