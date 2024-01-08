@@ -7,6 +7,7 @@ import {
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import Layout from "../pages/layout/Layout";
+import Payment from "../pages/payment/Payment";
 
   
   export const router = createBrowserRouter(
@@ -14,7 +15,7 @@ import Layout from "../pages/layout/Layout";
       <>
         <Route element={<PrivateRoute />}>
           <Route path={"/"} element={<Layout />}>
-            {/* <Route path={"/pagamentos"} element={<Payments />} /> */}
+            <Route path={"/pagamentos"} element={<Payment />} />
             {/* <Route path={"/saldos"} element={<Balance />} /> */}
           </Route>
         </Route>
