@@ -1,15 +1,21 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { Box, Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField, Typography } from "@mui/material";
+import { Box, Button, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField, Typography } from "@mui/material";
 import React from "react";
+import { Navigate } from "react-router-dom";
 
 export default function Login(){
     const [showPassword, setShowPassword] = React.useState(false);
+    const user = true
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
     };
+
+    if (user) {
+        return <Navigate to="/pagamentos" replace={true} />
+      }
 
     return(
         <Box 
