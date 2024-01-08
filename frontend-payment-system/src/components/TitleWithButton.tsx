@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 export default function TitleWithButton({title, path}:{title: string, path: string}){
     return(
@@ -7,10 +7,9 @@ export default function TitleWithButton({title, path}:{title: string, path: stri
             <Typography style={{ color: "#000000de", fontSize: "24px" }}>
                 {title}
             </Typography>
-            <Button 
-                variant="contained" 
-                onClick={() => <Navigate to={path} replace />}
-            >Criar</Button>
+            <Link to={path}>
+                <Button variant="contained">Criar</Button>
+            </Link>
         </Box>
     )
 }
