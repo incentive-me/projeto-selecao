@@ -9,9 +9,9 @@ import { router } from './routes/RenderRouter';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
+      <RouterProvider router={router} />
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <RouterProvider router={router} />
         <App />
     </ThemeProvider>
   </React.StrictMode>,
