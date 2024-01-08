@@ -23,20 +23,20 @@ const columns: readonly Column[] = [
   { id: 'description', label: 'Descrição', minWidth: 40 },
   {
     id: 'initialValue',
-    label: 'Valor',
+    label: 'Valor Inicial',
     minWidth: 40,
     align: 'right',
     format: (value: number) => value.toLocaleString('en-US'),
   },
   {
     id: 'valueUsed',
-    label: 'Ações',
+    label: 'Valor Utilizado',
     minWidth: 40,
     align: 'right',
   },
   {
     id: 'totalValue',
-    label: 'Ações',
+    label: 'Valor restante',
     minWidth: 40,
     align: 'right',
   }
