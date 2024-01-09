@@ -26,7 +26,6 @@ export function Dashboard() {
     )
   }, [transactions])
 
-
   return (
     <div className='flex justify-around items-center my-12'>
       <div className='w-full flex-col justify-start items-start inline-flex gap-3 py-6 px-8  bg-zinc-800 rounded-md'>
@@ -44,7 +43,7 @@ export function Dashboard() {
           <ArrowCircleDown size={32} color='#F75A68' />
         </div>
 
-        <strong className=' text-zinc-200 text-[32px] font-bold'>{priceFormatter.format(summary.outcome)}</strong>
+        <strong className='text-zinc-200 text-[32px] font-bold'>{priceFormatter.format(summary.outcome)}</strong>
       </div>
 
       <div className='w-full flex-col justify-start items-start inline-flex gap-3 py-6 px-8  bg-emerald-800 rounded-md'>

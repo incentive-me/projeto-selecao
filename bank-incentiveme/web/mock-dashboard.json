@@ -47,6 +47,14 @@
       "category": "Alimentação",
       "type": "outcome",
       "createdAt": "2024-01-05T13:38:57.560Z"
+    },
+    {
+      "id": 7,
+      "description": "Combo BigMac",
+      "type": "outcome",
+      "category": "Alimentação",
+      "price": 921,
+      "createdAt": "2024-01-08T18:26:44.505Z"
     }
   ]
 }
