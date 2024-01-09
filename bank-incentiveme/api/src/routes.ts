@@ -1,6 +1,7 @@
 import { FastifyInstance } from 'fastify';
 import { PrismaClient } from '@prisma/client';
 import { z } from 'zod';
+import { hash } from 'bcryptjs';
 
 const prisma = new PrismaClient();
 
@@ -14,13 +15,24 @@ export async function appRoutes(app: FastifyInstance) {
 
     const { name, email, password } = createUserBody.parse(request.body);
 
+    const userAlreadyExists = await prisma.user.findFirst({
+      where: {
+        email: email
+      }
+    });
+
+    if (userAlreadyExists) {
+      throw new Error('User already exists');
+    }
+
+    const passwordHash = await hash(password, 8);
+
     await prisma.user.create({
       data: {
         name,
         email,
-        password
+        password: passwordHash
       }
     });
   });
-
 }
