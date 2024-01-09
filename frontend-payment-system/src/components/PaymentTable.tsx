@@ -9,6 +9,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { IconButton } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
 interface Column {
   id: 'name' | 'description' | 'amount' | 'action';
@@ -83,7 +84,9 @@ export default function PaymentTable({payment}:{payment: any}) {
                       );
                     })}
                     <TableCell>
-                        <IconButton onClick={() => console.log(row)}><Edit /></IconButton>
+                        <Link to="/pagamentos/editar" state={row}>
+                          <IconButton><Edit /></IconButton> 
+                        </Link>
                         <IconButton><Delete /></IconButton>
                     </TableCell>
                 </TableRow>
