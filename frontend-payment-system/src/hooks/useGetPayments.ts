@@ -6,15 +6,16 @@ import { Payment, fetchPayments } from "../redux/payment.slice";
 
 export function useGetPayments(){
     const dispatch = useDispatch()
-    const [data, setData] = useState()
+    const data = useSelector((state: RootState) => state.payment)
 
     useEffect(() => {
-        httpClient("payment", "get", {})
-            .then((res) => {
-                dispatch(fetchPayments(res.data))
-                setData(res.data)
-            })
+        if(data.payment.length === 0){
+            httpClient("payment", "get", {})
+                .then((res) => {
+                    dispatch(fetchPayments(res.data))
+                })
+        }
     },[])
 
-    return data
+    return data.payment
 }
