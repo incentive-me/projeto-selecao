@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { findField } from "../../utils/register";
 import { useDispatch, useSelector } from "react-redux";
+import { fecthUser } from "../../redux/user.slice";
 
 export default function Register(){
     const [showPassword, setShowPassword] = React.useState(false);
@@ -24,14 +25,17 @@ export default function Register(){
     };
     
     const register = () => {
-        axios.post("http://localhost:3002/user", resgisterData, 
+        axios.post("http://localhost:3001/user", resgisterData, 
             { headers: { 'Content-Type': 'application/json' }})
-                .then((res) => console.log(res.data))
+                .then((res) => {
+                    localStorage.setItem("paymentsToken", res.data.token)
+                    dispatch(fecthUser(res.data.user))
+                })
                 .catch((err) => setError(err.response.data.error))
         }
     const errorField = findField(error)
         
-        if (user) {
+    if (user.name !== "") {
         return <Navigate to="/pagamentos" replace={true} />
       }
 
