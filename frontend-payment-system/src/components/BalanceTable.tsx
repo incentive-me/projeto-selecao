@@ -9,9 +9,11 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { IconButton } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
+import { Balance } from '../redux/balance.slice';
+import { Link } from 'react-router-dom';
 
 interface Column {
-  id: 'name' | 'description' | 'initialValue' | 'valueUsed' | 'totalValue';
+  id: 'balanceName' | 'description' | 'initialValue' | 'valueUsed' | 'totalValue';
   label: string;
   minWidth?: number;
   align?: 'right';
@@ -19,56 +21,41 @@ interface Column {
 }
 
 const columns: readonly Column[] = [
-  { id: 'name', label: 'Nome', minWidth: 40 },
+  { id: 'balanceName', label: 'Nome', minWidth: 40 },
   { id: 'description', label: 'Descrição', minWidth: 40 },
   {
     id: 'initialValue',
     label: 'Valor Inicial',
     minWidth: 40,
     align: 'right',
-    format: (value: number) => value.toLocaleString('en-US'),
+    format: (value: number) => `R$ ${value.toFixed(2)}`,
   },
   {
     id: 'valueUsed',
     label: 'Valor Utilizado',
     minWidth: 40,
     align: 'right',
+    format: (value: number) => `R$ ${value.toFixed(2)}`,
   },
   {
     id: 'totalValue',
     label: 'Valor restante',
     minWidth: 40,
     align: 'right',
+    format: (value: number) => `R$ ${value.toFixed(2)}`,
   }
 ];
 
-interface Data {
-  name: string;
-  description: string;
-  initialValue: number;
-  valueUsed: number;
-  totalValue: number;
-}
 
-function createData(
-  name: string,
-  description: string,
-  initialValue: number,
-  valueUsed: number,
-  totalValue: number
-): Data {
-  return { name, description, initialValue, valueUsed, totalValue };
-}
 
-const rows = [
-  createData('Pedido de Pagamento A', 'Insira uma descrição aqui', 2500, 4000, 2000),
-  createData('Pedido de Pagamento B', 'Insira uma descrição aqui', 1500, 4000, 2000),
-  createData('Pedido de Pagamento C', 'Insira uma descrição aqui', 3500, 4000, 2000),
-];
-
-export default function BalanceTable() {
+export default function BalanceTable({balance}:{balance: Balance}) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  let rows: any = []
+
+  if(balance) {
+    rows = balance
+  }
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -100,7 +87,7 @@ export default function BalanceTable() {
           <TableBody>
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
+              .map((row: any) => {
                 return (
                   <TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
                     {columns.map((column) => {
@@ -114,7 +101,9 @@ export default function BalanceTable() {
                       );
                     })}
                     <TableCell>
+                      <Link to="/saldos/editar" state={row}>
                         <IconButton><Edit /></IconButton>
+                      </Link>
                         <IconButton><Delete /></IconButton>
                     </TableCell>
                 </TableRow>
