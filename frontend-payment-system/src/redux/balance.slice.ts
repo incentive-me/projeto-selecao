@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 
 const initialBalanceState: BalanceState = {
     balance: []
@@ -8,7 +8,15 @@ const balanceSlice = createSlice({
     name: 'balanceState',
     initialState: initialBalanceState,
     reducers: {
-        fetchBalances: (action, state) => void(action.balance = state.payload) 
+        fetchBalances: (state, action) => void(state.balance = action.payload),
+        updateName: (state, action: PayloadAction<Balance>) => {
+            state.balance = state.balance.map((balance) => {
+                if(balance.id === action.payload.id){
+                    balance.balanceName = action.payload.balanceName
+                }
+            return balance
+            })  
+        } 
     }
 })
 
