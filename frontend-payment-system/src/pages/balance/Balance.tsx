@@ -23,7 +23,7 @@ export default function Balance(){
         return (
             <Box component="section">
                 <TitleWithButton path="/saldos/criar" title="Saldos" />
-                <BalanceTable balance={data} />
+                <BalanceTable rows={data} />
             </Box>
         )
 }
