@@ -23,7 +23,7 @@ export default function Payment(){
         return (
             <Box component="section">
                 <TitleWithButton path="/pagamentos/criar" title="Pagamentos" />
-                <PaymentTable payment={data.payment} />
+                <PaymentTable payment={data} />
             </Box>
         )
 }
