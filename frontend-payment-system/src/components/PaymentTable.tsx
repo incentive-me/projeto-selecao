@@ -30,9 +30,14 @@ const columns: readonly Column[] = [
   }
 ];
 
-export default function PaymentTable({rows}:{rows: any}) {
+export default function PaymentTable({payment}:{payment: any}) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  let rows: any = []
+
+  if(payment) {
+    rows = payment
+  }
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -62,7 +67,7 @@ export default function PaymentTable({rows}:{rows: any}) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows && rows?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            {rows[0]?.name !== "" && rows?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row: any) => {
                 return (
                   <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
