@@ -8,9 +8,9 @@ export async function httpClient(endpoint: string, method: string, data: any){
         method: method,
         data: JSON.stringify(data),
         headers: {
-            Authorization: token ? token : null,
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
+            Authorization: `${token}`,
+            "Content-Type": "application/json",
+            "Accept": "application/json"
         }
     })
 
