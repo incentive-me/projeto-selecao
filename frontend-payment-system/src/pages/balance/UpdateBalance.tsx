@@ -2,27 +2,26 @@ import { Box, TextField } from "@mui/material";
 import Title from "../../components/Title";
 import FormContainer from "../../components/FormContainer";
 import FormButtons from "../../components/FormButtons";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { inputStyle } from "../../styles/global.style";
 import React, { useState } from "react";
 import { httpClient } from "../../utils/http";
+import { useDispatch } from "react-redux";
+import { updateName } from "../../redux/balance.slice";
 
 export default function UpdateBalance(){
+    const navigate = useNavigate()
     const { state } = useLocation()
+    const dispatch = useDispatch()
     const [ newName, setNewName ] = useState(state.balanceName)
-    
-    const test = { balance: state, newName}
-    console.log(test)
 
     const handleUpdateName = () => {
-        httpClient("balance", "POST", test).then(res => console.log(res)).catch(err => console.log("err", err))
-        // fetch("http://localhost:3001/balance", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify(test)
-        // }).then(res => console.log("res", res)).catch(err => console.log("err", err))
+        httpClient("balance", "PATCH", {balance: state, newName})
+            .then((res) =>{ 
+                dispatch(updateName(res.data))
+                return navigate("/saldos")
+            })
+            .catch(err => console.log("err", err))
     }
 
     return(
