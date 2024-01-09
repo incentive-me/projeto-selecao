@@ -19,8 +19,7 @@ export default function UpdateBalance(){
         httpClient("balance", "PATCH", {balance: state, newName})
             .then((res) =>{ 
                 dispatch(updateName(res.data))
-                return navigate("/saldos")
-            })
+                return navigate("/saldos")})
             .catch(err => console.log("err", err))
     }
 
