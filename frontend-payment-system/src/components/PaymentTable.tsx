@@ -9,7 +9,6 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { IconButton } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
-import { Payment } from '../redux/payment.slice';
 
 interface Column {
   id: 'name' | 'description' | 'amount' | 'action';
@@ -31,7 +30,7 @@ const columns: readonly Column[] = [
   }
 ];
 
-export default function PaymentTable({rows}:{rows: Payment}) {
+export default function PaymentTable({rows}:{rows: any}) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -63,11 +62,10 @@ export default function PaymentTable({rows}:{rows: Payment}) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            {rows && rows?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row: any) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
@@ -79,7 +77,7 @@ export default function PaymentTable({rows}:{rows: Payment}) {
                       );
                     })}
                     <TableCell>
-                        <IconButton><Edit /></IconButton>
+                        <IconButton onClick={() => console.log(row)}><Edit /></IconButton>
                         <IconButton><Delete /></IconButton>
                     </TableCell>
                 </TableRow>
