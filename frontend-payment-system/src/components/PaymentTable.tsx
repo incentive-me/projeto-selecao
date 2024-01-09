@@ -9,6 +9,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { IconButton } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
+import { Payment } from '../redux/payment.slice';
 
 interface Column {
   id: 'name' | 'description' | 'amount' | 'action';
@@ -27,38 +28,10 @@ const columns: readonly Column[] = [
     minWidth: 40,
     align: 'right',
     format: (value: number) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'action',
-    label: 'Ações',
-    minWidth: 40,
-    align: 'right',
   }
 ];
 
-interface Data {
-  name: string;
-  description: string;
-  amount: number;
-  action: number;
-}
-
-function createData(
-  name: string,
-  description: string,
-  amount: number,
-  action: number
-): Data {
-  return { name, description, amount, action };
-}
-
-const rows = [
-  createData('Pedido de Pagamento A', 'Insira uma descrição aqui', 2500, 4000),
-  createData('Pedido de Pagamento B', 'Insira uma descrição aqui', 1500, 4000),
-  createData('Pedido de Pagamento C', 'Insira uma descrição aqui', 3500, 4000),
-];
-
-export default function PaymentTable() {
+export default function PaymentTable({rows}:{rows: Payment}) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -92,7 +65,7 @@ export default function PaymentTable() {
           <TableBody>
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
+              .map((row: any) => {
                 return (
                   <TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
                     {columns.map((column) => {
