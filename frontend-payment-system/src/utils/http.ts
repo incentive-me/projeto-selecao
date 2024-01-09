@@ -6,9 +6,11 @@ export async function httpClient(endpoint: string, method: string, data: any){
     const res = await axios({
         url: `http://localhost:3001/${endpoint}`,
         method: method,
-        data: data,
+        data: JSON.stringify(data),
         headers: {
-            Authorization: token ? token : null
+            Authorization: token ? token : null,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
         }
     })
 
