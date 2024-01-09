@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "5.7.1",
     "dotenv": "16.3.1",
     "fastify": "4.25.2",
     "zod": "3.22.4"
@@ -20,6 +21,7 @@
     "@typescript-eslint/eslint-plugin": "6.18.1",
     "@typescript-eslint/parser": "6.18.1",
     "eslint": "8.56.0",
+    "prisma": "5.7.1",
     "tsup": "8.0.1",
     "tsx": "4.7.0",
     "typescript": "5.3.3"
