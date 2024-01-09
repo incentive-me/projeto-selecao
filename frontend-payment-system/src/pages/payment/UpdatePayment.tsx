@@ -4,7 +4,7 @@ import FormContainer from "../../components/FormContainer";
 import SelectBalance from "../../components/SelectBalance";
 import FormButtons from "../../components/FormButtons";
 import { useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { inputStyle } from "../../styles/global.style";
 import { httpClient } from "../../utils/http";
@@ -12,12 +12,15 @@ import { updatePaymentName } from "../../redux/payment.slice";
 
 export default function UpdatePayment(){
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const { state } = useLocation()
     const [ newName, setNewName ] = useState(state.name)
-   console.log(state)
+
     const handleUpdatePaymentName = () => {
-        httpClient("payment", "PATCH", {state, newName})
-            .then((res) => dispatch(updatePaymentName(res.data)))
+        httpClient("payment", "PATCH", {payment: state, newName})
+            .then((res) => {
+                dispatch(updatePaymentName(res.data))
+                navigate("/pagamentos")})
     }
 
     return(
