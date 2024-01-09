@@ -9,6 +9,9 @@ const balanceSlice = createSlice({
     initialState: initialBalanceState,
     reducers: {
         fetchBalances: (state, action) => void(state.balance = action.payload),
+        createBalance: (state, action: PayloadAction<Balance>) => {
+            state.balance.push(action.payload)
+        },
         updateName: (state, action: PayloadAction<Balance>) => {
             state.balance = state.balance.map((balance) => {
                 if(balance.id === action.payload.id){
@@ -34,5 +37,5 @@ export type Balance = {
     totalValue: number
 }
 
-export const {fetchBalances, updateName} = balanceSlice.actions
+export const {fetchBalances, updateName, createBalance} = balanceSlice.actions
 export default balanceSlice.reducer
