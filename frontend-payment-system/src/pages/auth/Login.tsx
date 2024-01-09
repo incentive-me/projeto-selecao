@@ -1,10 +1,11 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { Box, Button, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField, Typography } from "@mui/material";
+import { Box, Button, IconButton, InputAdornment, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import axios from 'axios'
 import { useDispatch, useSelector } from "react-redux";
-import { fecthUser } from "../../redux/user.slice";
+import { fecthUser, initialUserState } from "../../redux/user.slice";
+import { RootState } from "../../redux/store";
 
 export default function Login(){
     const [showPassword, setShowPassword] = React.useState(false);
@@ -14,7 +15,7 @@ export default function Login(){
         password: ""
     })
     const dispatch = useDispatch()
-    const user = useSelector((state: any) => state.user.user)
+    const user = useSelector((state: RootState) => state.user.user)
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -23,24 +24,26 @@ export default function Login(){
     };
 
     const login = () => {
-        axios.post("http://localhost:3002/login", loginData,
+        axios.post("http://localhost:3001/login", loginData,
             { headers: { 'Content-Type': 'application/json' }})
             .then((res) => {
                 localStorage.setItem("paymentsToken", res.data.token)
                 dispatch(fecthUser(res.data.user))
-                console.log(res.data.user)
-            })
-            .catch((err) => setError(err.response.data.error))
+            }).catch((err) => setError(err.response.data.error))
     }
 
-    if (user) {
+    if (user.name !== "") {
         return <Navigate to="/pagamentos" replace={true} />
       }
 
     return(
         <Box sx={style}>
-            <Typography paddingBottom="20px" variant="h4" component="h2">Payment System</Typography>
-            <Typography paddingBottom="20px" color="#556cd6" variant="h4" component="h4">Entrar</Typography>
+            <Typography paddingBottom="20px" variant="h4" component="h2">
+                Payment System
+            </Typography>
+            <Typography paddingBottom="20px" color="#556cd6" variant="h4" component="h4">
+                Entrar
+            </Typography>
             <TextField
                 label="Email"
                 sx={{ m: 1, width: '35ch' }}
@@ -68,7 +71,7 @@ export default function Login(){
                 <Button 
                     sx={{ m: 1, width: '40ch' }}
                     variant="contained" 
-                    onClick={() => login}
+                    onClick={login}
                 >Entrar</Button>
                 <Typography paddingTop="30px" variant="body1" component="h5">
                     Não tem uma conta?
