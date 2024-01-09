@@ -39,6 +39,7 @@ export default function PaymentTable({payment}:{payment: any}) {
     rows = payment
   }
 
+
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
@@ -67,7 +68,7 @@ export default function PaymentTable({payment}:{payment: any}) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows[0]?.name !== "" && rows?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            {rows?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row: any) => {
                 return (
                   <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
