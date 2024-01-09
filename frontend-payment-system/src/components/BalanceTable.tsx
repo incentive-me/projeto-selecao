@@ -48,14 +48,9 @@ const columns: readonly Column[] = [
 
 
 
-export default function BalanceTable({balance}:{balance: Balance}) {
+export default function BalanceTable({rows}:{rows: Balance[]}) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  let rows: any = []
-
-  if(balance) {
-    rows = balance
-  }
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
