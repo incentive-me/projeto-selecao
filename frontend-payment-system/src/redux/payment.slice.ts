@@ -1,25 +1,30 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export const initialPaymentState: PaymentState = {
-    payment: {
-        id: "",
-        userId: "",
-        name: "",
-        description: "",
-        amount: 0,
-        balanceAccount: "",    }
+    payment: []
 }
 
 const paymentSlice = createSlice({
     initialState: initialPaymentState,
     name: 'paymentState',
     reducers: {
-        fetchPayments: (action, state) => void(action.payment = state.payload)
+        fetchPayments: (state, action) => void(state.payment = action.payload),
+        updatePaymentName: (state, action: PayloadAction<Payment>) => {
+            state.payment = state.payment.map((pay) => {
+                if(pay.id === action.payload.id) {
+                    pay.name = action.payload.name
+                }
+                return pay
+            })
+        },
+        createPayment: (state, action) => {
+            state.payment.push(action.payload)
+        }
     }
 })
 
 interface PaymentState {
-    payment: Payment
+    payment: Payment[]
 }
 
 export type Payment = {
@@ -31,5 +36,5 @@ export type Payment = {
     balanceAccount: string
 } 
 
-export const {fetchPayments} = paymentSlice.actions
+export const {fetchPayments, updatePaymentName, createPayment} = paymentSlice.actions
 export default paymentSlice.reducer
