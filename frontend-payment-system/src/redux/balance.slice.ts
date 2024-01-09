@@ -34,5 +34,5 @@ export type Balance = {
     totalValue: number
 }
 
-export const {fetchBalances} = balanceSlice.actions
+export const {fetchBalances, updateName} = balanceSlice.actions
 export default balanceSlice.reducer
