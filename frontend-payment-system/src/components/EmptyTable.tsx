@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 type EmptyTable = {
     text: string,
@@ -12,11 +12,12 @@ export default function EmptyTable({text, buttonText, path}: EmptyTable){
         <Box component="div" style={style.container}>
             <Box sx={style.body}>
                 <Typography style={style.text}>{text}</Typography>
-                <Button 
-                    variant="contained" 
-                    sx={style.button}
-                    onClick={() => <Navigate to={path} replace={true} />}
-                >{buttonText}</Button>
+                <Link  to={path}>
+                    <Button 
+                        variant="contained" 
+                        sx={style.button}
+                    >{buttonText}</Button>
+                </Link>
             </Box>  
         </Box>
     )
