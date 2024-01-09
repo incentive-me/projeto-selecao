@@ -14,9 +14,7 @@ const paymentSlice = createSlice({
     initialState: initialPaymentState,
     name: 'paymentState',
     reducers: {
-        fetchPayments: (action, state) => {
-            void(action.payment = state.payload)
-        }
+        fetchPayments: (action, state) => void(action.payment = state.payload)
     }
 })
 
