@@ -8,19 +8,30 @@ import React, { useState } from "react";
 import { httpClient } from "../../utils/http";
 import { useDispatch } from "react-redux";
 import { updateName } from "../../redux/balance.slice";
+import { ErrorMessage, initialStateErrMessage } from "./NewBalance";
+import { errorBalanceMessage } from "../../utils/balanceErrorMessages";
 
 export default function UpdateBalance(){
     const navigate = useNavigate()
     const { state } = useLocation()
     const dispatch = useDispatch()
     const [ newName, setNewName ] = useState(state.balanceName)
+    const [err, setErr] = useState<ErrorMessage>(initialStateErrMessage)
 
     const handleUpdateName = () => {
         httpClient("balance", "PATCH", {balance: state, newName})
             .then((res) =>{ 
                 dispatch(updateName(res.data))
-                return navigate("/saldos")})
-            .catch(err => console.log("err", err))
+                return navigate("/saldos", {
+                    state: {
+                        message: "Nome do saldo atualizado com sucesso",
+                        open: true
+                    }
+                })})
+            .catch(err => {
+                const error = err.response.data.error
+                setErr(errorBalanceMessage(error))
+            })
     }
 
     return(
@@ -32,8 +43,12 @@ export default function UpdateBalance(){
                         label="Nome" 
                         sx={inputStyle}
                         value={newName}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
-                            setNewName(e.target.value)}
+                        error={err.field === "name"}
+                        helperText={err.field === "name" && err.message}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            setNewName(e.target.value)
+                            setErr(initialStateErrMessage)
+                        }}
                     />
                     <TextField 
                         disabled={true} 
