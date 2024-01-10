@@ -41,6 +41,12 @@ export class BalanceUseCase implements BalanceInterface {
             throw Error("Id not found")
         }
 
+        const verifyBalance = await this.balanceRepo.GetBalanceById(id)
+
+        if(verifyBalance.valueUsed !== 0){
+            throw Error("There are linked balances")
+        }
+
         const deleteRepo = await this.balanceRepo.DeleteBalances(id)
         if (deleteRepo) {
             return true
