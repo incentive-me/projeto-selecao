@@ -1,0 +1,54 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String       @unique @default(cuid())
+  gitgubId    Int          @unique
+  name        String
+  username    String       @unique
+  email       String
+  avatar_url  String
+  repos_stars ReposStars[]
+}
+
+model ReposStars {
+  id           String        @unique @default(cuid())
+  githubRepoId Int           @unique
+  full_name    String
+  description  String
+  author_url   String
+  count_stars  Int
+  count_forks  Int
+  linguage     String
+  url          String
+  updated_at   String
+  repo_user    User          @relation(fields: [repo_user_id], references: [id])
+  repo_user_id String
+  tags         TagsOnRepos[]
+}
+
+model Tag {
+  id       String        @unique @default(cuid())
+  name     String        @unique
+  tag_Repo TagsOnRepos[]
+}
+
+model TagsOnRepos {
+  repos      ReposStars @relation(fields: [reposId], references: [id])
+  reposId    String // relation scalar field (used in the `@relation` attribute above)
+  tag        Tag        @relation(fields: [tagId], references: [id])
+  tagId      String // relation scalar field (used in the `@relation` attribute above)
+  assignedAt DateTime   @default(now())
+  assignedBy String
+
+  @@id([reposId, tagId])
+}

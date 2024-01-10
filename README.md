@@ -1,39 +1,165 @@
-# 🚀 Venha participar do nosso time campeão!
 
-Ao conhecer uma pessoa que está aplicando para a Incentive.me gostamos de ter uma conversa sobre código. Afinal, escrever, ler e discutir sobre código faz parte da nossa rotina diária de trabalho.
+# 🌟Github Stars🌟
 
-Você pode implementar o projeto usando qualquer linguagem de sua preferência. Lembre-se: use a linguagem com a qual você tem mais familiaridade.
+Desenvolvido para visualizar e gerenciar seus repositórios que receberam uma estrela no Github.
 
-## O que vamos avaliar?
+## 🚀 Introdução
 
-- Comunicação na revisão do código;
-- Argumentos sobre desafios enfrentados e escolhas realizadas na implementação;
-- Código bem escrito, limpo e coeso;
-- Arquitetura e princípios de desenvolvimento;
-- Documentação (README.md) com instruções claras para reproduzir o projeto;
-- Uso adequado de versionamento do código em git;
-- Uso de testes automatizados;
-- Deploy da aplicação;
-- O design da API RESTful é implementado, usando corretamente os verbos HTTP e o código de status apropriado;
-- Uso adequado de HTML5, CSS3 e JavaScript em um front-end minimamente estruturado;
+Se você precisa de um lugar onde possa visualizar os repositórios que gostou no Github e marcou com uma estrela, o Github Stars vai te ajudar. Lá você pode ver e adicionar tags que vão te ajudar a identificar sobre o que se trata e conhecer as tecnologias envolvidas.
 
-Caso você não se sinta confortável com algum desses itens, tudo bem, apenas nos fale sobre isso, ok? O objetivo aqui não é te fazer perder tempo com algo irrelevante. Nosso objetivo aqui é ter um código sobre o qual podemos conversar. Como você deve ter notado, a gente preza muito por colaboração, trabalho em time e comunicação. O objetivo aqui é ter, minimamente, essa experiência com você.
+## ⚙ Como usar
 
-Respeite o seu nível de conhecimento e experiência, o importante é você saber dizer o motivo das suas escolhas. Se você tiver qualquer dúvida, por favor, entre em contato com a gente. Estamos disponíveis para te ajudar a finalizar esse processo.
+Primeiramente, é necessário ter o [Node.js](https://nodejs.org/en) instalado em seu computador
 
-# Opções de projetos
+Com isso, faça a clonagem do repositório em seu computador:
 
-A seguir seguem algumas ideias de projetos que você pode implementar:
+```
+    git clone https://github.com/DFelipe1/test-incentive.me.git
+```
 
-- [Cliente para o GitHub](https://github.com/incentive-me/projeto-selecao/blob/master/projects/GITHUB.md);
-- [Sistema de pagamentos](https://github.com/incentive-me/projeto-selecao/blob/master/projects/PAGAMENTOS.md).
-- **Projeto open source próprio**: Se você tiver algum projeto pronto, que tenha relação com desenvolvimento Web, você pode apresentá-lo na entrevista. Conte-nos sobre suas motivações ao criá-lo, os desafios técnicos e não técnicos enfretados etc. O objetivo aqui é poupar seu tempo
-e evitar que você tenha que criar outro projeto, caso já tenha um.
+Com o repositório clonado, você terá em seu computador todos os arquivos do projeto, incluindo as pastas `server` e `web` que serão utilizadas.
 
-# Como compartilhar o projeto conosco
+### Configuração
 
-1. Apague este README.md e adicione informações que achar relevante como configurar o projeto, contendo os comandos que devem ser executados para executar ele e os testes;
-2. Abra um PR apontando para a branch master deste repositório;
-3. Escreva qualquer consideração na descrição do PR e faça qualquer comentário que achar pertinente no código.
+Antes de rodar a aplicação, é necessário configurar algumas coisas:
 
-**OBS.:** Caso queira nos mostra um projeto open source próprio, abra uma issue nesse repositório aqui, colocando links e informações sobre o seu projeto de forma que possamos avaliá-lo.
+- **Instalação de Dependências:**
+
+Entre na pasta 'server' e instale todas as dependências com seu gerenciador de pacotes:
+```
+    cd /server
+    npm install
+```
+
+Faça o mesmo na pasta```web```:
+
+```
+    cd /web
+    npm install
+```
+
+- **Variáveis de Ambiente:**
+
+Antes de rodar o projeto, é necessário adicionar algumas variáveis de ambiente. Para isso, crie um OAuth App dentro da configuração de desenvolvedor no Github. [aqui esta um link direto para lá](https://github.com/settings/developers).
+
+Recomenda-se que veja a [documentação do github](https://docs.github.com/pt).
+
+
+Após criar um *OAuth App* no Github, pegue as chaves ``Client Id`` e ``Client Secrets``, crie um arquivo ``.env`` na raiz da pasta ``server`` e adicione o valor das chaves lá:
+
+```
+    GITHUB_ID
+    GITHUB_SECRET
+
+    DATABASE_URL="file:./dev.db"
+```
+
+---
+
+Agora sim, está tudo pronto para rodar, e para isso é simples:
+
+Entre na pasta 'server' e execute o comando:
+
+**/server**
+```
+    npm run dev
+```
+Faça o mesmo na pasta 'web':
+
+**/web**
+```
+    cd web
+    npm run dev
+```
+
+🎉 Pronto, o App está rodando.
+
+
+
+## Documentação da API
+
+#### Autenticando com github
+
+```http
+  POST /register
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `code` | `string` | **Obrigatório**. Código devolvido pelo Github após autorização|
+
+#### Retorna todos os repositorios
+
+```http
+  GET /${userId}
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `userId`      | `string` | **Obrigatório**. ID do usuário logado. |
+
+#### Retorna um único repositório
+
+```http
+  GET /repo/${id}
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`      | `string` | **Obrigatório**. ID do repositório desejado. |
+
+#### Retorna todas as tags
+
+```http
+  GET     /tags
+```
+
+#### Adiciona uma tag
+
+```http
+  POST    /tag
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `RepoId`      | `string` | **Obrigatório**. ID do repositório ao qual deseja adicionar a tag. |
+`name`      | `string` | **Obrigatório**. Nome da tag desejada.|
+
+#### Deleta tag de um repositório
+
+```http
+  DELETE    /tag/${tagId}/${reposId}
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `tagId`      | `string` | **Obrigatório**. ID da tag que deseja deletar. |
+`reposId`      | `string` | **Obrigatório**.ID do repositório ao qual a tag está atribuída.|
+
+
+#### Filtra lista de repositórios por tag
+
+```http
+  GET /filter/${id}
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`      | `string` | **Obrigatório**. ID da tag pela qual deseja filtrar. |
+
+
+
+
+
+## 👨‍💻 Sobre o autor
+Me chamo David Felipe, sou desenvolvedor web focado em front-end, apaixonado por criatividade! E resolver problemas através das linhas de código.
+
+Se deseja me conhecer melhor ou me encontrar em algum lugar, vou deixar meus links abaixo 👇
+
+
+## 🔗 Links
+[![portfolio](https://img.shields.io/badge/meu_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://www.davidfelipe.dev)
+
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/lipedev/)
+
+
