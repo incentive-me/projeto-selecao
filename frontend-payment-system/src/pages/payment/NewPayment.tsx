@@ -10,11 +10,14 @@ import { useDispatch } from "react-redux";
 import { createPayment } from "../../redux/payment.slice";
 import { decreaseBalance } from "../../redux/balance.slice";
 import { useNavigate } from "react-router-dom";
+import { ErrorMessage, initialStateErrMessage } from "../balance/NewBalance";
+import { errorPaymentMessage } from "../../utils/paymentErrorMessages";
 
 export default function NewPayment(){
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [balanceAccount, setBalanceAccount] = useState("")
+    const [err, setErr] = useState<ErrorMessage>(initialStateErrMessage)
     const [newPayment, setNewPayment] = useState({
         name: "",
         description: "",
@@ -33,7 +36,15 @@ export default function NewPayment(){
         }).then(res => {
             dispatch(createPayment(res.data))
             dispatch(decreaseBalance(decreaseB))
-            navigate("/pagamentos")
+            navigate("/pagamentos", {
+                state: {
+                    message: "Pedido criado com sucesso",
+                    open: true
+                }
+            })
+        }).catch((err) => {
+            const error = err.response.data.err
+            setErr(errorPaymentMessage(error))
         })
     }
 
@@ -45,22 +56,36 @@ export default function NewPayment(){
                     <TextField 
                         label="Nome" 
                         sx={inputStyle}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
-                            setNewPayment({...newPayment, name: e.target.value})}
+                        error={err.field === "name"}
+                        helperText={err.field === "name" && err.message}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            setNewPayment({...newPayment, name: e.target.value})
+                            setErr(initialStateErrMessage)
+                        }}
                     />
                     <TextField 
                         label="Descrição" 
                         sx={inputStyle}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
-                            setNewPayment({...newPayment, description: e.target.value})}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            setNewPayment({...newPayment, description: e.target.value})
+                            setErr(initialStateErrMessage)
+                        }}
                     />
                     <TextField 
                         label="Valor" 
                         sx={inputStyle}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
-                            setNewPayment({...newPayment, amount: e.target.value})}
+                        error={err.field === "amount"}
+                        helperText={err.field === "amount" && err.message}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            setNewPayment({...newPayment, amount: e.target.value})
+                            setErr(initialStateErrMessage)
+                        }}
                     />
-                    <SelectBalance setBalance={setBalanceAccount} />
+                    <SelectBalance 
+                        setBalance={setBalanceAccount} 
+                        err={err} 
+                        setErr={setErr}
+                    />
                 </Box>
                 <FormButtons 
                     path="/pagamentos" 
@@ -71,3 +96,4 @@ export default function NewPayment(){
         </Box>
     )
 }
+
