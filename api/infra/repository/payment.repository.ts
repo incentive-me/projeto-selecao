@@ -9,6 +9,7 @@ interface PaymentRepositoryInterface {
     DeletePayment(id: string): Promise<any>
     UpdatePaymentName(payment: Payment, newName: string): Promise<any>
     VerifyBalanceAmount(payment: Payment): Promise<any>
+    GetPaymentById(id: string): Promise<any>
 }
 
 export class PaymentRepository implements PaymentRepositoryInterface {
