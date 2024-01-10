@@ -48,8 +48,11 @@ export class PaymentRepository implements PaymentRepositoryInterface {
 
     async GetPaymentById(id: string): Promise<any>{
         const [rows] = await connection.promise().query(
-            `SELECT * FROM paymente WHERE id = ?`, [id]
+            `SELECT * FROM payment WHERE id = ?`, [id]
         )
+        if(rows.length !== 0){
+            return rows[0]
+        }
         return rows
     }
 
