@@ -5,27 +5,30 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { Balance } from '../redux/balance.slice';
 import { useGetBalance } from '../hooks/useGetBalance';
+import { FormHelperText } from '@mui/material';
+import { ErrorMessage, initialStateErrMessage } from '../pages/balance/NewBalance';
 
 type SelectBalanceProps = {
   setBalance: React.Dispatch<React.SetStateAction<string>>, 
+  err: ErrorMessage,
+  setErr: React.Dispatch<React.SetStateAction<ErrorMessage>>
 }
 
-export default function SelectBalance({setBalance}:SelectBalanceProps) {
+export default function SelectBalance({setBalance, err, setErr}: SelectBalanceProps) {
   const balanceState = useGetBalance()
   const [balanceId, setBalanceId] = React.useState('');
 
-  const handleChange = (e: SelectChangeEvent) => {
-    setBalanceId(e.target.value);
-    setBalance(e.target.value)
-  };
-
   return (
-    <FormControl sx={{minWidth: "100%" }}>
+    <FormControl sx={{minWidth: "100%" }} error={err.field === "balance"}>
       <InputLabel id="demo-select-small-label">Selecione o saldo a utilizar</InputLabel>
       <Select
         value={balanceId}
         label="Selecione o saldo a utilizar"
-        onChange={handleChange}
+        onChange={(e: SelectChangeEvent) => {
+          setBalanceId(e.target.value);
+          setBalance(e.target.value)
+          setErr(initialStateErrMessage) 
+        }}
       >
         {balanceState.map((item: Balance) => {
           return(
@@ -35,6 +38,9 @@ export default function SelectBalance({setBalance}:SelectBalanceProps) {
           )
         })}
       </Select>
+      <FormHelperText>
+        {err.field === "balance" ? err.message : ""}
+      </FormHelperText>
     </FormControl>
   );
 }
