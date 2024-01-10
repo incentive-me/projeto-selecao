@@ -4,10 +4,34 @@ import { z } from 'zod';
 import { compare, hash } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { env } from './env';
+import { ensureAuthenticated } from './middlewares/ensureAuthenticated';
 
 const prisma = new PrismaClient();
 
 export async function appRoutes(app: FastifyInstance) {
+  app.get(
+    '/', 
+    {
+      preHandler: [ensureAuthenticated]
+    },
+    async (request) => {
+      const getUserRequest = z.object({
+        user: z.object({
+          id: z.string(),
+          name: z.string(),
+          email: z.string(),
+          password: z.string()
+        }),
+      });
+
+      const { user } = getUserRequest.parse(request);
+      const { authorization } = request.headers;
+      return {
+        user,
+        authorization
+      };
+    });
+
   app.post('/user', async (request) => {
     const createUserBody = z.object({
       name: z.string(),
@@ -68,10 +92,13 @@ export async function appRoutes(app: FastifyInstance) {
       },
       env.PRIVATE_KEY,
       {
-        expiresIn: '1m'
+        expiresIn: '5m'
       }
     );
 
-    return token;
+    return {
+      user,
+      token
+    };
   });
 }
