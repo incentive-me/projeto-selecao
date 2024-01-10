@@ -11,6 +11,7 @@ import { IconButton } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
 import { Balance } from '../redux/balance.slice';
 import { Link } from 'react-router-dom';
+import DeleteModal from './DeleteModal';
 
 interface Column {
   id: 'balanceName' | 'description' | 'initialValue' | 'valueUsed' | 'totalValue';
@@ -51,6 +52,7 @@ const columns: readonly Column[] = [
 export default function BalanceTable({rows}:{rows: Balance[]}) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [ deleteBalance, setDeleteBalance] = React.useState(initialDeleteState)
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -62,6 +64,8 @@ export default function BalanceTable({rows}:{rows: Balance[]}) {
   };
 
   return (
+    <>
+    <DeleteModal deleteBalance={deleteBalance} setDeleteBalance={setDeleteBalance} />
     <Paper sx={style.container}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
@@ -99,7 +103,9 @@ export default function BalanceTable({rows}:{rows: Balance[]}) {
                       <Link to="/saldos/editar" state={row}>
                         <IconButton><Edit /></IconButton>
                       </Link>
-                        <IconButton><Delete /></IconButton>
+                        <IconButton onClick={() => setDeleteBalance({balance: row, openModal: true})}>
+                          <Delete />
+                        </IconButton>
                     </TableCell>
                 </TableRow>
                 );
@@ -117,6 +123,7 @@ export default function BalanceTable({rows}:{rows: Balance[]}) {
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
     </Paper>
+    </>
   );
 }
 
@@ -125,4 +132,22 @@ const style = {
     width: '100%', 
     overflow: 'hidden'
   }
+}
+
+export const initialDeleteState: InitialDelState = {
+  balance: {
+    id: "string",
+    userId: "string",
+    balanceName: "string",
+    description: "string",
+    initialValue: 0,
+    valueUsed: 0,
+    totalValue: 0,
+  }, 
+  openModal: false
+}
+
+export type InitialDelState = {
+  balance: Balance,
+  openModal: false
 }
