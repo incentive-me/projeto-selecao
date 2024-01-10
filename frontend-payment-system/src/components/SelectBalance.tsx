@@ -3,30 +3,38 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
+import { Balance } from '../redux/balance.slice';
 
-export default function SelectBalance() {
-  const [age, setAge] = React.useState('');
+type SelectBalanceProps = {
+  setBalance: React.Dispatch<React.SetStateAction<string>>, 
+}
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value);
+export default function SelectBalance({setBalance}:SelectBalanceProps) {
+  const balanceState = useSelector((state: RootState) => state.balance)
+  const [balanceId, setBalanceId] = React.useState('');
+
+  const handleChange = (e: SelectChangeEvent) => {
+    setBalanceId(e.target.value);
+    setBalance(e.target.value)
   };
 
   return (
     <FormControl sx={{minWidth: "100%" }}>
-      <InputLabel id="demo-select-small-label">Age</InputLabel>
+      <InputLabel id="demo-select-small-label">Selecione o saldo a utilizar</InputLabel>
       <Select
-        labelId="demo-select-small-label"
-        id="demo-select-small"
-        value={age}
-        label="Age"
+        value={balanceId}
+        label="Selecione o saldo a utilizar"
         onChange={handleChange}
       >
-        <MenuItem value="">
-          <em>None</em>
-        </MenuItem>
-        <MenuItem disabled={true} value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
+        {balanceState.balance.map((item: Balance) => {
+          return(
+            <MenuItem  key={item.id} value={item.id}>
+              {item.balanceName} - R$ {item.totalValue.toFixed(2)}
+            </MenuItem>
+          )
+        })}
       </Select>
     </FormControl>
   );
