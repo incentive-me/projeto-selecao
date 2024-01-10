@@ -8,7 +8,7 @@ const paymentSlice = createSlice({
     initialState: initialPaymentState,
     name: 'paymentState',
     reducers: {
-        fetchPayments: (state, action) => void(state.payment = action.payload),
+        fetchPayments: (state, action: PayloadAction<Payment[]>) => void(state.payment = action.payload),
         updatePaymentName: (state, action: PayloadAction<Payment>) => {
             state.payment = state.payment.map((pay) => {
                 if(pay.id === action.payload.id) {
@@ -17,7 +17,7 @@ const paymentSlice = createSlice({
                 return pay
             })
         },
-        createPayment: (state, action) => {
+        createPayment: (state, action: PayloadAction<Payment>) => {
             state.payment.push(action.payload)
         },
         deletePaymentAction: (state, action: PayloadAction<Payment>) => {
