@@ -16,6 +16,7 @@ export type UserInfo = {
     CreateUser(user: User): Promise<UserAndToken | Error>;
     UpdateUser(user: User): User | Error;
     GetUser(email: string, password: string): Promise<UserAndToken | Error>;
+    GetUserById(userInfo: UserInfo): Promise<User | Error>
   }
 
 export type UserAndToken = {
