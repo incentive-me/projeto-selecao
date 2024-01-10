@@ -20,11 +20,13 @@ export default function Layout() {
         <Box component="section">
             <Box sx={S.header.container}>
                 <Typography style={S.header.logo}>Payments</Typography>
+                <Link to="/usuario">
                 <Box sx={S.header.account}>
                     <IconButton aria-label="account" size="large">
                         <PersonIcon style={S.header.icon}  />
                     </IconButton>
                 </Box>
+                </Link>
             </Box>
             <Box sx={S.body} component="div">
                 <Box sx={S.menu.container} component="nav">
