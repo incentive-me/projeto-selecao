@@ -56,9 +56,10 @@ export async function AuthGitHub(app) {
                 }) 
             }
 
-            reposStars.map(async repo => {
-                await axios.put(`http://localhost:3000/register/repo/${user.id}`, {repo})
-            })
+
+            for(let i = 0; i < reposStars.length; i++){
+                await axios.put(`http://localhost:3000/register/repo/${user.id}`, reposStars[i])
+            }
 
             return {user}
             

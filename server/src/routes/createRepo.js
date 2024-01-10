@@ -5,7 +5,7 @@ export async function CreateRepo(app) {
     app.put('/register/repo/:userId', async (request, reply) => {
         try {
             const userId = request.params.userId
-            const {repo} = request.body
+            const repo = request.body
 
             let data = await prisma.reposStars.findUnique({
                 where: {
