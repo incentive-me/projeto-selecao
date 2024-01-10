@@ -19,6 +19,11 @@ const paymentSlice = createSlice({
         },
         createPayment: (state, action) => {
             state.payment.push(action.payload)
+        },
+        deletePaymentAction: (state, action: PayloadAction<Payment>) => {
+            state.payment = state.payment.filter((pay: Payment) =>
+                pay.id !== action.payload.id
+            )
         }
     }
 })
@@ -36,5 +41,5 @@ export type Payment = {
     balanceAccount: string
 } 
 
-export const {fetchPayments, updatePaymentName, createPayment} = paymentSlice.actions
+export const {fetchPayments, updatePaymentName, createPayment, deletePaymentAction} = paymentSlice.actions
 export default paymentSlice.reducer
