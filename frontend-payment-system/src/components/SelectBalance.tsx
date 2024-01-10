@@ -3,16 +3,15 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
 import { Balance } from '../redux/balance.slice';
+import { useGetBalance } from '../hooks/useGetBalance';
 
 type SelectBalanceProps = {
   setBalance: React.Dispatch<React.SetStateAction<string>>, 
 }
 
 export default function SelectBalance({setBalance}:SelectBalanceProps) {
-  const balanceState = useSelector((state: RootState) => state.balance)
+  const balanceState = useGetBalance()
   const [balanceId, setBalanceId] = React.useState('');
 
   const handleChange = (e: SelectChangeEvent) => {
@@ -28,7 +27,7 @@ export default function SelectBalance({setBalance}:SelectBalanceProps) {
         label="Selecione o saldo a utilizar"
         onChange={handleChange}
       >
-        {balanceState.balance.map((item: Balance) => {
+        {balanceState.map((item: Balance) => {
           return(
             <MenuItem  key={item.id} value={item.id}>
               {item.balanceName} - R$ {item.totalValue.toFixed(2)}
