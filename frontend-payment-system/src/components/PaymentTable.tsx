@@ -10,6 +10,8 @@ import TableRow from '@mui/material/TableRow';
 import { IconButton } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import { Payment } from '../redux/payment.slice';
+import DeletePayment from './DeletePayment';
 
 interface Column {
   id: 'name' | 'description' | 'amount' | 'action';
@@ -27,13 +29,14 @@ const columns: readonly Column[] = [
     label: 'Valor',
     minWidth: 40,
     align: 'right',
-    format: (value: number) => value.toLocaleString('en-US'),
+    format: (value: number) => `R$ ${value.toFixed(2)}`,
   }
 ];
 
 export default function PaymentTable({payment}:{payment: any}) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [ deletePayment, setDeletePayment] = React.useState(initialDeletePayment)
   let rows: any = []
 
   if(payment) {
@@ -51,6 +54,8 @@ export default function PaymentTable({payment}:{payment: any}) {
   };
 
   return (
+    <>
+    <DeletePayment deletePayment={deletePayment} setDeletePayment={setDeletePayment} />
     <Paper sx={style.container}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
@@ -87,7 +92,11 @@ export default function PaymentTable({payment}:{payment: any}) {
                         <Link to="/pagamentos/editar" state={row}>
                           <IconButton><Edit /></IconButton> 
                         </Link>
-                        <IconButton><Delete /></IconButton>
+                        <IconButton 
+                          onClick={() => setDeletePayment({payment: row, openModal: true})}
+                        >
+                            <Delete />
+                        </IconButton>
                     </TableCell>
                 </TableRow>
                 );
@@ -105,6 +114,7 @@ export default function PaymentTable({payment}:{payment: any}) {
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
     </Paper>
+    </>
   );
 }
 
@@ -113,4 +123,21 @@ const style = {
     width: '100%', 
     overflow: 'hidden'
   }
+}
+
+export const initialDeletePayment: InitialDelPaymentState = {
+  payment: {
+    id: "string",
+    userId: "string",
+    name: "string",
+    description: "string",
+    amount: 0,
+    balanceAccount: "string",
+  }, 
+  openModal: false
+}
+
+export type InitialDelPaymentState = {
+  payment: Payment,
+  openModal: boolean
 }
