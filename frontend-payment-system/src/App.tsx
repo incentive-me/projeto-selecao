@@ -24,4 +24,5 @@ export default function App() {
   }, [])
 
   return <Load load={load} />
+
 }
