@@ -1,4 +1,4 @@
-import { User, UserAndToken, UserInterface } from "../domain/user.entity";
+import { User, UserAndToken, UserInfo, UserInterface } from "../domain/user.entity";
 import { v4 as uuidv4 } from "uuid";
 import bcrypt  from 'bcryptjs'
 import jwt from 'jsonwebtoken'
@@ -35,7 +35,6 @@ export class UserUseCase implements UserInterface {
   async GetUser(email: string, password: string): Promise<UserAndToken | Error> {
     const repo = await this.userRepository.LoginUserRepo(email, password)
 
-    console.log(repo)
     if(repo) {
       const verify = await bcrypt.compare(password, repo[0].password)
 
@@ -61,6 +60,15 @@ export class UserUseCase implements UserInterface {
       return user;
     }
     throw Error("User is not valid");
+  }
+
+  async GetUserById(userInfo: UserInfo): Promise<User | Error>{
+    if (!userInfo.id) {
+      throw Error("User is invalid");
+    }
+
+    const getUser = await this.userRepository.getUserById(userInfo.id)
+    return getUser
   }
 
 
