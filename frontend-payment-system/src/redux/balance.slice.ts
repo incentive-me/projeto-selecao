@@ -28,6 +28,12 @@ const balanceSlice = createSlice({
                 }
             return balance
             })  
+        },
+        deleteBalanceState: (state, action: PayloadAction<Balance>) => {
+            state.balance = state.balance.filter((balance) => 
+                balance.id !== action.payload.id
+                
+            ) 
         } 
     }
 })
@@ -46,5 +52,5 @@ export type Balance = {
     totalValue: number
 }
 
-export const {fetchBalances, updateName, createBalance, decreaseBalance} = balanceSlice.actions
+export const {fetchBalances, updateName, createBalance, decreaseBalance, deleteBalanceState} = balanceSlice.actions
 export default balanceSlice.reducer
