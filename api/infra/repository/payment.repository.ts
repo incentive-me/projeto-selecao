@@ -14,9 +14,8 @@ interface PaymentRepositoryInterface {
 export class PaymentRepository implements PaymentRepositoryInterface {
 
     async CreatePayment(payment: Payment, balance: Balance): Promise<any> {
-
         const newBalanceAmount = balance.totalValue - payment.amount
-        const newBalanceUsed = balance.valueUsed + payment.amount
+        const newBalanceUsed: number = Number(balance.valueUsed) + Number(payment.amount)
 
         const [rows] = await connection.promise().query(
             `INSERT INTO payment (id, userId, name, description, amount, balanceAccount)
@@ -57,12 +56,8 @@ export class PaymentRepository implements PaymentRepositoryInterface {
         const [rows] = await connection.promise().query(
             `UPDATE payment SET name = ? WHERE id = ?`, [newName, payment.id]
         )
-      
-        if(rows) {
-            return true
-        }
 
-        return false
+        return rows
     }
 
     async VerifyBalanceAmount(payment: Payment): Promise<any>{
