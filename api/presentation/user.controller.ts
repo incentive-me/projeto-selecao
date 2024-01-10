@@ -5,6 +5,7 @@ import { Request, Response } from "express";
 interface UserControllerInterface {
   CreateUser(req: Request, res: Response): Promise<void>;
   LoginUser(req: Request, res: Response): Promise<void>;
+  GetUserById(req: Request, res: Response): Promise<void>;
 }
 
 export class UserController implements UserControllerInterface {
@@ -18,7 +19,7 @@ export class UserController implements UserControllerInterface {
       
         try {
           const newUser = await this.userUseCase.CreateUser(user)
-          res.status(200).send(newUser)
+          res.status(201).send(newUser)
 
         } catch(err) {
           res.status(400).json({error: err.message})
@@ -35,5 +36,17 @@ export class UserController implements UserControllerInterface {
         } catch(err) {
           res.status(400).json({error: err.message})
         }
+    }
+
+    async GetUserById(req: Request, res: Response): Promise<void>{
+      const { userInfo } = req.body
+
+      try {
+        const getUserById = await this.userUseCase.GetUserById(userInfo)
+        res.status(200).send(getUserById)
+      } catch(err) {
+        res.status(400).json({error: err.message})
+      }
+
     }
 }
