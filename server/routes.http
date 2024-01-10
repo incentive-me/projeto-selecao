@@ -1,0 +1,149 @@
+
+# @name auth
+POST  http://localhost:3000/register
+Content-Type: application/json
+
+{
+    "code": "8d3483eeb6e2e73fdfe6"
+}
+
+###
+# @name createRepo
+PUT  http://localhost:3000/register/repo/clr6fnpge000014b5vy01xcjx
+Content-Type: application/json
+
+{
+    "id": 739929551,
+    "node_id": "R_kgDOLBptzw",
+    "name": "todo-list",
+    "full_name": "jakeliny/todo-list",
+    "private": false,
+    "owner": {
+      "login": "jakeliny",
+      "id": 17316392,
+      "node_id": "MDQ6VXNlcjE3MzE2Mzky",
+      "avatar_url": "https://avatars.githubusercontent.com/u/17316392?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jakeliny",
+      "html_url": "https://github.com/jakeliny",
+      "followers_url": "https://api.github.com/users/jakeliny/followers",
+      "following_url": "https://api.github.com/users/jakeliny/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jakeliny/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jakeliny/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jakeliny/subscriptions",
+      "organizations_url": "https://api.github.com/users/jakeliny/orgs",
+      "repos_url": "https://api.github.com/users/jakeliny/repos",
+      "events_url": "https://api.github.com/users/jakeliny/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jakeliny/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "html_url": "https://github.com/jakeliny/todo-list",
+    "description": "TO DO List createad with React and TypeScript",
+    "fork": false,
+    "url": "https://api.github.com/repos/jakeliny/todo-list",
+    "forks_url": "https://api.github.com/repos/jakeliny/todo-list/forks",
+    "keys_url": "https://api.github.com/repos/jakeliny/todo-list/keys{/key_id}",
+    "collaborators_url": "https://api.github.com/repos/jakeliny/todo-list/collaborators{/collaborator}",
+    "teams_url": "https://api.github.com/repos/jakeliny/todo-list/teams",
+    "hooks_url": "https://api.github.com/repos/jakeliny/todo-list/hooks",
+    "issue_events_url": "https://api.github.com/repos/jakeliny/todo-list/issues/events{/number}",
+    "events_url": "https://api.github.com/repos/jakeliny/todo-list/events",
+    "assignees_url": "https://api.github.com/repos/jakeliny/todo-list/assignees{/user}",
+    "branches_url": "https://api.github.com/repos/jakeliny/todo-list/branches{/branch}",
+    "tags_url": "https://api.github.com/repos/jakeliny/todo-list/tags",
+    "blobs_url": "https://api.github.com/repos/jakeliny/todo-list/git/blobs{/sha}",
+    "git_tags_url": "https://api.github.com/repos/jakeliny/todo-list/git/tags{/sha}",
+    "git_refs_url": "https://api.github.com/repos/jakeliny/todo-list/git/refs{/sha}",
+    "trees_url": "https://api.github.com/repos/jakeliny/todo-list/git/trees{/sha}",
+    "statuses_url": "https://api.github.com/repos/jakeliny/todo-list/statuses/{sha}",
+    "languages_url": "https://api.github.com/repos/jakeliny/todo-list/languages",
+    "stargazers_url": "https://api.github.com/repos/jakeliny/todo-list/stargazers",
+    "contributors_url": "https://api.github.com/repos/jakeliny/todo-list/contributors",
+    "subscribers_url": "https://api.github.com/repos/jakeliny/todo-list/subscribers",
+    "subscription_url": "https://api.github.com/repos/jakeliny/todo-list/subscription",
+    "commits_url": "https://api.github.com/repos/jakeliny/todo-list/commits{/sha}",
+    "git_commits_url": "https://api.github.com/repos/jakeliny/todo-list/git/commits{/sha}",
+    "comments_url": "https://api.github.com/repos/jakeliny/todo-list/comments{/number}",
+    "issue_comment_url": "https://api.github.com/repos/jakeliny/todo-list/issues/comments{/number}",
+    "contents_url": "https://api.github.com/repos/jakeliny/todo-list/contents/{+path}",
+    "compare_url": "https://api.github.com/repos/jakeliny/todo-list/compare/{base}...{head}",
+    "merges_url": "https://api.github.com/repos/jakeliny/todo-list/merges",
+    "archive_url": "https://api.github.com/repos/jakeliny/todo-list/{archive_format}{/ref}",
+    "downloads_url": "https://api.github.com/repos/jakeliny/todo-list/downloads",
+    "issues_url": "https://api.github.com/repos/jakeliny/todo-list/issues{/number}",
+    "pulls_url": "https://api.github.com/repos/jakeliny/todo-list/pulls{/number}",
+    "milestones_url": "https://api.github.com/repos/jakeliny/todo-list/milestones{/number}",
+    "notifications_url": "https://api.github.com/repos/jakeliny/todo-list/notifications{?since,all,participating}",
+    "labels_url": "https://api.github.com/repos/jakeliny/todo-list/labels{/name}",
+    "releases_url": "https://api.github.com/repos/jakeliny/todo-list/releases{/id}",
+    "deployments_url": "https://api.github.com/repos/jakeliny/todo-list/deployments",
+    "created_at": "2024-01-07T01:08:37Z",
+    "updated_at": "2024-01-09T00:58:05Z",
+    "pushed_at": "2024-01-08T21:44:09Z",
+    "git_url": "git://github.com/jakeliny/todo-list.git",
+    "ssh_url": "git@github.com:jakeliny/todo-list.git",
+    "clone_url": "https://github.com/jakeliny/todo-list.git",
+    "svn_url": "https://github.com/jakeliny/todo-list",
+    "homepage": null,
+    "size": 39,
+    "stargazers_count": 10,
+    "watchers_count": 10,
+    "language": "TypeScript",
+    "has_issues": true,
+    "has_projects": true,
+    "has_downloads": true,
+    "has_wiki": true,
+    "has_pages": false,
+    "has_discussions": false,
+    "forks_count": 0,
+    "mirror_url": null,
+    "archived": false,
+    "disabled": false,
+    "open_issues_count": 0,
+    "license": null,
+    "allow_forking": true,
+    "is_template": false,
+    "web_commit_signoff_required": false,
+    "topics": [
+
+    ],
+    "visibility": "public",
+    "forks": 0,
+    "open_issues": 0,
+    "watchers": 10,
+    "default_branch": "main"
+}
+
+###
+# @name getAllRepos
+GET   http://localhost:3000/clr6lr71f0000r75z6326w5s2
+
+
+###
+# @name createTag
+POST    http://localhost:3000/tag
+Content-Type: application/json
+
+{
+  "RepoId": "clr6m43ov0006lngqy6wcn5sx",
+  "name": "react native"
+}
+
+
+###
+# @name getAllTags
+GET     http://localhost:3000/tags
+
+
+###
+# @name deleteTag
+DELETE http://localhost:3000/tag/clr6r8s1g0000ndc22x6lwf2t/clr6m43qq0007lngqnluyjlss
+
+###
+# @name filterRepoByTag
+GET http://localhost:3000/filter/clr6rbgbf0001ndc2snq0n274
+
+###
+# @name getRepo
+GET http://localhost:3000/repo/clr6m43x5000dlngq51ecbf56

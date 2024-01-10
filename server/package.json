@@ -1,0 +1,24 @@
+{
+  "name": "github-stars",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/server.js",
+    "dev": "node --watch --no-warnings ./src/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/cors": "^8.5.0",
+    "@prisma/client": "^5.7.1",
+    "axios": "^1.6.5",
+    "fastify": "^4.25.2"
+  },
+  "devDependencies": {
+    "dotenv": "^16.3.1",
+    "prisma": "^5.7.1"
+  }
+}
