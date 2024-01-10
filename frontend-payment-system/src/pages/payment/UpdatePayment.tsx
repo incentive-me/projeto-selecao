@@ -9,6 +9,8 @@ import { inputStyle } from "../../styles/global.style";
 import { httpClient } from "../../utils/http";
 import { updatePaymentName } from "../../redux/payment.slice";
 import { RootState } from "../../redux/store";
+import { errorPaymentMessage } from "../../utils/paymentErrorMessages";
+import { ErrorMessage, initialStateErrMessage } from "../balance/NewBalance";
 
 export default function UpdatePayment(){
     const dispatch = useDispatch()
@@ -17,12 +19,21 @@ export default function UpdatePayment(){
     const [ newName, setNewName ] = useState(state.name)
     const balance = useSelector((state:RootState) => state.balance)
     const findBalance = balance.balance.filter((item) => item.id === state.balanceAccount)
+    const [err, setErr] = useState<ErrorMessage>(initialStateErrMessage)
 
     const handleUpdatePaymentName = () => {
         httpClient("payment", "PATCH", {payment: state, newName})
             .then((res) => {
                 dispatch(updatePaymentName(res.data))
-                navigate("/pagamentos")})
+                navigate("/pagamentos", {
+                    state: {
+                        message: "Pedido criado com sucesso",
+                        open: true
+                    }
+                })}).catch((err) => {
+                    const error = err.response.data.err
+                    setErr(errorPaymentMessage(error))
+                })
     }
 
     return(
@@ -34,8 +45,11 @@ export default function UpdatePayment(){
                         label="Nome" 
                         sx={inputStyle}
                         value={newName}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
-                            setNewName(e.target.value)}
+                        error={err.field === "name"}
+                        helperText={err.field === "name" && err.message}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            setErr(initialStateErrMessage)
+                            setNewName(e.target.value)}}
                     />
                     <TextField 
                         disabled={true} 
