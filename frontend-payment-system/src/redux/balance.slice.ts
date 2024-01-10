@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
+import { Payment } from "./payment.slice"
 
 const initialBalanceState: BalanceState = {
     balance: []
@@ -34,7 +35,16 @@ const balanceSlice = createSlice({
                 balance.id !== action.payload.id
                 
             ) 
-        } 
+        },
+        increaseBalance: (state, action: PayloadAction<Payment>) => {
+            state.balance = state.balance.map((balance) => {
+                if(balance.id === action.payload.balanceAccount){
+                    balance.totalValue += action.payload.amount
+                    balance.valueUsed -= action.payload.amount
+                }
+            return balance
+            })  
+        }
     }
 })
 
