@@ -6,7 +6,7 @@ import { connection } from "../db/mysql";
 interface PaymentRepositoryInterface {
     CreatePayment(payment: Payment, balance: Balance): Promise<any>
     GetallPayments(userInfo: UserInfo): Promise<any>
-    DeletePayment(id: string): Promise<any>
+    DeletePayment(payment: Payment, balance: Balance): Promise<any>
     UpdatePaymentName(payment: Payment, newName: string): Promise<any>
     VerifyBalanceAmount(payment: Payment): Promise<any>
     GetPaymentById(id: string): Promise<any>
@@ -56,10 +56,16 @@ export class PaymentRepository implements PaymentRepositoryInterface {
         return rows
     }
 
-    async DeletePayment(id: string): Promise<any>{
+    async DeletePayment(payment: Payment, balance: Balance): Promise<any>{
+        const totalValue: number = Number(balance.totalValue) + Number(payment.amount)
+        const valueUsed: number = Number(balance.valueUsed) - Number(payment.amount)
+
         const [rows] = await connection.promise().query(
-            `DELETE FROM payment WHERE id = ?`, [id]
+            `DELETE FROM payment WHERE id = ?;
+             UPDATE balance SET totalValue = ?, valueUsed = ? WHERE id = ?`, 
+             [payment.id, totalValue, valueUsed, payment.balanceAccount]
         )
+
         return rows
     }
 
