@@ -19,6 +19,15 @@ const balanceSlice = createSlice({
                 }
             return balance
             })  
+        },
+        decreaseBalance: (state, action) => {
+            state.balance = state.balance.map((balance) => {
+                if(balance.id === action.payload.balanceAccount){
+                    balance.valueUsed =+ action.payload.amount
+                    balance.totalValue -= action.payload.amount
+                }
+            return balance
+            })  
         } 
     }
 })
@@ -37,5 +46,5 @@ export type Balance = {
     totalValue: number
 }
 
-export const {fetchBalances, updateName, createBalance} = balanceSlice.actions
+export const {fetchBalances, updateName, createBalance, decreaseBalance} = balanceSlice.actions
 export default balanceSlice.reducer
