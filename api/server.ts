@@ -31,6 +31,7 @@ const paymentUseCase = new PaymentUseCase(paymentRepository)
 const paymentController = new PaymentController(paymentUseCase)
 
 app.post("/user", (req, res) => userController.CreateUser(req, res))
+app.get("/user", middlewareJWT, (req, res) => userController.GetUserById(req, res))
 app.post("/login", (req, res) => userController.LoginUser(req, res))
 
 app.delete("/balance/:id", middlewareJWT, (req, res) => balanceController.DeleteBalanceController(req, res))
