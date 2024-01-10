@@ -45,6 +45,13 @@ export class PaymentRepository implements PaymentRepositoryInterface {
         return rows
     }
 
+    async GetPaymentById(id: string): Promise<any>{
+        const [rows] = await connection.promise().query(
+            `SELECT * FROM paymente WHERE id = ?`, [id]
+        )
+        return rows
+    }
+
     async DeletePayment(id: string): Promise<any>{
         const [rows] = await connection.promise().query(
             `DELETE FROM payment WHERE id = ?`, [id]
