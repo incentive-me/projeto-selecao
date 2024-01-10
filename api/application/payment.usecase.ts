@@ -34,10 +34,11 @@ export class PaymentUseCase implements PaymentInterface {
     }
 
     async DeletePayment(id: string): Promise<any> {
-        const deletePayment = await this.paymentRepository.DeletePayment(id)
-        console.log(deletePayment)
+        const payment = await this.paymentRepository.GetPaymentById(id)
+        const balance = await this.paymentRepository.VerifyBalanceAmount(payment)
+        const deletePayment = await this.paymentRepository.DeletePayment(payment,balance)
 
-        return true
+        return deletePayment
     }
 
     async UpdatePaymentName(payment: Payment, newName: string): Promise<any> {
