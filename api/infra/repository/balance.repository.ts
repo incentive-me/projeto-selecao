@@ -7,6 +7,7 @@ interface BalanceInterface {
     GetAllBalances(userInfo: UserInfo): Promise<Balance[]>
     DeleteBalances(id: string): Promise<any>
     UpdateNameBalance(balance: Balance, newName: string): Promise<any>
+    GetBalanceById(id: string): Promise<any>
 }
 
 export default class BalanceRepository implements BalanceInterface{
@@ -26,6 +27,17 @@ export default class BalanceRepository implements BalanceInterface{
 
         const [rows] = await connection.promise().query(
             `SELECT * FROM balance WHERE userId = ?`, [id])
+
+        return rows
+    }
+
+    async GetBalanceById(id: string): Promise<any>{
+        const [rows] = await connection.promise().query(
+            `SELECT * from balance WHERE id = ?`, [id]
+        )
+        if(rows.length !== 0){
+            return rows[0]
+        }
 
         return rows
     }
