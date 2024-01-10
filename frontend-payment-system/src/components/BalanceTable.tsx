@@ -149,5 +149,5 @@ export const initialDeleteState: InitialDelState = {
 
 export type InitialDelState = {
   balance: Balance,
-  openModal: false
+  openModal: boolean
 }
