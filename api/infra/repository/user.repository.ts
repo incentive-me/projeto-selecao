@@ -4,6 +4,7 @@ import { connection } from "../db/mysql";
 interface UserInterfaceRepo {
   CreateUserRepo(user: User): Promise<User | Error>;
   LoginUserRepo(email: string, password: string): Promise<any>;
+  getUserById(id: string): Promise<User | Error>;
 }
 
 export default class UserRepository implements UserInterfaceRepo { 
@@ -23,6 +24,17 @@ export default class UserRepository implements UserInterfaceRepo {
     const [rows] = await connection.promise().query(
       `SELECT * FROM user WHERE email = ?`, [email]
     )
+    return rows
+  }
+
+  async getUserById(id: string): Promise<User | Error> {
+    const [rows] = await connection.promise().query(
+      `SELECT * FROM user WHERE id = ?`, [id]
+    )
+    if(rows.lenght ==! 0){
+      return rows[0]
+    }
+
     return rows
   }
 }
