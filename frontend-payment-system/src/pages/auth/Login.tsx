@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fecthUser } from "../../redux/user.slice";
 import { RootState } from "../../redux/store";
 import { ErrorMessage, initialStateErrMessage } from "../balance/NewBalance";
+import { baseUrl } from "../../utils/http";
 
 export default function Login(){
     const [showPassword, setShowPassword] = React.useState(false);
@@ -25,7 +26,7 @@ export default function Login(){
     };
 
     const login = () => {
-        axios.post("http://localhost:3001/login", loginData,
+        axios.post(`${baseUrl}/login`, loginData,
             { headers: { 'Content-Type': 'application/json' }})
             .then((res) => {
                 localStorage.setItem("paymentsToken", res.data.token)

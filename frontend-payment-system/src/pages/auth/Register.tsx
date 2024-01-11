@@ -8,6 +8,7 @@ import { fecthUser } from "../../redux/user.slice";
 import { ErrorMessage, initialStateErrMessage } from "../balance/NewBalance";
 import { errorRegisterMessage } from "../../utils/registerErrorMessages";
 import { verifyPassword } from "../../utils/verifyPassword";
+import { baseUrl } from "../../utils/http";
 
 export default function Register(){
     const [showPassword, setShowPassword] = React.useState(false);
@@ -31,7 +32,7 @@ export default function Register(){
         if(verify.field !== "") {
             return setErr(verify)
         }
-        axios.post("http://localhost:3001/user", resgisterData, 
+        axios.post(`${baseUrl}/user`, resgisterData, 
             { headers: { 'Content-Type': 'application/json' }})
                 .then((res) => {
                     localStorage.setItem("paymentsToken", res.data.token)

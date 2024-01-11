@@ -1,10 +1,12 @@
 import axios from "axios"
 
+export const baseUrl: string = "https://api-payments-27af.onrender.com"
+
 export async function httpClient(endpoint: string, method: string, data: any){
     const token = localStorage.getItem("paymentsToken")
 
     const res = await axios({
-        url: `http://localhost:3001/${endpoint}`,
+        url: `${baseUrl}/${endpoint}`,
         method: method,
         data: JSON.stringify(data),
         headers: {
