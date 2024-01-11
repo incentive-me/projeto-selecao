@@ -1,10 +1,12 @@
 import { ArrowCircleDown, ArrowCircleUp, CurrencyDollar } from 'phosphor-react';
 import { useMemo } from 'react';
 
-import { transactions } from '../../mock-dashboard.json';
 import { priceFormatter } from '../utils/fomatter';
+import { TransactionsContext } from '../context/TransactionsContext';
 
 export function Dashboard() {
+  const transactions = TransactionsContext();
+
   const summary = useMemo(() => {
     return transactions.reduce(
       (acc, transaction) => {

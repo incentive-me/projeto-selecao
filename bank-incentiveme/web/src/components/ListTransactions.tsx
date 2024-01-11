@@ -1,7 +1,10 @@
-import { transactions } from '../../mock-dashboard.json';
 import { priceFormatter, dateFormatter } from '../utils/fomatter';
 
+import { TransactionsContext } from '../context/TransactionsContext';
+
 export function ListTransactions() {
+  const transactions = TransactionsContext();
+
   return (
     <table className='w-full rounded-md border-separate border-spacing-x-0 border-spacing-y-2 mt-6'>
       <tbody className='w-full'>
@@ -19,7 +22,7 @@ export function ListTransactions() {
               </td>
               <td className='text-stone-300 px-5 py-8'>{transaction.category}</td>
               <td className='text-stone-300 px-5 py-8'>
-                {dateFormatter.format(new Date(transaction.createdAt))}
+                {dateFormatter.format(new Date(transaction.created_at))}
               </td>
             </tr>
           )
