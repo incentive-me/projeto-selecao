@@ -10,6 +10,10 @@ export const layoutStyle = {
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
+            position: "fixed",
+            top: "0",
+            zIndex: 40,
+            width: "100%"
         }, 
         account: {
             backgroundColor: "#BDBDBD",
@@ -43,11 +47,13 @@ export const layoutStyle = {
           background: "linear-gradient(180deg, #ffffff26 0%, #ffffff26 100%), #121212",
           boxShadow: "0px 6px 30px 5px #0000001f, 0px 16px 24px 2px #00000024, 0px 8px 10px -5px #00000033",
           width: "320px",
-          heigth: "400px",
+          height: "calc(100vh)",
+          position: "fixed",
+          paddingTop: "73px",
           "@media(max-width: 800px)": {
             display: "none",
             width: "100%",
-            height: "calc(100vh - 73px)",
+            height: "100vh",
             position: "absolute",
             zIndex: "20"
           }
@@ -75,10 +81,13 @@ export const layoutStyle = {
     },
     pageContent: {
         width: "100%",
-        paddingTop: "24px",
-        paddingLeft: "24px",
+        paddingTop: "97px",
+        paddingLeft: "344px",
         paddingRight: "24px",
-        paddingBottom: "24px"
+        paddingBottom: "24px",
+        "@media(max-width: 800px)": {
+            paddingLeft: "24px",
+        }
     },
     buttonMenu: {
         display: "none",
