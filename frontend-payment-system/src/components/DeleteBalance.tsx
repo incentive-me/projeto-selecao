@@ -5,12 +5,11 @@ import { DeleteSharp } from "@mui/icons-material";
 import { httpClient } from "../utils/http";
 import { useDispatch } from "react-redux";
 import { deleteBalanceState } from "../redux/balance.slice";
-import { useNavigate } from "react-router-dom";
+import { NotificationMessage } from "./DeletePayment";
 
 
-export default function DeleteModal({deleteBalance, setDeleteBalance}: DeleteProps){
+export default function DeleteBalance({deleteBalance, setDeleteBalance, setMessage}: DeleteProps){
     const dispatch = useDispatch()
-    const navigate = useNavigate()
     const open: string = deleteBalance.openModal ? "flex" : "none"
     const height = window.innerHeight
     const width = window.innerWidth
@@ -21,8 +20,14 @@ export default function DeleteModal({deleteBalance, setDeleteBalance}: DeletePro
                 if(res.data.delete) {
                     dispatch(deleteBalanceState(deleteBalance.balance))
                     setDeleteBalance(initialDeleteState)
-                    navigate("/saldos")}})
-            .catch(err => console.log(err))
+                    setMessage({ message: "Saldo excluido com sucesso", open: true, type: "success"})}})
+            .catch(() => {
+                setDeleteBalance(initialDeleteState)
+                setMessage({ 
+                    message: "Saldo não excluido: o saldo contém pagamentos vinculados", 
+                    open: true, 
+                    type: "error"})
+            })
     }
 
     return(
@@ -109,4 +114,5 @@ const style = {
 export type DeleteProps = {
     deleteBalance: InitialDelState, 
     setDeleteBalance: React.Dispatch<SetStateAction<InitialDelState>>
+    setMessage: React.Dispatch<SetStateAction<NotificationMessage>>,
 }

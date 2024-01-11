@@ -11,7 +11,8 @@ import { IconButton } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { Payment } from '../redux/payment.slice';
-import DeletePayment from './DeletePayment';
+import DeletePayment, { NotificationMessage } from './DeletePayment';
+import Notification from './Notification';
 
 interface Column {
   id: 'name' | 'description' | 'amount' | 'action';
@@ -37,7 +38,21 @@ export default function PaymentTable({payment}:{payment: any}) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [ deletePayment, setDeletePayment] = React.useState(initialDeletePayment)
+  const [ message, setMessage] = React.useState<NotificationMessage>({
+    open: false,
+    message: ""
+  })
+  const [openNotification, setOpenNotification ] = React.useState(message?.open)
   let rows: any = []
+
+  React.useEffect(()  => {
+    if(message.open){
+      setOpenNotification(true)
+      setTimeout(() => 
+        setMessage({open: false, message: ""})
+      ,6000)
+    }
+  }, [message])
 
   if(payment) {
     rows = payment
@@ -55,7 +70,12 @@ export default function PaymentTable({payment}:{payment: any}) {
 
   return (
     <>
-    <DeletePayment deletePayment={deletePayment} setDeletePayment={setDeletePayment} />
+      <Notification
+        open={openNotification} 
+        setOpen={setOpenNotification}
+        message={message?.message} 
+      />
+    <DeletePayment deletePayment={deletePayment} setDeletePayment={setDeletePayment} setMessage={setMessage} />
     <Paper sx={style.container}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
