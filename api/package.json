@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "nodemon ./server.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "start": "node ./build/server.js"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
