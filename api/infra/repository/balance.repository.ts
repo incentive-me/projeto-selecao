@@ -35,8 +35,10 @@ export default class BalanceRepository implements BalanceInterface{
         const [rows] = await connection.promise().query(
             `SELECT * from balance WHERE id = ?`, [id]
         )
-        if(rows.length !== 0){
-            return rows[0]
+
+        let result: any = rows
+        if(result?.length !== 0){
+            return result[0]
         }
 
         return rows

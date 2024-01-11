@@ -50,8 +50,10 @@ export class PaymentRepository implements PaymentRepositoryInterface {
         const [rows] = await connection.promise().query(
             `SELECT * FROM payment WHERE id = ?`, [id]
         )
-        if(rows.length !== 0){
-            return rows[0]
+
+        let result: any = rows
+        if(result.length !== 0){
+            return result[0]
         }
         return rows
     }
@@ -81,6 +83,8 @@ export class PaymentRepository implements PaymentRepositoryInterface {
         const [rows] = await connection.promise().query(
             `SELECT * FROM balance WHERE id = ?`, [payment.balanceAccount]
         )
-        return rows[0]
+        
+        let result: any = rows
+        return result[0]
     }
 }

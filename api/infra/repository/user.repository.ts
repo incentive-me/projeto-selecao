@@ -31,10 +31,12 @@ export default class UserRepository implements UserInterfaceRepo {
     const [rows] = await connection.promise().query(
       `SELECT * FROM user WHERE id = ?`, [id]
     )
-    if(rows.lenght ==! 0){
-      return rows[0]
+
+    let result: any = rows
+    if(result.lenght ==! 0){
+      return result[0]
     }
 
-    return rows
+    return result
   }
 }

@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from 'jsonwebtoken'
 
-export function middlewareJWT(req, res, next: NextFunction){
-    const token = req.headers.authorization
+export function middlewareJWT(req: Request, res: Response, next: NextFunction){
+    const token = req.headers.authorization ? req.headers.authorization : ""
 
     const jwtSecret: string = process.env.SECRETJWT ? process.env.SECRETJWT : ""
     const verify = jwt.verify(token, jwtSecret, (err, decoded) => {
