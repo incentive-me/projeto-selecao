@@ -14,7 +14,7 @@ export default function Layout() {
     const [openMenu, setOpenMenu] = useState(false)
 
     const handleLogout = () => {
-        localStorage.removeItem("apopyToken");
+        localStorage.removeItem("paymentsToken");
         dispatch(fecthUser(initialUserState.user));
     }
 
