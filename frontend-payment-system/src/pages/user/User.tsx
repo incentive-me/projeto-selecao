@@ -12,7 +12,7 @@ export default function User(){
     const user = useSelector((state: RootState) => state.user)
 
     const handleLogout = () => {
-        localStorage.removeItem("apopyToken");
+        localStorage.removeItem("paymentsToken");
         dispatch(fecthUser(initialUserState.user));
     }
     
