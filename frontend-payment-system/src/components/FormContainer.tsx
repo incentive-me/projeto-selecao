@@ -9,7 +9,10 @@ export default function FormContainer({children}: {children: React.ReactNode}){
             flexDirection: "column",
             paddingTop: "32px",
             paddingBottom: "24px",
-            justifyContent: "space-between"
+            justifyContent: "space-between",
+                "@media(max-width: 800px)": {
+                    height: "calc(100vh - 189.5px)"
+                }
         }}>
             {children}
         </Box>
