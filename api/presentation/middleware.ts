@@ -4,7 +4,8 @@ import jwt from 'jsonwebtoken'
 export function middlewareJWT(req, res, next: NextFunction){
     const token = req.headers.authorization
 
-    const verify = jwt.verify(token, "secret", (err, decoded) => {
+    const jwtSecret: string = process.env.SECRETJWT ? process.env.SECRETJWT : ""
+    const verify = jwt.verify(token, jwtSecret, (err, decoded) => {
         if (err) {
             return res.status(400).json({error: err.message})
             

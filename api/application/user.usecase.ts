@@ -12,6 +12,8 @@ export class UserUseCase implements UserInterface {
   async CreateUser(user: User): Promise<UserAndToken | Error> {
     const id = uuidv4();
     user.id = id
+
+    console.log(process.env)
     
     const userValid = UserUseCase.validateUser(user);
     
@@ -20,7 +22,8 @@ export class UserUseCase implements UserInterface {
 
     const repo = await this.userRepository.CreateUserRepo(user)
 
-    const token = jwt.sign({ id: user.id, email: user.email}, `${process.env.SECRETJWT}`, {expiresIn: "2h"})
+    const jwtSecret: string = process.env.SECRETJWT ? process.env.SECRETJWT : ""
+    const token = jwt.sign({ id: user.id, email: user.email}, jwtSecret, {expiresIn: "2h"})
   
     return {
       user: {
@@ -42,7 +45,8 @@ export class UserUseCase implements UserInterface {
         throw Error("Email or Password invalid")
       }
     }
-    const token = jwt.sign({ id: repo[0].id, email: repo[0].email}, `${process.env.SECRETJWT}`, {expiresIn: "2h"})
+    const jwtSecret: string = process.env.SECRETJWT ? process.env.SECRETJWT : ""
+    const token = jwt.sign({ id: repo[0].id, email: repo[0].email}, jwtSecret, {expiresIn: "2h"})
     
     return {
       user: {
