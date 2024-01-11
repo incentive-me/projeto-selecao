@@ -2,10 +2,11 @@ import * as React from 'react';
 import Snackbar from '@mui/material/Snackbar';
 import { Alert } from '@mui/material';
 
-export default function Notification({open, setOpen, message}:{
+export default function Notification({open, setOpen, message, type}:{
     open: boolean, 
     setOpen: React.Dispatch<React.SetStateAction<boolean>>
     message: string
+    type: "success" | "error"
 }){
 
       const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
@@ -24,7 +25,7 @@ export default function Notification({open, setOpen, message}:{
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             color='#fff'
         >
-            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+            <Alert onClose={handleClose} severity={type} sx={{ width: '100%' }}>
                 {message}
             </Alert>
         </Snackbar>
