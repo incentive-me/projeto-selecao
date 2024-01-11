@@ -15,7 +15,6 @@ import NewBalance from "../pages/balance/NewBalance";
 import UpdateBalance from "../pages/balance/UpdateBalance";
 import User from "../pages/user/User";
 
-  
   export const router = createBrowserRouter(
     createRoutesFromElements(
       <>
