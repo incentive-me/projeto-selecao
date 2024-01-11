@@ -21,7 +21,7 @@ export default function DeletePayment({deletePayment, setDeletePayment, setMessa
                 if(res.data.deleted) {
                     dispatch(deletePaymentAction(deletePayment.payment))
                     setDeletePayment(initialDeletePayment)
-                    setMessage({ message: "Pedido excluido com sucesso", open: true, type: "success"})
+                    setMessage({ message: "Pedido excluído com sucesso", open: true, type: "success"})
             }}).catch(() => 
                 setMessage({ message: "Ocorreu um erro", open: true, type: "error"}))
     }

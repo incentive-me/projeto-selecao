@@ -20,11 +20,11 @@ export default function DeleteBalance({deleteBalance, setDeleteBalance, setMessa
                 if(res.data.delete) {
                     dispatch(deleteBalanceState(deleteBalance.balance))
                     setDeleteBalance(initialDeleteState)
-                    setMessage({ message: "Saldo excluido com sucesso", open: true, type: "success"})}})
+                    setMessage({ message: "Saldo excluído com sucesso", open: true, type: "success"})}})
             .catch(() => {
                 setDeleteBalance(initialDeleteState)
                 setMessage({ 
-                    message: "Saldo não excluido: o saldo contém pagamentos vinculados", 
+                    message: "Saldo não excluído: o saldo contém pagamentos vinculados", 
                     open: true, 
                     type: "error"})
             })
