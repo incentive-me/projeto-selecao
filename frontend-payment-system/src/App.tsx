@@ -14,13 +14,15 @@ export default function App() {
   useEffect(() => {
       if(user.id === "" && token){
           httpClient("user", "GET", {})
-          .then((res) => 
-            dispatch(fecthUser(res.data[0])))
-          .catch(() => localStorage.removeItem("paymentsToken"))
-          setLoad(false)
+          .then((res) => {
+            dispatch(fecthUser(res.data[0]))
+            setLoad(false)
+          }).catch(() => {
+            localStorage.removeItem("paymentsToken")
+            setLoad(false)})
       } else {
-        setLoad(false)
-    }
+        setTimeout(() => setLoad(false), 2000)
+      }
   }, [])
 
   return <Load load={load} />
