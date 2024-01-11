@@ -21,18 +21,17 @@ export default function User(){
             <Title title="Usuário" />
             <FormContainer>
                 <Box component="div">
-
-                <TextField 
-                    label="Nome" 
-                    sx={inputStyle}
-                    disabled={true}
-                    value={user.user.name}
+                    <TextField 
+                        label="Nome" 
+                        sx={inputStyle}
+                        disabled={true}
+                        value={user.user.name}
                     />
-                <TextField 
-                    label="Email" 
-                    sx={inputStyle}
-                    disabled={true}
-                    value={user.user.email}
+                    <TextField 
+                        label="Email" 
+                        sx={inputStyle}
+                        disabled={true}
+                        value={user.user.email}
                     />
                 </Box>
             <FormButtons 
