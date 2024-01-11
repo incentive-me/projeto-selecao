@@ -85,6 +85,13 @@ export class UserUseCase implements UserInterface {
       throw Error("Email is required");
     }
 
+    const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    const verifyEmail = user.email.match(emailRegex)
+
+    if (!verifyEmail) {
+      throw Error("Email is not valid");
+    }
+
     if (!user.password) {
       throw Error("Password is required");
     }
