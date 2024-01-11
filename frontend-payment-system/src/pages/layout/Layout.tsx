@@ -5,11 +5,13 @@ import { layoutStyle as S } from "../../styles/layout.style";
 import { AccountBalanceWalletSharp, LogoutSharp, MonetizationOnSharp } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
 import { fecthUser, initialUserState } from "../../redux/user.slice";
+import { useState } from "react";
 
 export default function Layout() {
     const dispatch = useDispatch();
     const location = useLocation()
     const path = location.pathname.split("/")[1]
+    const [openMenu, setOpenMenu] = useState(false)
 
     const handleLogout = () => {
         localStorage.removeItem("apopyToken");
@@ -29,7 +31,11 @@ export default function Layout() {
                 </Link>
             </Box>
             <Box sx={S.body} component="div">
-                <Box sx={S.menu.container} component="nav">
+                <Box sx={[S.menu.container, {
+                        "@media(max-width: 800px)": {
+                            display: openMenu ? "block" : "none" 
+                        }}]} 
+                    component="nav">
                     <Link to="/pagamentos" style={{textDecoration: "none"}}>
                         <Button 
                             sx={[
@@ -60,8 +66,22 @@ export default function Layout() {
                             <LogoutSharp style={S.menu.icon} />
                             <Typography style={{textTransform: "capitalize", color: "#fff"}}>Sair da conta</Typography>
                         </Button>
+                        <Button 
+                            variant="outlined" 
+                            sx={S.buttonMenuBottom}
+                            onClick={() => setOpenMenu(!openMenu)}
+                        >
+                            fechar menu
+                        </Button>
                 </Box>
                 <Box component="div" sx={S.pageContent}>
+                    <Button 
+                        variant="outlined" 
+                        sx={S.buttonMenu}
+                        onClick={() => setOpenMenu(!openMenu)}
+                    >
+                        Menu
+                    </Button>
                     <Outlet />
                 </Box>
             </Box>
