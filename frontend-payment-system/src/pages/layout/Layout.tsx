@@ -44,6 +44,7 @@ export default function Layout() {
                                     backgroundColor: path === "pagamentos" ? "#90caf929" : "none"
                             }]} 
                             component="li"
+                            onClick={() => setOpenMenu(false)}
                         >
                             <MonetizationOnSharp style={S.menu.icon} />
                             <Typography style={{textTransform: "capitalize", color: "#fff"}}>Pagamentos</Typography>
@@ -57,6 +58,7 @@ export default function Layout() {
                                     backgroundColor: path === "saldos" ? "#90caf929" : "none"
                             }]} 
                             component="li"
+                            onClick={() => setOpenMenu(false)}
                         >
                             <AccountBalanceWalletSharp style={S.menu.icon} />
                             <Typography style={{textTransform: "capitalize", color: "#fff"}}>Saldos</Typography>
@@ -69,7 +71,7 @@ export default function Layout() {
                         <Button 
                             variant="outlined" 
                             sx={S.buttonMenuBottom}
-                            onClick={() => setOpenMenu(!openMenu)}
+                            onClick={() => setOpenMenu(false)}
                         >
                             fechar menu
                         </Button>
@@ -78,7 +80,7 @@ export default function Layout() {
                     <Button 
                         variant="outlined" 
                         sx={S.buttonMenu}
-                        onClick={() => setOpenMenu(!openMenu)}
+                        onClick={() => setOpenMenu(true)}
                     >
                         Menu
                     </Button>
