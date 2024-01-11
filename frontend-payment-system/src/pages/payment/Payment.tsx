@@ -35,7 +35,7 @@ export default function Payment(){
                 open={openNotification} 
                 setOpen={setOpenNotification}
                 message={state?.message}
-                type={state.type} 
+                type={state?.type} 
             />
             </>
         )
