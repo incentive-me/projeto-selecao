@@ -1,7 +1,11 @@
 import { app } from './app';
-import { appRoutes } from './routes';
+import { transactionsRoute } from './routes/transactions.route';
+import { authRoute } from './routes/auth.route';
 
-app.register(appRoutes);
+app.register(transactionsRoute, {
+  prefix: 'transactions'
+});
+app.register(authRoute);
 
 app.listen({
   host: '0.0.0.0',
