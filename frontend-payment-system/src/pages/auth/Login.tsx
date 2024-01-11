@@ -4,18 +4,19 @@ import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import axios from 'axios'
 import { useDispatch, useSelector } from "react-redux";
-import { fecthUser, initialUserState } from "../../redux/user.slice";
+import { fecthUser } from "../../redux/user.slice";
 import { RootState } from "../../redux/store";
+import { ErrorMessage, initialStateErrMessage } from "../balance/NewBalance";
 
 export default function Login(){
     const [showPassword, setShowPassword] = React.useState(false);
-    const [error, setError] = useState("")
     const [loginData, setLoginData] = useState({
         email: "",
         password: ""
     })
     const dispatch = useDispatch()
     const user = useSelector((state: RootState) => state.user.user)
+    const [err, setErr] = useState<ErrorMessage>(initialStateErrMessage)
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -29,7 +30,10 @@ export default function Login(){
             .then((res) => {
                 localStorage.setItem("paymentsToken", res.data.token)
                 dispatch(fecthUser(res.data.user))
-            }).catch((err) => setError(err.response.data.error))
+            }).catch((err) => {
+                const error = err.response.data.error
+                 setErr({field: "login", message: "Email ou senha incorretos"})
+            })
     }
 
     if (user.name !== "") {
@@ -47,14 +51,20 @@ export default function Login(){
             <TextField
                 label="Email"
                 sx={{ m: 1, width: '35ch' }}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
-                    setLoginData({...loginData, email: e.target.value})}
+                error={err.field === "login"}
+                        helperText={err.field === "login" && err.message}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setErr(initialStateErrMessage)
+                    setLoginData({...loginData, email: e.target.value})}}
             />
             <TextField
                     label="Senha"
                     sx={{ m: 1, width: '35ch' }}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
-                        setLoginData({...loginData, password: e.target.value})}
+                    error={err.field === "login"}
+                        helperText={err.field === "login" && err.message}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        setErr(initialStateErrMessage)
+                        setLoginData({...loginData, password: e.target.value})}}
                     type={showPassword ? 'text' : 'password'}
                     InputProps={{
                         endAdornment: 
