@@ -55,7 +55,8 @@ export default function BalanceTable({rows}:{rows: Balance[]}) {
   const [ deleteBalance, setDeleteBalance] = React.useState(initialDeleteState)
   const [ message, setMessage] = React.useState<NotificationMessage>({
     open: false,
-    message: ""
+    message: "",
+    type: 'success'
   })
   const [openNotification, setOpenNotification ] = React.useState(message?.open)
 
@@ -63,7 +64,7 @@ export default function BalanceTable({rows}:{rows: Balance[]}) {
     if(message.open){
       setOpenNotification(true)
       setTimeout(() => 
-        setMessage({open: false, message: ""})
+        setMessage({open: false, message: "", type: 'success'})
       ,6000)
     }
   }, [message])
