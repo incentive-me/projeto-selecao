@@ -70,7 +70,7 @@ export default function UpdatePayment(){
                             label="Saldo utilizado"
                         >
                             <MenuItem value={"item"}>
-                                {findBalance[0].balanceName} - R$ {findBalance[0].totalValue.toFixed(2)}
+                                {findBalance[0]?.balanceName} - R$ {findBalance[0]?.totalValue.toFixed(2)}
                             </MenuItem>
                         </Select>
                     </FormControl>
