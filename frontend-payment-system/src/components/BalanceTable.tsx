@@ -11,7 +11,9 @@ import { IconButton } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
 import { Balance } from '../redux/balance.slice';
 import { Link } from 'react-router-dom';
-import DeleteModal from './DeleteModal';
+import DeleteModal from './DeleteBalance';
+import { NotificationMessage } from './DeletePayment';
+import Notification from './Notification';
 
 interface Column {
   id: 'balanceName' | 'description' | 'initialValue' | 'valueUsed' | 'totalValue';
@@ -47,12 +49,24 @@ const columns: readonly Column[] = [
   }
 ];
 
-
-
 export default function BalanceTable({rows}:{rows: Balance[]}) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [ deleteBalance, setDeleteBalance] = React.useState(initialDeleteState)
+  const [ message, setMessage] = React.useState<NotificationMessage>({
+    open: false,
+    message: ""
+  })
+  const [openNotification, setOpenNotification ] = React.useState(message?.open)
+
+  React.useEffect(()  => {
+    if(message.open){
+      setOpenNotification(true)
+      setTimeout(() => 
+        setMessage({open: false, message: ""})
+      ,6000)
+    }
+  }, [message])
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -65,7 +79,13 @@ export default function BalanceTable({rows}:{rows: Balance[]}) {
 
   return (
     <>
-    <DeleteModal deleteBalance={deleteBalance} setDeleteBalance={setDeleteBalance} />
+      <Notification
+        open={openNotification} 
+        setOpen={setOpenNotification}
+        message={message?.message} 
+        type={message.type}
+      />
+    <DeleteModal deleteBalance={deleteBalance} setDeleteBalance={setDeleteBalance} setMessage={setMessage} />
     <Paper sx={style.container}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
