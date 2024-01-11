@@ -28,19 +28,29 @@ export const layoutStyle = {
         },
         icon: {
             color: "#fff",
-            
         }
     },
     body : {
         display: "flex",
-        height: "calc(100vh - 73px)"
+        height: "calc(100vh - 73px)",
+        "@media(max-width: 800px)": {
+            width: "100%",
+            // flexWrap: "wrap"
+          }
     }, 
     menu : {
         container: {
           background: "linear-gradient(180deg, #ffffff26 0%, #ffffff26 100%), #121212",
           boxShadow: "0px 6px 30px 5px #0000001f, 0px 16px 24px 2px #00000024, 0px 8px 10px -5px #00000033",
           width: "320px",
-          heigth: "400px"
+          heigth: "400px",
+          "@media(max-width: 800px)": {
+            display: "none",
+            width: "100%",
+            height: "calc(100vh - 73px)",
+            position: "absolute",
+            zIndex: "20"
+          }
         },
         buttonBox: {
             display: "flex",
@@ -53,6 +63,9 @@ export const layoutStyle = {
             width: "320px",
             ":hover": {
                 backgroundColor: "#90caf915"
+            }, 
+            "@media": {
+                width: "100%",
             }
         },
         icon: {
@@ -66,5 +79,22 @@ export const layoutStyle = {
         paddingLeft: "24px",
         paddingRight: "24px",
         paddingBottom: "24px"
-    }
+    },
+    buttonMenu: {
+        display: "none",
+        "@media(max-width: 800px)": {
+            display: "flex",
+            marginBottom: "20px",
+            width: "100%"
+          }
+    },
+    buttonMenuBottom: {
+        display: "none",
+        "@media(max-width: 800px)": {
+            display: "flex",
+            marginBottom: "20px",
+            width: "calc(100% - 40px)",
+            margin: "20px"
+          }
+    },
 }
