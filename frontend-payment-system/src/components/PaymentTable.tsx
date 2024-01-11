@@ -40,7 +40,8 @@ export default function PaymentTable({payment}:{payment: any}) {
   const [ deletePayment, setDeletePayment] = React.useState(initialDeletePayment)
   const [ message, setMessage] = React.useState<NotificationMessage>({
     open: false,
-    message: ""
+    message: "",
+    type: "success"
   })
   const [openNotification, setOpenNotification ] = React.useState(message?.open)
   let rows: any = []
@@ -49,7 +50,7 @@ export default function PaymentTable({payment}:{payment: any}) {
     if(message.open){
       setOpenNotification(true)
       setTimeout(() => 
-        setMessage({open: false, message: ""})
+        setMessage({open: false, message: "", type: "success"})
       ,6000)
     }
   }, [message])
@@ -74,6 +75,7 @@ export default function PaymentTable({payment}:{payment: any}) {
         open={openNotification} 
         setOpen={setOpenNotification}
         message={message?.message} 
+        type={message.type}
       />
     <DeletePayment deletePayment={deletePayment} setDeletePayment={setDeletePayment} setMessage={setMessage} />
     <Paper sx={style.container}>

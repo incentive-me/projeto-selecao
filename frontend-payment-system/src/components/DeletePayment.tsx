@@ -1,16 +1,14 @@
 import { Box, Button, Typography } from "@mui/material";
 import React, { SetStateAction } from "react";
-import { InitialDelState, initialDeleteState } from "./BalanceTable";
 import { DeleteSharp } from "@mui/icons-material";
 import { httpClient } from "../utils/http";
 import { useDispatch } from "react-redux";
-import { deleteBalanceState } from "../redux/balance.slice";
 import { useNavigate } from "react-router-dom";
 import { InitialDelPaymentState, initialDeletePayment } from "./PaymentTable";
 import { deletePaymentAction } from "../redux/payment.slice";
 
 
-export default function DeletePayment({deletePayment, setDeletePayment}: DeleteProps){
+export default function DeletePayment({deletePayment, setDeletePayment, setMessage}: DeleteProps){
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const open: string = deletePayment.openModal ? "flex" : "none"
@@ -23,8 +21,9 @@ export default function DeletePayment({deletePayment, setDeletePayment}: DeleteP
                 if(res.data.deleted) {
                     dispatch(deletePaymentAction(deletePayment.payment))
                     setDeletePayment(initialDeletePayment)
-                    navigate("/pagamentos")}})
-            .catch(err => console.log(err))
+                    setMessage({ message: "Pedido excluido com sucesso", open: true, type: "success"})
+            }}).catch(() => 
+                setMessage({ message: "Ocorreu um erro", open: true, type: "error"}))
     }
 
     return(
@@ -110,5 +109,12 @@ const style = {
 
 export type DeleteProps = {
     deletePayment: InitialDelPaymentState, 
-    setDeletePayment: React.Dispatch<SetStateAction<InitialDelPaymentState>>
+    setDeletePayment: React.Dispatch<SetStateAction<InitialDelPaymentState>>,
+    setMessage: React.Dispatch<SetStateAction<NotificationMessage>>,
+}
+
+export type NotificationMessage = {
+    message: string,
+    open: boolean,
+    type: "success" | "error"
 }
