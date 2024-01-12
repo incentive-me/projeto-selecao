@@ -1,39 +1,80 @@
-# 🚀 Venha participar do nosso time campeão!
+# Banco Incentiveme
 
-Ao conhecer uma pessoa que está aplicando para a Incentive.me gostamos de ter uma conversa sobre código. Afinal, escrever, ler e discutir sobre código faz parte da nossa rotina diária de trabalho.
+<p>O banco que incetiva os seus clientes a ter um controle financeiro</p>
 
-Você pode implementar o projeto usando qualquer linguagem de sua preferência. Lembre-se: use a linguagem com a qual você tem mais familiaridade.
+---
 
-## O que vamos avaliar?
+## 📌 Tópicos 
 
-- Comunicação na revisão do código;
-- Argumentos sobre desafios enfrentados e escolhas realizadas na implementação;
-- Código bem escrito, limpo e coeso;
-- Arquitetura e princípios de desenvolvimento;
-- Documentação (README.md) com instruções claras para reproduzir o projeto;
-- Uso adequado de versionamento do código em git;
-- Uso de testes automatizados;
-- Deploy da aplicação;
-- O design da API RESTful é implementado, usando corretamente os verbos HTTP e o código de status apropriado;
-- Uso adequado de HTML5, CSS3 e JavaScript em um front-end minimamente estruturado;
+[Sobre o Foodfy](#sobre-o-foodfy)
 
-Caso você não se sinta confortável com algum desses itens, tudo bem, apenas nos fale sobre isso, ok? O objetivo aqui não é te fazer perder tempo com algo irrelevante. Nosso objetivo aqui é ter um código sobre o qual podemos conversar. Como você deve ter notado, a gente preza muito por colaboração, trabalho em time e comunicação. O objetivo aqui é ter, minimamente, essa experiência com você.
+[Funcionalidades](#funcionalidades)
 
-Respeite o seu nível de conhecimento e experiência, o importante é você saber dizer o motivo das suas escolhas. Se você tiver qualquer dúvida, por favor, entre em contato com a gente. Estamos disponíveis para te ajudar a finalizar esse processo.
+[Tecnologias e Ferramentas](#tecnologias-e-ferramentas)
 
-# Opções de projetos
+[Instalação dos Software](#instalação-dos-software)
 
-A seguir seguem algumas ideias de projetos que você pode implementar:
+[Como Baixar o Projeto](#como-baixar-o-projeto)
 
-- [Cliente para o GitHub](https://github.com/incentive-me/projeto-selecao/blob/master/projects/GITHUB.md);
-- [Sistema de pagamentos](https://github.com/incentive-me/projeto-selecao/blob/master/projects/PAGAMENTOS.md).
-- **Projeto open source próprio**: Se você tiver algum projeto pronto, que tenha relação com desenvolvimento Web, você pode apresentá-lo na entrevista. Conte-nos sobre suas motivações ao criá-lo, os desafios técnicos e não técnicos enfretados etc. O objetivo aqui é poupar seu tempo
-e evitar que você tenha que criar outro projeto, caso já tenha um.
+[Licença](#licença)
 
-# Como compartilhar o projeto conosco
+---
 
-1. Apague este README.md e adicione informações que achar relevante como configurar o projeto, contendo os comandos que devem ser executados para executar ele e os testes;
-2. Abra um PR apontando para a branch master deste repositório;
-3. Escreva qualquer consideração na descrição do PR e faça qualquer comentário que achar pertinente no código.
+## 🧾 Sobre o Banco Incentiveme
 
-**OBS.:** Caso queira nos mostra um projeto open source próprio, abra uma issue nesse repositório aqui, colocando links e informações sobre o seu projeto de forma que possamos avaliá-lo.
+O **Banco Incentiveme** foi desenvolvido para cumpris os requisitos do desafio 
+solicitado pela empresa incentive.me
+
+## 🚀 Tecnologias e Ferramentas Utilizadas
+
+O projeto foi desenvolvido utilizando as seguintes tecnologias
+
+- [React](https://react.dev//)
+- [Tailwindcss](https://tailwindui.com/)
+- [PrismaORM](https://www.prisma.io/)
+- [NodeJS](https://nodejs.org/en/)
+- [Fastify](https://fastify.dev/docs/latest/)
+- [Docker](https://www.docker.com/)
+
+---
+
+## 👣 Instalação dos Software
+
+Para rodar a aplicação, você precisa ter instalado o Git e o Node.
+- [Node](https://nodejs.org/en/)
+- [Git](https://git-scm.com/downloads/)
+- [Docker](https://www.docker.com/)
+
+---
+
+## 🗂️ Como baixar o projeto
+
+```bash
+# Clonar o repositório
+$ git clone https://github.com/AdrianBraga/projeto-selecao-incentiveme.git
+
+# Entrar no diretório
+$ cd bank-incentiveme
+
+#Sera preciso abrir as duas pastas seguinte
+$ cd api
+$ cd web
+
+# Instalar as dependências nos dois projetos
+$ npm install
+
+# Iniciar a aplicação nos projetos
+$ npm run dev
+
+#Rodar o docker compose (Nosso banco de dados (POSTGRESQL) esta rodando no Docker)
+$ docker compose up -d
+```
+---
+
+## 📝 Licença
+
+Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](/LICENSE) para mais detalhes.
+
+---
+
+Desenvolvido com 💜 por [Adrian Braga](https://github.com/AdrianBraga)
