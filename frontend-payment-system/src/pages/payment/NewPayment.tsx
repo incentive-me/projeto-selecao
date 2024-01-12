@@ -23,7 +23,7 @@ export default function NewPayment(){
         description: "",
         amount: ""
     })
-    const decreaseB = { balanceAccount, amount: newPayment.amount}
+    const decreaseB = { id: "", userId:"", name: "", description:"", balanceAccount, amount: Number(newPayment.amount)}
 
     const handleCreatePayment = () => {
         httpClient("payment", "POST", {
