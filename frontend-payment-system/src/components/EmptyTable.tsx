@@ -39,7 +39,8 @@ const style = {
     text: {
         fontSize: "16px",
         color: "#000000de",
-        marginBottom: "24px"
+        marginBottom: "24px",
+        textAlign: "center"
     },
     button: {
         borderRadius: "24px",
