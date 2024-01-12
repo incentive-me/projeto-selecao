@@ -15,7 +15,7 @@ export default function Balance(){
 
     if(data.length === 0) {
         return(
-            <Box component="section" style={{display: "flex"}}>
+            <Box component="section">
                 <Title title="Saldos" />
                 <EmptyTable 
                     text="Você não possui saldos" 

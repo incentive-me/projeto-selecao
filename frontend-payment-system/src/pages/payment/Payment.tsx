@@ -15,7 +15,7 @@ export default function Payment(){
 
     if(data.length === 0) {
         return(
-            <Box component="section" style={{display: "flex"}}>
+            <Box component="section">
                 <Title title="Pagamentos" />
                 <EmptyTable 
                     text="Você não possui pedidos abertos" 

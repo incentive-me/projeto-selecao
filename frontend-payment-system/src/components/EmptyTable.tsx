@@ -9,7 +9,7 @@ type EmptyTable = {
 
 export default function EmptyTable({text, buttonText, path}: EmptyTable){
     return(
-        <Box component="div" style={style.container}>
+        <Box component="div" style={style.container} id="emptyTable">
             <Box sx={style.body}>
                 <Typography style={style.text}>{text}</Typography>
                 <Link  to={path}>
@@ -28,8 +28,10 @@ const style = {
         display:"flex",
         alignItems:"center",
         justifyContent:"center",
-        width:"calc(100vw - 368px)", 
-        height:"calc(100vh - 133px)"
+        height:"calc(100vh - 133px)",
+        "@media(max-width: 800px)": {
+            height:"calc(100vh - 153.5px)"
+        }
     },
     body: {
         display: "flex", 
@@ -47,5 +49,14 @@ const style = {
         fontSize: "13px",
         height: "30px",
         width: "140px"
+    }
+}
+
+export const bodyEmptyTable = {
+    display: "flex", 
+    flexDirection: "column",
+    "@media(max-width: 800px)": {
+        "align-items": "center",
+        justifyContent: "center"
     }
 }
