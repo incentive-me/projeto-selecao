@@ -4,22 +4,6 @@
 
 ---
 
-## 📌 Tópicos 
-
-[Sobre o Foodfy](#sobre-o-foodfy)
-
-[Funcionalidades](#funcionalidades)
-
-[Tecnologias e Ferramentas](#tecnologias-e-ferramentas)
-
-[Instalação dos Software](#instalação-dos-software)
-
-[Como Baixar o Projeto](#como-baixar-o-projeto)
-
-[Licença](#licença)
-
----
-
 ## 🧾 Sobre o Banco Incentiveme
 
 O **Banco Incentiveme** foi desenvolvido para cumpris os requisitos do desafio 
