@@ -40,7 +40,7 @@ const style = {
         fontSize: "16px",
         color: "#000000de",
         marginBottom: "24px",
-        textAlign: "center"
+        "text-align": "center"
     },
     button: {
         borderRadius: "24px",
