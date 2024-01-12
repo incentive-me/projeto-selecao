@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export const baseUrl: string = "https://api-payments-27af.onrender.com"
+export const baseUrl: string = "https://mwgi47obf2.execute-api.us-west-2.amazonaws.com/"
 
 export async function httpClient(endpoint: string, method: string, data: any){
     const token = localStorage.getItem("paymentsToken")
