@@ -1,5 +1,5 @@
-import { Box, Button, Typography } from "@mui/material";
-import React, { SetStateAction } from "react";
+import { Box, Button, CircularProgress, Typography } from "@mui/material";
+import React, { SetStateAction, useState } from "react";
 import { InitialDelState, initialDeleteState } from "./BalanceTable";
 import { DeleteSharp } from "@mui/icons-material";
 import { httpClient } from "../utils/http";
@@ -13,20 +13,24 @@ export default function DeleteBalance({deleteBalance, setDeleteBalance, setMessa
     const open: string = deleteBalance.openModal ? "flex" : "none"
     const height = window.innerHeight
     const width = window.innerWidth
+    const [loading, setLoading] = useState(false)
 
     const handleDelete = () => {
+        setLoading(true)
         httpClient(`balance/${deleteBalance.balance.id}`, "DELETE", {})
             .then(res => {
                 if(res.data.delete) {
                     dispatch(deleteBalanceState(deleteBalance.balance))
                     setDeleteBalance(initialDeleteState)
-                    setMessage({ message: "Saldo excluído com sucesso", open: true, type: "success"})}})
+                    setMessage({ message: "Saldo excluído com sucesso", open: true, type: "success"})}
+                    setLoading(false)})
             .catch(() => {
                 setDeleteBalance(initialDeleteState)
                 setMessage({ 
                     message: "Saldo não excluído: o saldo contém pagamentos vinculados", 
                     open: true, 
                     type: "error"})
+                setLoading(false)
             })
     }
 
@@ -59,8 +63,14 @@ export default function DeleteBalance({deleteBalance, setDeleteBalance, setMessa
                     >
                         cancelar
                     </Button>
-                    <Button variant="contained" color="error" onClick={handleDelete}>
-                        excluir
+                    <Button 
+                        variant="contained" 
+                        color="error" 
+                        onClick={handleDelete}  
+                        sx={{width: '12ch'}}
+                        disabled={loading}
+                    >
+                    { loading? <CircularProgress size={24} /> : "excluir" }
                     </Button>
                 </Box>
             </Box>

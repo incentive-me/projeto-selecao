@@ -18,6 +18,7 @@ export default function NewPayment(){
     const navigate = useNavigate()
     const [balanceAccount, setBalanceAccount] = useState("")
     const [err, setErr] = useState<ErrorMessage>(initialStateErrMessage)
+    const [loading, setLoading] = useState(false)
     const [newPayment, setNewPayment] = useState({
         name: "",
         description: "",
@@ -26,6 +27,7 @@ export default function NewPayment(){
     const decreaseB = { id: "", userId:"", name: "", description:"", balanceAccount, amount: Number(newPayment.amount)}
 
     const handleCreatePayment = () => {
+        setLoading(true)
         httpClient("payment", "POST", {
             payment: {
                 name: newPayment.name, 
@@ -36,6 +38,7 @@ export default function NewPayment(){
         }).then(res => {
             dispatch(createPayment(res.data))
             dispatch(decreaseBalance(decreaseB))
+            setLoading(false)
             navigate("/pagamentos", {
                 state: {
                     message: "Pedido criado com sucesso",
@@ -45,6 +48,7 @@ export default function NewPayment(){
         }).catch((err) => {
             const error = err.response.data.err
             setErr(errorPaymentMessage(error))
+            setLoading(false)
         })
     }
 
@@ -91,6 +95,7 @@ export default function NewPayment(){
                     path="/pagamentos" 
                     textButton="criar"
                     onClick={handleCreatePayment}
+                    disabled={loading}
                 />
             </FormContainer>
         </Box>

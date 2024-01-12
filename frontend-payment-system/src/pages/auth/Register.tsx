@@ -1,6 +1,6 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Link, Navigate } from "react-router-dom";
-import { Box, Button, IconButton, InputAdornment, TextField, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, IconButton, InputAdornment, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +12,7 @@ import { baseUrl } from "../../utils/http";
 
 export default function Register(){
     const [showPassword, setShowPassword] = React.useState(false);
+    const [loading, setLoading] = useState(false)
     const [resgisterData, setRegisterData] = useState<RegisterDataState>({
         name: "", 
         email: "", 
@@ -32,14 +33,17 @@ export default function Register(){
         if(verify.field !== "") {
             return setErr(verify)
         }
+        setLoading(true)
         axios.post(`${baseUrl}/user`, resgisterData, 
             { headers: { 'Content-Type': 'application/json' }})
                 .then((res) => {
                     localStorage.setItem("paymentsToken", res.data.token)
                     dispatch(fecthUser(res.data.user))
+                    setLoading(false)
                 }).catch((err) => {
                     const error = err.response.data.error
                      setErr(errorRegisterMessage(error))
+                     setLoading(false)
                 })
                 
         }
@@ -102,8 +106,8 @@ export default function Register(){
             sx={{ m: 1, width: '40ch' }}
             variant="contained" 
             onClick={handleRegister}
-            disabled={false}
-        >Registrar</Button>
+            disabled={loading}
+        >{ loading? <CircularProgress size={24} /> : "Registrar"}</Button>
         <Link to="/entrar">
             <Button sx={{ m: 1, width: '40ch' }}>Voltar</Button>
         </Link>

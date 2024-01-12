@@ -17,14 +17,18 @@ export default function UpdatePayment(){
     const navigate = useNavigate()
     const { state } = useLocation()
     const [ newName, setNewName ] = useState(state.name)
+    const [loading, setLoading] = useState(false)
     const balance = useSelector((state:RootState) => state.balance)
     const findBalance = balance.balance.filter((item) => item.id === state.balanceAccount)
     const [err, setErr] = useState<ErrorMessage>(initialStateErrMessage)
+    
 
     const handleUpdatePaymentName = () => {
+        setLoading(true)
         httpClient("payment", "PATCH", {payment: state, newName})
             .then((res) => {
                 dispatch(updatePaymentName(res.data))
+                setLoading(false)
                 navigate("/pagamentos", {
                     state: {
                         message: "Pedido criado com sucesso",
@@ -33,6 +37,7 @@ export default function UpdatePayment(){
                 })}).catch((err) => {
                     const error = err.response.data.err
                     setErr(errorPaymentMessage(error))
+                    setLoading(false)
                 })
     }
 
@@ -79,6 +84,7 @@ export default function UpdatePayment(){
                     path="/pagamentos"
                     textButton="salvar"
                     onClick={handleUpdatePaymentName} 
+                    disabled={loading}
                 />
             </FormContainer>
         </Box>

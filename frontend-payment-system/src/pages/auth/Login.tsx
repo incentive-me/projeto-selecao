@@ -1,5 +1,5 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { Box, Button, IconButton, InputAdornment, TextField, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, IconButton, InputAdornment, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import axios from 'axios'
@@ -11,6 +11,7 @@ import { baseUrl } from "../../utils/http";
 
 export default function Login(){
     const [showPassword, setShowPassword] = React.useState(false);
+    const [loadingLogin, setLoadingLogin] = useState(false)
     const [loginData, setLoginData] = useState({
         email: "",
         password: ""
@@ -26,14 +27,17 @@ export default function Login(){
     };
 
     const login = () => {
+        setLoadingLogin(true)
         axios.post(`${baseUrl}/login`, loginData,
             { headers: { 'Content-Type': 'application/json' }})
             .then((res) => {
                 localStorage.setItem("paymentsToken", res.data.token)
                 dispatch(fecthUser(res.data.user))
+                setLoadingLogin(false)
             }).catch((err) => {
                 const error = err.response.data.error
                  setErr({field: "login", message: "Email ou senha incorretos"})
+                 setLoadingLogin(false)
             })
     }
 
@@ -79,11 +83,12 @@ export default function Login(){
                         </InputAdornment>,
                     }}
                 />
-                <Button 
-                    sx={{ m: 1, width: '40ch' }}
-                    variant="contained" 
-                    onClick={login}
-                >Entrar</Button>
+                      <Button 
+                        sx={{ m: 1, width: '40ch' }}
+                        variant="contained"
+                        disabled={loadingLogin} 
+                        onClick={login}
+                      >{ loadingLogin? <CircularProgress size={24} /> : "Entrar"}</Button>
                 <Typography paddingTop="30px" variant="body1" component="h5">
                     Não tem uma conta?
                 </Typography>

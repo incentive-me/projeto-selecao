@@ -36,8 +36,9 @@ export default function User(){
                 </Box>
             <FormButtons 
                 path="/pagamentos"
-                textButton="sair da conta"
+                textButton="Sair"
                 onClick={handleLogout} 
+                disabled={false}
             />
             </FormContainer>
         </Box>

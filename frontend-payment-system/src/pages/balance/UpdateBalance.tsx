@@ -16,12 +16,15 @@ export default function UpdateBalance(){
     const { state } = useLocation()
     const dispatch = useDispatch()
     const [ newName, setNewName ] = useState(state.balanceName)
+    const [loading, setLoading] = useState(false)
     const [err, setErr] = useState<ErrorMessage>(initialStateErrMessage)
 
     const handleUpdateName = () => {
+        setLoading(true)
         httpClient("balance", "PATCH", {balance: state, newName})
             .then((res) =>{ 
                 dispatch(updateName(res.data))
+                setLoading(false)
                 return navigate("/saldos", {
                     state: {
                         message: "Nome do saldo atualizado com sucesso",
@@ -31,6 +34,7 @@ export default function UpdateBalance(){
             .catch(err => {
                 const error = err.response.data.error
                 setErr(errorBalanceMessage(error))
+                setLoading(false)
             })
     }
 
@@ -61,6 +65,7 @@ export default function UpdateBalance(){
                     path="/saldos" 
                     textButton="salvar" 
                     onClick={handleUpdateName} 
+                    disabled={loading}
                 />
             </FormContainer>
         </Box>

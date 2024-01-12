@@ -14,12 +14,15 @@ export default function NewBalance(){
     const [ balance, setBalance ] = useState(initialBalance)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const [loading, setLoading] = useState(false)
     const [err, setErr] = useState<ErrorMessage>(initialStateErrMessage)
 
     const handleCreateBalance = () => {
+        setLoading(true)
         httpClient("balance", "POST", balance)
             .then((res) => {
                 dispatch(createBalance(res.data))
+                setLoading(false)
                 return navigate("/saldos", {
                     state: {
                         message: "Saldo criado com sucesso",
@@ -29,6 +32,7 @@ export default function NewBalance(){
             }).catch((err) => {
                 const error = err.response.data.error
                 setErr(errorBalanceMessage(error))
+                setLoading(false)
             })
     }
 
@@ -71,6 +75,7 @@ export default function NewBalance(){
                     path="/saldos" 
                     textButton="criar"
                     onClick={handleCreateBalance}
+                    disabled={loading}
                 />
             </FormContainer>
         </Box>
