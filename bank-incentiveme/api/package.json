@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fastify/cors": "8.5.0",
     "@prisma/client": "5.7.1",
     "@types/jsonwebtoken": "9.0.5",
     "bcryptjs": "2.4.3",

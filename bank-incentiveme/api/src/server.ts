@@ -1,7 +1,9 @@
 import { app } from './app';
 import { transactionsRoute } from './routes/transactions.route';
 import { authRoute } from './routes/auth.route';
+import cors from '@fastify/cors';
 
+app.register(cors);
 app.register(transactionsRoute, {
   prefix: 'transactions'
 });

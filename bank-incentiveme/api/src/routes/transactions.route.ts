@@ -54,9 +54,7 @@ export async function transactionsRoute(app: FastifyInstance) {
         }
       });
 
-      return {
-        listTransactions
-      };
+      return listTransactions;
     });
 
   app.put(
@@ -114,7 +112,7 @@ export async function transactionsRoute(app: FastifyInstance) {
 
       const { id } = transactionParams.parse(request.params);
 
-      const listTransactions = await prisma.transaction.delete({
+      await prisma.transaction.delete({
         where: {
           id: id
         }
