@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { InitialDelPaymentState, initialDeletePayment } from "./PaymentTable";
 import { deletePaymentAction } from "../redux/payment.slice";
+import { increaseBalance } from "../redux/balance.slice";
 
 
 export default function DeletePayment({deletePayment, setDeletePayment, setMessage}: DeleteProps){
@@ -20,6 +21,7 @@ export default function DeletePayment({deletePayment, setDeletePayment, setMessa
             .then(res => {
                 if(res.data.deleted) {
                     dispatch(deletePaymentAction(deletePayment.payment))
+                    dispatch(increaseBalance(deletePayment.payment))
                     setDeletePayment(initialDeletePayment)
                     setMessage({ message: "Pedido excluído com sucesso", open: true, type: "success"})
             }}).catch(() => 

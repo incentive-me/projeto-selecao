@@ -18,7 +18,10 @@ const paymentSlice = createSlice({
             })
         },
         createPayment: (state, action: PayloadAction<Payment>) => {
-            state.payment.push(action.payload)
+            state.payment.push({
+                ...action.payload,
+                amount: Number(action.payload.amount)
+            })
         },
         deletePaymentAction: (state, action: PayloadAction<Payment>) => {
             state.payment = state.payment.filter((pay: Payment) =>
