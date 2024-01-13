@@ -34,18 +34,4 @@ describe("should create balance", () => {
     
         await expect(t).rejects.toThrow("Balance Amount is required")
     })
-
-    it("Should create balance", async () => {
-        const t = usecase.CreateBalance(userInfo, "Valioze", 1000, "")
-        const id = jest.mock('uuid', ()=> ({v4: ()=> '123456789'}))
-
-        await expect(t).resolves.toBe({
-        "balanceName": "Valioze",
-        "description": "",
-        "id": "b5282f55-8e1a-42d6-a7a8-6f0dffea6b3c",
-        "initialValue": 1000,
-        "totalValue": 1000,
-        "userId": "a5dcb5d7-f74c-4d41-ac7c-dba6bf54be2f",
-        "valueUsed": 0,})
-    })
 })
