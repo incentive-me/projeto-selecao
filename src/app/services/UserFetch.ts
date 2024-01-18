@@ -1,23 +1,22 @@
 import axios, { AxiosError } from "axios";
+const url = "https://tan-wide-eyed-llama.cyclic.app/";
 
-type createUserType = {
-  nome: string;
-  email: string;
-  senha: string;
-};
-
-export const RegisterUser = async (formData: createUserType) => {
+export const RegisterUser = async (
+  nome: string,
+  email: string,
+  senha: string
+) => {
   try {
-    const response = await axios.post("/api/users", {
-      nome: formData.nome,
-      email: formData.email,
-      senha: formData.senha,
+    const response = await axios.post(url, {
+      nome,
+      email,
+      senha,
     });
 
+    console.log(response);
     if (!response.data) {
       throw new Error(`Erro na requisição: ${response.status}`);
     }
-
     return response.data;
   } catch (error: any) {
     if (axios.isAxiosError(error)) {
