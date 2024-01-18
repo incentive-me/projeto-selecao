@@ -16,6 +16,7 @@ const InputFormComponent = React.forwardRef<HTMLInputElement, FormProps>(
         name={name}
         fullWidth={true}
         inputRef={ref}
+        type={label === "Senha" ? "password" : "text"}
         {...rest}
       />
     );
