@@ -31,7 +31,7 @@ const RegisterForm = () => {
       setEmailError(false);
     } catch (error) {
       setEmailError(true);
-      console.error(error);
+      throw new Error("Registro inválido");
     } finally {
       reset({ nome: "", email: "", senha: "" });
       setLoading(false);
