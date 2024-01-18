@@ -20,8 +20,7 @@ export const RegisterUser = async (
     return response.data;
   } catch (error: any) {
     if (axios.isAxiosError(error)) {
-      console.error(`Erro ao registrar usuário: ${error.message}`);
-      throw error;
+      throw new Error(`Erro ao registrar usuario: ${error.message}`);
     }
   }
 };

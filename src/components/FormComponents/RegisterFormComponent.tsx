@@ -1,45 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
 import InputFormComponent from "./InputComponent";
 import ButtonFormComponent from "./ButtonComponent";
-import { Box } from "@mui/material";
 import FormAreaComponents from "./FormAreaComponents";
+import { UserRegisterSchema } from "@/app/schemas/UserSchema";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { RegisterUser } from "@/app/services/UserFetch";
+import ErrorMessage from "../ErrorComponent/MessageErrorSchema";
 
-type RegisterFormProps = {
-  onSubmit: any; // (event: React.FormEvent<HTMLFormElement>) => void;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  values: {
-    nome?: string;
-    email?: string;
-    senha?: string;
-  };
-};
+const RegisterForm = () => {
+  const [emailError, setEmailError] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(UserRegisterSchema),
+  });
 
-const RegisterForm = ({ onSubmit, onChange, values }: RegisterFormProps) => {
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      const { nome, email, senha } = data;
+      const response = await RegisterUser(nome, email, senha);
+      setEmailError(false);
+    } catch (error) {
+      console.error(error);
+      setEmailError(true);
+    }
+  });
+
   return (
-    <form style={{ width: "100%" }}>
+    <form onSubmit={onSubmit} style={{ width: "100%" }}>
       <FormAreaComponents>
         <InputFormComponent
           label="Nome"
-          value={values.nome || ""}
-          onChange={onChange}
-          name="nome"
+          register={register}
+          {...register("nome")}
         />
+        {errors.nome && <ErrorMessage message={errors.nome.message} />}
 
         <InputFormComponent
           label="Email"
-          value={values.email || ""}
-          onChange={onChange}
-          name="email"
+          register={register}
+          {...register("email")}
         />
+        {errors.email && <ErrorMessage message={errors.email.message} />}
+        {/* eu sei que é má pratica mostrar que email já existe mas como é um teste queria mostrar que tem validação de email para o usuario */}
+        {emailError && <ErrorMessage message="Email ja existe" />}
 
         <InputFormComponent
           label="Senha"
-          value={values.senha || ""}
-          onChange={onChange}
-          name="senha"
+          register={register}
+          {...register("senha")}
         />
+        {errors.senha && <ErrorMessage message={errors.senha.message} />}
 
-        <ButtonFormComponent onSubmit={onSubmit} value="Registrar" />
+        <ButtonFormComponent value="Registrar" />
       </FormAreaComponents>
     </form>
   );
