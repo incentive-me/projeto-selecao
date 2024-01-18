@@ -21,7 +21,7 @@ const FormComponent = () => {
     console.log("Form Data:", formData);
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value);
   };
 
@@ -40,7 +40,7 @@ const FormComponent = () => {
       >
         {isLoginForm ? (
           <>
-            <Typography variant="h4">Login</Typography>
+            <Typography variant="h4">Conectar</Typography>
             <LoginForm
               onSubmit={handleFormSubmit}
               onChange={handleInputChange}
@@ -49,7 +49,7 @@ const FormComponent = () => {
           </>
         ) : (
           <>
-            <Typography variant="h4">Register</Typography>
+            <Typography variant="h4">Registrar</Typography>
             <RegisterForm
               onSubmit={handleFormSubmit}
               onChange={handleInputChange}
@@ -59,7 +59,9 @@ const FormComponent = () => {
         )}
 
         <Button onClick={handleFormSwitch} style={{ marginTop: "20px" }}>
-          {isLoginForm ? "Switch to Register" : "Switch to Login"}
+          {isLoginForm
+            ? "Não tem conta? Registre-se"
+            : "Já tem conta? Conecte-se"}
         </Button>
       </Box>
     </Container>

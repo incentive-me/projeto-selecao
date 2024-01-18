@@ -4,7 +4,8 @@ import ButtonFormComponent from "./ButtonComponent";
 import FormAreaComponents from "./FormAreaComponents";
 
 type LoginFormProps = {
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  onSubmit: any; // (event: React.FormEvent<HTMLFormElement>) => void;
+
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   values: {
     email?: string;
@@ -15,7 +16,6 @@ type LoginFormProps = {
 const LoginForm = ({ onSubmit, onChange, values }: LoginFormProps) => {
   return (
     <form style={{ width: "100%" }}>
-
       <FormAreaComponents>
         <InputFormComponent
           label="Email"
@@ -31,7 +31,7 @@ const LoginForm = ({ onSubmit, onChange, values }: LoginFormProps) => {
           name="senha"
         />
 
-        <ButtonFormComponent onSubmit={onSubmit} value="Login" />
+        <ButtonFormComponent onSubmit={onSubmit} value="Conectar" />
       </FormAreaComponents>
     </form>
   );

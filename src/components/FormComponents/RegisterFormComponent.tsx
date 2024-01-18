@@ -5,7 +5,7 @@ import { Box } from "@mui/material";
 import FormAreaComponents from "./FormAreaComponents";
 
 type RegisterFormProps = {
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  onSubmit: any; // (event: React.FormEvent<HTMLFormElement>) => void;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   values: {
     nome?: string;
@@ -19,7 +19,7 @@ const RegisterForm = ({ onSubmit, onChange, values }: RegisterFormProps) => {
     <form style={{ width: "100%" }}>
       <FormAreaComponents>
         <InputFormComponent
-          label="Name"
+          label="Nome"
           value={values.nome || ""}
           onChange={onChange}
           name="name"
@@ -39,7 +39,7 @@ const RegisterForm = ({ onSubmit, onChange, values }: RegisterFormProps) => {
           name="senha"
         />
 
-        <ButtonFormComponent onSubmit={onSubmit} value="Register" />
+        <ButtonFormComponent onSubmit={onSubmit} value="Registrar" />
       </FormAreaComponents>
     </form>
   );
