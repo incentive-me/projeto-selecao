@@ -7,10 +7,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { signInUser } from "@/app/services/UserFetch";
 import ErrorMessage from "../ErrorComponent/MessageErrorSchema";
-
+import { useRouter } from "next/navigation";
 const LoginForm = () => {
   const [loading, setLoading] = useState(false);
-
+  const router = useRouter();
   const {
     register,
     reset,
@@ -24,8 +24,12 @@ const LoginForm = () => {
     try {
       const { email, senha } = data;
       const response = await signInUser(email, senha);
+      const token = response?.token;
+      document.cookie = `token=${token}; path=/; secure; SameSite=Strict`;
+      localStorage.setItem("token", token);
+      router.push("/auth");
     } catch (error) {
-      console.log(error);
+      throw new Error("Login inválido");
     } finally {
       reset({ email: "", senha: "" });
       setLoading(false);
@@ -49,7 +53,7 @@ const LoginForm = () => {
         />
         {errors.senha && <ErrorMessage message={errors.senha.message} />}
 
-        <ButtonFormComponent value="Registrar" disabled={loading} />
+        <ButtonFormComponent value="Conectar" disabled={loading} />
         {loading && <p>Carregando...</p>}
       </FormAreaComponents>
     </form>
