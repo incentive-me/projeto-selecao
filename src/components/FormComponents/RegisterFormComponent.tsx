@@ -22,7 +22,7 @@ const RegisterForm = ({ onSubmit, onChange, values }: RegisterFormProps) => {
           label="Nome"
           value={values.nome || ""}
           onChange={onChange}
-          name="name"
+          name="nome"
         />
 
         <InputFormComponent
