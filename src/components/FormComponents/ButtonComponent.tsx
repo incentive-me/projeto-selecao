@@ -1,13 +1,14 @@
 import React from "react";
-import { Button } from "@mui/material";
+import { Button, ButtonProps } from "@mui/material";
 
 type ButtonFormProps = {
   value: string;
-};
+  disabled?: boolean;
+} & ButtonProps;
 
-const ButtonFormComponent = ({ value }: ButtonFormProps) => {
+const ButtonFormComponent = ({ value, ...rest }: ButtonFormProps) => {
   return (
-    <Button variant="contained" color="primary" type="submit">
+    <Button variant="contained" color="primary" type="submit" {...rest}>
       {value}
     </Button>
   );
