@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import InputFormComponent from "./InputComponent";
 import ButtonFormComponent from "./ButtonComponent";
 import FormAreaComponents from "./FormAreaComponents";
+
 import { UserRegisterSchema } from "@/app/schemas/UserSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -9,23 +10,31 @@ import { RegisterUser } from "@/app/services/UserFetch";
 import ErrorMessage from "../ErrorComponent/MessageErrorSchema";
 
 const RegisterForm = () => {
-  const [emailError, setEmailError] = useState(false);
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(UserRegisterSchema),
   });
 
+  const [loading, setLoading] = useState(false);
+  const [emailError, setEmailError] = useState<boolean>(false);
+
   const onSubmit = handleSubmit(async (data) => {
+    const { nome, email, senha } = data;
     try {
-      const { nome, email, senha } = data;
+      setLoading(true);
       const response = await RegisterUser(nome, email, senha);
+
       setEmailError(false);
     } catch (error) {
-      console.error(error);
       setEmailError(true);
+      console.error(error);
+    } finally {
+      reset({ nome: "", email: "", senha: "" });
+      setLoading(false);
     }
   });
 
@@ -55,7 +64,8 @@ const RegisterForm = () => {
         />
         {errors.senha && <ErrorMessage message={errors.senha.message} />}
 
-        <ButtonFormComponent value="Registrar" />
+        <ButtonFormComponent value="Registrar" disabled={loading} />
+        {loading && <p>Carregando...</p>}
       </FormAreaComponents>
     </form>
   );
