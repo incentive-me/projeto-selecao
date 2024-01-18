@@ -6,7 +6,7 @@ import PersonIcon from '../IconsComponents/PersonIcon'
 
 const Header = () => {
   return (
-    <header>
+    <header >
     <Stack
     direction="row"
     justifyContent="space-between"
