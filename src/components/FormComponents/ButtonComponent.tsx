@@ -2,13 +2,12 @@ import React from "react";
 import { Button } from "@mui/material";
 
 type ButtonFormProps = {
-  onSubmit: () => void;
   value: string;
 };
 
-const ButtonFormComponent = ({ onSubmit, value }: ButtonFormProps) => {
+const ButtonFormComponent = ({ value }: ButtonFormProps) => {
   return (
-    <Button variant="contained" color="primary" onClick={onSubmit}>
+    <Button variant="contained" color="primary" type="submit">
       {value}
     </Button>
   );
