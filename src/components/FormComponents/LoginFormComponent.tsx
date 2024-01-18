@@ -1,37 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
 import InputFormComponent from "./InputComponent";
 import ButtonFormComponent from "./ButtonComponent";
 import FormAreaComponents from "./FormAreaComponents";
+import { UserLoginSchema } from "@/app/schemas/UserSchema";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { signInUser } from "@/app/services/UserFetch";
+import ErrorMessage from "../ErrorComponent/MessageErrorSchema";
 
-type LoginFormProps = {
-  onSubmit: any; // (event: React.FormEvent<HTMLFormElement>) => void;
+const LoginForm = () => {
+  const [loading, setLoading] = useState(false);
 
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  values: {
-    email?: string;
-    senha?: string;
-  };
-};
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(UserLoginSchema),
+  });
 
-const LoginForm = ({ onSubmit, onChange, values }: LoginFormProps) => {
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      const { email, senha } = data;
+      const response = await signInUser(email, senha);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      reset({ email: "", senha: "" });
+      setLoading(false);
+    }
+  });
+
   return (
-    <form style={{ width: "100%" }}>
+    <form onSubmit={onSubmit} style={{ width: "100%" }}>
       <FormAreaComponents>
         <InputFormComponent
           label="Email"
-          value={values.email || ""}
-          onChange={onChange}
-          name="email"
+          register={register}
+          {...register("email")}
         />
+        {errors.email && <ErrorMessage message={errors.email.message} />}
 
         <InputFormComponent
           label="Senha"
-          value={values.senha || ""}
-          onChange={onChange}
-          name="senha"
+          register={register}
+          {...register("senha")}
         />
+        {errors.senha && <ErrorMessage message={errors.senha.message} />}
 
-        <ButtonFormComponent onSubmit={onSubmit} value="Conectar" />
+        <ButtonFormComponent value="Registrar" disabled={loading} />
+        {loading && <p>Carregando...</p>}
       </FormAreaComponents>
     </form>
   );

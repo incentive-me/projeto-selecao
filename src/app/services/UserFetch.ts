@@ -13,14 +13,32 @@ export const RegisterUser = async (
       senha,
     });
 
-    console.log(response);
     if (!response.data) {
       throw new Error(`Erro na requisição: ${response.status}`);
     }
     return response.data;
   } catch (error: any) {
     if (axios.isAxiosError(error)) {
-      throw new Error(`Erro ao registrar usuario: ${error.message}`);
+      throw new Error(`Erro ao registrar usúario: ${error.message}`);
+    }
+  }
+};
+
+export const signInUser = async (email: string, senha: string) => {
+  try {
+    const response = await axios.post(url + "signin", {
+      email,
+      senha,
+    });
+
+    if (!response.data) {
+      throw new Error(`Erro na requisição: ${response.status}`);
+    }
+    console.log(response);
+    return response.data;
+  } catch (error: any) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(`Erro ao conectar o usúario: ${error.message}`);
     }
   }
 };

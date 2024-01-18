@@ -10,3 +10,8 @@ export const UserRegisterSchema = yup
       .min(3, "Senha muito curta"),
   })
   .required();
+
+export const UserLoginSchema = yup.object({
+  email: yup.string().required("Email obrigatório").email("Email inválido"),
+  senha: yup.string().required("Senha obrigatória").min(3, "Senha muito curta"),
+});
