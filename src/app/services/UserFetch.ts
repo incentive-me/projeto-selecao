@@ -34,7 +34,6 @@ export const signInUser = async (email: string, senha: string) => {
     if (!response.data) {
       throw new Error(`Erro na requisição: ${response.status}`);
     }
-    console.log(response);
     return response.data;
   } catch (error: any) {
     if (axios.isAxiosError(error)) {
