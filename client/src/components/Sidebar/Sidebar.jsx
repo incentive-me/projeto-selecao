@@ -1,4 +1,5 @@
 import { Box, Drawer, Typography } from "@mui/material";
+import SidebarOptions from "./SidebarOptions";
 
 const Sidebar = () => {
   return (
@@ -16,9 +17,7 @@ const Sidebar = () => {
         },
       }}
     >
-      <Box p={2}>
-        <Typography>Pagamentos</Typography>
-      </Box>
+      <SidebarOptions />
     </Drawer>
   );
 };

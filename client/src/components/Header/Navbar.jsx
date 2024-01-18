@@ -14,6 +14,7 @@ const Navbar = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
+          marginInline: "-0.8rem",
         }}
       >
         <Typography variant="h4" component="h1" sx={{ fontFamily: "Alata" }}>
