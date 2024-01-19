@@ -18,10 +18,8 @@ const HeaderTransactionComponent = ({
   atualizeTable,
 }: headerTransactionProps) => {
   const onSubmit = (data: createBalanceValues) => {
-    const id = localStorage.getItem("id");
-    if (id && data) {
+    if (data) {
       createBalance(
-        id,
         data.nome,
         data.descricao ? data.descricao : "",
         data.valor_inicial

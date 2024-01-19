@@ -2,13 +2,14 @@ import axios, { AxiosError } from "axios";
 const url = "https://tan-wide-eyed-llama.cyclic.app/balance/";
 
 interface BalanceData {
-  id: string;
   nome: string;
   descricao: string;
   valor_inicial: number;
 }
 
-export const getBalancesPerPerson = async (id: string) => {
+const id = localStorage.getItem("id");
+
+export const getBalancesPerPerson = async () => {
   try {
     const response = await axios.get(url + id, {
       headers: {
@@ -27,7 +28,6 @@ export const getBalancesPerPerson = async (id: string) => {
 };
 
 export const createBalance = async (
-  id: string,
   nome: string,
   descricao: string,
   valor_inicial: number

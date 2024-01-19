@@ -12,11 +12,10 @@ const TableComponent = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const id = localStorage.getItem("id");
     const token = localStorage.getItem("token");
     try {
-      if (id && token) {
-        getBalancesPerPerson(id).then((response) => {
+      if (token) {
+        getBalancesPerPerson().then((response) => {
           setBalances(response);
           setAtualizeTable(true);
         });
@@ -34,10 +33,10 @@ const TableComponent = () => {
       <HeaderTransactionComponent
         title="Saldos"
         setAtualizeTable={setAtualizeTable}
+        atualizeTable={atualizeTable}
       />
       <Container sx={{ marginTop: 4 }}>
         {balances && <TableTransactionComponent rows={balances} />}
-        {/* <TableTransactionComponent rows={rows} /> */}
       </Container>
     </div>
   );
