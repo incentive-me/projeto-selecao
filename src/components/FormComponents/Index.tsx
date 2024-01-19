@@ -15,7 +15,7 @@ const FormComponent = () => {
     const tokenFromLocalStorage = localStorage.getItem("token");
 
     const isTokenValid = !!tokenFromLocalStorage;
-    isTokenValid ? router.push("/") : router.push("/auth");
+    isTokenValid ? router.push("/saldos") : router.push("/auth");
   }, [router]);
 
   return (
