@@ -1,7 +1,13 @@
 import React from "react";
-import { AppBar, Button, Toolbar, Typography } from "@mui/material";
+import { AppBar, Toolbar, Typography } from "@mui/material";
+import ButtonComponentModal from "../ButtonComponentModal/ButtonComponentModal";
+import BalanceFormComponent from "./CreateTransactionForm/CreateBalance";
+import { createBalanceValues } from "@/@types/BalanceType";
 
 const HeaderTransactionComponent = ({ title }: { title: string }) => {
+  const onSubmit = (data:createBalanceValues) => {
+    console.log(data);
+  };
   return (
     <AppBar position="static" style={{ backgroundColor: "white" }}>
       <Toolbar>
@@ -13,9 +19,9 @@ const HeaderTransactionComponent = ({ title }: { title: string }) => {
         >
           {title}
         </Typography>
-        <Button color="primary" variant="contained">
-          Criar
-        </Button>
+        <ButtonComponentModal>
+          <BalanceFormComponent onSubmit={onSubmit} />
+        </ButtonComponentModal>
       </Toolbar>
     </AppBar>
   );
