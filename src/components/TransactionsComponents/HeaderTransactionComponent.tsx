@@ -4,15 +4,18 @@ import ButtonComponentModal from "../ButtonComponentModal/ButtonComponentModal";
 import BalanceFormComponent from "./CreateTransactionForm/CreateBalance";
 import { createBalanceValues } from "@/@types/BalanceType";
 import { createBalance } from "@/services/BalanceFetch";
+import StarIcon from "../IconsComponents/StartIcon";
 
 type headerTransactionProps = {
   title: string;
   setAtualizeTable: React.Dispatch<React.SetStateAction<boolean>>;
+  atualizeTable: boolean;
 };
 
 const HeaderTransactionComponent = ({
   title,
   setAtualizeTable,
+  atualizeTable,
 }: headerTransactionProps) => {
   const onSubmit = (data: createBalanceValues) => {
     const id = localStorage.getItem("id");
@@ -37,8 +40,14 @@ const HeaderTransactionComponent = ({
         >
           {title}
         </Typography>
-        <ButtonComponentModal>
-          <BalanceFormComponent onSubmit={onSubmit} />
+        <ButtonComponentModal name="Criar" variantColor="contained">
+          {!atualizeTable && (
+            <Typography>
+              <StarIcon />
+              Pedido criado com sucesso
+            </Typography>
+          )}
+          {atualizeTable && <BalanceFormComponent onSubmit={onSubmit} />}
         </ButtonComponentModal>
       </Toolbar>
     </AppBar>
