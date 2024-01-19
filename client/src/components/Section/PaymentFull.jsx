@@ -12,8 +12,6 @@ import {
 } from "@mui/material";
 
 const PaymentFull = (paymentList) => {
-  console.log(paymentList.list);
-
   return (
     <Box>
       <Box

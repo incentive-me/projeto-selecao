@@ -20,7 +20,8 @@ const PaymentEmpty = () => {
             gap: "1rem",
             justifyContent: "space-between",
             alignItems: "center",
-            marginTop: "-10rem",
+            position: "absolute",
+            transform: "translateY(-50%)",
           }}
         >
           <Typography sx={{ fontSize: 14, fontWeight: "bold" }}>

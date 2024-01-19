@@ -20,7 +20,7 @@ const PaymentSection = () => {
     },
   ];
 
-  const hasItemsInList = true;
+  const hasItemsInList = false;
 
   return (
     <>
