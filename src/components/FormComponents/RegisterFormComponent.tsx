@@ -3,10 +3,10 @@ import InputFormComponent from "./InputComponent";
 import ButtonFormComponent from "./ButtonComponent";
 import FormAreaComponents from "./FormAreaComponents";
 
-import { UserRegisterSchema } from "@/app/schemas/UserSchema";
+import { UserRegisterSchema } from "@/schemas/UserSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { RegisterUser } from "@/app/services/UserFetch";
+import { RegisterUser } from "@/services/UserFetch";
 import ErrorMessage from "../ErrorComponent/MessageErrorSchema";
 
 const RegisterForm = () => {

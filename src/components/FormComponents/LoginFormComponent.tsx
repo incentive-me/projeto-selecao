@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import InputFormComponent from "./InputComponent";
 import ButtonFormComponent from "./ButtonComponent";
 import FormAreaComponents from "./FormAreaComponents";
-import { UserLoginSchema } from "@/app/schemas/UserSchema";
+import { UserLoginSchema } from "@/schemas/UserSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { signInUser } from "@/app/services/UserFetch";
+import { signInUser } from "@/services/UserFetch";
 import ErrorMessage from "../ErrorComponent/MessageErrorSchema";
 import { useRouter } from "next/navigation";
 const LoginForm = () => {
