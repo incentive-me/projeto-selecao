@@ -12,7 +12,17 @@ const PaymentEmpty = () => {
       >
         <Typography sx={{ fontSize: 20 }}>Pagamentos</Typography>
       </Box>
-      <div className="flex flex-row justify-center items-center min-h-screen h-full">
+
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "100vh",
+          height: "100%",
+        }}
+      >
         <Box
           sx={{
             display: "flex",
@@ -21,7 +31,7 @@ const PaymentEmpty = () => {
             justifyContent: "space-between",
             alignItems: "center",
             position: "absolute",
-            transform: "translateY(-50%)",
+            transform: "translateY(-100%)",
           }}
         >
           <Typography sx={{ fontSize: 14, fontWeight: "bold" }}>
@@ -31,7 +41,7 @@ const PaymentEmpty = () => {
             Criar pedido
           </Button>
         </Box>
-      </div>
+      </Box>
     </>
   );
 };
