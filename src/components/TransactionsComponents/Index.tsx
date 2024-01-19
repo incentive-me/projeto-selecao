@@ -8,6 +8,7 @@ import { BalanceValues } from "@/@types/BalanceType";
 
 const TableComponent = () => {
   const [balances, setBalances] = useState<BalanceValues[]>([]);
+  const [atualizeTable, setAtualizeTable] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
@@ -15,9 +16,9 @@ const TableComponent = () => {
     const token = localStorage.getItem("token");
     try {
       if (id && token) {
-        getBalancesPerPerson(id, token).then((response) => {
-          console.log(response);
+        getBalancesPerPerson(id).then((response) => {
           setBalances(response);
+          setAtualizeTable(true);
         });
       } else {
         router.push("/auth");
@@ -25,12 +26,15 @@ const TableComponent = () => {
     } catch (error) {
       throw error;
     }
-  }, []);
+  }, [atualizeTable]);
 
   return (
     <div style={{ marginLeft: "180px" }}>
       <CssBaseline />
-      <HeaderTransactionComponent title="Saldos" />
+      <HeaderTransactionComponent
+        title="Saldos"
+        setAtualizeTable={setAtualizeTable}
+      />
       <Container sx={{ marginTop: 4 }}>
         {balances && <TableTransactionComponent rows={balances} />}
         {/* <TableTransactionComponent rows={rows} /> */}
