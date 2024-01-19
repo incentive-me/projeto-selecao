@@ -3,8 +3,9 @@ import React from "react";
 import { Box } from "@mui/material";
 import { columns } from "./ColumnsTableComponent";
 import { DataGrid } from "@mui/x-data-grid";
+import { BalanceValues } from "@/@types/BalanceType";
 
-const TableTransactionComponent = ({ rows }) => {
+const TableTransactionComponent = ({ rows }: { rows: BalanceValues[] }) => {
   return (
     <main>
       <Box sx={{ height: 400, width: "100%" }}>
