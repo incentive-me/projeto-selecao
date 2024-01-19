@@ -25,9 +25,12 @@ const LoginForm = () => {
       const { email, senha } = data;
       const response = await signInUser(email, senha);
       const token = response?.token;
+      const id = response?.usuario?.id;
       document.cookie = `token=${token}; path=/; secure; SameSite=Strict`;
       localStorage.setItem("token", token);
-      router.push("/auth");
+      localStorage.setItem("id", id);
+      setLoading(true);
+      router.push("/saldos");
     } catch (error) {
       throw new Error("Login inválido");
     } finally {
