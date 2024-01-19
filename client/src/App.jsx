@@ -6,7 +6,12 @@ function App() {
   return (
     <>
       <Navbar />
-      <Sidebar />
+      <div className="flex">
+        <Sidebar />
+        <div className="pt-20 px-4 w-full min-h-screen h-full">
+          <Outlet />
+        </div>
+      </div>
     </>
   );
 }
