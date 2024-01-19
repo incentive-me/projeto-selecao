@@ -13,6 +13,7 @@ import PaymentIcon from "../IconsComponents/PaymentIcon";
 import LogoutIcon from "../IconsComponents/LogOutIcon";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import ListItemComponent from "./ListItemComponent";
 
 export default function PermanentDrawerLeft() {
   const pathname = usePathname();
@@ -36,37 +37,20 @@ export default function PermanentDrawerLeft() {
           <Divider />
 
           <List>
-            <ListItem disablePadding>
-              <Link href="/pagamentos" passHref style={{ width: "100%" }}>
-                <ListItemButton selected={pathname === "/pagamentos"}>
-                  <ListItemIcon>
-                    <PaymentIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Pagamentos" />
-                </ListItemButton>
-              </Link>
-            </ListItem>
-            <ListItem disablePadding>
-              <Link href="/saldos" passHref style={{ width: "100%" }}>
-                <ListItemButton selected={pathname === "/saldos"}>
-                  <ListItemIcon>
-                    <WalletIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Saldos" />
-                </ListItemButton>
-              </Link>
-            </ListItem>
+            <ListItemComponent
+              name="Pagamentos"
+              route="/pagamentos"
+              icon={<PaymentIcon />}
+            />
+            <ListItemComponent
+              name="Saldos"
+              route="/saldos"
+              icon={<WalletIcon />}
+            />
           </List>
           <Divider />
           <List>
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <LogoutIcon />
-                </ListItemIcon>
-                <ListItemText primary="Sair da Conta" />
-              </ListItemButton>
-            </ListItem>
+            <ListItemComponent icon={<LogoutIcon />} name="Sair da Conta" />
           </List>
         </Drawer>
       </Box>
