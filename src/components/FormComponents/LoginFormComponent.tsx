@@ -22,6 +22,7 @@ const LoginForm = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
+      setLoading(true);
       const { email, senha } = data;
       const response = await signInUser(email, senha);
       const token = response?.token;
@@ -29,7 +30,6 @@ const LoginForm = () => {
       document.cookie = `token=${token}; path=/; secure; SameSite=Strict`;
       localStorage.setItem("token", token);
       localStorage.setItem("id", id);
-      setLoading(true);
       router.push("/saldos");
     } catch (error) {
       throw new Error("Login inválido");

@@ -4,7 +4,7 @@ import { TextField } from "@mui/material";
 type FormProps = {
   name: string;
   label: string;
-  register: any;
+  register: any; // Register do  react-hook-form;
 };
 
 const InputFormComponent = React.forwardRef<HTMLInputElement, FormProps>(
