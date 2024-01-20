@@ -16,11 +16,11 @@ const PaymentEmpty = () => {
       <Box
         sx={{
           display: "flex",
-          flexDirection: "row",
+          flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          minHeight: "100vh",
           height: "100%",
+          minHeight: "100vh",
         }}
       >
         <Box
@@ -36,7 +36,12 @@ const PaymentEmpty = () => {
           <Typography sx={{ fontSize: 14, fontWeight: "bold" }}>
             Você não possui pagamentos abertos.
           </Typography>
-          <Button variant="contained" sx={{ borderRadius: "20px", width: 160 }}>
+          <Button
+            component="a"
+            href="/pagamentos/criar"
+            variant="contained"
+            sx={{ borderRadius: "20px", width: 160 }}
+          >
             Criar
           </Button>
         </Box>
