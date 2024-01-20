@@ -3,6 +3,9 @@ import DeleteIcon from "../IconsComponents/DeleteIcon";
 import EditIcon from "../IconsComponents/EditIcon";
 import ButtonComponentModal from "../ButtonComponentModal/ButtonComponentModal";
 import DeleteBalanceModal from "../ModalContent/DeleteBalanceModal/Index";
+import BalanceUpdateComponent from "../ModalContent/UpdateBalanceModal/Index";
+import { updateBalanceById } from "@/services/BalanceFetch";
+import { balanceValuesDefault } from "@/@types/BalanceType";
 
 export const columns: GridColDef[] = [
   { field: "nome", headerName: "Nome do Saldo", width: 150 },
@@ -34,7 +37,20 @@ export const columns: GridColDef[] = [
     renderCell: (params) => (
       <>
         <ButtonComponentModal name={<EditIcon />} variantColor="text">
-          <div>teste</div>
+          <BalanceUpdateComponent
+            onSubmit={(data: balanceValuesDefault) => {
+              let { nome, descricao, valor_inicial } = data;
+              if (!nome && !descricao && !valor_inicial) return;
+
+              nome ? nome : (nome = params.row.nome);
+              valor_inicial
+                ? valor_inicial
+                : (valor_inicial = params.row.valor_inicial);
+              descricao ? descricao : (descricao = params.row.descricao);
+              console.log(valor_inicial, nome, descricao);
+              updateBalanceById(params.row.id, valor_inicial, nome, descricao);
+            }}
+          />
         </ButtonComponentModal>
         <ButtonComponentModal name={<DeleteIcon />} variantColor="text">
           <DeleteBalanceModal balanceId={params.row.id} />

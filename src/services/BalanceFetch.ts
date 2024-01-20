@@ -82,16 +82,27 @@ export const deleteBalanceByBalanceId = async (balanceId: string) => {
   }
 };
 
-export const updateBalanceById = async (balanceId: string) => {
+export const updateBalanceById = async (
+  balanceId: string,
+  valor_inicial: number,
+  nome: string,
+  descricao: string
+): Promise<BalanceData> => {
   try {
     const response = await axios.patch(
       url + "update/" + id + "/?balanceId=" + balanceId,
+      {
+        valor_inicial,
+        nome,
+        descricao,
+      },
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }
     );
+    console.log(response);
     if (!response.data) {
       throw new Error(`Erro na requisição: ${response.status}`);
     }
@@ -101,4 +112,5 @@ export const updateBalanceById = async (balanceId: string) => {
       throw new Error(`Erro ao atualizar saldo: ${error.message}`);
     }
   }
+  throw new Error(`Erro interno no servidor`);
 };

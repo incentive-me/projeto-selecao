@@ -13,6 +13,6 @@ export const createBalanceSchema = yup.object({
 
 export const updateBalanceSchema = yup.object({
   nome: yup.string().min(3, "Nome muito curto"),
-  descricao: yup.string().max(255),
-  valor_inicial: yup.number().positive(),
+  descricao: yup.string().max(255).nullable(),
+  valor_inicial: yup.number().positive().nullable(),
 });
