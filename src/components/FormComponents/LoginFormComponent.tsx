@@ -10,6 +10,7 @@ import ErrorMessage from "../ErrorComponent/MessageErrorSchema";
 import { useRouter } from "next/navigation";
 const LoginForm = () => {
   const [loading, setLoading] = useState(false);
+  const [error,setError] = useState(false)
   const router = useRouter();
   const {
     register,
@@ -31,8 +32,9 @@ const LoginForm = () => {
       localStorage.setItem("token", token);
       localStorage.setItem("id", id);
       router.push("/saldos");
+      setError(false)
     } catch (error) {
-      throw new Error("Login inválido");
+      setError(true)
     } finally {
       reset({ email: "", senha: "" });
       setLoading(false);
@@ -55,7 +57,7 @@ const LoginForm = () => {
           {...register("senha")}
         />
         {errors.senha && <ErrorMessage message={errors.senha.message} />}
-
+      {error && <ErrorMessage message="Login inválido"/>}
         <ButtonFormComponent value="Conectar" disabled={loading} />
         {loading && <p>Carregando...</p>}
       </FormAreaComponents>
