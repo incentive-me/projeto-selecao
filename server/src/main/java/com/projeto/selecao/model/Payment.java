@@ -28,7 +28,7 @@ public class Payment {
 
     @NotNull
     @Positive
-    private Double value;
+    private Double payment_value;
 
     @NotBlank
     private Long balance_id;
