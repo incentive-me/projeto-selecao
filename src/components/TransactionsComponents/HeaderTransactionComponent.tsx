@@ -1,10 +1,10 @@
 import React from "react";
 import { AppBar, Toolbar, Typography } from "@mui/material";
 import ButtonComponentModal from "../ButtonComponentModal/ButtonComponentModal";
-import BalanceFormComponent from "./CreateTransactionForm/CreateBalance";
 import { balanceValuesDefault } from "@/@types/BalanceType";
 import { createBalance } from "@/services/BalanceFetch";
 import StarIcon from "../IconsComponents/StartIcon";
+import BalanceFormComponent from "./CreateBalanceForm/CreateBalance";
 
 type headerTransactionProps = {
   title: string;
