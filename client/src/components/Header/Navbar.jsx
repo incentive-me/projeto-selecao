@@ -1,6 +1,8 @@
 import { AppBar, Toolbar, Typography, Avatar } from "@mui/material";
 
 const Navbar = () => {
+  const isUserLogged = true;
+
   return (
     <AppBar
       position="fixed"
@@ -20,7 +22,7 @@ const Navbar = () => {
         <Typography variant="h4" component="h1" sx={{ fontFamily: "Alata" }}>
           Payments
         </Typography>
-        <Avatar>f</Avatar>
+        {isUserLogged && <Avatar>f</Avatar>}
       </Toolbar>
     </AppBar>
   );

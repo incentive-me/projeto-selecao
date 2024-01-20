@@ -1,7 +1,7 @@
 import PaymentEmpty from "./PaymentEmpty";
 import PaymentFull from "./PaymentFull";
 
-const PaymentSection = () => {
+const PaymentSection = (props) => {
   const paymentList = [
     {
       name: "Pagamento 1",
@@ -16,6 +16,16 @@ const PaymentSection = () => {
     {
       name: "Pagamento 3",
       description: "Descrição 3",
+      value: "R$ 3.000,00",
+    },
+    {
+      name: "Pagamento 4",
+      description: "Descrição 4",
+      value: "R$ 3.000,00",
+    },
+    {
+      name: "Pagamento 5",
+      description: "Descrição 4",
       value: "R$ 3.000,00",
     },
   ];

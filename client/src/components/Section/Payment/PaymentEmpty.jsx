@@ -30,7 +30,6 @@ const PaymentEmpty = () => {
             gap: "1rem",
             justifyContent: "space-between",
             alignItems: "center",
-            position: "absolute",
             transform: "translateY(-100%)",
           }}
         >
