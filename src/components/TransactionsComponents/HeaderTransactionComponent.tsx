@@ -2,7 +2,7 @@ import React from "react";
 import { AppBar, Toolbar, Typography } from "@mui/material";
 import ButtonComponentModal from "../ButtonComponentModal/ButtonComponentModal";
 import BalanceFormComponent from "./CreateTransactionForm/CreateBalance";
-import { createBalanceValues } from "@/@types/BalanceType";
+import { balanceValuesDefault } from "@/@types/BalanceType";
 import { createBalance } from "@/services/BalanceFetch";
 import StarIcon from "../IconsComponents/StartIcon";
 
@@ -17,8 +17,8 @@ const HeaderTransactionComponent = ({
   setAtualizeTable,
   atualizeTable,
 }: headerTransactionProps) => {
-  const onSubmit = (data: createBalanceValues) => {
-    if (data) {
+  const onSubmit = (data: balanceValuesDefault) => {
+    if (data && data.valor_inicial) {
       createBalance(
         data.nome,
         data.descricao ? data.descricao : "",
