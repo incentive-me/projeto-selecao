@@ -15,19 +15,25 @@ const style = {
   p: 4,
 };
 
+type ButtonComponentModalProps = {
+  children: React.ReactNode | any;
+  name: string | JSX.Element;
+  variantColor: "contained" | "text";
+};
+
 export default function ButtonComponentModal({
   children,
-}: {
-  children: React.ReactNode | any;
-}) {
+  name,
+  variantColor,
+}: ButtonComponentModalProps) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
     <div>
-      <Button onClick={handleOpen} color="primary" variant="contained">
-        Criar
+      <Button onClick={handleOpen} color="primary" variant={variantColor}>
+        {name}
       </Button>
       <Modal
         open={open}
@@ -35,8 +41,14 @@ export default function ButtonComponentModal({
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          {children && React.cloneElement(children, { handleClose })}
+        <Box
+          sx={style}
+          display={"flex"}
+          justifyContent={"center"}
+          boxSizing={"content-box"}
+          p={2}
+        >
+          {children}
         </Box>
       </Modal>
     </div>

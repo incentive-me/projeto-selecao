@@ -60,3 +60,24 @@ export const createBalance = async (
     throw new Error(`Erro interno no servidor`);
   }
 };
+
+export const deleteBalanceByBalanceId = async (balanceId: string) => {
+  try {
+    const response = await axios.delete(
+      url + "delete/" + id + "/?balanceId=" + balanceId,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    if (!response.data) {
+      throw new Error(`Erro na requisição: ${response.status}`);
+    }
+    return response.data;
+  } catch (error: any) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(`Erro ao deletar saldo: ${error.message}`);
+    }
+  }
+};

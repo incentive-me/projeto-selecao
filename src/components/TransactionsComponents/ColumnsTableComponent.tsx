@@ -1,31 +1,43 @@
-import { GridColDef } from "@mui/x-data-grid";
+import { GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import DeleteIcon from "../IconsComponents/DeleteIcon";
+import EditIcon from "../IconsComponents/EditIcon";
+import ButtonComponentModal from "../ButtonComponentModal/ButtonComponentModal";
+import DeleteBalanceModal from "../DeleteBalance/Index";
 
 export const columns: GridColDef[] = [
-  //   { field: "id", headerName: "ID", width: 70 },
-  { field: "nome", headerName: "Nome do Saldo", width: 200 },
-  { field: "descricao", headerName: "Descrição do Saldo", width: 300 },
+  { field: "nome", headerName: "Nome do Saldo", width: 150 },
+  { field: "descricao", headerName: "Descrição do Saldo", width: 250 },
   {
     field: "valor_inicial",
     headerName: "Valor Inicial",
     type: "number",
-    width: 120,
+    width: 160,
   },
   {
     field: "valor_utilizado",
     headerName: "Valor Utilizado",
     type: "number",
-    width: 120,
+    width: 160,
   },
   {
     field: "valor_restante",
     headerName: "Valor Restante",
     type: "number",
-    width: 120,
+    width: 160,
   },
-  //   {
-  //     field: "usuario_id",
-  //     headerName: "ID do Usuário",
-  //     type: "number",
-  //     width: 120,
-  //   },
+  {
+    field: "actions",
+    headerName: "Açoes",
+    type: "number",
+    width: 140,
+    valueGetter: (params: GridValueGetterParams) => params.row.id,
+    renderCell: (params) => (
+      <>
+        <EditIcon />
+        <ButtonComponentModal name={<DeleteIcon />} variantColor="text">
+          <DeleteBalanceModal balanceId={params.row.id} />
+        </ButtonComponentModal>
+      </>
+    ),
+  },
 ];
