@@ -81,3 +81,24 @@ export const deleteBalanceByBalanceId = async (balanceId: string) => {
     }
   }
 };
+
+export const updateBalanceById = async (balanceId: string) => {
+  try {
+    const response = await axios.patch(
+      url + "update/" + id + "/?balanceId=" + balanceId,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    if (!response.data) {
+      throw new Error(`Erro na requisição: ${response.status}`);
+    }
+    return response.data;
+  } catch (error: any) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(`Erro ao atualizar saldo: ${error.message}`);
+    }
+  }
+};
