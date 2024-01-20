@@ -36,7 +36,11 @@ const BalanceEmpty = () => {
           <Typography sx={{ fontSize: 14, fontWeight: "bold" }}>
             Você não possui saldos abertos.
           </Typography>
-          <Button variant="contained" sx={{ borderRadius: "20px", width: 160 }}>
+          <Button
+            variant="contained"
+            sx={{ borderRadius: "20px", width: 160 }}
+            href="/saldos/criar"
+          >
             Criar
           </Button>
         </Box>

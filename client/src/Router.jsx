@@ -3,6 +3,8 @@ import App from "./App";
 import PaymentSection from "./components/Section/Payment/PaymentSection";
 import BalanceSection from "./components/Section/Balance/BalanceSection";
 import CreatePayment from "./components/Section/Payment/CreatePayment";
+import CreateBalance from "./components/Section/Balance/CreateBalance";
+import EditBalance from "./components/Section/Balance/EditBalance";
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -21,6 +23,14 @@ const Router = () => {
         {
           path: "/saldos",
           element: <BalanceSection />,
+        },
+        {
+          path: "/saldos/criar",
+          element: <CreateBalance />,
+        },
+        {
+          path: "/saldos/editar",
+          element: <EditBalance />,
         },
       ],
     },

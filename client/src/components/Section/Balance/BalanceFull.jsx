@@ -37,7 +37,7 @@ const BalanceFull = (balanceList) => {
         }}
       >
         <Typography sx={{ fontSize: 20 }}>Saldos</Typography>
-        <Button variant="contained" href="/saldos/criarSaldo">
+        <Button variant="contained" href="/saldos/criar">
           CRIAR
         </Button>
       </Box>
