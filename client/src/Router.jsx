@@ -5,6 +5,7 @@ import BalanceSection from "./components/Section/Balance/BalanceSection";
 import CreatePayment from "./components/Section/Payment/CreatePayment";
 import CreateBalance from "./components/Section/Balance/CreateBalance";
 import EditBalance from "./components/Section/Balance/EditBalance";
+import EditPayment from "./components/Section/Payment/EditPayment";
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -19,6 +20,10 @@ const Router = () => {
         {
           path: "/pagamentos/criar",
           element: <CreatePayment />,
+        },
+        {
+          path: "/pagamentos/editar",
+          element: <EditPayment />,
         },
         {
           path: "/saldos",
