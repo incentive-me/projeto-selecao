@@ -1,7 +1,7 @@
 import PaymentEmpty from "./PaymentEmpty";
 import PaymentFull from "./PaymentFull";
 
-const PaymentSection = (props) => {
+const PaymentSection = () => {
   const paymentList = [
     {
       name: "Pagamento 1",

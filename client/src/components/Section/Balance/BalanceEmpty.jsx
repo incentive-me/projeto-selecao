@@ -1,6 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 
-const PaymentEmpty = () => {
+const BalanceEmpty = () => {
   return (
     <>
       <Box
@@ -10,7 +10,7 @@ const PaymentEmpty = () => {
           alignItems: "center",
         }}
       >
-        <Typography sx={{ fontSize: 20 }}>Pagamentos</Typography>
+        <Typography sx={{ fontSize: 20 }}>Saldos</Typography>
       </Box>
 
       <Box
@@ -34,7 +34,7 @@ const PaymentEmpty = () => {
           }}
         >
           <Typography sx={{ fontSize: 14, fontWeight: "bold" }}>
-            Você não possui pagamentos abertos.
+            Você não possui saldos abertos.
           </Typography>
           <Button variant="contained" sx={{ borderRadius: "20px", width: 160 }}>
             Criar
@@ -45,4 +45,4 @@ const PaymentEmpty = () => {
   );
 };
 
-export default PaymentEmpty;
+export default BalanceEmpty;
