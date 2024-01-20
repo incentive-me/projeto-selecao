@@ -7,7 +7,7 @@ import {
   Button,
   Box,
 } from "@mui/material";
-import DeleteConfirmIcon from "../IconsComponents/DeleteConfirmIcon";
+import DeleteConfirmIcon from "../../IconsComponents/DeleteConfirmIcon";
 import { deleteBalanceByBalanceId } from "@/services/BalanceFetch";
 
 const DeleteBalanceModal = ({ balanceId }: { balanceId: string }) => {

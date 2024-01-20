@@ -2,8 +2,8 @@ import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { createBalanceSchema } from "@/schemas/BalanceSchema";
-import BalanceFormField from "./CreateBalanceForm";
 import { Button } from "@mui/material";
+import BalanceFormField from "@/components/Forms/Index";
 
 type BalanceFormProps = {
   onSubmit: SubmitHandler<any>;

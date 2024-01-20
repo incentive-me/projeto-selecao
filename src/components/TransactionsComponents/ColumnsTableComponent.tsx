@@ -2,7 +2,7 @@ import { GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import DeleteIcon from "../IconsComponents/DeleteIcon";
 import EditIcon from "../IconsComponents/EditIcon";
 import ButtonComponentModal from "../ButtonComponentModal/ButtonComponentModal";
-import DeleteBalanceModal from "../DeleteBalance/Index";
+import DeleteBalanceModal from "../ModalContent/DeleteBalanceModal/Index";
 
 export const columns: GridColDef[] = [
   { field: "nome", headerName: "Nome do Saldo", width: 150 },
@@ -33,7 +33,9 @@ export const columns: GridColDef[] = [
     valueGetter: (params: GridValueGetterParams) => params.row.id,
     renderCell: (params) => (
       <>
-        <EditIcon />
+        <ButtonComponentModal name={<EditIcon />} variantColor="text">
+          <div>teste</div>
+        </ButtonComponentModal>
         <ButtonComponentModal name={<DeleteIcon />} variantColor="text">
           <DeleteBalanceModal balanceId={params.row.id} />
         </ButtonComponentModal>

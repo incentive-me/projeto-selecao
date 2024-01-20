@@ -1,8 +1,7 @@
 import React from "react";
-import { Controller, FieldValues } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 
 type BalanceFormFieldProps = {
   name: string;
