@@ -1,4 +1,4 @@
-package com.projeto.selecao.model;
+package com.projeto.selecao.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

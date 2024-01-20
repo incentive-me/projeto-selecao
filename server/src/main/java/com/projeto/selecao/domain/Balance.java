@@ -1,5 +1,6 @@
-package com.projeto.selecao.model;
+package com.projeto.selecao.domain;
 
+import com.projeto.selecao.dto.CreateBalanceData;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -22,13 +23,18 @@ public class Balance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    @Size(max = 250)
     private String name;
 
-    @NotNull
-    @Positive
+    private String description;
+
     private Double initial_value;
 
     private Double remaining_value;
+
+    public Balance(CreateBalanceData data) {
+        this.name = data.name();
+        this.description = data.description();
+        this.initial_value = data.initial_value();
+        this.remaining_value = data.initial_value();
+    }
 }
