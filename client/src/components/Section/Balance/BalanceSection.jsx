@@ -8,7 +8,9 @@ const BalanceSection = () => {
 
   useEffect(() => {
     axios.get("http://localhost:8080/balances").then((response) => {
-      setBalanceList(response.data.content);
+      if (response.data.content) {
+        setBalanceList(response.data.content);
+      }
     });
   }, []);
 

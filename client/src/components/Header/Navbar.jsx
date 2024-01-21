@@ -1,7 +1,7 @@
 import { AppBar, Toolbar, Typography, Avatar } from "@mui/material";
 
 const Navbar = () => {
-  const isUserLogged = true;
+  const isUserLogged = false;
 
   return (
     <AppBar

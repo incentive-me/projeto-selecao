@@ -8,19 +8,15 @@ const PaymentSection = () => {
 
   useEffect(() => {
     axios.get("http://localhost:8080/payments").then((response) => {
-      setPaymentList(response.data.content);
+      if (response.data.content) {
+        setPaymentList(response.data.content);
+      }
     });
   }, []);
 
-  return (
-    <>
-      {paymentList.length > 0 ? (
-        <PaymentFull list={paymentList} />
-      ) : (
-        <PaymentEmpty />
-      )}
-    </>
-  );
+  const isFull = paymentList.length > 0;
+
+  return <>{isFull ? <PaymentFull list={paymentList} /> : <PaymentEmpty />}</>;
 };
 
 export default PaymentSection;
