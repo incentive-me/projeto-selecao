@@ -35,7 +35,7 @@ export const createPayment = async (
 ): Promise<PaymentData> => {
   try {
     const response = await axios.post(
-      url + "payment/" + id + "/?balanceId=" + id,
+      url + id + "/?balanceId=" + balanceId,
       {
         nome,
         descricao,
