@@ -4,6 +4,8 @@ import '../styles/globals.css'
 import { NextComponentType } from 'next'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 type NextPageWithLayout = {
   getLayout?: (page: React.ReactNode) => React.ReactNode
@@ -28,6 +30,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
           }
         `}
       </style>
+      <ToastContainer />
       {getLayout(<Component {...pageProps} />)}
     </>
   )

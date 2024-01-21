@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
+import { toast } from 'react-toastify'
 import { Fingerprint } from 'lucide-react'
 
 import Button from '@/components/ui/button'
 import Input from '@/components/ui/input'
 import { createUser } from '@/services/user.service'
+import { validateFormRegister } from './validate-form-register'
 
 const Register: React.FC = () => {
   const [values, setValues] = useState({ email: '', password: '', name: '' })
@@ -15,10 +17,15 @@ const Register: React.FC = () => {
     setIsLoading(true)
     try {
       const { email, password, name } = values
+      const errors = validateFormRegister(values)
+      if (!errors?.isValid) {
+        return toast.error('Preencha os campos corretamente')
+      }
       await createUser({ email, password, name })
+      toast.success('Usuário criado com sucesso')
       router.push('/auth/login')
     } catch (error) {
-      console.error(error)
+      toast.error('Erro ao criar usuário')
     } finally {
       setIsLoading(false)
     }
@@ -46,6 +53,7 @@ const Register: React.FC = () => {
             fullWidth
             onChange={e => setValues({ ...values, name: e.target.value })}
             value={values.name}
+            error={!!validateFormRegister(values)?.newErrors?.name}
           />
           <Input
             label='Email'
@@ -55,6 +63,7 @@ const Register: React.FC = () => {
             fullWidth
             onChange={e => setValues({ ...values, email: e.target.value })}
             value={values.email}
+            error={!!validateFormRegister(values)?.newErrors?.email}
           />
           <Input
             label='Senha'
@@ -64,9 +73,15 @@ const Register: React.FC = () => {
             fullWidth
             onChange={e => setValues({ ...values, password: e.target.value })}
             value={values.password}
+            error={!!validateFormRegister(values)?.newErrors?.password}
           />
 
-          <Button type='submit' fullWidth isLoading={isLoading}>
+          <Button
+            type='submit'
+            fullWidth
+            isLoading={isLoading}
+            disabled={isLoading || [values.email, values.password, values.name].some(v => !v)}
+          >
             Registrar
           </Button>
         </form>

@@ -8,6 +8,8 @@ import Button from '@/components/ui/button'
 import Input from '@/components/ui/input'
 import { Balance, findAllBalances, findBalanceById } from '@/services/balance.service'
 import { Payments, createPayment, updatePayment } from '@/services/payment.service'
+import { toast } from 'react-toastify'
+import { validateFormPayment } from './validate-form-payment'
 
 type MutatePaymentSheetProps = {
   open: boolean
@@ -55,6 +57,10 @@ export default function MutatePaymentSheet({
     setIsLoading(true)
     try {
       const { name, description, amount, balance } = values
+      const errors = validateFormPayment(values)
+      if (!errors?.isValid) {
+        return toast.error('Preencha os campos corretamente')
+      }
       payment
         ? await updatePayment({
             payment: {
@@ -71,7 +77,7 @@ export default function MutatePaymentSheet({
       refetch?.()
       onClose()
     } catch (error) {
-      console.error(error)
+      toast.error(`Erro ao ${payment ? 'atualizar' : 'criar'} pagamento`)
     } finally {
       setIsLoading(false)
     }
@@ -89,7 +95,7 @@ export default function MutatePaymentSheet({
       })
       return balance
     } catch (error) {
-      console.error(error)
+      toast.error(`Erro ao buscar saldo`)
     }
   }
 
@@ -120,6 +126,7 @@ export default function MutatePaymentSheet({
               fullWidth
               onChange={e => setValues({ ...values, name: e.target.value })}
               value={values.name}
+              error={!!validateFormPayment(values)?.newErrors?.name}
             />
             <Input
               label='Descrição'
@@ -129,6 +136,7 @@ export default function MutatePaymentSheet({
               fullWidth
               onChange={e => setValues({ ...values, description: e.target.value })}
               value={values.description}
+              error={!!validateFormPayment(values)?.newErrors?.description}
             />
             <Input
               label='Valor'
@@ -138,6 +146,7 @@ export default function MutatePaymentSheet({
               fullWidth
               onChange={e => setValues({ ...values, amount: Number(e.target.value) })}
               value={values.amount}
+              error={!!validateFormPayment(values)?.newErrors?.amount}
             />
             <AsyncPaginate
               id='balances'
@@ -151,8 +160,28 @@ export default function MutatePaymentSheet({
               }}
               placeholder='Selecione um saldo'
               debounceTimeout={500}
+              styles={{
+                control: (provided, state) => ({
+                  ...provided,
+                  borderColor: state.isFocused
+                    ? '#000'
+                    : !!validateFormPayment(values)?.newErrors?.balance
+                    ? '#f44336'
+                    : '#000',
+                }),
+              }}
             />
-            <Button type='submit' fullWidth isLoading={isLoading}>
+            <Button
+              type='submit'
+              fullWidth
+              isLoading={isLoading}
+              disabled={
+                isLoading ||
+                ['name', 'description', 'amount', 'balance'].some(
+                  key => !!validateFormPayment(values)?.newErrors?.[key as keyof typeof values]
+                )
+              }
+            >
               Salvar
             </Button>
           </form>

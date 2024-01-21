@@ -6,6 +6,8 @@ import { DialogTitle } from '@mui/material'
 import Input from '@/components/ui/input'
 import Button from '@/components/ui/button'
 import { Balance, createBalance, updateBalance } from '@/services/balance.service'
+import { toast } from 'react-toastify'
+import { validateFormBalance } from './validate-form-balance'
 
 type MutateBalanceSheetProps = {
   open: boolean
@@ -29,6 +31,10 @@ export default function MutateBalanceSheet({
     setIsLoading(true)
     try {
       const { name, description, amount } = values
+      const errors = validateFormBalance(values)
+      if (!errors?.isValid) {
+        return toast.error('Preencha os campos corretamente')
+      }
       balanceSelected
         ? await updateBalance({
             balance: {
@@ -42,7 +48,7 @@ export default function MutateBalanceSheet({
       refetch?.()
       onClose()
     } catch (error) {
-      console.error(error)
+      toast.error(`Erro ao ${balanceSelected ? 'atualizar' : 'criar'} saldo`)
     } finally {
       setIsLoading(false)
     }
@@ -79,6 +85,7 @@ export default function MutateBalanceSheet({
               fullWidth
               onChange={e => setValues({ ...values, name: e.target.value })}
               value={values.name}
+              error={!!validateFormBalance(values)?.newErrors?.name}
             />
             <Input
               label='Descrição'
@@ -88,6 +95,7 @@ export default function MutateBalanceSheet({
               fullWidth
               onChange={e => setValues({ ...values, description: e.target.value })}
               value={values.description}
+              error={!!validateFormBalance(values)?.newErrors?.description}
             />
             <Input
               label='Valor'
@@ -97,8 +105,19 @@ export default function MutateBalanceSheet({
               fullWidth
               onChange={e => setValues({ ...values, amount: Number(e.target.value) })}
               value={values.amount}
+              error={!!validateFormBalance(values)?.newErrors?.amount}
             />
-            <Button type='submit' fullWidth isLoading={isLoading}>
+            <Button
+              type='submit'
+              fullWidth
+              isLoading={isLoading}
+              disabled={
+                isLoading ||
+                ['name', 'description', 'amount'].some(
+                  key => !!validateFormBalance(values)?.newErrors?.[key as keyof typeof values]
+                )
+              }
+            >
               Salvar
             </Button>
           </form>

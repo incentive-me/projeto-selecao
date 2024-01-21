@@ -1,21 +1,32 @@
+import React, { useEffect } from 'react'
+import { toast } from 'react-toastify'
+import { Fingerprint } from 'lucide-react'
+import { useRouter } from 'next/router'
+
 import Button from '@/components/ui/button'
 import Input from '@/components/ui/input'
 import { useLoadUser } from '@/hooks/useLoadUser'
 import useAuthStore from '@/stores/auth.store'
-import { Fingerprint } from 'lucide-react'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
+import { validateFormLogin } from './validate-form-login'
 
 const Login: React.FC = () => {
   useLoadUser()
   const [values, setValues] = React.useState({ email: '', password: '' })
+
   const { user, login, isLoading } = useAuthStore()
   const router = useRouter()
 
   async function onSubmit() {
-    const { email, password } = values
-    await login(email, password)
+    try {
+      const { email, password } = values
+      const errors = validateFormLogin(values)
+      if (!errors?.isValid) {
+        return toast.error('Preencha os campos corretamente')
+      }
+      await login(email, password)
+    } catch (error) {
+      toast.error('Credenciais inválidas')
+    }
   }
 
   useEffect(() => {
@@ -46,6 +57,7 @@ const Login: React.FC = () => {
             fullWidth
             onChange={e => setValues({ ...values, email: e.target.value })}
             value={values.email}
+            error={!!validateFormLogin(values)?.newErrors?.email}
           />
           <Input
             label='Senha'
@@ -55,9 +67,15 @@ const Login: React.FC = () => {
             fullWidth
             onChange={e => setValues({ ...values, password: e.target.value })}
             value={values.password}
+            error={!!validateFormLogin(values)?.newErrors?.password}
           />
 
-          <Button type='submit' fullWidth isLoading={isLoading}>
+          <Button
+            type='submit'
+            fullWidth
+            isLoading={isLoading}
+            disabled={isLoading || [values.email, values.password].some(v => !v)}
+          >
             Login
           </Button>
 

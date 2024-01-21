@@ -15,6 +15,7 @@ import Paper from '@mui/material/Paper'
 import { EditIcon, Trash } from 'lucide-react'
 import MutatePaymentSheet from './mutate-payment-sheet'
 import DialogDeletePayment from './dialog-delete-payment'
+import { toast } from 'react-toastify'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -63,7 +64,7 @@ const Payment: React.FC = () => {
       )
       setPage(page + 1)
     } catch (error) {
-      console.error(error)
+      toast.error('Erro ao buscar pagamentos')
     } finally {
       setLoading(false)
     }
@@ -85,7 +86,7 @@ const Payment: React.FC = () => {
       setPayments(prevState => prevState.filter(payment => payment.id !== paymentToDelete?.id))
       await getAllPayments(true)
     } catch (error) {
-      console.error(error)
+      toast.error('Erro ao deletar pagamento')
     } finally {
       toggleOpenDialog()
     }

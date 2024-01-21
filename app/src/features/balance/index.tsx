@@ -14,6 +14,7 @@ import { EditIcon, Trash } from 'lucide-react'
 import { Balance, deleteBalance, findAllBalances } from '@/services/balance.service'
 import MutateBalanceSheet from './mutate-balance-sheet'
 import DialogDeleteBalance from './dialog-delete-balance'
+import { toast } from 'react-toastify'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -62,7 +63,7 @@ const Balance: React.FC = () => {
       )
       setPage(page + 1)
     } catch (error) {
-      console.error(error)
+      toast.error('Erro ao buscar saldos')
     } finally {
       setLoading(false)
     }
@@ -84,7 +85,7 @@ const Balance: React.FC = () => {
       setBalance(prevState => prevState.filter(balance => balance.id !== balanceToDelete?.id))
       await getAllBalances(true)
     } catch (error) {
-      console.error(error)
+      toast.error('Erro ao deletar saldo')
     } finally {
       toggleOpenDialog()
     }
