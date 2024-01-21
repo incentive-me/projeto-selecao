@@ -4,6 +4,7 @@ import com.projeto.selecao.domain.Balance;
 import com.projeto.selecao.dto.CreateBalanceData;
 import com.projeto.selecao.dto.EditBalanceData;
 import com.projeto.selecao.repository.BalanceRepository;
+import com.projeto.selecao.service.BalanceService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,6 +23,9 @@ public class BalanceController {
 
     @Autowired
     private BalanceRepository repository;
+
+    @Autowired
+    private BalanceService service;
 
     @PostMapping
     @Transactional
@@ -51,13 +55,11 @@ public class BalanceController {
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity deleteBalance(@PathVariable Long id) {
-        repository.deleteById(id);
-
-        return ResponseEntity.noContent().build();
+        return service.deleteBalance(id);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity detailBalance(@PathVariable Long id) {
-        return ResponseEntity.ok(repository.findById(id));
+        return service.detailBalance(id);
     }
 }

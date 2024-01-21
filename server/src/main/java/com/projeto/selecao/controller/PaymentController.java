@@ -4,6 +4,7 @@ import com.projeto.selecao.domain.Payment;
 import com.projeto.selecao.dto.CreatePaymentData;
 import com.projeto.selecao.dto.EditPaymentData;
 import com.projeto.selecao.repository.PaymentRepository;
+import com.projeto.selecao.service.PaymentService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,6 +23,9 @@ public class PaymentController {
 
     @Autowired
     private PaymentRepository repository;
+
+    @Autowired
+    private PaymentService service;
 
     @PostMapping
     @Transactional
@@ -42,9 +46,7 @@ public class PaymentController {
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity deletePayment(@PathVariable Long id) {
-        repository.deleteById(id);
-
-        return ResponseEntity.noContent().build();
+        return service.deletePayment(id);
     }
 
     @PutMapping
@@ -58,6 +60,6 @@ public class PaymentController {
 
     @GetMapping("/{id}")
     public ResponseEntity detailPayment(@PathVariable Long id) {
-        return ResponseEntity.ok(repository.findById(id));
+        return service.detailPayment(id);
     }
 }
