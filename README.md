@@ -28,7 +28,7 @@ Camadas service foram incluídas nas requisições em que seriam necessárias l�
 
 ### BalanceController - Controller de Saldos
 
-<code>POST</code> <code>/balances</code - cria um novo saldo no banco de dados de acordo com o corpo da requisição enviado
+<code>POST</code> <code>/balances</code> - cria um novo saldo no banco de dados de acordo com o corpo da requisição enviado
 
 <code>GET</code> <code>/balances</code> - lista todos os saldos cadastrados no banco de dados
 
@@ -40,7 +40,7 @@ Camadas service foram incluídas nas requisições em que seriam necessárias l�
 
 ### PaymentController - Controller de Pagamentos
 
-<code>POST</code> <code>/payments</code - cria um novo pagamento no banco de dados de acordo com o corpo da requisição enviado
+<code>POST</code> <code>/payments</code> - cria um novo pagamento no banco de dados de acordo com o corpo da requisição enviado
 
 <code>GET</code> <code>/payments</code> - lista todos os pagamentos cadastrados no banco de dados
 
