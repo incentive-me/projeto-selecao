@@ -57,7 +57,7 @@ const BalanceFull = (balanceList) => {
             <TableBody>
               {balanceList.list.map((row) => (
                 <TableRow
-                  key={row.name}
+                  key={row.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
@@ -67,13 +67,13 @@ const BalanceFull = (balanceList) => {
                     {row.description}
                   </TableCell>
                   <TableCell component="th" scope="row">
-                    {row.initialValue}
+                    R$ {row.initial_value}
                   </TableCell>
                   <TableCell component="th" scope="row">
-                    {row.usedValue}
+                    R$ {row.used_value}
                   </TableCell>
                   <TableCell component="th" scope="row">
-                    {row.remainingValue}
+                    R$ {row.remaining_value}
                   </TableCell>
                   <TableCell component="th" scope="row" align="center">
                     <IconButton>

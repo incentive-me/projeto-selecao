@@ -37,7 +37,7 @@ const PaymentFull = (paymentList) => {
         }}
       >
         <Typography sx={{ fontSize: 20 }}>Pagamentos</Typography>
-        <Button variant="contained" href="/pagamentos/criarPagamento">
+        <Button variant="contained" href="/pagamentos/criar">
           CRIAR
         </Button>
       </Box>
@@ -55,7 +55,7 @@ const PaymentFull = (paymentList) => {
             <TableBody>
               {paymentList.list.map((row) => (
                 <TableRow
-                  key={row.name}
+                  key={row.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
@@ -65,7 +65,7 @@ const PaymentFull = (paymentList) => {
                     {row.description}
                   </TableCell>
                   <TableCell component="th" scope="row">
-                    {row.value}
+                    R$ {row.payment_value}
                   </TableCell>
                   <TableCell component="th" scope="row" align="center">
                     <IconButton>

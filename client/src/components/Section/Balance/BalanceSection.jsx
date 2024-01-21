@@ -1,49 +1,25 @@
+import { useState, useEffect } from "react";
 import BalanceFull from "./BalanceFull";
 import BalanceEmpty from "./BalanceEmpty";
+import axios from "axios";
 
 const BalanceSection = () => {
-  const balanceList = [
-    {
-      name: "Pagamento 1",
-      description: "Descrição 1",
-      initialValue: "R$ 1.000,00",
-      usedValue: "R$ 500,00",
-      remainingValue: "R$ 42",
-    },
-    {
-      name: "Pagamento 2",
-      description: "Descrição 1",
-      initialValue: "R$ 1.000,00",
-      usedValue: "R$ 500,00",
-      remainingValue: "R$ 42",
-    },
-    {
-      name: "Pagamento 3",
-      description: "Descrição 1",
-      initialValue: "R$ 1.000,00",
-      usedValue: "R$ 500,00",
-      remainingValue: "R$ 42",
-    },
-    {
-      name: "Pagamento 4",
-      description: "Descrição 1",
-      initialValue: "R$ 1.000,00",
-      usedValue: "R$ 500,00",
-      remainingValue: "R$ 42",
-    },
-    {
-      name: "Pagamento 5",
-      description: "Descrição 1",
-      initialValue: "R$ 1.000,00",
-      usedValue: "R$ 500,00",
-      remainingValue: "R$ 42",
-    },
-  ];
+  const [balanceList, setBalanceList] = useState([]);
 
-  const hasItemsList = true;
+  useEffect(() => {
+    axios.get("http://localhost:8080/balances").then((response) => {
+      setBalanceList(response.data.content);
+    });
+  }, []);
 
   return (
-    <>{hasItemsList ? <BalanceFull list={balanceList} /> : <BalanceEmpty />}</>
+    <>
+      {balanceList.length > 0 ? (
+        <BalanceFull list={balanceList} />
+      ) : (
+        <BalanceEmpty />
+      )}
+    </>
   );
 };
 

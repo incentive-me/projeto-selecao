@@ -6,9 +6,14 @@ import CreatePayment from "./components/Section/Payment/CreatePayment";
 import CreateBalance from "./components/Section/Balance/CreateBalance";
 import EditBalance from "./components/Section/Balance/EditBalance";
 import EditPayment from "./components/Section/Payment/EditPayment";
+import Login from "./components/Section/Login/Login";
 
 const Router = () => {
   const router = createBrowserRouter([
+    {
+      path: "/login",
+      element: <Login />,
+    },
     {
       path: "/",
       element: <App />,

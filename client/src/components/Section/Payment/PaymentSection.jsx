@@ -1,40 +1,24 @@
+import { useState, useEffect } from "react";
 import PaymentEmpty from "./PaymentEmpty";
 import PaymentFull from "./PaymentFull";
+import axios from "axios";
 
 const PaymentSection = () => {
-  const paymentList = [
-    {
-      name: "Pagamento 1",
-      description: "Descrição 1",
-      value: "R$ 1.000,00",
-    },
-    {
-      name: "Pagamento 2",
-      description: "Descrição 2",
-      value: "R$ 2.000,00",
-    },
-    {
-      name: "Pagamento 3",
-      description: "Descrição 3",
-      value: "R$ 3.000,00",
-    },
-    {
-      name: "Pagamento 4",
-      description: "Descrição 4",
-      value: "R$ 3.000,00",
-    },
-    {
-      name: "Pagamento 5",
-      description: "Descrição 4",
-      value: "R$ 3.000,00",
-    },
-  ];
+  const [paymentList, setPaymentList] = useState([]);
 
-  const hasItemsInList = false;
+  useEffect(() => {
+    axios.get("http://localhost:8080/payments").then((response) => {
+      setPaymentList(response.data.content);
+    });
+  }, []);
 
   return (
     <>
-      {hasItemsInList ? <PaymentFull list={paymentList} /> : <PaymentEmpty />}
+      {paymentList.length > 0 ? (
+        <PaymentFull list={paymentList} />
+      ) : (
+        <PaymentEmpty />
+      )}
     </>
   );
 };
