@@ -12,8 +12,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/balances")
 public class BalanceController {
@@ -23,7 +21,7 @@ public class BalanceController {
 
     @PostMapping
     @Transactional
-    public void registerBalance(@RequestBody @Valid CreateBalanceData data) {
+    public void createBalance(@RequestBody @Valid CreateBalanceData data) {
         repository.save(new Balance(data));
     }
 

@@ -1,5 +1,7 @@
 package com.projeto.selecao.domain;
 
+import com.projeto.selecao.dto.CreatePaymentData;
+import com.projeto.selecao.dto.EditPaymentData;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -22,14 +24,22 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    @Size(max = 250)
     private String name;
 
-    @NotNull
-    @Positive
+    private String description;
+
     private Double payment_value;
 
-    @NotBlank
     private Long balance_id;
+
+    public Payment(CreatePaymentData data) {
+        this.name = data.name();
+        this.description = data.description();
+        this.payment_value = data.payment_value();
+        this.balance_id = data.balance_id();
+    }
+
+    public void editName(EditPaymentData data) {
+        this.name = data.name();
+    }
 }
