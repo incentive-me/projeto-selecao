@@ -3,13 +3,13 @@ import { Controller } from "react-hook-form";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 
-type BalanceFormFieldProps = {
+type InputFormFieldProps = {
   name: string;
   label: string;
   control: any;
 };
 
-const BalanceFormField: React.FC<BalanceFormFieldProps> = ({
+const InputFormField: React.FC<InputFormFieldProps> = ({
   name,
   label,
   control,
@@ -37,4 +37,4 @@ const BalanceFormField: React.FC<BalanceFormFieldProps> = ({
   );
 };
 
-export default BalanceFormField;
+export default InputFormField;

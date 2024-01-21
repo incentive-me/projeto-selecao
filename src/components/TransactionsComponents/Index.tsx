@@ -6,7 +6,7 @@ import { getBalancesPerPerson } from "@/services/BalanceFetch";
 import { useRouter } from "next/navigation";
 import { BalanceValues } from "@/@types/BalanceType";
 
-const TableComponent = () => {
+const TableBalanceComponent = () => {
   const [balances, setBalances] = useState<BalanceValues[]>([]);
   const [atualizeTable, setAtualizeTable] = useState(true);
   const router = useRouter();
@@ -42,4 +42,4 @@ const TableComponent = () => {
   );
 };
 
-export default TableComponent;
+export default TableBalanceComponent;
