@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Controller } from "react-hook-form";
 import Select from "@mui/material/Select";
 import Box from "@mui/material/Box";
-import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
-import FormHelperText from "@mui/material/FormHelperText";
 import { MenuItem } from "@mui/material";
+import { BalanceValues } from "@/@types/BalanceType";
+import { getBalancesPerPerson } from "@/services/BalanceFetch";
 
 type selectFormFieldProps = {
   name: string;
@@ -19,6 +19,13 @@ const SelectFormField: React.FC<selectFormFieldProps> = ({
   label,
   ...rest
 }) => {
+  const [balances, setBalances] = useState<BalanceValues[]>([]);
+
+  useEffect(() => {
+    getBalancesPerPerson().then((response) => {
+      setBalances(response);
+    });
+  }, []);
   return (
     <Box mt={2} padding={1}>
       <Controller
@@ -35,12 +42,12 @@ const SelectFormField: React.FC<selectFormFieldProps> = ({
               error={Boolean(fieldState?.error?.message)}
               {...rest}
             >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              {balances &&
+                balances.map((balance) => (
+                  <MenuItem value={balance.id} key={balance.id}>
+                    {balance.valor_restante}
+                  </MenuItem>
+                ))}
             </Select>
           </>
         )}

@@ -18,7 +18,6 @@ const TablePaymentComponent = () => {
       if (token) {
         getPaymentPerPerson().then((response) => {
           setPayments(response);
-          console.log(response);
           setAtualizeTable(true);
         });
       } else {

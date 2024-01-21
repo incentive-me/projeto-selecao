@@ -19,12 +19,14 @@ const HeaderPaymentComponent: React.FC<headerPaymentProps> = ({
   atualizeTable,
 }: headerPaymentProps) => {
   const onSubmit = (data: paymentValuesDefault) => {
+    console.log(data);
     if (data && data.valor) {
-      // createPayment(
-      //   data.nome,
-      //   data.descricao ? data.descricao : "",
-      //   data.valor
-      // );
+      createPayment(
+        data.saldo_id,
+        data.nome,
+        data.descricao ? data.descricao : "",
+        data.valor
+      );
       setAtualizeTable(false);
     }
   };
