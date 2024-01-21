@@ -1,6 +1,6 @@
 "use client";
 
-import TableComponent from "@/components/TransactionsComponents/Index";
+import TableBalanceComponent from "@/components/TransactionsComponents/Index";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
@@ -17,7 +17,7 @@ const page = (props: Props) => {
 
   return (
     <>
-      <TableComponent />
+      <TableBalanceComponent />
     </>
   );
 };
