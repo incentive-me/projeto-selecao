@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+
+
+model User {
+  id       String   @id @default(uuid())
+  name     String?
+  email    String   @unique
+  password String
+  payments Payment[]
+  balances Balance[]
+}
+
+model Payment {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  value       Float
+  balance     Balance  @relation(fields: [balanceId], references: [id])
+  balanceId   String
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String
+}
+
+model Balance {
+  id          String    @id @default(uuid())
+  name        String
+  description String?
+  initialValue Float
+  total       Float
+  usedValue   Float
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String
+  payments    Payment[]
+}
+
+
+
+ 
