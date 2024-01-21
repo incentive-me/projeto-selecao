@@ -1,10 +1,9 @@
 package com.projeto.selecao.domain;
 
 import com.projeto.selecao.dto.CreateBalanceData;
+import com.projeto.selecao.dto.EditBalanceData;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -36,5 +35,9 @@ public class Balance {
         this.description = data.description();
         this.initial_value = data.initial_value();
         this.remaining_value = data.initial_value();
+    }
+
+    public void editName(EditBalanceData data) {
+        this.name = data.name();
     }
 }
