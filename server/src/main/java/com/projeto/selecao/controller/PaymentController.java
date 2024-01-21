@@ -9,8 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/payments")
@@ -21,25 +25,39 @@ public class PaymentController {
 
     @PostMapping
     @Transactional
-    public void createPayment(@RequestBody @Valid CreatePaymentData data) {
-        repository.save(new Payment(data));
+    public ResponseEntity createPayment(@RequestBody @Valid CreatePaymentData data, UriComponentsBuilder uriBuilder) {
+        Payment payment = new Payment(data);
+        repository.save(payment);
+
+        URI uri = uriBuilder.path("/payments/{id}").buildAndExpand(payment.getId()).toUri();
+
+        return ResponseEntity.created(uri).body(payment);
     }
 
     @GetMapping
-    public Page<Payment> displayPayment(@PageableDefault(size = 5) Pageable page) {
-        return repository.findAll(page);
+    public ResponseEntity<Page<Payment>> displayPayment(@PageableDefault(size = 5) Pageable page) {
+        return ResponseEntity.ok(repository.findAll(page));
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public void deletePayment(@PathVariable Long id) {
+    public ResponseEntity deletePayment(@PathVariable Long id) {
         repository.deleteById(id);
+
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping
     @Transactional
-    public void editPayment(@RequestBody EditPaymentData data) {
+    public ResponseEntity editPayment(@RequestBody EditPaymentData data) {
         Payment payment = repository.getReferenceById(data.id());
         payment.editName(data);
+
+        return ResponseEntity.ok(payment);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity detailPayment(@PathVariable Long id) {
+        return ResponseEntity.ok(repository.findById(id));
     }
 }
