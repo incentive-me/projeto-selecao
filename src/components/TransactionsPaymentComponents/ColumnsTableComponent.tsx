@@ -39,7 +39,16 @@ export const paymentColumns: GridColDef[] = [
         <DeleteFunctionModal
           balanceId={params.row.id}
           name="pagamento"
-          onClick={() => deletePaymentByBalanceId(params.row.id)}
+          onClick={() => {
+            const paymentSelected = document.querySelector(
+              `.MuiDataGrid-row[data-id="${params.row.id}"]`
+            ) as HTMLDivElement | null;
+
+            if (paymentSelected) {
+              paymentSelected.style.display = "none";
+            }
+            deletePaymentByBalanceId(params.row.id);
+          }}
         />
       </>
     ),

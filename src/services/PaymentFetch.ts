@@ -19,6 +19,7 @@ export const getPaymentPerPerson = async () => {
     if (!response.data) {
       throw new Error(`Erro na requisição: ${response.status}`);
     }
+
     return response.data;
   } catch (error: any) {
     if (axios.isAxiosError(error)) {
@@ -73,6 +74,7 @@ export const deletePaymentByBalanceId = async (balanceId: string) => {
     if (!response.data) {
       throw new Error(`Erro na requisição: ${response.status}`);
     }
+
     return response.data;
   } catch (error: any) {
     if (axios.isAxiosError(error)) {

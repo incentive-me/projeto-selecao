@@ -65,6 +65,7 @@ export default function DeleteFunctionModal({
               variant="contained"
               onClick={() => {
                 onClick(balanceId);
+
                 handleClose();
               }}
             >
