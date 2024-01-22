@@ -1,39 +1,103 @@
-# 🚀 Venha participar do nosso time campeão!
+# Projeto Seleção - Plataforma de pagamentos
 
-Ao conhecer uma pessoa que está aplicando para a Incentive.me gostamos de ter uma conversa sobre código. Afinal, escrever, ler e discutir sobre código faz parte da nossa rotina diária de trabalho.
+O projeto escolhido para minha aplicação foi o sistema de pagamentos, o lado do cliente  foi reproduzido o layout do Figma com a combinação de React e Material UI como sugerido. Já o lado do servidor foi estruturado com Java e Spring Boot. Buscando sempre boas práticas de programação e estruturação de arquivos de forma organizada.
+Meu maior desafio com esse desafio foi o tempo hábil disponível do projeto, onde o mesmo não foi finalizado, independente do meu andamento no processo, pretendo continuar e finalizar o projeto, pois minha curva de aprendizado com o mesmo me agregou bastante, então se tem algo contra eu finalizar o mesmo e manter em meu portfólio, só me avisar.
 
-Você pode implementar o projeto usando qualquer linguagem de sua preferência. Lembre-se: use a linguagem com a qual você tem mais familiaridade.
+Na sequência irei fazer um apanhado das features desenvolvidas.
 
-## O que vamos avaliar?
+## Stack
 
-- Comunicação na revisão do código;
-- Argumentos sobre desafios enfrentados e escolhas realizadas na implementação;
-- Código bem escrito, limpo e coeso;
-- Arquitetura e princípios de desenvolvimento;
-- Documentação (README.md) com instruções claras para reproduzir o projeto;
-- Uso adequado de versionamento do código em git;
-- Uso de testes automatizados;
-- Deploy da aplicação;
-- O design da API RESTful é implementado, usando corretamente os verbos HTTP e o código de status apropriado;
-- Uso adequado de HTML5, CSS3 e JavaScript em um front-end minimamente estruturado;
+### Back-end
+- Java
+- Spring Boot
+- JPA / Hibernate
+- MySQL
+- Flyway
+- Maven
 
-Caso você não se sinta confortável com algum desses itens, tudo bem, apenas nos fale sobre isso, ok? O objetivo aqui não é te fazer perder tempo com algo irrelevante. Nosso objetivo aqui é ter um código sobre o qual podemos conversar. Como você deve ter notado, a gente preza muito por colaboração, trabalho em time e comunicação. O objetivo aqui é ter, minimamente, essa experiência com você.
+### Front-end
+- JavaScript
+- ReactJs
+- Material UI
+- Tailwind Css
+- Vite
 
-Respeite o seu nível de conhecimento e experiência, o importante é você saber dizer o motivo das suas escolhas. Se você tiver qualquer dúvida, por favor, entre em contato com a gente. Estamos disponíveis para te ajudar a finalizar esse processo.
+## Endpoints back-end
 
-# Opções de projetos
+Camadas service foram incluídas nas requisições em que seriam necessárias lógicas de tratamento de erros.
 
-A seguir seguem algumas ideias de projetos que você pode implementar:
+### BalanceController - Controller de Saldos
 
-- [Cliente para o GitHub](https://github.com/incentive-me/projeto-selecao/blob/master/projects/GITHUB.md);
-- [Sistema de pagamentos](https://github.com/incentive-me/projeto-selecao/blob/master/projects/PAGAMENTOS.md).
-- **Projeto open source próprio**: Se você tiver algum projeto pronto, que tenha relação com desenvolvimento Web, você pode apresentá-lo na entrevista. Conte-nos sobre suas motivações ao criá-lo, os desafios técnicos e não técnicos enfretados etc. O objetivo aqui é poupar seu tempo
-e evitar que você tenha que criar outro projeto, caso já tenha um.
+<code>POST</code> <code>/balances</code> - cria um novo saldo no banco de dados de acordo com o corpo da requisição enviado
 
-# Como compartilhar o projeto conosco
+<code>GET</code> <code>/balances</code> - lista todos os saldos cadastrados no banco de dados
 
-1. Apague este README.md e adicione informações que achar relevante como configurar o projeto, contendo os comandos que devem ser executados para executar ele e os testes;
-2. Abra um PR apontando para a branch master deste repositório;
-3. Escreva qualquer consideração na descrição do PR e faça qualquer comentário que achar pertinente no código.
+<code>PUT</code> <code>/balances</code> - atualiza somente o nome de um saldo com base em seu ID
 
-**OBS.:** Caso queira nos mostra um projeto open source próprio, abra uma issue nesse repositório aqui, colocando links e informações sobre o seu projeto de forma que possamos avaliá-lo.
+<code>DELETE</code> <code>/balances/{id}</code> - deleta um saldo do banco de dados com base em seu ID enviado na URL
+
+<code>POST</code> <code>/balances/{id}</code> - lista o saldo referente ao ID enviado na URL
+
+### PaymentController - Controller de Pagamentos
+
+<code>POST</code> <code>/payments</code> - cria um novo pagamento no banco de dados de acordo com o corpo da requisição enviado
+
+<code>GET</code> <code>/payments</code> - lista todos os pagamentos cadastrados no banco de dados
+
+<code>PUT</code> <code>/payments</code> - atualiza somente o nome de um pagamento com base em seu ID
+
+<code>DELETE</code> <code>/payments/{id}</code> - deleta um pagamento do banco de dados com base em seu ID enviado na URL
+
+<code>POST</code> <code>/payments/{id}</code> - lista o pagamento referente ao ID enviado na URL
+
+## Rotas front-end
+
+As rotas daqui foram feitas em português pensando em um eventual usuário da aplicação que não possui conhecimento em inglês.
+
+<code>/login</code> - Renderiza a página de login
+
+<code>/</code> - Renderiza página inicial sem nenhuma opção selecionada
+
+<code>/pagamentos</code> - Renderiza página de pagamentos
+
+<code>/pagamentos/criar</code> - Renderiza página de criação de pagamentos
+
+<code>/pagamentos/editar</code> - Renderiza página de edição de pagamentos
+
+<code>/saldos</code> - Renderiza página de saldos
+
+<code>/saldos/criar</code> - Renderiza página de criação de saldos
+
+<code>/saldos/editar</code> - Renderiza página de edição de saldos
+
+## Como executar o projeto
+
+### Back-end
+Pré-requisito: Java 17
+
+```bash
+# clonar repositório
+git clone git@github.com:felipesousac/projeto-selecao.git
+
+# entrar na pasta do projeto back-end
+cd server
+
+# alterar as credenciais de banco de dados no arquivo application.properties
+
+# executar o projeto
+./mvnw spring-boot:run
+```
+
+### Front-end
+
+```bash
+# entrar na pasta do projeto front-end
+cd client
+
+# rodas os seguinte comandos
+npm install
+npm run dev
+
+# após acessar a seguinte url para seguir com o fluxo da aplicação
+http://localhost:5173/
+```
