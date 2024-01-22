@@ -1,6 +1,7 @@
 import { GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import DeleteFunctionModal from "../DeleteButtonModal/Index";
 import { deletePaymentByBalanceId } from "@/services/PaymentFetch";
+import { HideRow } from "@/utils/hiderow";
 
 export const paymentColumns: GridColDef[] = [
   { field: "nome", headerName: "Nome do Pagamento", width: 150 },
@@ -40,13 +41,8 @@ export const paymentColumns: GridColDef[] = [
           balanceId={params.row.id}
           name="pagamento"
           onClick={() => {
-            const paymentSelected = document.querySelector(
-              `.MuiDataGrid-row[data-id="${params.row.id}"]`
-            ) as HTMLDivElement | null;
+            HideRow(params.row.id);
 
-            if (paymentSelected) {
-              paymentSelected.style.display = "none";
-            }
             deletePaymentByBalanceId(params.row.id);
           }}
         />

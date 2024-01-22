@@ -7,6 +7,7 @@ import {
 } from "@/services/BalanceFetch";
 import { balanceValuesDefault } from "@/@types/BalanceType";
 import DeleteFunctionModal from "../DeleteButtonModal/Index";
+import { HideRow } from "@/utils/hiderow";
 
 export const columns: GridColDef[] = [
   { field: "nome", headerName: "Nome do Saldo", width: 150 },
@@ -52,11 +53,21 @@ export const columns: GridColDef[] = [
             }}
           />
         </ButtonComponentModal> */}
-        <DeleteFunctionModal
-          balanceId={params.row.id}
-          name="saldo"
-          onClick={() => deleteBalanceByBalanceId(params.row.id)}
-        />
+
+        {params.row.valor_restante == 0 && (
+          <DeleteFunctionModal
+            balanceId={params.row.id}
+            name="saldo"
+            onClick={() => {
+              try {
+                HideRow(params.row.id);
+                deleteBalanceByBalanceId(params.row.id);
+              } catch (error) {
+                console.log(error);
+              }
+            }}
+          />
+        )}
       </>
     ),
   },
