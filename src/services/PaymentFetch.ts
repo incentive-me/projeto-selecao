@@ -65,14 +65,11 @@ export const createPayment = async (
 
 export const deletePaymentByBalanceId = async (balanceId: string) => {
   try {
-    const response = await axios.delete(
-      url + "payment/" + id + "/?balanceId=" + balanceId,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }
-    );
+    const response = await axios.delete(url + id + "/?balanceId=" + balanceId, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
     if (!response.data) {
       throw new Error(`Erro na requisição: ${response.status}`);
     }

@@ -1,11 +1,12 @@
 import { GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import DeleteIcon from "../IconsComponents/DeleteIcon";
 import EditIcon from "../IconsComponents/EditIcon";
-import ButtonComponentModal from "../ButtonComponentModal/ButtonComponentModal";
-import DeleteBalanceModal from "../ModalContent/DeleteBalanceModal/Index";
-import BalanceUpdateComponent from "../ModalContent/UpdateBalanceModal/Index";
-import { updateBalanceById } from "@/services/BalanceFetch";
+import {
+  deleteBalanceByBalanceId,
+  updateBalanceById,
+} from "@/services/BalanceFetch";
 import { balanceValuesDefault } from "@/@types/BalanceType";
+import DeleteFunctionModal from "../DeleteButtonModal/Index";
 
 export const columns: GridColDef[] = [
   { field: "nome", headerName: "Nome do Saldo", width: 150 },
@@ -36,7 +37,7 @@ export const columns: GridColDef[] = [
     valueGetter: (params: GridValueGetterParams) => params.row.id,
     renderCell: (params) => (
       <>
-        <ButtonComponentModal name={<EditIcon />} variantColor="text">
+        {/* <ButtonComponentModal name={<EditIcon />} variantColor="text">
           <BalanceUpdateComponent
             onSubmit={(data: balanceValuesDefault) => {
               let { nome, descricao, valor_inicial } = data;
@@ -50,10 +51,12 @@ export const columns: GridColDef[] = [
               updateBalanceById(params.row.id, valor_inicial, nome, descricao);
             }}
           />
-        </ButtonComponentModal>
-        <ButtonComponentModal name={<DeleteIcon />} variantColor="text">
-          <DeleteBalanceModal balanceId={params.row.id} />
-        </ButtonComponentModal>
+        </ButtonComponentModal> */}
+        <DeleteFunctionModal
+          balanceId={params.row.id}
+          name="saldo"
+          onClick={() => deleteBalanceByBalanceId(params.row.id)}
+        />
       </>
     ),
   },

@@ -24,7 +24,7 @@ const HeaderPaymentComponent: React.FC<headerPaymentProps> = ({
     const [id, valor_restante] = data.saldo_id.split(":");
 
     try {
-      if (parseInt(valor_restante) > data.valor) {
+      if (parseInt(valor_restante) >= data.valor) {
         createPayment(
           id,
           data.nome,
