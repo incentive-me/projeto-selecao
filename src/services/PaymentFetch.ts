@@ -22,7 +22,7 @@ export const getPaymentPerPerson = async () => {
     return response.data;
   } catch (error: any) {
     if (axios.isAxiosError(error)) {
-      throw new Error(`Erro ao buscar saldos: ${error.message}`);
+      return Error(`Erro ao buscar saldos: ${error.message}`);
     }
   }
 };
@@ -48,14 +48,15 @@ export const createPayment = async (
       }
     );
 
-    if (!response.data) {
-      throw new Error(`Erro na requisição: ${response.status}`);
+    if (response.data && response.data.error) {
+      throw new Error(`Erro na requisição: ${response.data.error}`);
     }
 
     return response.data;
   } catch (error: any) {
     if (axios.isAxiosError(error)) {
-      throw new Error(`Erro ao criar saldo: ${error.message}`);
+      console.error("Erro ao realizar pagamento:", error.message);
+      throw error;
     }
 
     throw new Error(`Erro interno no servidor`);

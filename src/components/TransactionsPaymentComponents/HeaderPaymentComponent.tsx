@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { AppBar, Toolbar, Typography } from "@mui/material";
 import ButtonComponentModal from "../ButtonComponentModal/ButtonComponentModal";
 
@@ -18,16 +18,27 @@ const HeaderPaymentComponent: React.FC<headerPaymentProps> = ({
   setAtualizeTable,
   atualizeTable,
 }: headerPaymentProps) => {
+  const [errorPayment, setErrorPayment] = useState(false);
+
   const onSubmit = (data: paymentValuesDefault) => {
-    console.log(data);
-    if (data && data.valor) {
-      createPayment(
-        data.saldo_id,
-        data.nome,
-        data.descricao ? data.descricao : "",
-        data.valor
-      );
-      setAtualizeTable(false);
+    const [id, valor_restante] = data.saldo_id.split(":");
+
+    try {
+      if (parseInt(valor_restante) > data.valor) {
+        createPayment(
+          id,
+          data.nome,
+          data.descricao ? data.descricao : "",
+          data.valor
+        );
+        setAtualizeTable(false);
+        setErrorPayment(false);
+      } else {
+        setErrorPayment(true);
+        setTimeout(() => setErrorPayment(false), 2000);
+      }
+    } catch (error) {
+      setErrorPayment(true);
     }
   };
   return (
@@ -42,13 +53,21 @@ const HeaderPaymentComponent: React.FC<headerPaymentProps> = ({
           {title}
         </Typography>
         <ButtonComponentModal name="Criar" variantColor="contained">
+          {errorPayment && (
+            <Typography>
+              <StarIcon />
+              Saldo insuficiente
+            </Typography>
+          )}
           {!atualizeTable && (
             <Typography>
               <StarIcon />
               Pedido criado com sucesso
             </Typography>
           )}
-          {atualizeTable && <PaymentFormComponent onSubmit={onSubmit} />}
+          {atualizeTable && !errorPayment && (
+            <PaymentFormComponent onSubmit={onSubmit} />
+          )}
         </ButtonComponentModal>
       </Toolbar>
     </AppBar>

@@ -47,7 +47,6 @@ export const columns: GridColDef[] = [
                 ? valor_inicial
                 : (valor_inicial = params.row.valor_inicial);
               descricao ? descricao : (descricao = params.row.descricao);
-              console.log(valor_inicial, nome, descricao);
               updateBalanceById(params.row.id, valor_inicial, nome, descricao);
             }}
           />

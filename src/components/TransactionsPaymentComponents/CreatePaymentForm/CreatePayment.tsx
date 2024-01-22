@@ -14,13 +14,13 @@ const PaymentFormComponent: React.FC<PaymentFormProps> = ({ onSubmit }) => {
   const { control, handleSubmit, formState } = useForm({
     resolver: yupResolver(createPaymentSchema),
   });
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <InputFormField name="nome" label="Nome" control={control} />
       <InputFormField name="descricao" label="Descriçao" control={control} />
       <InputFormField name="valor" label="Valor" control={control} />
       <SelectFormField name="saldo_id" label="Saldo" control={control} />
+
       <Button
         type="submit"
         disabled={formState.isSubmitting}

@@ -31,6 +31,7 @@ const SelectFormField: React.FC<selectFormFieldProps> = ({
       <Controller
         name={name}
         control={control}
+        defaultValue=""
         render={({ field, fieldState }) => (
           <>
             <InputLabel>{label}</InputLabel>
@@ -42,9 +43,15 @@ const SelectFormField: React.FC<selectFormFieldProps> = ({
               error={Boolean(fieldState?.error?.message)}
               {...rest}
             >
+              {!balances && (
+                <MenuItem value="">Saldos não disponiveis</MenuItem>
+              )}
               {balances &&
                 balances.map((balance) => (
-                  <MenuItem value={balance.id} key={balance.id}>
+                  <MenuItem
+                    value={`${balance.id}:${balance.valor_restante}`}
+                    key={balance.id}
+                  >
                     {balance.valor_restante}
                   </MenuItem>
                 ))}
