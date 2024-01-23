@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id    String @id @default(uuid())
+  user  String
+  email String @unique
+  senha String
+}
+
+model Pagamentos {
+  id        String @id @default(uuid())
+  nome      String
+  descricao String
+  valor     Int
+
+  saldos    Saldos @relation(fields: [saldos_Id], references: [id])
+  saldos_Id String
+}
+
+model Saldos {
+  id            String       @id @default(uuid())
+  nome          String
+  descricao     String
+  valorInicial  Int
+  valorRestante Int
+  Pagamentos    Pagamentos[]
+}
