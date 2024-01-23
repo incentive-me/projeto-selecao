@@ -1,7 +1,12 @@
 import { GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import DeleteFunctionModal from "../DeleteButtonModal/Index";
-import { deletePaymentByBalanceId } from "@/services/PaymentFetch";
+import {
+  deletePaymentByBalanceId,
+  updatePaymentById,
+} from "@/services/PaymentFetch";
 import { HideRow } from "@/utils/hiderow";
+import UpdateFunctionModal from "../UpdateButtonModal/Index";
+import { paymentValuesDefault } from "@/@types/PaymentType";
 
 export const paymentColumns: GridColDef[] = [
   { field: "nome", headerName: "Nome do Pagamento", width: 150 },
@@ -36,6 +41,26 @@ export const paymentColumns: GridColDef[] = [
             }}
           />
         </ButtonComponentModal> */}
+
+        <UpdateFunctionModal
+          onSubmit={(data: paymentValuesDefault) => {
+            let { nome, descricao, valor_inicial } = data;
+            if (!nome && !descricao && !valor_inicial) return;
+            console.log(data);
+            nome ? nome : (nome = params.row.nome);
+            valor_inicial
+              ? valor_inicial
+              : (valor_inicial = params.row.valor_inicial);
+            descricao ? descricao : (descricao = params.row.descricao);
+            updatePaymentById(
+              params.row.id,
+              data.nome,
+              data.descricao,
+              data.valor_inicial
+            );
+            location.reload();
+          }}
+        />
 
         <DeleteFunctionModal
           balanceId={params.row.id}

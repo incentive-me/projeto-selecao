@@ -1,7 +1,7 @@
 export type paymentValuesDefault = {
   nome: string;
   descricao: string;
-  valor: number;
+  valor_inicial: number;
   saldo_id: string;
 };
 

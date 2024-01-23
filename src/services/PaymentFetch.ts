@@ -82,3 +82,31 @@ export const deletePaymentByBalanceId = async (balanceId: string) => {
     }
   }
 };
+
+export const updatePaymentById = async (
+  balanceId: string,
+  nome: string,
+  descricao: string,
+  valor: number
+) => {
+  try {
+    const response = await axios.patch(
+      url + id + "/?balanceId=" + balanceId,
+      {
+        nome,
+        descricao,
+        valor,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    return response.data
+  } catch (error: any) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(`Erro ao atualizar pagamento: ${error.message}`);
+    }
+  }
+};
