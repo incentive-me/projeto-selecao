@@ -1,13 +1,12 @@
 import { GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
-import DeleteIcon from "../IconsComponents/DeleteIcon";
-import EditIcon from "../IconsComponents/EditIcon";
 import {
   deleteBalanceByBalanceId,
   updateBalanceById,
 } from "@/services/BalanceFetch";
-import { balanceValuesDefault } from "@/@types/BalanceType";
+import { BalanceValues } from "@/@types/BalanceType";
 import DeleteFunctionModal from "../DeleteButtonModal/Index";
 import { HideRow } from "@/utils/hiderow";
+import UpdateFunctionModal from "../UpdateButtonModal/Index";
 
 export const columns: GridColDef[] = [
   { field: "nome", headerName: "Nome do Saldo", width: 150 },
@@ -35,24 +34,28 @@ export const columns: GridColDef[] = [
     headerName: "Açoes",
     type: "number",
     width: 140,
-    valueGetter: (params: GridValueGetterParams) => params.row.id,
+    valueGetter: (params: GridValueGetterParams) => {
+      (params.row.valor_inicial = parseInt(params.row.valor_inicial)),
+        (params.row.valor_utilizado = parseInt(params.row.valor_utilizado)),
+        (params.row.valor_restante = parseInt(params.row.valor_restante));
+    },
     renderCell: (params) => (
       <>
-        {/* <ButtonComponentModal name={<EditIcon />} variantColor="text">
-          <BalanceUpdateComponent
-            onSubmit={(data: balanceValuesDefault) => {
-              let { nome, descricao, valor_inicial } = data;
-              if (!nome && !descricao && !valor_inicial) return;
+        <UpdateFunctionModal
+          onSubmit={(data: BalanceValues) => {
+            let { nome, descricao, valor_inicial } = data;
+            if (!nome && !descricao && !valor_inicial) return;
 
-              nome ? nome : (nome = params.row.nome);
-              valor_inicial
-                ? valor_inicial
-                : (valor_inicial = params.row.valor_inicial);
-              descricao ? descricao : (descricao = params.row.descricao);
-              updateBalanceById(params.row.id, valor_inicial, nome, descricao);
-            }}
-          />
-        </ButtonComponentModal> */}
+            nome ? nome : (nome = params.row.nome);
+            valor_inicial
+              ? valor_inicial
+              : (valor_inicial = params.row.valor_inicial);
+            descricao ? descricao : (descricao = params.row.descricao);
+
+            updateBalanceById(params.row.id, valor_inicial, nome, descricao);
+            location.reload();
+          }}
+        />
 
         {params.row.valor_restante == 0 && (
           <DeleteFunctionModal

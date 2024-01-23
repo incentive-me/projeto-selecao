@@ -11,3 +11,6 @@ export type BalanceValues = {
   usuario_id: number;
 } & balanceValuesDefault;
 
+export type updateBalanceValues = {
+  balanceId: string;
+} & balanceValuesDefault;

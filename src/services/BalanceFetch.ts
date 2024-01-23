@@ -102,7 +102,6 @@ export const updateBalanceById = async (
         },
       }
     );
-    console.log(response);
     if (!response.data) {
       throw new Error(`Erro na requisição: ${response.status}`);
     }
