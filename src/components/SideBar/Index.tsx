@@ -10,6 +10,7 @@ import PaymentIcon from "../IconsComponents/PaymentIcon";
 import LogoutIcon from "../IconsComponents/LogOutIcon";
 
 import ListItemComponent from "./ListItemComponent";
+import { signOut } from "@/services/UserFetch";
 
 export default function PermanentDrawerLeft() {
   return (
@@ -44,7 +45,12 @@ export default function PermanentDrawerLeft() {
           </List>
           <Divider />
           <List>
-            <ListItemComponent icon={<LogoutIcon />} name="Sair da Conta" />
+            <ListItemComponent
+              icon={<LogoutIcon />}
+              name="Sair da Conta"
+              route={"/auth"}
+              onClick={() => signOut()}
+            />
           </List>
         </Drawer>
       </Box>

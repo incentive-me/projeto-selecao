@@ -10,15 +10,16 @@ import React from "react";
 
 type Props = {
   name: string;
-  route?: string | null;
+  route: string | null;
   icon: JSX.Element;
+  onClick?: () => void;
 };
 
-const ListItemComponent = ({ name, route, icon }: Props) => {
+const ListItemComponent = ({ name, route, icon, onClick }: Props) => {
   const pathname = usePathname();
   return (
     <div>
-      <ListItem disablePadding>
+      <ListItem disablePadding onClick={onClick}>
         <Link href={route ? route : ""} passHref style={{ width: "100%" }}>
           <ListItemButton selected={pathname === route}>
             <ListItemIcon>{icon}</ListItemIcon>

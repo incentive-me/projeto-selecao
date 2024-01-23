@@ -25,28 +25,10 @@ export const paymentColumns: GridColDef[] = [
     valueGetter: (params: GridValueGetterParams) => params.row.id,
     renderCell: (params) => (
       <>
-        {/* <ButtonComponentModal name={<EditIcon />} variantColor="text">
-          <BalanceUpdateComponent
-            onSubmit={(data: balanceValuesDefault) => {
-              let { nome, descricao, valor_inicial } = data;
-              if (!nome && !descricao && !valor_inicial) return;
-
-              nome ? nome : (nome = params.row.nome);
-              valor_inicial
-                ? valor_inicial
-                : (valor_inicial = params.row.valor_inicial);
-              descricao ? descricao : (descricao = params.row.descricao);
-              console.log(valor_inicial, nome, descricao);
-              updateBalanceById(params.row.id, valor_inicial, nome, descricao);
-            }}
-          />
-        </ButtonComponentModal> */}
-
         <UpdateFunctionModal
           onSubmit={(data: paymentValuesDefault) => {
             let { nome, descricao, valor_inicial } = data;
             if (!nome && !descricao && !valor_inicial) return;
-            console.log(data);
             nome ? nome : (nome = params.row.nome);
             valor_inicial
               ? valor_inicial
