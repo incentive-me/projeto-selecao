@@ -12,18 +12,20 @@ const TableBalanceComponent = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    try {
-      if (token) {
-        getBalancesPerPerson().then((response) => {
-          setBalances(response);
-          setAtualizeTable(true);
-        });
-      } else {
-        router.push("/auth");
+    if (typeof localStorage !== undefined) {
+      const token = localStorage.getItem("token");
+      try {
+        if (token) {
+          getBalancesPerPerson().then((response) => {
+            setBalances(response);
+            setAtualizeTable(true);
+          });
+        } else {
+          router.push("/auth");
+        }
+      } catch (error) {
+        throw error;
       }
-    } catch (error) {
-      throw error;
     }
   }, [atualizeTable]);
 

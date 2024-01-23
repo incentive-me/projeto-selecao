@@ -43,24 +43,26 @@ export const signInUser = async (email: string, senha: string) => {
 };
 
 export const signOut = async () => {
-  try {
-    localStorage.removeItem("id");
+  if (typeof localStorage !== undefined) {
+    try {
+      localStorage.removeItem("id");
 
-    localStorage.removeItem("token");
+      localStorage.removeItem("token");
 
-    const response = await axios.post(url + "signout", {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
+      const response = await axios.post(url + "signout", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
 
-    if (!response.data) {
-      throw new Error(`Erro na requisição: ${response.status}`);
-    }
-    return response.data;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      throw new Error(`Erro ao desconectar o usuário: ${error.message}`);
+      if (!response.data) {
+        throw new Error(`Erro na requisição: ${response.status}`);
+      }
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        throw new Error(`Erro ao desconectar o usuário: ${error.message}`);
+      }
     }
   }
 };

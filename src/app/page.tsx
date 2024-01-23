@@ -8,13 +8,15 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    const tokenFromLocalStorage = localStorage.getItem("token");
-    const isTokenValid = !!tokenFromLocalStorage;
+    if (typeof localStorage !== undefined) {
+      const tokenFromLocalStorage = localStorage.getItem("token");
+      const isTokenValid = !!tokenFromLocalStorage;
 
-    if (isTokenValid) {
-      router.push("/saldos");
+      if (isTokenValid) {
+        router.push("/saldos");
+      }
+      router.push("/auth");
     }
-    router.push("/auth");
   }, []);
 
   return (

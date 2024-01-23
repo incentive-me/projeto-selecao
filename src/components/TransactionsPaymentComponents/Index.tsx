@@ -13,18 +13,20 @@ const TablePaymentComponent = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    try {
-      if (token) {
-        getPaymentPerPerson().then((response) => {
-          setPayments(response);
-          setAtualizeTable(true);
-        });
-      } else {
-        router.push("/auth");
+    if (typeof localStorage !== undefined) {
+      const token = localStorage.getItem("token");
+      try {
+        if (token) {
+          getPaymentPerPerson().then((response) => {
+            setPayments(response);
+            setAtualizeTable(true);
+          });
+        } else {
+          router.push("/auth");
+        }
+      } catch (error) {
+        throw error;
       }
-    } catch (error) {
-      throw error;
     }
   }, [atualizeTable]);
 
