@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React,{ useState } from "react"
 import { AppBar, Toolbar, Typography } from "@mui/material";
 import ButtonComponentModal from "../ButtonComponentModal/ButtonComponentModal";
 
@@ -24,12 +24,12 @@ const HeaderPaymentComponent: React.FC<headerPaymentProps> = ({
     const [id, valor_restante] = data.saldo_id.split(":");
 
     try {
-      if (parseInt(valor_restante) >= data.valor) {
+      if (parseInt(valor_restante) >= data.valor_inicial) {
         createPayment(
           id,
           data.nome,
           data.descricao ? data.descricao : "",
-          data.valor
+          data.valor_inicial
         );
         setAtualizeTable(false);
         setErrorPayment(false);
@@ -52,23 +52,29 @@ const HeaderPaymentComponent: React.FC<headerPaymentProps> = ({
         >
           {title}
         </Typography>
-        <ButtonComponentModal name="Criar" variantColor="contained">
-          {errorPayment && (
-            <Typography>
-              <StarIcon />
-              Saldo insuficiente
-            </Typography>
-          )}
-          {!atualizeTable && (
-            <Typography>
-              <StarIcon />
-              Pedido criado com sucesso
-            </Typography>
-          )}
-          {atualizeTable && !errorPayment && (
-            <PaymentFormComponent onSubmit={onSubmit} />
-          )}
-        </ButtonComponentModal>
+        <ButtonComponentModal
+          name="Criar"
+          variantColor="contained"
+          children={
+            <>
+              {errorPayment && (
+                <Typography>
+                  <StarIcon />
+                  Saldo insuficiente
+                </Typography>
+              )}
+              {!atualizeTable && (
+                <Typography>
+                  <StarIcon />
+                  Pedido criado com sucesso
+                </Typography>
+              )}
+              {atualizeTable && !errorPayment && (
+                <PaymentFormComponent onSubmit={onSubmit} />
+              )}
+            </>
+          }
+        ></ButtonComponentModal>
       </Toolbar>
     </AppBar>
   );
