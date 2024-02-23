@@ -44,6 +44,9 @@ app.post("/payment", middlewareJWT, (req, res) => paymentController.CreatePaymen
 app.delete("/payment/:id", middlewareJWT, (req, res) => paymentController.DeletePayment(req, res))
 app.patch("/payment", middlewareJWT, (req, res) => paymentController.UpdatePaymentName(req, res))
 
+app.get("/", (req, res) =>
+    res.status(200).send({ message: "API PAYMENT SYSTEM" })
+)
 app.listen(3001, () => {
     console.log("Server is running on port 3001")
 })
