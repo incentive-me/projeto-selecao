@@ -1,39 +1,91 @@
-# 🚀 Venha participar do nosso time campeão!
+<div align="center">
+    <h1>Desafio Plataforma de pagamentos</h1>
+    <p align="center">Este é o Front-End de uma aplicação feita em <a href="https://nextjs.org">NextJs</a> que consiste em ser uma plataforma de pagamentos com algumas funcionalidades.
+    </p>
+</div>
 
-Ao conhecer uma pessoa que está aplicando para a Incentive.me gostamos de ter uma conversa sobre código. Afinal, escrever, ler e discutir sobre código faz parte da nossa rotina diária de trabalho.
+<div align="center">
+    <img src="https://img.shields.io/static/v1?label=Node&message=14.0.4&color=#009CA3%3CCOLOR%3E&style=plastic%3CSTYLE%3E&logo=react%3CLOGO%3E" alt="Versão do Nextjs" />
+      <img src="https://img.shields.io/static/v1?label=Axios&message=1.6.5&color=#009CA3%3CCOLOR%3E&style=plastic%3CSTYLE%3E&logo=react%3CLOGO%3E" alt="Versão do Axios" />
+    <img src="https://img.shields.io/static/v1?label=React-Hook-Form&message=7.49.3&color=#009CA3%3CCOLOR%3E&style=plastic%3CSTYLE%3E&logo=react%3CLOGO%3E" alt="Versão do React Hook Form" />
+    <img src="https://img.shields.io/static/v1?label=Yup&message=1.3.3&color=#009CA3%3CCOLOR%3E&style=plastic%3CSTYLE%3E&logo=react%3CLOGO%3E" alt="Versão do Yup" />
+    <img src="https://img.shields.io/static/v1?label=Material UI&message=5.15.5&color=#009CA3%3CCOLOR%3E&style=plastic%3CSTYLE%3E&logo=react%3CLOGO%3E" alt="Versão do Material UI" />
+</div>
 
-Você pode implementar o projeto usando qualquer linguagem de sua preferência. Lembre-se: use a linguagem com a qual você tem mais familiaridade.
+<div align="center">
+    <a href="#tecnologias">Tecnologias</a> •
+    <a href="#como-usar">Como usar</a> •
+    <a href="#desafios">Desafios</a> •
+    <a href="#melhorias">Melhorias</a> •
+    <a href="#contato"> Contato</a>
+</div><br>
 
-## O que vamos avaliar?
+**Demo Aplicação:** [**https://projeto-selecao-darlanbbs.vercel.app/auth**](https://projeto-selecao-darlanbbs.vercel.app/auth)
 
-- Comunicação na revisão do código;
-- Argumentos sobre desafios enfrentados e escolhas realizadas na implementação;
-- Código bem escrito, limpo e coeso;
-- Arquitetura e princípios de desenvolvimento;
-- Documentação (README.md) com instruções claras para reproduzir o projeto;
-- Uso adequado de versionamento do código em git;
-- Uso de testes automatizados;
-- Deploy da aplicação;
-- O design da API RESTful é implementado, usando corretamente os verbos HTTP e o código de status apropriado;
-- Uso adequado de HTML5, CSS3 e JavaScript em um front-end minimamente estruturado;
 
-Caso você não se sinta confortável com algum desses itens, tudo bem, apenas nos fale sobre isso, ok? O objetivo aqui não é te fazer perder tempo com algo irrelevante. Nosso objetivo aqui é ter um código sobre o qual podemos conversar. Como você deve ter notado, a gente preza muito por colaboração, trabalho em time e comunicação. O objetivo aqui é ter, minimamente, essa experiência com você.
 
-Respeite o seu nível de conhecimento e experiência, o importante é você saber dizer o motivo das suas escolhas. Se você tiver qualquer dúvida, por favor, entre em contato com a gente. Estamos disponíveis para te ajudar a finalizar esse processo.
+<br/>
 
-# Opções de projetos
+# Tecnologias
+#### Linguagens e Ferramentas:
+- [NextJs](https://nodejs.org)
+- [ReactJs](https://react.dev/)
 
-A seguir seguem algumas ideias de projetos que você pode implementar:
+#### BIBLIOTECAS:
+- [MaterialUI](https://mui.com/material-ui/)
+- [Yup](https://www.npmjs.com/package/yup)
+- [Axios](https://axios-http.com/ptbr/docs/intro)
+- [React-Hook-Form](https://www.react-hook-form.com/get-started/)
+  
+#### Padronização de Código:
+- [Prettier](https://prettier.io/)
+- [Eslint(Configuração da RocketSeat)](https://www.npmjs.com/package/@rocketseat/eslint-config)
 
-- [Cliente para o GitHub](https://github.com/incentive-me/projeto-selecao/blob/master/projects/GITHUB.md);
-- [Sistema de pagamentos](https://github.com/incentive-me/projeto-selecao/blob/master/projects/PAGAMENTOS.md).
-- **Projeto open source próprio**: Se você tiver algum projeto pronto, que tenha relação com desenvolvimento Web, você pode apresentá-lo na entrevista. Conte-nos sobre suas motivações ao criá-lo, os desafios técnicos e não técnicos enfretados etc. O objetivo aqui é poupar seu tempo
-e evitar que você tenha que criar outro projeto, caso já tenha um.
+<br/>
 
-# Como compartilhar o projeto conosco
+# Como usar
+**Clone o projeto e acesse a pasta:**
 
-1. Apague este README.md e adicione informações que achar relevante como configurar o projeto, contendo os comandos que devem ser executados para executar ele e os testes;
-2. Abra um PR apontando para a branch master deste repositório;
-3. Escreva qualquer consideração na descrição do PR e faça qualquer comentário que achar pertinente no código.
+```bash
+$ git clone git@github.com:darlanbbs/FrontEnd-Plataforma-de-Pagamentos.git && cd FrontEnd-Plataforma-de-Pagamentos
+```
 
-**OBS.:** Caso queira nos mostra um projeto open source próprio, abra uma issue nesse repositório aqui, colocando links e informações sobre o seu projeto de forma que possamos avaliá-lo.
+___
+
+**Siga os passos a baixo para rodar a aplicação localmente:**
+
+```bash
+
+# Instale as dependências:
+$ yarn
+$ npm install
+
+# Inciar a aplicação
+$ yarn run dev
+$ npm run dev
+```
+
+
+# Desafios
+- <p>Enfrentei desafios significativos nas partes relacionadas a atualizações de usuário, saldos e pagamentos. O cerne dessas dificuldades reside na necessidade de lidar com valores opcionais, o que exigiu uma abordagem cuidadosa e estratégica para garantir a flexibilidade e a usabilidade do sistema.</p>
+<br/>
+
+# Melhorias
+- <p>Realizar análises de desempenho para identificar áreas que podem ser otimizadas. Isso pode incluir melhorias no código, consultas ao banco de dados ou no carregamento de recursos.</p>
+- <p>Poderia fazer uma atualização de dados utilizando um estado global Ex:Context , redux etc.</p>
+- <p>Poderia utilizar um gerenciador de Login/Registro Ex:google.</p>
+- <p>Poderia ter feito testes mas como eu fiquei doente e o desafio tem um prazo de validade e testes mesmo sendo de grande ajuda consome um tempo maior no desenvolvimento.</p>
+- <p>Ter uma arquiterura mais estruturada e conciso tendo uma melhor qualidade podendo transimitir um conteúdo de modo mais simples.</p>
+<br/>
+
+# Contato
+
+Qualquer dúvida, sugestão ou crítica estarei à disposição!
+
+**Obrigado pela oportunidade!**
+
+E-mail: **darlanbs05@gmail.com**
+
+WhatsApp: (71) 98604-7621
+
+LinkedIn: [**https://www.linkedin.com/in/darlan-bomfim-903582260/**](https://www.linkedin.com/in/darlan-bomfim-903582260/)
