@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: QulX698VDj5O
+      MYSQL_DATABASE: payments
+      MYSQL_USER: paymentadmin
+      MYSQL_PASSWORD: fbQxp2gD9t6C
+    ports:
+      - "3306:3306"
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    #volumes:
+    #  - ./api:/var/www/html
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+    links:
+      - mysql:mysql
+  react-app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    #volumes:
+    #  - ./app:/var/www/html
+    ports:
+      - "3000:3000"
