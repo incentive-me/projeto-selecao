@@ -1,0 +1,55 @@
+.form_container {
+    max-width: 300px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 15px;
+}
+
+.form_container_large {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 15px;
+}
+
+.form_container input[type='submit'],
+.form_container_large input[type='submit'] {
+    border-radius: 8px;
+    background-color: #25b456;
+    color: #fff;
+    border: none;
+    min-width: 100px;
+    min-height: 2.5rem;
+    width: 100%;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.form_container input[type='submit']:hover,
+.form_container_large input[type='submit']:hover {
+    background-color: #1c8a42;
+}
+
+input[readonly],
+input[disabled] {
+    background: #EEE;
+
+}
+
+select[readonly],
+select[disabled] {
+    background: #DDD;
+}
+
+.form_container p,
+.form_container_large P {
+    margin-top: 1em;
+}
+
+.form_container p a,
+.form_container_large p a {
+    color: #16479d;
+    ;
+    font-weight: bold;
+}

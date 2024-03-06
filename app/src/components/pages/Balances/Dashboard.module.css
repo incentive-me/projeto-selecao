@@ -1,0 +1,180 @@
+.balanceslist_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2em;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.balanceslist_header h1 {
+    margin: 0;
+}
+
+.balanceslist_header a {
+    text-decoration: none;
+    background-color: #25b456;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.5s;
+    padding: 0.5em 0.8em;
+    border-radius: 5px;
+    border: 2px solid #FFF;
+}
+
+.balanceslist_header a:hover {
+    background-color: #FFF;
+    color: #1c8a42;
+    border: 2px solid #1c8a42;
+}
+
+/*list*/
+.balances {
+    margin-top: 20px;
+    color: #555;
+}
+
+.balances_header {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.column_header {
+    width: calc(20%);
+    text-align: left;
+    padding: 5px 0;
+    font-weight: bold;
+}
+
+.column_header_big {
+    width: calc(35%);
+    text-align: left;
+    padding: 5px 0;
+    font-weight: bold;
+}
+
+.balances {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}
+
+
+.record {
+    width: calc(20%);
+    display: flex;
+    justify-content: space-between;
+
+    padding: 10px 10px 10px 0;
+
+    align-items: left;
+}
+
+.record_header_big {
+    width: calc(35%);
+}
+
+.balances a,
+button {
+    padding: 6px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: 0.5s;
+    background: #FFF;
+    font-size: 16px;
+}
+
+a.edit,
+.no_delete {
+    border: 2px solid #25b456;
+    color: #25b456;
+
+}
+
+a.edit:hover,
+.no_delete:hover {
+    border: 2px solid #25b456;
+    background: #1c8a42;
+    color: #FFF;
+}
+
+.delete {
+    border: 2px solid #d44646;
+    color: #d44646;
+    cursor: pointer;
+}
+
+.delete:hover {
+    border: 2px solid #b42525;
+    background: #b42525;
+    color: #FFF;
+}
+
+/*/list*/
+
+.modal {
+    position: absolute;
+    width: calc(50vw);
+    height: 200px;
+    inset: calc(25%);
+    border: 1px solid rgb(204, 204, 204);
+    background: rgb(255, 255, 255);
+    overflow: auto;
+    border-radius: 15px;
+    outline: none;
+    padding: 20px;
+    color: #555;
+}
+
+.modal h2 {}
+
+.modal p {
+    padding-top: 30px;
+}
+
+.modal button {
+    margin-top: 35px;
+    display: inline-flex;
+    gap: 10px;
+    margin-right: 25px;
+    padding: 10px 25px;
+    float: right;
+}
+
+
+.pagination {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap: 2rem;
+    color: #555;
+
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+}
+
+.pagination button:disabled:hover {
+    opacity: 0.5;
+    color: #555;
+}
+
+.pagination button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: 600;
+    color: #555;
+}
+
+.pagination button:hover {
+    color: #1c8a42;
+
+}

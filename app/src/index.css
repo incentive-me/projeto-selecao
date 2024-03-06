@@ -1,0 +1,23 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: Helvetica;
+  box-sizing: border-box;
+}
+
+h1 {
+  color: #555;
+  margin-bottom: 1em;
+  font-size: 2.1em;
+  text-align: center;
+}
+
+h4 {
+  color: #555;
+  text-align: center;
+}
+
+.bold {
+  font-weight: bold;
+  color: #555;
+}
