@@ -1,39 +1,40 @@
-# 🚀 Venha participar do nosso time campeão!
+## Tecnologias Usadas
 
-Ao conhecer uma pessoa que está aplicando para a Incentive.me gostamos de ter uma conversa sobre código. Afinal, escrever, ler e discutir sobre código faz parte da nossa rotina diária de trabalho.
+### Front-end
 
-Você pode implementar o projeto usando qualquer linguagem de sua preferência. Lembre-se: use a linguagem com a qual você tem mais familiaridade.
+- **React:** Uma biblioteca JavaScript para construir interfaces de usuário. Escolhido pela sua vasta comunidade, rica documentação e capacidade de criar uma UI dinâmica de forma eficiente.
+- **NextJS:** Um framework React que oferece funcionalidades como renderização no lado do servidor e geração de sites estáticos, escolhido por melhorar o SEO e a performance da aplicação.
+- **TypeScript:** Superset de JavaScript que adiciona tipagem estática. Usado para melhorar a qualidade do código e a produtividade do desenvolvedor através da detecção de erros em tempo de compilação.
+- **Zustand:** Uma biblioteca de gerenciamento de estado para React, escolhida pela sua simplicidade e por promover uma forma menos verbosa e mais direta de gerenciar estados globais.
+- **react-query:** Utilizado para buscar, sincronizar e atualizar dados no React, escolhido pela sua eficiência em gerenciar estados de servidor no cliente e melhorar a experiência do usuário com fetching de dados.
 
-## O que vamos avaliar?
+### Back-end
 
-- Comunicação na revisão do código;
-- Argumentos sobre desafios enfrentados e escolhas realizadas na implementação;
-- Código bem escrito, limpo e coeso;
-- Arquitetura e princípios de desenvolvimento;
-- Documentação (README.md) com instruções claras para reproduzir o projeto;
-- Uso adequado de versionamento do código em git;
-- Uso de testes automatizados;
-- Deploy da aplicação;
-- O design da API RESTful é implementado, usando corretamente os verbos HTTP e o código de status apropriado;
-- Uso adequado de HTML5, CSS3 e JavaScript em um front-end minimamente estruturado;
+- **GO:** Uma linguagem de programação compilada conhecida por sua simplicidade, eficiência e concorrência. Escolhida por sua performance superior em aplicações de rede e capacidade de lidar com múltiplas solicitações simultaneamente, ideal para o backend de serviços web escaláveis.
 
-Caso você não se sinta confortável com algum desses itens, tudo bem, apenas nos fale sobre isso, ok? O objetivo aqui não é te fazer perder tempo com algo irrelevante. Nosso objetivo aqui é ter um código sobre o qual podemos conversar. Como você deve ter notado, a gente preza muito por colaboração, trabalho em time e comunicação. O objetivo aqui é ter, minimamente, essa experiência com você.
+## Como rodar o projeto
 
-Respeite o seu nível de conhecimento e experiência, o importante é você saber dizer o motivo das suas escolhas. Se você tiver qualquer dúvida, por favor, entre em contato com a gente. Estamos disponíveis para te ajudar a finalizar esse processo.
+### Front-end
 
-# Opções de projetos
+Para instalar as dependências e rodar o front-end do projeto, siga os passos abaixo no terminal:
 
-A seguir seguem algumas ideias de projetos que você pode implementar:
+```bash
+# Instalar as dependências
+pnpm i
 
-- [Cliente para o GitHub](https://github.com/incentive-me/projeto-selecao/blob/master/projects/GITHUB.md);
-- [Sistema de pagamentos](https://github.com/incentive-me/projeto-selecao/blob/master/projects/PAGAMENTOS.md).
-- **Projeto open source próprio**: Se você tiver algum projeto pronto, que tenha relação com desenvolvimento Web, você pode apresentá-lo na entrevista. Conte-nos sobre suas motivações ao criá-lo, os desafios técnicos e não técnicos enfretados etc. O objetivo aqui é poupar seu tempo
-e evitar que você tenha que criar outro projeto, caso já tenha um.
+# Rodar o projeto em modo de desenvolvimento
+pnpm run dev
+```
 
-# Como compartilhar o projeto conosco
+Isso iniciará o servidor de desenvolvimento e permitirá que você visualize a aplicação no navegador.
 
-1. Apague este README.md e adicione informações que achar relevante como configurar o projeto, contendo os comandos que devem ser executados para executar ele e os testes;
-2. Abra um PR apontando para a branch master deste repositório;
-3. Escreva qualquer consideração na descrição do PR e faça qualquer comentário que achar pertinente no código.
+### Back-end
 
-**OBS.:** Caso queira nos mostra um projeto open source próprio, abra uma issue nesse repositório aqui, colocando links e informações sobre o seu projeto de forma que possamos avaliá-lo.
+Para rodar o back-end do projeto, você precisará ter o `make` instalado em seu sistema. Siga os passos abaixo:
+
+```bash
+# Rodar o servidor backend
+make run
+```
+
+Este comando irá compilar e iniciar o servidor backend, tornando a API disponível para o front-end.
