@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  postgresdb:
+    image: postgres
+    container_name: postgresdb
+    environment:
+      POSTGRES_PASSWORD: senhasupersegura
+      POSTGRES_DB: postgresdb
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
