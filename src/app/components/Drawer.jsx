@@ -2,7 +2,7 @@ import { Drawer } from '@mui/material'
 
 import MenuList from './MenuList'
 
-export default function Menu({ methods, isMobileOpen, width = 240 }) {
+export default function Menu({ methods, isMobileOpen, width = 240, menuItens = [] }) {
   const styleDrawer = {
     '& .MuiDrawer-paper': {
       boxSizing: 'border-box',
@@ -19,7 +19,6 @@ export default function Menu({ methods, isMobileOpen, width = 240 }) {
     methods.handleSetMobileOpen(false);
   };
 
-
   return (
     <nav>
       <Drawer
@@ -29,13 +28,13 @@ export default function Menu({ methods, isMobileOpen, width = 240 }) {
         onClose={handleDrawerClose}
         ModalProps={{ keepMounted: true, }}
         sx={{ ...styleDrawer, display: { xs: 'block', sm: 'none' } }}>
-        <MenuList />
+        <MenuList itens={menuItens} />
       </Drawer>
       <Drawer
         open
         variant="permanent"
         sx={{ ...styleDrawer, display: { xs: 'none', sm: 'block' } }}>
-        <MenuList />
+        <MenuList itens={menuItens} />
       </Drawer>
     </nav>
   )

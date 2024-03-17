@@ -5,16 +5,11 @@ import {
   CardContent,
   Grid,
   Button,
-  Box,
-
-  styled,
   TextField,
 } from '@mui/material';
 
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-
-const CustomButton = styled(Button)({ background: '#424242' })
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -71,13 +66,9 @@ export default function Login() {
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
-                  <CustomButton
-                    fullWidth
-                    type="submit"
-                    variant="contained"
-                  >
+                  <Button fullWidth type="submit" variant="contained">
                     Entrar
-                  </CustomButton>
+                  </Button>
                 </Grid>
               </Grid>
             </form>

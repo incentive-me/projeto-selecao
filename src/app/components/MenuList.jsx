@@ -1,6 +1,7 @@
+"use client"
+
 import LogoutIcon from '@mui/icons-material/Logout';
-import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
-import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+
 import {
   Toolbar,
   List,
@@ -10,19 +11,27 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material'
+import { useRouter } from 'next/navigation';
 
-export default function MenuList() {
+export default function MenuList({ itens = [] }) {
+  const router = useRouter()
+
+  const handleLogout = () => {
+    // XXX TODO :: Adicionar a lógica para logout
+    router.push('/login')
+  }
+
   return (
     <div>
       <Toolbar />
       <List>
-        {['Pagamentos', 'Saldos'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
+        {itens.map((el) => (
+          <ListItem key={el.uuid} disablePadding>
+            <ListItemButton onClick={() => router.push(el.path)}>
               <ListItemIcon sx={{ color: 'rgba(255, 255, 255, 0.56)' }}>
-                {index === 0 ? <MonetizationOnIcon /> : <AccountBalanceWalletIcon />}
+                {el.icon}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={el.display_name} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -32,7 +41,7 @@ export default function MenuList() {
 
       <List>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton onClick={handleLogout}>
             <ListItemIcon>
               <LogoutIcon sx={{ color: 'rgba(255, 255, 255, 0.56)' }} />
             </ListItemIcon>
