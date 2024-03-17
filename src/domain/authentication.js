@@ -31,9 +31,10 @@ function RouteGuard({ children }) {
     const path = url.split('?')[0]
 
     if (!AuthIsAuthorized() && !publicPath.includes(path)) {
-      setAuthorized(false)
+      // XXX TODO :: Deixar false quando implementar o login
+      setAuthorized(true)
 
-      router.push('/login')
+      // router.push('/login')
     } else {
       setAuthorized(true)
     }
