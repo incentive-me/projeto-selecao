@@ -1,7 +1,10 @@
 "use client"
 
 import MenuIcon from '@mui/icons-material/Menu'
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 
+import Link from 'next/link'
 import {
   AppBar,
   Box,
@@ -13,13 +16,23 @@ import Drawer from '@/app/components/Drawer'
 
 import { useState } from 'react';
 
-
 export default function Layout({ children }) {
   const [isMobileOpen, setMobileOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
 
   const drawerWidth = 240;
   const toolbarHeight = 64;
+  const menuItens = [{
+    uuid: 'payments',
+    display_name: 'Pagamentos',
+    path: '/payments',
+    icon: <MonetizationOnIcon />
+  }, {
+    uuid: 'balances',
+    display_name: 'Saldos',
+    path: '/balances',
+    icon: <AccountBalanceWalletIcon />
+  }]
 
   const handleSetIsClosing = (status = false) => setIsClosing(status);
   const handleSetMobileOpen = (status = false) => setMobileOpen(status);
@@ -50,14 +63,17 @@ export default function Layout({ children }) {
             <MenuIcon />
           </IconButton>
 
-          <h6 className="text-3xl">Payments</h6>
+          <Link href="/payments">
+            <h6 className="text-3xl">Payments</h6>
+          </Link>
         </Toolbar>
       </AppBar>
 
       <Drawer
         methods={{handleSetIsClosing, handleSetMobileOpen}}
         isMobileOpen={isMobileOpen}
-        width={drawerWidth} />
+        width={drawerWidth}
+        menuItens={menuItens}/>
 
       <Box
         component="main"
