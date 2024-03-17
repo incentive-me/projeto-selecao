@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { hash } from 'bcrypt';
 import { randomUUID } from 'crypto';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -9,6 +9,15 @@ export class UserService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(createUserDto: CreateUserDto) {
+    if (await this.findByEmail(createUserDto.email))
+      throw new HttpException(
+        {
+          status: HttpStatus.CONFLICT,
+          error: 'This is user already exists',
+        },
+        HttpStatus.CONFLICT,
+      );
+
     const data = {
       ...createUserDto,
       id: randomUUID(),
