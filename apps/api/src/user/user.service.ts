@@ -13,7 +13,7 @@ export class UserService {
       throw new HttpException(
         {
           status: HttpStatus.CONFLICT,
-          error: 'This is user already exists',
+          error: 'This user already exists',
         },
         HttpStatus.CONFLICT,
       );
