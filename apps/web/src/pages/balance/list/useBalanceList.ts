@@ -23,7 +23,9 @@ export function useBalanceList() {
       mutationKey: ['balance', 'delete'],
       mutationFn: (id: string) => deleteById(id),
       onSuccess() {
-        enqueueSnackbar('Saldo deletado com sucesso!');
+        enqueueSnackbar('Saldo deletado com sucesso!', {
+          variant: 'success',
+        });
 
         refetch();
       },
