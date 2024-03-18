@@ -1,39 +1,49 @@
-# 🚀 Venha participar do nosso time campeão!
+# Pagamentos APP
 
-Ao conhecer uma pessoa que está aplicando para a Incentive.me gostamos de ter uma conversa sobre código. Afinal, escrever, ler e discutir sobre código faz parte da nossa rotina diária de trabalho.
+![Node](https://img.shields.io/badge/Next.js-000?style=for-the-badge&logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![FireBase](https://img.shields.io/badge/Fire_Base-FFCB2D?style=for-the-badge&logo=firebase&logoColor=black)
+![UIShadcn](https://img.shields.io/badge/UI.Shadcn-000?style=for-the-badge&logo=firebase&logoColor=white)
+![Version](https://img.shields.io/badge/V0.1-100000?style=for-the-badge&logo=github&logoColor=white)
 
-Você pode implementar o projeto usando qualquer linguagem de sua preferência. Lembre-se: use a linguagem com a qual você tem mais familiaridade.
+<img src="./public/presentation.gif" alt="Exemplo imagem">
 
-## O que vamos avaliar?
+# Sistema de Pagamentos
 
-- Comunicação na revisão do código;
-- Argumentos sobre desafios enfrentados e escolhas realizadas na implementação;
-- Código bem escrito, limpo e coeso;
-- Arquitetura e princípios de desenvolvimento;
-- Documentação (README.md) com instruções claras para reproduzir o projeto;
-- Uso adequado de versionamento do código em git;
-- Uso de testes automatizados;
-- Deploy da aplicação;
-- O design da API RESTful é implementado, usando corretamente os verbos HTTP e o código de status apropriado;
-- Uso adequado de HTML5, CSS3 e JavaScript em um front-end minimamente estruturado;
+Este projeto é um sistema de pagamentos desenvolvido para treinar habilidades de programação, utilizando [Next.js](https://nextjs.org/), [TypeScript](https://www.typescriptlang.org/), [Tailwind CSS](https://tailwindcss.com/), [ui.shadcn](https://shadcn.github.io/ui/) e [Firebase](https://firebase.google.com/) para a persistência dos dados. Através desta aplicação, os usuários podem se registrar, entrar na plataforma, cadastrar saldos e pagamentos, com o objetivo de gerenciar suas finanças pessoais de maneira eficaz.
 
-Caso você não se sinta confortável com algum desses itens, tudo bem, apenas nos fale sobre isso, ok? O objetivo aqui não é te fazer perder tempo com algo irrelevante. Nosso objetivo aqui é ter um código sobre o qual podemos conversar. Como você deve ter notado, a gente preza muito por colaboração, trabalho em time e comunicação. O objetivo aqui é ter, minimamente, essa experiência com você.
+## Funcionalidades
 
-Respeite o seu nível de conhecimento e experiência, o importante é você saber dizer o motivo das suas escolhas. Se você tiver qualquer dúvida, por favor, entre em contato com a gente. Estamos disponíveis para te ajudar a finalizar esse processo.
+- **Autenticação**: Login e logout.
+- **Pagamentos**:
+  - Criar, visualizar, editar e apagar pagamentos.
+  - Atributos: Nome, Descrição, Valor, Saldo Vinculado.
+- **Saldos**:
+  - Criar, visualizar, editar e apagar saldos.
+  - Atributos: Nome, Descrição, Valor Inicial, Valor Restante.
 
-# Opções de projetos
+## Regras de Negócio
 
-A seguir seguem algumas ideias de projetos que você pode implementar:
+- O sistema gerencia o valor restante de um saldo.
+- Impede vinculação de um saldo a um pagamento se o saldo restante for insuficiente.
+- Bloqueia a exclusão de um saldo vinculado a um pagamento.
+- Atualiza o valor restante do saldo ao criar ou excluir um pagamento.
 
-- [Cliente para o GitHub](https://github.com/incentive-me/projeto-selecao/blob/master/projects/GITHUB.md);
-- [Sistema de pagamentos](https://github.com/incentive-me/projeto-selecao/blob/master/projects/PAGAMENTOS.md).
-- **Projeto open source próprio**: Se você tiver algum projeto pronto, que tenha relação com desenvolvimento Web, você pode apresentá-lo na entrevista. Conte-nos sobre suas motivações ao criá-lo, os desafios técnicos e não técnicos enfretados etc. O objetivo aqui é poupar seu tempo
-e evitar que você tenha que criar outro projeto, caso já tenha um.
+## Requisitos
 
-# Como compartilhar o projeto conosco
+- [Node.js](https://nodejs.org/en/)
+- Uma conta no [Firebase](https://firebase.google.com/)
 
-1. Apague este README.md e adicione informações que achar relevante como configurar o projeto, contendo os comandos que devem ser executados para executar ele e os testes;
-2. Abra um PR apontando para a branch master deste repositório;
-3. Escreva qualquer consideração na descrição do PR e faça qualquer comentário que achar pertinente no código.
+## Instalação
 
-**OBS.:** Caso queira nos mostra um projeto open source próprio, abra uma issue nesse repositório aqui, colocando links e informações sobre o seu projeto de forma que possamos avaliá-lo.
+1. Clone o repositório:
+   ```bash
+   git clone <https://github.com/AndersonAlvesCoelho/payments-app>
+   ```
+
+</table>
+
+## 📝 Licença
+
+Esse projeto está sob licença. Veja o arquivo [LICENÇA](LICENSE.md) para mais detalhes.
