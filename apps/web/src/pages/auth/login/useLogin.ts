@@ -36,7 +36,7 @@ export function useRegister() {
   const navigate = useNavigate();
 
   const { mutateAsync, isPending } = useMutation({
-    mutationKey: ['user', 'create'],
+    mutationKey: ['auth', 'login'],
     mutationFn: (data: LoginRequest) => login(data),
     onSuccess(data) {
       enqueueSnackbar('Usuário logado com sucesso!', {
