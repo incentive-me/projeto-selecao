@@ -3,6 +3,7 @@ import { useSnackbar } from 'notistack';
 import { useMemo } from 'react';
 import { generatePath, useNavigate } from 'react-router-dom';
 import { useBalanceApi } from 'services/api/balance';
+import { AxiosError } from 'axios';
 
 export function useBalanceList() {
   const { deleteById, findAll } = useBalanceApi();
@@ -28,6 +29,22 @@ export function useBalanceList() {
         });
 
         refetch();
+      },
+      onError(error: AxiosError<{ error: string }>) {
+        if (
+          error?.response?.data.error ===
+          'This user is already linked with a payment'
+        )
+          return enqueueSnackbar(
+            'Este saldo está vinculado a um pagamento e não pode ser excluido.',
+            {
+              variant: 'error',
+            },
+          );
+
+        enqueueSnackbar('Erro ao deletar saldo.', {
+          variant: 'error',
+        });
       },
     });
 

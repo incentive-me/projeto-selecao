@@ -8,9 +8,10 @@ import ErrorPage from './error-page';
 import {
   BalanceEdit,
   BalanceList,
+  PaymentEdit,
+  PaymentList,
   Layout,
   Login,
-  Payment,
   Register,
   Root,
 } from './pages';
@@ -46,7 +47,15 @@ const router = createBrowserRouter([
         children: [
           {
             path: 'payment',
-            element: <Payment />,
+            element: <PaymentList />,
+          },
+          {
+            path: 'payment/edit',
+            element: <PaymentEdit />,
+          },
+          {
+            path: 'payment/edit/:id',
+            element: <PaymentEdit />,
           },
           {
             path: 'balance',

@@ -1,5 +1,11 @@
 import { LoadingButton } from '@mui/lab';
-import { Button, Stack, TextField, Typography } from '@mui/material';
+import {
+  Button,
+  CircularProgress,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material';
 import { Controller } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { useBalanceEdit } from './useBalanceEdit';
@@ -9,6 +15,7 @@ export function BalanceEdit() {
 
   const {
     isPending,
+    isLoading,
     onSubmit,
     form: {
       control,
@@ -17,6 +24,13 @@ export function BalanceEdit() {
       formState: { isDirty },
     },
   } = useBalanceEdit(id);
+
+  if (isLoading)
+    return (
+      <Stack height="100%" alignItems="center" justifyContent="center">
+        <CircularProgress />
+      </Stack>
+    );
 
   return (
     <form

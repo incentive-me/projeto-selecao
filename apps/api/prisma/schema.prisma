@@ -22,3 +22,13 @@ model Balance {
   initialValue Float
   remainingValue Float
 }
+
+model Payment {
+  id String @id
+  userId String
+  name String
+  description String
+  value Float
+  balanceId String
+  balanceName String
+}
