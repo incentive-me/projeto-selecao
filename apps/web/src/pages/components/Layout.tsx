@@ -3,18 +3,23 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import PaidIcon from '@mui/icons-material/Paid';
 import {
   AppBar,
+  CircularProgress,
   Divider,
   Drawer,
   List,
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Stack,
+  ThemeProvider,
   Toolbar,
   Typography,
 } from '@mui/material';
-import { Outlet, useNavigate } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
 import { useSnackbar } from 'notistack';
+import { Suspense } from 'react';
+import { useCookies } from 'react-cookie';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { lightTheme } from 'themes';
 
 export function Layout() {
   const navigate = useNavigate();
@@ -30,11 +35,8 @@ export function Layout() {
   };
 
   return (
-    <div style={{ display: 'flex' }}>
-      <AppBar
-        position="fixed"
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
-      >
+    <div style={{ display: 'flex', height: '100vh' }}>
+      <AppBar position="fixed">
         <Toolbar>
           <Typography variant="h6" noWrap>
             Payments
@@ -43,15 +45,16 @@ export function Layout() {
       </AppBar>
       <Drawer
         sx={{
+          mt: '64px',
           width: 320,
           '& .MuiDrawer-paper': {
             width: 320,
+            position: 'static',
           },
         }}
         variant="permanent"
         anchor="left"
       >
-        <Toolbar />
         <List>
           <ListItemButton onClick={() => navigate('/payment')}>
             <ListItemIcon>
@@ -77,10 +80,25 @@ export function Layout() {
           </ListItemButton>
         </List>
       </Drawer>
-      <div style={{ padding: 20 }}>
-        <Toolbar />
-        <Outlet />
-      </div>
+      <ThemeProvider theme={lightTheme}>
+        <div
+          style={{
+            padding: '84px 20px 20px 20px',
+            width: '100%',
+            height: '100%',
+          }}
+        >
+          <Suspense
+            fallback={
+              <Stack height="100%" alignItems="center" justifyContent="center">
+                <CircularProgress />
+              </Stack>
+            }
+          >
+            <Outlet />
+          </Suspense>
+        </div>
+      </ThemeProvider>
     </div>
   );
 }

@@ -13,3 +13,12 @@ model User {
   password String
   name String
 }
+
+model Balance {
+  id String @id
+  userId String
+  name String
+  description String
+  initialValue Float
+  remainingValue Float
+}
