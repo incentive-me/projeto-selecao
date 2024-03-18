@@ -3,11 +3,12 @@ import { APP_GUARD } from '@nestjs/core';
 import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { BalanceModule } from './balance/balance.module';
+import { PaymentModule } from './payment/payment.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { UserModule } from './user/user.module';
 
 @Module({
-  imports: [PrismaModule, UserModule, AuthModule, BalanceModule],
+  imports: [PrismaModule, UserModule, AuthModule, BalanceModule, PaymentModule],
   providers: [
     {
       provide: APP_GUARD,

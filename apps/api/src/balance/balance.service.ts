@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateBalanceDto } from './dto/create-balance.dto';
@@ -47,6 +47,21 @@ export class BalanceService {
   }
 
   async remove(id: string) {
+    const vinculedPayment = await this.prisma.payment.findFirst({
+      where: {
+        balanceId: id,
+      },
+    });
+
+    if (vinculedPayment)
+      throw new HttpException(
+        {
+          status: HttpStatus.CONFLICT,
+          error: 'This user is already linked with a payment',
+        },
+        HttpStatus.CONFLICT,
+      );
+
     await this.prisma.balance.delete({ where: { id } });
   }
 
