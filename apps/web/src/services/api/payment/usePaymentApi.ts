@@ -1,4 +1,5 @@
-import instance from '../instance';
+import { useCookies } from 'react-cookie';
+import { createInstance } from '../createInstance';
 import type {
   CreatePaymentRequest,
   UpdatePaymentRequest,
@@ -6,6 +7,8 @@ import type {
 } from './types';
 
 export function usePaymentApi() {
+  const [cookies] = useCookies();
+  const instance = createInstance(cookies.token);
   const endpoint = 'payment';
 
   const create = async (data: CreatePaymentRequest): Promise<PaymentResponse> =>

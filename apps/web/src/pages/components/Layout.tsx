@@ -25,7 +25,9 @@ export function Layout() {
   const [cookies, setCookies, removeCookies] = useCookies();
 
   const onLogout = () => {
-    removeCookies('token');
+    removeCookies('token', {
+      path: '/',
+    });
     enqueueSnackbar('Você saiu da conta com sucesso!', {
       variant: 'success',
     });

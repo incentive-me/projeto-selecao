@@ -1,11 +1,15 @@
-import instance from '../instance';
+import { useCookies } from 'react-cookie';
+
+import { createInstance } from '../createInstance';
 import type {
+  BalanceResponse,
   CreateBalanceRequest,
   UpdateBalanceRequest,
-  BalanceResponse,
 } from './types';
 
 export function useBalanceApi() {
+  const [cookies] = useCookies();
+  const instance = createInstance(cookies.token);
   const endpoint = 'balance';
 
   const create = async (data: CreateBalanceRequest): Promise<BalanceResponse> =>

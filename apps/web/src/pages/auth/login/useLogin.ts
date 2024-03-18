@@ -43,7 +43,9 @@ export function useRegister() {
         variant: 'success',
       });
 
-      setCookies('token', data.access_token);
+      setCookies('token', data.access_token, {
+        path: '/',
+      });
 
       navigate('/payment');
     },
