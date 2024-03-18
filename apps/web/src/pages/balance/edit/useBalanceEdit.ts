@@ -28,7 +28,7 @@ export function useBalanceEdit(balanceId: string | undefined) {
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
 
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['balance', 'findOne', balanceId],
     queryFn: () => findOne(balanceId!),
     enabled: Boolean(balanceId),
@@ -81,7 +81,11 @@ export function useBalanceEdit(balanceId: string | undefined) {
     });
 
   const onSubmit = (data: CreateBalanceRequest | UpdateBalanceRequest) => {
-    if (balanceId) return updateBalance(data);
+    if (balanceId)
+      return updateBalance({
+        description: data.description,
+        name: data.name,
+      });
 
     return createBalance(data as CreateBalanceRequest);
   };
@@ -95,5 +99,6 @@ export function useBalanceEdit(balanceId: string | undefined) {
     form,
     onSubmit,
     isPending,
+    isLoading,
   };
 }

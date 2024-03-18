@@ -3,20 +3,17 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import PaidIcon from '@mui/icons-material/Paid';
 import {
   AppBar,
-  CircularProgress,
   Divider,
   Drawer,
   List,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Stack,
   ThemeProvider,
   Toolbar,
   Typography,
 } from '@mui/material';
 import { useSnackbar } from 'notistack';
-import { Suspense } from 'react';
 import { useCookies } from 'react-cookie';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { lightTheme } from 'themes';
@@ -88,15 +85,7 @@ export function Layout() {
             height: '100%',
           }}
         >
-          <Suspense
-            fallback={
-              <Stack height="100%" alignItems="center" justifyContent="center">
-                <CircularProgress />
-              </Stack>
-            }
-          >
-            <Outlet />
-          </Suspense>
+          <Outlet />
         </div>
       </ThemeProvider>
     </div>
