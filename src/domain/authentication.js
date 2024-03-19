@@ -3,8 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, usePathname } from 'next/navigation';
 
-function AuthLogin() {
-  // XXX TODO :: Add http request to login here
+function AuthLogin() {  
   localStorage.setItem('user-auth', Math.round(Math.random() * 1000))
 }
 function AuthLogout() {
@@ -32,9 +31,9 @@ function RouteGuard({ children }) {
 
     if (!AuthIsAuthorized() && !publicPath.includes(path)) {
       // XXX TODO :: Deixar false quando implementar o login
-      setAuthorized(true)
+      setAuthorized(false)
 
-      // router.push('/login')
+      router.push('/login')
     } else {
       setAuthorized(true)
     }

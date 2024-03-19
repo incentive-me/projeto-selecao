@@ -3,6 +3,7 @@
 import MenuIcon from '@mui/icons-material/Menu'
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import AccountCircle from '@mui/icons-material/AccountCircle';
 
 import Link from 'next/link'
 import {
@@ -12,7 +13,7 @@ import {
   IconButton,
   Alert,
   Snackbar,
-  Slide
+  Slide,
 } from '@mui/material'
 
 import Drawer from '@/app/components/Drawer'
@@ -71,9 +72,10 @@ export default function Layout({ children }) {
           zIndex: (theme) => theme.zIndex.drawer + 1,
           minHeight: `${toolbarHeight}px`,
           backgroundColor: '#424242',
-          boxShadow: 'none'
+          boxShadow: 'none',
         }}>
-        <Toolbar>
+        <Toolbar sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
+         <div className="flex no-wrap">
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -86,6 +88,16 @@ export default function Layout({ children }) {
           <Link href="/payments">
             <h6 className="text-3xl">Payments</h6>
           </Link>
+         </div>
+
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            color="inherit">
+            <AccountCircle />
+          </IconButton>
         </Toolbar>
       </AppBar>
 
