@@ -5,7 +5,7 @@ import http from '@/support/http'
 const uri = 'balances'
 
 // Resources
-function BalancesResource(data) {
+export function BalanceResource(data) {
   // Resource para padronizar o retorno
   // Pode ser extraido e usa-lo como herança
   // Em outros resources, o objetivo é retonar um json
@@ -16,34 +16,36 @@ function BalancesResource(data) {
     display_name: data.name,
     description: data?.description || '',
     payment: null, // se houver pagamento vinculado
-    value: {
-      initial: data.value,
-      used: data.value, // Colocar o calculo para o que foi usado pelo pagamento
-      remaining: data.value // Colocar o restante initial - used se houver um pagamento atrelado
-    }
+    value: data.value
   }
 }
 function BalancesResourcesCollection(result) {
-  result.data = result.data.map(item => BalancesResource(item))
+  result.data = result.data.map(item => BalanceResource(item))
 
   return result
 }
 
 // Methods
 export async function onListBalances () {
-  return await BalancesResourcesCollection(await http(uri).list())
+  return BalancesResourcesCollection(await http(uri).list())
 }
 export async function onShowBalanceByUuid (uuid) {
   const result = await http(uri).show(uuid)
 
-  return BalancesResource(result.data)
+  return BalanceResource(result.data)
 }
 export async function onCreateBalance (params) {
-  return await http(uri).save(params)
+  const value = {
+    initial: params.value,
+    used: '0',
+    remaining: params.value
+  }
+
+  return await http(uri).save({ ...params, value })
 }
 export async function onEditBalanceByUuid(params) {
   return await http(uri).edit(params)
 }
 export async function onRemoveBalanceByUuid(uuid) {
-  return await http(uri).delete(uuid)
+  return BalancesResourcesCollection(await http(uri).delete(uuid))
 }

@@ -25,7 +25,7 @@ export default function http (uri) {
     show: async (uuid) => await handleReturn(await handleFetch(`${uri}?uuid=${uuid}`)),
     delete: async (uuid) => await handleReturn(await handleFetch(`${uri}?uuid=${uuid}`, { method: 'DELETE' })),
     edit: async ({ uuid, ...params }) => {
-      return await handleReturn(await handleReturn(`${uri}?uuid=${uuid}`, {
+      return await handleReturn(await handleFetch(`${uri}?uuid=${uuid}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(params)

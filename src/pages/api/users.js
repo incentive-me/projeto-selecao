@@ -7,7 +7,7 @@
 
 import path from 'path';
 
-import apiMethods from './api'
+import apiMethods from './model'
 
 const users = path.join(process.cwd(), 'mock/users.json')
 
