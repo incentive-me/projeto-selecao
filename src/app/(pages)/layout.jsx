@@ -10,13 +10,22 @@ import {
   Box,
   Toolbar,
   IconButton,
+  Alert,
+  Snackbar,
+  Slide
 } from '@mui/material'
 
 import Drawer from '@/app/components/Drawer'
 
+import { setAlertShow } from '@/app/store'
+
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 export default function Layout({ children }) {
+  const alert = useSelector((state) => state.alert)
+  const dispatch = useDispatch()
+
   const [isMobileOpen, setMobileOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
 
@@ -36,6 +45,17 @@ export default function Layout({ children }) {
 
   const handleSetIsClosing = (status = false) => setIsClosing(status);
   const handleSetMobileOpen = (status = false) => setMobileOpen(status);
+  const handleCloseErrorMessage = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    dispatch(setAlertShow({
+      open: false, 
+      message: '',
+      variant: ''
+    }))
+  };
 
   const handleDrawerToggle = () => {
     if (!isClosing) {
@@ -85,6 +105,16 @@ export default function Layout({ children }) {
         }}>
         {children}
       </Box>
+
+      <Snackbar
+        open={alert.open}
+        autoHideDuration={4000}
+        onClose={handleCloseErrorMessage}
+        TransitionComponent={(props) => <Slide {...props} direction="right" />}>
+        <Alert onClose={handleCloseErrorMessage} severity={alert.variant} variant="filled" sx={{ width: '100%' }}>
+          {alert.message}
+        </Alert>
+      </Snackbar>
     </div>
   );
 }
