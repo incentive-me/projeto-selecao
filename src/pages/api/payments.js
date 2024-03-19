@@ -87,9 +87,29 @@ export default async function handler(req, res) {
     },
     'DELETE': async () => {
       try {
-        const objectData = await Model(payments).handleGetData();
-  
-        await Model(payments).handleWriteDb(JSON.stringify(objectData.filter(item => item.uuid !== req.query.uuid)));
+        const paymentsData = await Model(payments).handleGetData();
+        const balancesData = await Model(balances).handleGetData()
+
+        const updatePayments = paymentsData.filter(payment => {
+          if (payment.uuid !== req.query.uuid) {
+            return payment
+          }
+
+          const updateBalances = balancesData.map(balance => {
+            if (balance.uuid === payment.balance_uuid) {
+              balance.value.used = balance.value.used - payment.value
+              balance.value.remaining = balance.value.remaining + payment.value
+            }
+
+            return balance
+          })
+
+          Model(balances).handleWriteDb(JSON.stringify(updateBalances));
+        })
+
+        console.log(updatePayments)
+
+        await Model(payments).handleWriteDb(JSON.stringify(updatePayments));
   
         res.status(200).json(await Model(payments).handleGetData());
       } catch (error) {
