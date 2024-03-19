@@ -47,7 +47,7 @@ Acessando também esse endereço do Swagger http://localhost:3001/api a API pode
 
 - Crie um usuário
 - Acesse a rota de login e gere um token
-- Aplique o token no **Authorize** dessa forma *Bearer token_gerado_no login*
+- Aplique o token no **Authorize** dessa forma => **Bearer token_gerado_no login** <=
 - Use as rotas
 
 
