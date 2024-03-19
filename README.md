@@ -30,6 +30,7 @@ $ docker compose up --build
 ```
 
 Esse comando vai criar e executar os container do Banco de Dados e da API. Com isso a API já estará pronta para uso e rodando localmente na porta http://localhost:3001
+Todas as rotas, com exceção de Criar Usuário e realizar Login, necessitam de autenticação para serem usadas.
 
 ## Executando os Testes
 
@@ -41,7 +42,13 @@ $ npm run test
 $ npm run test:cov
 ```
 
-A documentação da API foi desenvolvida usando o Swagger e pode ser acessada no link http://localhost:3001/api onde pode ser encontrado os detalhes e as informações dos endpoints
+A documentação da API foi desenvolvida usando o Swagger e pode ser acessada no link http://localhost:3001/api onde pode ser encontrado os detalhes e as informações dos endpoints.
+Acessando também esse endereço do Swagger http://localhost:3001/api a API pode ser testada de forma simples, seguindo os passos:
+
+- Crie um usuário
+- Acesse a rota de login e gere um token
+- Aplique o token no **Authorize** dessa forma *Bearer token_gerado_no login*
+- Use as rotas
 
 
 ## Sobre mim

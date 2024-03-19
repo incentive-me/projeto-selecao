@@ -13,6 +13,17 @@ async function bootstrap() {
     .setTitle('API Plataforma Pagamento')
     .setDescription('API desenvolvida para o processo de Seleção Incentive.me')
     .setVersion('1.0')
+    .addBearerAuth(
+      {
+        type: 'apiKey',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        name: 'Authorization',
+        description: 'JWT Authorization header using the Bearer scheme.',
+        in: 'header',
+      },
+      'Bearer',
+    )
     .build();
  
   const document = SwaggerModule.createDocument(app, swaggerConfig);

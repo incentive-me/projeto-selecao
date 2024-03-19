@@ -4,8 +4,9 @@ import { CreateBalanceDto } from './dto/create-balance.dto';
 import { UpdateBalanceDto } from './dto/update-balance.dto';
 import { Balance } from './entities/balance.entity';
 import { JwtAuthGuard } from 'src/auth/auth.guard';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiBearerAuth('Bearer')
 @UseGuards(JwtAuthGuard)
 @Controller('balance')
 @ApiTags('balance')
