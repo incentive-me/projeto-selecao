@@ -20,11 +20,12 @@ import {
   TableFooter,
   TablePagination,
   Button,
-  styled,
 } from '@mui/material';
 
 import { onListBalances, onRemoveBalanceByUuid } from '@/domain/balances'
-import { handleMaskPrice } from '@/support/handlers'
+
+import { useDispatch } from 'react-redux'
+import { setAlertShow } from '@/app/store'
 
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -72,12 +73,12 @@ function TablePaginationActions(props) {
 
 export default function Balances() {
   const router = useRouter()
+  const dispatch = useDispatch()
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [balances, setBalances] = useState([]);
 
-  // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0
     ? Math.max(0, (1 + page) * rowsPerPage - balances.length)
     : 0;
@@ -87,10 +88,23 @@ export default function Balances() {
   const handleRemoveBalance = async (uuid) => {
     const result = await onRemoveBalanceByUuid(uuid)
 
-    if (result.status === 200 && result.data.message) {
-      // XXX TODO :: Add tooltip aqui
-      console.log(result.data.message)
+    if (result.status !== 200) {
+      dispatch(setAlertShow({
+        open: true, 
+        message: result.data.message,
+        variant: 'error'
+      }))
+
+      return
     }
+
+    setBalances(result.data)
+
+    dispatch(setAlertShow({
+      open: true, 
+      message: 'Saldo removido',
+      variant: 'success'
+    }))
   }
 
   const handleChangeRowsPerPage = (event) => {
@@ -104,7 +118,7 @@ export default function Balances() {
         setBalances(resolve.data)
       }
     })
-  })
+  }, [])
 
   return (
     <div>
@@ -115,7 +129,6 @@ export default function Balances() {
           </Grid>
 
           <Grid item xs={4} sm={2}>
-            {/* XXX TODO :: Adicionar a ação para criar saldos */}
             <Button
               fullWidth
               type="submit"
@@ -150,11 +163,10 @@ export default function Balances() {
                       {row.display_name}
                     </TableCell>
                     <TableCell>{row.description}</TableCell>
-                    <TableCell>{handleMaskPrice(row.value.initial)}</TableCell>
-                    <TableCell>{handleMaskPrice(row.value.used)}</TableCell>
-                    <TableCell>{handleMaskPrice(row.value.remaining)}</TableCell>
+                    <TableCell>{row.value.initial}</TableCell>
+                    <TableCell>{row.value.used}</TableCell>
+                    <TableCell>{row.value.remaining}</TableCell>
                     <TableCell align="right">
-                      {/* XXX TODO :: Adicionar as ações para editar e remover */}
                       <IconButton aria-label="delete" size="small" onClick={() => handleEditBalance(row.uuid)}>
                         <EditIcon fontSize="inherit" />
                       </IconButton>

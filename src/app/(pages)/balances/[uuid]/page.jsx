@@ -11,42 +11,56 @@ import {
   onEditBalanceByUuid
 } from '@/domain/balances'
 
-import { handleMaskPrice } from '@/support/handlers'
+import { setAlertShow } from '@/app/store'
 
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
 export default function EditBalance({ params }) {
   const router = useRouter()
-
-  // const [name, setName] = useState('')
-  // const [description, setDescription] = useState('')
-  const [value, setInitialValue] = useState(0)
-
-  const { register, handleSubmit, setValue, formState: { errors }, control } = useForm({
-    defaultValues: { name: '', description: '' }
+  const dispatch = useDispatch()
+  const { handleSubmit, setValue, formState: { errors }, control } = useForm({
+    defaultValues: { name: '' }
   })
+
+  const [value, setInitialValue] = useState(0)
+  const [description, setDescription] = useState('')
 
   const onGoBack = () => router.push('/balances')
   const onSubmit = async (data) => {
     const result = await onEditBalanceByUuid({ uuid: params.uuid, ...data })
 
-    if (result.status === 200 && result.data?.message) {
-      // XXX TODO :: Add tooltip aqui
-      console.log(result.data.message)
+    if (result.status !== 200) {
+      dispatch(setAlertShow({
+        open: true, 
+        message: result.data.message,
+        variant: 'error'
+      }))
+      return
     }
+
+    dispatch(setAlertShow({
+      open: true, 
+      message: result.data.message,
+      variant: 'success'
+    }))
+
+    router.push('/balances')
   }
 
   useEffect(() => {
     onShowBalanceByUuid(params.uuid)
       .then(resolve => {
         setValue('name', resolve.display_name)
-        setValue('description', resolve?.description || '')
+        setDescription(resolve?.description || '')
 
-        setInitialValue(handleMaskPrice(resolve.value.initial))
+        setInitialValue(resolve.value.initial)
       })
-  })
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className="p-6 relative h-full">
@@ -79,26 +93,11 @@ export default function EditBalance({ params }) {
             
           </Grid>
           <Grid item xs={12}>
-            <Controller
-              name="description"
-              control={control}
-              rules={{
-                required: {
-                  value: true,
-                  message: 'this field is required!'
-                }
-              }}
-              render={({ field: { onBlur, onChange, value }}) => (
-                <TextField
-                  fullWidth
-                  required
-                  label="Descrição"
-                  onChange={onChange}
-                  onBlur={onBlur}
-                  value={value}
-                  error={!!errors.description}
-                  helperText={!!errors.description && errors.description.message} />
-              )}/>
+            <TextField
+              fullWidth
+              disabled
+              label="Descrição"
+              value={description} />
           </Grid>
           <Grid item xs={12}>
             <TextField
@@ -120,7 +119,6 @@ export default function EditBalance({ params }) {
           </Button>
         </div>
       </form>
-
     </div>
   );
 }

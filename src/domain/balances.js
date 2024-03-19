@@ -1,6 +1,8 @@
 "use client"
 
 import http from '@/support/http'
+import { handleMaskPrice } from '@/support/handlers'
+
 // URI
 const uri = 'balances'
 
@@ -16,7 +18,11 @@ export function BalanceResource(data) {
     display_name: data.name,
     description: data?.description || '',
     payment: null, // se houver pagamento vinculado
-    value: data.value
+    value: {
+      initial: handleMaskPrice(data.value.initial.toFixed(2)),
+      used: handleMaskPrice(data.value.used.toFixed(2)),
+      remaining: handleMaskPrice(data.value.remaining.toFixed(2))
+    }
   }
 }
 function BalancesResourcesCollection(result) {
