@@ -107,8 +107,6 @@ export default async function handler(req, res) {
           Model(balances).handleWriteDb(JSON.stringify(updateBalances));
         })
 
-        console.log(updatePayments)
-
         await Model(payments).handleWriteDb(JSON.stringify(updatePayments));
   
         res.status(200).json(await Model(payments).handleGetData());
