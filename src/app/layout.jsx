@@ -1,6 +1,8 @@
 "use client"
 
 import { RouteGuard } from '@/domain/authentication'
+import { Provider } from 'react-redux'
+import store from './store'
 
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -16,7 +18,9 @@ export default function RootLayout({ children }) {
 
       <body className={inter.className}>
         <RouteGuard>
-          {children}
+          <Provider store={store}>
+            {children}
+          </Provider>
         </RouteGuard>
       </body>
     </html>
