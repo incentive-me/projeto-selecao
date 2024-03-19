@@ -10,6 +10,7 @@ import path from 'path';
 import Model from './model'
 
 const balances = path.join(process.cwd(), 'mock/balances.json')
+const payments = path.join(process.cwd(), 'mock/payments.json')
 
 export default async function handler(req, res) {
   const methods = {
@@ -66,9 +67,16 @@ export default async function handler(req, res) {
     },
     'DELETE': async () => {
       try {
-        const objectData = await Model(balances).handleGetData();
+        const balancesData = await Model(balances).handleGetData();
+        const paymentsData = await Model(payments).handleGetData();
 
-        await Model(balances).handleWriteDb(JSON.stringify(objectData.filter(item => item.uuid !== req.query.uuid)));
+        const balanceUuid = req.query.uuid
+
+        if (paymentsData.filter(payment => payment.balance_uuid = balanceUuid).length) {
+          return res.status(412).json({ message: 'Por favor, remova o pagamento vinculado antes de remover o saldo' })
+        }
+        
+        await Model(balances).handleWriteDb(JSON.stringify(balancesData.filter(item => item.uuid !== balanceUuid)));
 
         res.status(200).json(await Model(balances).handleGetData());
       } catch (error) {

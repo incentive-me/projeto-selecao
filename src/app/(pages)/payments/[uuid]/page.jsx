@@ -11,16 +11,14 @@ import {
 } from '@mui/material';
 
 import { onShowPaymentByUuid, onEditPaymentByUuid } from '@/domain/payments'
-import { setAlertShow } from '@/app/store'
 
-import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
 export default function EditPayment({ params }) {
   const router = useRouter()
-  const dispatch = useDispatch()
+
   const { handleSubmit, setValue,  formState: { errors }, control } = useForm({
     defaultValues: { name: '' }
   })
@@ -33,20 +31,8 @@ export default function EditPayment({ params }) {
   const onSubmit = async (data) => {
     const result = await onEditPaymentByUuid({ uuid: params.uuid, ...data })
 
-    if (result.status !== 200) {
-      dispatch(setAlertShow({
-        open: true, 
-        message: result.data.message,
-        variant: 'error'
-      }))
-      return
-    }
+    if (!result) return
 
-    dispatch(setAlertShow({
-      open: true, 
-      message: result.data.message,
-      variant: 'success'
-    }))
     router.push('/payments')
   }
 

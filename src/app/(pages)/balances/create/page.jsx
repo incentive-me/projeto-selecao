@@ -10,14 +10,10 @@ import { useRouter } from 'next/navigation';
 import { onCreateBalance } from '@/domain/balances'
 import { handleMaskPrice } from '@/support/handlers'
 
-import { setAlertShow } from '@/app/store'
-
 import { Controller, useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
 
 export default function CreateBalance({ params }) {
   const router = useRouter()
-  const dispatch = useDispatch()
 
   const { handleSubmit, formState: { errors }, control } = useForm({
     defaultValues: {
@@ -31,21 +27,8 @@ export default function CreateBalance({ params }) {
   const onSubmit = async (data) => {
     const result = await onCreateBalance(data)
 
-    if (result.status !== 200) {
-      dispatch(setAlertShow({
-        open: true, 
-        message: result.data.message,
-        variant: 'error'
-      }))
-      
-      return
-    }
+    if (!result) return
 
-    dispatch(setAlertShow({
-      open: true,
-      message: 'Saldo criado!',
-      variant: 'success'
-    }))
     router.push('/balances')
   }
 

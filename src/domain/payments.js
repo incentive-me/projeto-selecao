@@ -2,6 +2,8 @@
 
 import http from '@/support/http'
 
+import store, { setAlertShow } from '@/app/store'
+
 import { BalanceResource } from './balances'
 import { handleMaskPrice } from '@/support/handlers'
 
@@ -39,11 +41,63 @@ export async function onShowPaymentByUuid (uuid) {
   return PaymentResource(result.data)
 }
 export async function onCreatePayment (params) {  
-  return await http(uri).save(params)
+  const result = await http(uri).save(params)
+
+  if (result.status !== 200) {
+    store.dispatch(setAlertShow({
+      open: true, 
+      message: result.data.message,
+      variant: 'error'
+    }))
+    return
+  }
+
+  store.dispatch(setAlertShow({
+    open: true, 
+    message: result.data.message,
+    variant: 'success'
+  }))
+
+  return result
 }
 export async function onEditPaymentByUuid(params) {
-  return await http(uri).edit(params)
+  const result = await http(uri).edit(params)
+
+  if (result.status !== 200) {
+    store.dispatch(setAlertShow({
+      open: true, 
+      message: result.data.message,
+      variant: 'error'
+    }))
+    return
+  }
+
+  store.dispatch(setAlertShow({
+    open: true, 
+    message: result.data.message,
+    variant: 'success'
+  }))
+
+  return result
 }
 export async function onRemovePaymentByUuid(uuid) {
-  return PaymentsResourcesCollection(await http(uri).delete(uuid))
+  const result = await http(uri).delete(uuid)
+
+  if (result.status !== 200) {
+    store.dispatch(setAlertShow({
+      open: true, 
+      message: result.data.message,
+      variant: 'error'
+    }))
+
+    return
+  }
+
+  store.dispatch(setAlertShow({
+    open: true, 
+    message: 'Pagamento removido!',
+    variant: 'success'
+  }))
+
+  return PaymentsResourcesCollection(result)
 }

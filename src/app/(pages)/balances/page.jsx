@@ -24,9 +24,6 @@ import {
 
 import { onListBalances, onRemoveBalanceByUuid } from '@/domain/balances'
 
-import { useDispatch } from 'react-redux'
-import { setAlertShow } from '@/app/store'
-
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -73,7 +70,6 @@ function TablePaginationActions(props) {
 
 export default function Balances() {
   const router = useRouter()
-  const dispatch = useDispatch()
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -88,23 +84,9 @@ export default function Balances() {
   const handleRemoveBalance = async (uuid) => {
     const result = await onRemoveBalanceByUuid(uuid)
 
-    if (result.status !== 200) {
-      dispatch(setAlertShow({
-        open: true, 
-        message: result.data.message,
-        variant: 'error'
-      }))
-
-      return
-    }
+    if (!result) return 
 
     setBalances(result.data)
-
-    dispatch(setAlertShow({
-      open: true, 
-      message: 'Saldo removido',
-      variant: 'success'
-    }))
   }
 
   const handleChangeRowsPerPage = (event) => {

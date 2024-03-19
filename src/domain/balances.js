@@ -1,7 +1,10 @@
 "use client"
 
 import http from '@/support/http'
+
 import { handleMaskPrice } from '@/support/handlers'
+
+import store, { setAlertShow } from '@/app/store'
 
 // URI
 const uri = 'balances'
@@ -47,11 +50,63 @@ export async function onCreateBalance (params) {
     remaining: params.value
   }
 
-  return await http(uri).save({ ...params, value })
+  const result = await http(uri).save({ ...params, value })
+ 
+  if (result.status !== 200) {
+    store.dispatch(setAlertShow({
+      open: true, 
+      message: result.data.message,
+      variant: 'error'
+    }))
+    return
+  }
+
+  store.dispatch(setAlertShow({
+    open: true, 
+    message: result.data.message,
+    variant: 'success'
+  }))
+
+  return result
 }
 export async function onEditBalanceByUuid(params) {
-  return await http(uri).edit(params)
+  const result = await http(uri).edit(params)
+
+  if (result.status !== 200) {
+    store.dispatch(setAlertShow({
+      open: true, 
+      message: result.data.message,
+      variant: 'error'
+    }))
+    return
+  }
+
+  store.dispatch(setAlertShow({
+    open: true, 
+    message: result.data.message,
+    variant: 'success'
+  }))
+
+  return result
 }
 export async function onRemoveBalanceByUuid(uuid) {
-  return BalancesResourcesCollection(await http(uri).delete(uuid))
+  const result = await http(uri).delete(uuid)
+
+  if (result.status !== 200) {
+    store.dispatch(setAlertShow({
+      open: true, 
+      message: result.data.message,
+      variant: 'error'
+    }))
+
+    return
+  }
+
+  store.dispatch(setAlertShow({
+    open: true, 
+    message: 'Saldo removido!',
+    variant: 'success'
+  }))
+
+  return BalancesResourcesCollection(result)
 }

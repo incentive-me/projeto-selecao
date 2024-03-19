@@ -14,16 +14,13 @@ import {
 import { onListBalances } from '@/domain/balances'
 import { onCreatePayment } from '@/domain/payments'
 import { handleMaskPrice } from '@/support/handlers'
-import { setAlertShow } from '@/app/store'
 
 import { useRouter } from 'next/navigation';
 import { Controller, useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 
 export default function CreatePayment() {
   const router = useRouter()
-  const dispatch = useDispatch()
   const { handleSubmit, formState: { errors }, control } = useForm({
     defaultValues: {
       name: '',
@@ -39,20 +36,8 @@ export default function CreatePayment() {
   const onSubmit = async (data) => {
     const result = await onCreatePayment(data)
 
-    if (result.status !== 200) {
-      dispatch(setAlertShow({
-        open: true, 
-        message: result.data.message,
-        variant: 'error'
-      }))
-      return
-    }
+    if (!result) return
 
-    dispatch(setAlertShow({
-      open: true, 
-      message: result.data.message,
-      variant: 'success'
-    }))
     router.push('/payments')
   }
 

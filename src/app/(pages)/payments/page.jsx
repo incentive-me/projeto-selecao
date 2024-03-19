@@ -23,9 +23,7 @@ import {
 } from '@mui/material';
 
 import { onListPayments, onRemovePaymentByUuid } from '@/domain/payments'
-import { setAlertShow } from '@/app/store'
 
-import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -72,7 +70,6 @@ function TablePaginationActions(props) {
 
 export default function Payments() {
   const router = useRouter()
-  const dispatch = useDispatch()
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -88,21 +85,9 @@ export default function Payments() {
   const handleRemovePayment = async (uuid) => {
     const result = await onRemovePaymentByUuid(uuid)
 
-    if (result.status !== 200) {
-      dispatch(setAlertShow({
-        open: true, 
-        message: result.data.message,
-        variant: 'error'
-      }))
-      return
-    }
+    if (!result) return
 
     setPayments(result.data)
-    dispatch(setAlertShow({
-      open: true, 
-      message: 'Pagamento removido!',
-      variant: 'success'
-    }))
   }
 
   const handleChangeRowsPerPage = (event) => {
