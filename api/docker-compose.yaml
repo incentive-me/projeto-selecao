@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql_incentive
+    restart: always
+    environment:
+      MYSQL_DATABASE: db-incentive
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3306:3306
+    volumes:
+      - .docker/mysql:/var/lib/mysql
+  
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: api_incentive
+    env_file:
+      - .env
+    environment:
+      - PORT=${PORT}
+    ports:
+      - '3001:3001'
+    depends_on:
+      - mysql
+    volumes:
+      - ./src:/app/src
