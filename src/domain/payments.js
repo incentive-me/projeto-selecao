@@ -3,6 +3,7 @@
 import http from '@/support/http'
 
 import { BalanceResource } from './balances'
+import { handleMaskPrice } from '@/support/handlers'
 
 // URI
 const uri = 'payments'
@@ -19,7 +20,7 @@ function PaymentResource(data) {
     balance: data.balance ? BalanceResource(data.balance) : null, // se houver saldo vinculado
     display_name: data.name,
     description: data?.description || '',
-    value: data.value
+    value: handleMaskPrice(data.value.toFixed(2))
   }
 }
 function PaymentsResourcesCollection(result) {
