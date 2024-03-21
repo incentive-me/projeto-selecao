@@ -1,1 +1,1 @@
-web: npm --prefix apps/api run start:prod
+web: npm run start:prod
