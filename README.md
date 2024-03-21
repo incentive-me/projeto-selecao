@@ -6,38 +6,15 @@ The platform is a financial management solution that simplifies the process of m
 
 ### [Live Demo](https://payment-platform-web.vercel.app/)
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carousel</title>
-  <style>
-    .carousel {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-    }
-    .carousel img {
-      scroll-snap-align: start;
-      width: 100%;
-      height: auto;
-    }
-  </style>
-</head>
-<body>
-  <div class="carousel">
+<details>
+  <summary>Screenshots</summary>
     <img src="apps/web/public/screenshots/login.png" alt="Login">
     <img src="apps/web/public/screenshots/register.png" alt="Register">
     <img src="apps/web/public/screenshots/payments.png"alt="Payment list">
     <img src="apps/web/public/screenshots/payment-edit.png"alt="Payment edit">
     <img src="apps/web/public/screenshots/balances.png"alt="Balances list">
     <img src="apps/web/public/screenshots/balance-edit.png"alt="Balance edit">
-
-  </div>
-</body>
-</html>
+</details>
 
 ## Configure .env files
 
