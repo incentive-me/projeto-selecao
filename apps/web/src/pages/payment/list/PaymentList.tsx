@@ -12,16 +12,22 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-import { PaymentTableRowSkeleton } from './components';
+import { TableBodyHandler } from 'components/table';
+import {
+  PaymentTableEmptyFeedback,
+  PaymentTableRowSkeleton,
+} from './components';
 import { usePaymentList } from './usePaymentList';
 
 export function PaymentList() {
   const {
-    deletePaymentById,
-    goToEditPaymentPageById,
-    goToCreatePaymentPage,
     payments,
     isLoading,
+    isError,
+    refetch,
+    openDeleteDialog,
+    goToEditPaymentPageById,
+    goToCreatePaymentPage,
   } = usePaymentList();
 
   return (
@@ -45,10 +51,25 @@ export function PaymentList() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {isLoading ? (
-              <PaymentTableRowSkeleton />
-            ) : (
-              payments?.map(({ id, description, value, name }) => (
+            <TableBodyHandler
+              empty={{
+                length: payments?.length || 0,
+                feedback: (
+                  <PaymentTableEmptyFeedback
+                    buttonProps={{ onClick: goToCreatePaymentPage }}
+                  />
+                ),
+              }}
+              loading={{
+                isLoading,
+                loader: <PaymentTableRowSkeleton />,
+              }}
+              error={{
+                isError,
+                refetch,
+              }}
+            >
+              {payments?.map(({ id, description, value, name }) => (
                 <TableRow key={id}>
                   <TableCell>{name}</TableCell>
                   <TableCell>{description}</TableCell>
@@ -62,13 +83,13 @@ export function PaymentList() {
                     <IconButton onClick={() => goToEditPaymentPageById(id)}>
                       <EditIcon />
                     </IconButton>
-                    <IconButton onClick={() => deletePaymentById(id)}>
+                    <IconButton onClick={() => openDeleteDialog(id)}>
                       <DeleteIcon />
                     </IconButton>
                   </TableCell>
                 </TableRow>
-              ))
-            )}
+              ))}
+            </TableBodyHandler>
           </TableBody>
         </Table>
       </TableContainer>

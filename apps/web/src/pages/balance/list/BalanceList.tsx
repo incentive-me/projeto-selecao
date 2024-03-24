@@ -12,16 +12,22 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-import { BalanceTableRowSkeleton } from './components';
+import { TableBodyHandler } from 'components/table';
+import {
+  BalanceTableEmptyFeedback,
+  BalanceTableRowSkeleton,
+} from './components';
 import { useBalanceList } from './useBalanceList';
 
 export function BalanceList() {
   const {
-    deleteBalanceById,
-    goToEditBalancePageById,
-    goToCreateBalancePage,
     balances,
     isLoading,
+    isError,
+    refetch,
+    goToEditBalancePageById,
+    goToCreateBalancePage,
+    openDeleteDialog,
   } = useBalanceList();
 
   return (
@@ -47,10 +53,25 @@ export function BalanceList() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {isLoading ? (
-              <BalanceTableRowSkeleton />
-            ) : (
-              balances?.map(
+            <TableBodyHandler
+              empty={{
+                length: balances?.length || 0,
+                feedback: (
+                  <BalanceTableEmptyFeedback
+                    buttonProps={{ onClick: goToCreateBalancePage }}
+                  />
+                ),
+              }}
+              loading={{
+                isLoading,
+                loader: <BalanceTableRowSkeleton />,
+              }}
+              error={{
+                isError,
+                refetch,
+              }}
+            >
+              {balances?.map(
                 ({
                   id,
                   description,
@@ -84,14 +105,14 @@ export function BalanceList() {
                       <IconButton onClick={() => goToEditBalancePageById(id)}>
                         <EditIcon />
                       </IconButton>
-                      <IconButton onClick={() => deleteBalanceById(id)}>
+                      <IconButton onClick={() => openDeleteDialog(id)}>
                         <DeleteIcon />
                       </IconButton>
                     </TableCell>
                   </TableRow>
                 ),
-              )
-            )}
+              )}
+            </TableBodyHandler>
           </TableBody>
         </Table>
       </TableContainer>
