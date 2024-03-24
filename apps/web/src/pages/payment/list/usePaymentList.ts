@@ -1,51 +1,46 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { useSnackbar } from 'notistack';
-import { useMemo } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { useModal } from 'mui-modal-provider';
 import { generatePath, useNavigate } from 'react-router-dom';
 import { usePaymentApi } from 'services/api/payment';
+import { PaymentDeleteDialog } from './components';
 
 export function usePaymentList() {
-  const { deleteById, findAll } = usePaymentApi();
-  const { enqueueSnackbar } = useSnackbar();
+  const { findAll } = usePaymentApi();
+  const { showModal } = useModal();
+
   const navigate = useNavigate();
 
   const {
     data: payments,
     isFetching,
     refetch,
+    isError,
   } = useQuery({
     queryKey: ['payment', 'findAll'],
     queryFn: () => findAll(),
   });
-
-  const { mutateAsync: deletePaymentById, isPending: isPendingDelete } =
-    useMutation({
-      mutationKey: ['payment', 'delete'],
-      mutationFn: (id: string) => deleteById(id),
-      onSuccess() {
-        enqueueSnackbar('Saldo deletado com sucesso!', {
-          variant: 'success',
-        });
-
-        refetch();
-      },
-    });
-
-  const isLoading = useMemo(
-    () => isFetching || isPendingDelete,
-    [isFetching, isPendingDelete],
-  );
 
   const goToEditPaymentPageById = (id: string) =>
     navigate(generatePath('/payment/edit/:id', { id }));
 
   const goToCreatePaymentPage = () => navigate('/payment/edit');
 
+  const openDeleteDialog = (paymentId: string) => {
+    const modal = showModal(PaymentDeleteDialog, {
+      paymentId,
+      handleClose() {
+        modal.hide();
+      },
+    });
+  };
+
   return {
-    isLoading,
+    isLoading: isFetching,
     payments,
-    deletePaymentById,
+    isError,
+    refetch,
     goToEditPaymentPageById,
     goToCreatePaymentPage,
+    openDeleteDialog,
   };
 }

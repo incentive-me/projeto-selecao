@@ -10,6 +10,23 @@ export const darkTheme = createTheme({
 });
 
 export const lightTheme = createTheme({
+  components: {
+    MuiDialogContentText: {
+      styleOverrides: {
+        root: {
+          color: 'black',
+        },
+      },
+    },
+    MuiDialogActions: {
+      styleOverrides: {
+        root: {
+          justifyContent: 'space-between',
+          padding: 20,
+        },
+      },
+    },
+  },
   palette: {
     mode: 'light',
     primary: {

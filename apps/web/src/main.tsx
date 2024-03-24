@@ -1,5 +1,6 @@
 import { CssBaseline, Paper, ThemeProvider } from '@mui/material';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ModalProvider } from 'mui-modal-provider';
 import { SnackbarProvider } from 'notistack';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -8,10 +9,10 @@ import ErrorPage from './error-page';
 import {
   BalanceEdit,
   BalanceList,
-  PaymentEdit,
-  PaymentList,
   Layout,
   Login,
+  PaymentEdit,
+  PaymentList,
   Register,
   Root,
 } from './pages';
@@ -88,9 +89,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <CssBaseline />
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={darkTheme}>
-        <SnackbarProvider>
-          <RouterProvider router={router} />
-        </SnackbarProvider>
+        <ModalProvider>
+          <SnackbarProvider>
+            <RouterProvider router={router} />
+          </SnackbarProvider>
+        </ModalProvider>
       </ThemeProvider>
     </QueryClientProvider>
   </React.StrictMode>,
