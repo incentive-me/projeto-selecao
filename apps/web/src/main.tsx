@@ -89,11 +89,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <CssBaseline />
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={darkTheme}>
-        <ModalProvider>
-          <SnackbarProvider>
+        <SnackbarProvider>
+          <ModalProvider>
             <RouterProvider router={router} />
-          </SnackbarProvider>
-        </ModalProvider>
+          </ModalProvider>
+        </SnackbarProvider>
       </ThemeProvider>
     </QueryClientProvider>
   </React.StrictMode>,

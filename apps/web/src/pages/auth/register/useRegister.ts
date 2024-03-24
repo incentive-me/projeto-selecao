@@ -7,6 +7,7 @@ import { z } from 'zod';
 import { useUserApi } from 'services/api/user';
 import { CreateUserRequest } from 'services/api/user/types';
 import { passwordSchema } from '../schemas';
+import { AxiosError } from 'axios';
 
 const registerSchema = z
   .object({
@@ -49,7 +50,12 @@ export function useRegister() {
 
       navigate('/auth/login');
     },
-    onError() {
+    onError(error: AxiosError<{ error: string }>) {
+      if (error?.response?.data.error === 'This user already exists')
+        return enqueueSnackbar('Este usuário já existe', {
+          variant: 'error',
+        });
+
       enqueueSnackbar('Erro ao criar usuário.', {
         variant: 'error',
       });
